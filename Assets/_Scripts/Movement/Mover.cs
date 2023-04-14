@@ -15,9 +15,6 @@ public class Mover : MonoBehaviour
     [SerializeField]
     private float _deceleration = 0.1f;
 
-    [SerializeField]
-    private float _airResistance = 0.5f;
-
     private Rigidbody2D _rigidbody2D;
     private CollisionDetector _collisionDetector;
     private bool _isGrounded => _collisionDetector.IsGrounded();
@@ -36,16 +33,6 @@ public class Mover : MonoBehaviour
         {
             MovementUpdate();
         }
-
-        if (_isGrounded == false)
-        {
-            AirResistanceUpdate();
-        }
-    }
-
-    private void AirResistanceUpdate()
-    {
-        // _rigidbody2D.velocity += new Vector2()
     }
 
     private void MovementUpdate()
