@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IPickable
 {
-    void OnPicked();
+    void Pick(GameObject obj);
 }

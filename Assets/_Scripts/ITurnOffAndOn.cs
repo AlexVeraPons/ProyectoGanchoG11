@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IEnableDisable
+public interface ITurnOffAndOn
 {
-    void Enable();
-    void Disable();
+    void TurnOn();
+    void TurnOff();
 }
