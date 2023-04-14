@@ -1,7 +1,7 @@
 # C# GameProject Code Style Guide
 ---
 
-This style guide created by Alexandro Vera for C# code used in the project (PROJECT NAME), designed for a short project. All decisions done to optimize time in this project, this is not as rigid as other Style Guides, due to the scope of the project and the participating developers experience using style guides.
+This style guide created by Alexandro Vera for C# code used in the project ProjectGancho, designed for a short project. All decisions done to optimize time in this project, this is not as rigid as other Style Guides, due to the scope of the project and the participating developers experience using style guides.
 
 ----
 
