@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class HookMovement : MonoBehaviour
 {
+    public static Action OnHookEntersPlayer;
     private Rigidbody2D _rigidBody2D;
     private float _speed;
     public bool MovingRight = false;
+    private int _timesItColidesWithParent = 2;
     void OnEnable()
     {
         ThowHook.hookIsMovingRight += ChangeHookDirection;
@@ -35,7 +38,20 @@ public class HookMovement : MonoBehaviour
     }
     void ChangeHookDirection(bool movingRight)
     {
-        MovingRight = !MovingRight;
-        Debug.Log("Move direvtion is: " + MovingRight);
+        MovingRight = movingRight;
+    }
+    void OnTriggerEnter2D(Collider2D hitInfo)
+    {
+        if (this.transform.parent == hitInfo.transform)
+        {
+            Debug.Log("parent");
+            _timesItColidesWithParent -= 1;
+        }
+        if (_timesItColidesWithParent <= 0)
+        {
+            Destroy(gameObject);
+
+        }
+        //Instantiate(impactEffect, transform.position, transform.rotation);
     }
 }

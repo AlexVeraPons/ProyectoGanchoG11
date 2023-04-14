@@ -16,14 +16,18 @@ public class ThowHook : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("hook");
             hookIsMovingRight?.Invoke(true);
-            Instantiate(BulletPrefab, transform.position, Quaternion.identity);
+            Throw();
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {
             hookIsMovingRight?.Invoke(false);
 
         }
+    }
+    void Throw()
+    {
+        var hook = Instantiate(BulletPrefab, transform.position, Quaternion.identity);
+        hook.transform.SetParent(this.transform);
     }
 }
