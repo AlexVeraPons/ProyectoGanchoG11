@@ -7,8 +7,9 @@ public class HookMovement : MonoBehaviour
 {
     public static Action OnHookEntersPlayer;
     private Rigidbody2D _rigidBody2D;
-    private float _speed;
     public bool MovingRight = false;
+    private float _speed;
+    private Vector2 _direction;
     private int _timesItColidesWithParent = 2;
     void OnEnable()
     {
@@ -19,6 +20,11 @@ public class HookMovement : MonoBehaviour
         ThowHook.hookIsMovingRight -= ChangeHookDirection;
 
     }
+    public void SetDirection(Vector2 direction)
+    {
+        _direction = direction;
+    }
+
     void Start()
     {
         _rigidBody2D = GetComponent<Rigidbody2D>();

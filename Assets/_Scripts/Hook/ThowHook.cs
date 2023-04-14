@@ -7,6 +7,9 @@ public class ThowHook : MonoBehaviour
 {
     public GameObject BulletPrefab;
     public static Action<bool> hookIsMovingRight;
+
+    public Vector2 InputtedDirection { get; private set; }
+
     void Start()
     {
 
@@ -28,6 +31,8 @@ public class ThowHook : MonoBehaviour
     void Throw()
     {
         var hook = Instantiate(BulletPrefab, transform.position, Quaternion.identity);
+        var hookMovement = hook.GetComponent<HookMovement>();
+        hookMovement.SetDirection(InputtedDirection);
         hook.transform.SetParent(this.transform);
     }
 }
