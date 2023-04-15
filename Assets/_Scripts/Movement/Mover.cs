@@ -17,10 +17,12 @@ public class Mover : MonoBehaviour
 
     private Rigidbody2D _rigidbody2D;
     private CollisionDetector _collisionDetector;
+    public bool IsFacingRight => _facingRight;
+    private bool _facingRight = true;
     private bool _isGrounded => _collisionDetector.IsGrounded();
     private float _input;
     private float _velocity;
-    private bool _facingRight = true;
+
     private bool _isTouchingWall => _collisionDetector.IsTouchingInfront();
 
     private void Awake()
@@ -37,12 +39,11 @@ public class Mover : MonoBehaviour
         }
         ShouldFlip();
 
-        if(_isTouchingWall && !_isGrounded)
+        if (_isTouchingWall && !_isGrounded)
         {
             ResetVelocity();
         }
     }
-
 
     private void MovementUpdate()
     {
@@ -55,6 +56,7 @@ public class Mover : MonoBehaviour
 
         _rigidbody2D.velocity = new Vector2(_velocity, _rigidbody2D.velocity.y);
     }
+
     private void ShouldFlip()
     {
         // If the input is moving the player right and the player is facing left...
@@ -78,6 +80,7 @@ public class Mover : MonoBehaviour
         theScale.x *= -1;
         transform.localScale = theScale;
     }
+
     private void ResetVelocity()
     {
         _velocity = 0;
@@ -87,6 +90,7 @@ public class Mover : MonoBehaviour
     {
         return _isGrounded;
     }
+
     public void DirectionalInput(InputAction.CallbackContext context)
     {
         _input = context.ReadValue<Vector2>().x;

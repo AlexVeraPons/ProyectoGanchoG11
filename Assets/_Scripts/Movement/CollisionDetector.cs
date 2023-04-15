@@ -34,18 +34,6 @@ public class CollisionDetector : MonoBehaviour
         return colliders.Length > 0;
     }
 
-    private void Update()
-    {
-        if (IsTouchingWall())
-        {
-            Debug.Log("Touching Wall");
-        }
-        if (IsTouchingInfront())
-        {
-            Debug.Log("Touching Infront");
-        }
-    }
-
     public bool IsTouchingWall()
     {
         var colliders = Physics2D.OverlapCircleAll(
