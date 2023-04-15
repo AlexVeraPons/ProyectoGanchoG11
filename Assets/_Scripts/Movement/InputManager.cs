@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
-    private void Update() {
-        
-    }
+
+
+    private Vector2 _input2D;
+    private bool _isFiring; 
 }
