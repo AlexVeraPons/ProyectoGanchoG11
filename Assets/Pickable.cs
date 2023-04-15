@@ -5,16 +5,21 @@ using UnityEngine;
 
 public class Pickable : MonoBehaviour, IPickable, IDropable
 {
+    public GameObject CurrentPicker => _currentPicker;
+    [SerializeField] GameObject _currentPicker;
+
     public Action<GameObject> OnPickupAction;
-    public Action OnDroppedAction;
+    public Action<GameObject> OnDroppedAction;
 
     public void Pick(GameObject obj)
     {
+        if(_currentPicker != obj && _currentPicker != null) { _currentPicker.GetComponent<ObjectStorer>().RemoveFromList(this.gameObject); }
+        _currentPicker = obj;
         OnPickupAction?.Invoke(obj);
     }
 
-    public void Drop()
+    public void Drop(GameObject obj)
     {
-        OnDroppedAction?.Invoke();
+        OnDroppedAction?.Invoke(obj);
     }
 }

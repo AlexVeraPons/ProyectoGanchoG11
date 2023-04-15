@@ -16,7 +16,7 @@ public class FollowTarget : MonoBehaviour
 
     private void OnDisable()
     {
-        gameObject.GetComponent<Pickable>().OnPickupAction += AssignTransform;
+        gameObject.GetComponent<Pickable>().OnPickupAction -= AssignTransform;
         gameObject.GetComponent<Pickable>().OnDroppedAction -= UnnasignTransform;
     }
 
@@ -30,7 +30,7 @@ public class FollowTarget : MonoBehaviour
     { 
         transform.position = _target.position + (Vector3)_offset;
     }
-    void UnnasignTransform()
+    void UnnasignTransform(GameObject obj)
     {
         transform.SetParent(null);
     }

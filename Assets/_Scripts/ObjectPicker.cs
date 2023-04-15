@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class ObjectPicker : MonoBehaviour
 {
+    ObjectStorer _objectStorer;
+
     [SerializeField] bool _usesTrigger;
+
+    private void Awake()
+    {
+        _objectStorer = GetComponent<ObjectStorer>();
+    }
 
     private void OnCollisionEnter2D(Collision2D obj)
     {
         if(_usesTrigger == false)
         {
-            if (obj.collider.CompareTag("Object") && obj.gameObject.GetComponent<IPickable>() != null)
+            if(IsPickable(obj.collider, "Object"))
             {
-                obj.gameObject.GetComponent<IPickable>().Pick(this.gameObject);
+                PickObject(obj.collider);
             }
         }
     }
@@ -21,10 +28,21 @@ public class ObjectPicker : MonoBehaviour
     {
         if(_usesTrigger == true)
         {
-            if (obj.CompareTag("Object") && obj.gameObject.GetComponent<IPickable>() != null)
+            if (IsPickable(obj, "Object"))
             {
-                obj.gameObject.GetComponent<IPickable>().Pick(this.gameObject);
+                PickObject(obj);
             }
         }
+    }
+
+    bool IsPickable(Collider2D col, string tag)
+    {
+        return col.CompareTag(tag) && col.gameObject.GetComponent<IPickable>() != null;
+    }
+
+    void PickObject(Collider2D col)
+    {
+        col.gameObject.GetComponent<IPickable>().Pick(this.gameObject);
+        if (_objectStorer != null) { _objectStorer.AddToList(col.gameObject); }
     }
 }
