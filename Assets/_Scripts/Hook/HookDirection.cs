@@ -1,13 +1,16 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class HookDirection : MonoBehaviour {
+public class HookDirection : MonoBehaviour
+{
     private static Mover _mover;
     private Vector2 _input;
-    private void Awake() {
+    private void Awake()
+    {
         _mover = GetComponent<Mover>();
     }
-    public enum Direction {
+    public enum Direction
+    {
         up,
         upRight,
         right,
@@ -17,10 +20,11 @@ public class HookDirection : MonoBehaviour {
         left,
         upLeft
     }
-     
-     public Vector2 GetDirectionVector() 
-     {
-        switch (GetDirection()) {
+
+    public Vector2 GetDirectionVector()
+    {
+        switch (GetDirection())
+        {
             case Direction.up:
                 return Vector2.up;
             case Direction.upRight:
@@ -41,38 +45,66 @@ public class HookDirection : MonoBehaviour {
                 return Vector2.zero;
         }
     }
-    private Direction GetDirection() {
-        if(_mover.IsFacingRight) {
-            if(_input.y > 0 && _input.x > 0) {
+    private Direction GetDirection()
+    {
+        if (_mover.IsFacingRight)
+        {
+            if (_input.y > 0 && _input.x > 0)
+            {
                 return Direction.upRight;
-            } else if(_input.y < 0 && _input.x > 0) {
+            }
+            else if (_input.y < 0 && _input.x > 0)
+            {
                 return Direction.downRight;
-            } else if(_input.y > 0) {
+            }
+            else if (_input.y > 0)
+            {
                 return Direction.up;
-            } else if(_input.y < 0) {
+            }
+            else if (_input.y < 0)
+            {
                 return Direction.down;
-            } else {
+            }
+            else
+            {
                 return Direction.right;
             }
 
-        } else {
-        
-            if(_input.y > 0) {
+        }
+        else
+        {
+            if (_input.y > 0 && _input.x > 0)
+            {
                 return Direction.upLeft;
-            } else if(_input.y < 0) {
+            }
+            else if (_input.y < 0 && _input.x < 0)
+            {
                 return Direction.downLeft;
-            } else {
+            }
+            else if (_input.y > 0)
+            {
+                return Direction.up;
+            }
+            else if (_input.y < 0)
+            {
+                return Direction.down;
+            }
+            else
+            {
                 return Direction.left;
             }
         }
     }
 
-    public void OnMove(InputValue value) {
+    public void OnMove(InputValue value)
+    {
         _input = value.Get<Vector2>();
     }
 
-    private void Update() {
-        if(Input.GetKeyDown(KeyCode.Space)) {
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
             Debug.Log(GetDirection());
         }
     }

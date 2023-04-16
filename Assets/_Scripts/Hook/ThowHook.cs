@@ -48,8 +48,8 @@ public class ThowHook : MonoBehaviour
         _canThrow = false;
         var hook = Instantiate(HookPrefab, transform.position, Quaternion.identity);
         var hookMovement = hook.GetComponent<HookMovement>();
-        hookMovement.SetDirection(InputtedDirection);
-        hook.transform.SetParent(this.transform);
+        //hook.transform.SetParent(this.transform);
+        hookMovement.StealDirection();
 
     }
     void enableThrow(bool canHook)
