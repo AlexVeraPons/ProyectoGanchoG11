@@ -16,11 +16,11 @@ public class HookMovement : MonoBehaviour
     private Rigidbody2D _rigidBody2D;
     private LineRenderer _lineRenderer;
     private bool _isMovingForward = false;
-    private Vector2 _direction => hookDirection.GetDirectionVector();
+    private HookDirection _hookDirection;
+    private Vector2 _direction => _hookDirection.GetDirectionVector();
     private Vector2 _finalDirection;
     private CollisionDetector _collisionDetector;
     //---------
-    public HookDirection hookDirection;
     private int _timesItColidesWithParent = 2;
 
 
@@ -38,6 +38,7 @@ public class HookMovement : MonoBehaviour
         _rigidBody2D = GetComponent<Rigidbody2D>();
         _lineRenderer = GetComponent<LineRenderer>();
         _collisionDetector = GetComponent<CollisionDetector>();
+        _hookDirection = GetComponent<HookDirection>();
         _lineRenderer.enabled = false;
     }
 
@@ -75,7 +76,6 @@ public class HookMovement : MonoBehaviour
         if (_collisionDetector.IsTouchingMovableObject())
         {
             //OnHookedTransform?.Invoke(PlayerPos.transform);
-            Debug.Log("dadjkl");
         }
 
         if (hitInfo.tag == "Player")

@@ -14,11 +14,11 @@ public class ThowHook : MonoBehaviour
 
     void OnEnable()
     {
-        HookMovement.OnHookEntersPlayer += enableThrow;
+        HookMovement.OnHookEntersPlayer += EnableThrow;
     }
     void OnDisable()
     {
-        HookMovement.OnHookEntersPlayer -= enableThrow;
+        HookMovement.OnHookEntersPlayer -= EnableThrow;
 
     }
     void Start()
@@ -34,20 +34,18 @@ public class ThowHook : MonoBehaviour
             if (_canThrow)
             {
                 Throw();
-                Debug.Log("pulsa");
             }
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {
             hookIsMovingRight?.Invoke(false);
-            Debug.Log("suelta");
         }
     }
     void Throw()
     {
 
         hookIsMovingRight?.Invoke(true);
-        enableThrow(false);
+        EnableThrow(false);
         //_canThrow = false;
         //var hook = Instantiate(HookPrefab, transform.position, Quaternion.identity);
         //hookMovement = hookMovement.GetComponent<HookMovement>();
@@ -56,7 +54,7 @@ public class ThowHook : MonoBehaviour
         hookMovement.StealDirection();
 
     }
-    void enableThrow(bool canHook)
+    void EnableThrow(bool canHook)
     {
         _canThrow = canHook;
 
