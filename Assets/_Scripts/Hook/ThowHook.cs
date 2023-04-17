@@ -33,7 +33,6 @@ public class ThowHook : MonoBehaviour
         {
             if (_canThrow)
             {
-                hookIsMovingRight?.Invoke(true);
                 Throw();
                 Debug.Log("pulsa");
             }
@@ -46,11 +45,13 @@ public class ThowHook : MonoBehaviour
     }
     void Throw()
     {
-        
+
+        hookIsMovingRight?.Invoke(true);
+        enableThrow(false);
         //_canThrow = false;
         //var hook = Instantiate(HookPrefab, transform.position, Quaternion.identity);
         //hookMovement = hookMovement.GetComponent<HookMovement>();
-        hookMovement.ChangeHookDirection(true);
+        //hookMovement.ChangeHookDirection(true);
         //hook.transform.SetParent(this.transform);
         hookMovement.StealDirection();
 
@@ -58,7 +59,6 @@ public class ThowHook : MonoBehaviour
     void enableThrow(bool canHook)
     {
         _canThrow = canHook;
-        hookIsMovingRight?.Invoke(true);
 
     }
 }
