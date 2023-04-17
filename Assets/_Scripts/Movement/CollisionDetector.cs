@@ -10,7 +10,7 @@ public class CollisionDetector : MonoBehaviour
     private LayerMask _whatIsGround;
 
     [SerializeField]
-    private Transform _groundCheckTransform;
+    private Transform _groundCheckTransform = null;
     [SerializeField]
     private float _groundCheckRadius = 1f;
 
@@ -19,13 +19,15 @@ public class CollisionDetector : MonoBehaviour
     private LayerMask _whatIsWall;
 
     [SerializeField]
-    private Transform _wallCheckTransform;
+    private Transform _wallCheckTransform = null;
     [SerializeField]
     private float _wallCheckRadius = 1f;
 
 
     public bool IsGrounded()
     {
+        if(_groundCheckTransform == null) return false;
+
         var colliders = Physics2D.OverlapCircleAll(
             _groundCheckTransform.position,
             _groundCheckRadius,
@@ -36,6 +38,8 @@ public class CollisionDetector : MonoBehaviour
 
     public bool IsTouchingWall()
     {
+        if(_wallCheckTransform == null) return false;
+
         var colliders = Physics2D.OverlapCircleAll(
             _wallCheckTransform.position,
             _wallCheckRadius,
@@ -46,6 +50,8 @@ public class CollisionDetector : MonoBehaviour
 
     public bool IsTouchingInfront()
     {
+        if(_groundCheckTransform == null || _wallCheckTransform == null) return false;
+
         var collidersGround = Physics2D.OverlapCircleAll(
             _wallCheckTransform.position,
             _wallCheckRadius,
@@ -63,6 +69,8 @@ public class CollisionDetector : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        if(_groundCheckTransform == null || _wallCheckTransform == null) return;
+
         Gizmos.color = Color.red;
         DrawGizmosSphere(_groundCheckTransform.position, _groundCheckRadius);
         DrawGizmosSphere(_wallCheckTransform.position, _wallCheckRadius);
