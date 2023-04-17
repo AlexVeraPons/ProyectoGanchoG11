@@ -6,6 +6,7 @@ using UnityEngine;
 public class ThowHook : MonoBehaviour
 {
     public GameObject HookPrefab;
+    public HookMovement hookMovement;
     public static Action<bool> hookIsMovingRight;
     private bool _canThrow;
 
@@ -34,20 +35,22 @@ public class ThowHook : MonoBehaviour
             {
                 hookIsMovingRight?.Invoke(true);
                 Throw();
+                Debug.Log("pulsa");
             }
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {
             hookIsMovingRight?.Invoke(false);
-
+            Debug.Log("suelta");
         }
     }
     void Throw()
     {
-
-        _canThrow = false;
-        var hook = Instantiate(HookPrefab, transform.position, Quaternion.identity);
-        var hookMovement = hook.GetComponent<HookMovement>();
+        
+        //_canThrow = false;
+        //var hook = Instantiate(HookPrefab, transform.position, Quaternion.identity);
+        //hookMovement = hookMovement.GetComponent<HookMovement>();
+        hookMovement.ChangeHookDirection(true);
         //hook.transform.SetParent(this.transform);
         hookMovement.StealDirection();
 

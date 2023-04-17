@@ -6,16 +6,19 @@ using UnityEngine;
 public class HookMovement : MonoBehaviour
 {
     public static Action<bool> OnHookEntersPlayer;
+    public GameObject PlayerPos;
+    //---------
+    [SerializeField]
+    private float _speed = 10;
+    //---------
     private Rigidbody2D _rigidBody2D;
-    public bool MovingForward = false;
-    public float _speed;
+    private LineRenderer _lineRenderer;
+    private bool _isMovingForward = false;
     private Vector2 _direction => hookDirection.GetDirectionVector();
     private Vector2 _finalDirection;
-    private int _timesItColidesWithParent = 2;
-    //---
+    //---------
     public HookDirection hookDirection;
-    public GameObject pos;
-    public float t;
+    private int _timesItColidesWithParent = 2;
 
 
     void OnEnable()
@@ -30,46 +33,42 @@ public class HookMovement : MonoBehaviour
     void Start()
     {
         _rigidBody2D = GetComponent<Rigidbody2D>();
-        _speed = 2;
-        //_lineRenderer.enabled = true;
+        _lineRenderer = GetComponent<LineRenderer>();
+        _lineRenderer.enabled = false;
     }
 
     public void StealDirection()
     {
-        _finalDirection = _direction;
-        Debug.Log(_finalDirection + "final");
+        _finalDirection = (Vector3)_direction;
+        //Debug.Log(_finalDirection + "final");
     }
     void FixedUpdate()
     {
 
-        // if (MovingForward)
-        // {
-        // _rigidBody2D.transform.position += (Vector3)_finalDirection * _speed * Time.deltaTime;
-        // Debug.Log(_direction);
+        if (_isMovingForward)
+        {
+            MoveForward(_finalDirection);
 
-        //}
-        // else
-        // {
-        //     var padrePos = this.transform.parent.transform.position;
-        //     var directionDeVuelta = padrePos - this.transform.position;
-        //     _rigidBody2D.velocity = directionDeVuelta.normalized * _speed * Time.deltaTime;
-
-        // }
+        }
+        else
+        {
+            ReturnToVector(GetVectorDirection(PlayerPos.transform.position, this.transform.position));
+        }
     }
     void Update()
     {
-        this.transform.position = Vector3.MoveTowards(pos.transform.position, this.transform.position, _speed * Time.deltaTime).normalized;
+        //this.transform.position = Vector3.MoveTowards(pos.transform.position, this.transform.position, _speed * Time.deltaTime).normalized;
         //_lineRenderer.SetPosition(0, this.transform.parent.transform.position); //pos final de la linea, mouse
         //_lineRenderer.SetPosition(1, transform.position); //pos inicial de la linea, pj
 
     }
-    void ChangeHookDirection(bool movingRight)
+    public void ChangeHookDirection(bool movingRight)
     {
-        MovingForward = movingRight;
+        _isMovingForward = movingRight;
     }
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        if (this.transform.parent == hitInfo.transform)
+        if (this.transform.position == PlayerPos.transform.position)
         {
             Debug.Log("parent");
             _timesItColidesWithParent -= 1;
@@ -77,9 +76,24 @@ public class HookMovement : MonoBehaviour
         if (_timesItColidesWithParent <= 0)
         {
             OnHookEntersPlayer?.Invoke(true);
+            Debug.Log("muelto");
             Destroy(gameObject);
 
         }
         //Instantiate(impactEffect, transform.position, transform.rotation);
+    }
+    void MoveForward(Vector3 forward)
+    {
+        _rigidBody2D.transform.position += (Vector3)forward * _speed * Time.deltaTime;
+    }
+    void ReturnToVector(Vector3 direccionDeVuelta)
+    {
+        //_rigidBody2D.transform.position += (Vector3)_finalDirection * -_speed * Time.deltaTime;
+        _rigidBody2D.transform.position -= direccionDeVuelta.normalized * _speed * Time.deltaTime;
+    }
+    private Vector2 GetVectorDirection(Vector3 InitialPosition, Vector3 finalPosition)
+    {
+        Vector2 VectorDirection = finalPosition - InitialPosition;
+        return VectorDirection;
     }
 }

@@ -73,7 +73,7 @@ public class HookDirection : MonoBehaviour
         }
         else
         {
-            if (_input.y > 0 && _input.x > 0)
+            if (_input.y > 0 && _input.x < 0)
             {
                 return Direction.upLeft;
             }
