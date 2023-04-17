@@ -6,7 +6,7 @@ using UnityEngine;
 public class HookMovement : MonoBehaviour
 {
     public static Action<bool> OnHookEntersPlayer;
-    public Action<Transform> OnHookedVector;
+    public Action<Transform> OnHookedTransform;
     public Action OnHookReleased;
     public GameObject PlayerPos;
     //---------
@@ -68,9 +68,15 @@ public class HookMovement : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        if(_collisionDetector.IsTouchingWall() || _collisionDetector.IsGrounded()){
-            OnHookedVector?.Invoke(transform);
+        if (_collisionDetector.IsTouchingWall() || _collisionDetector.IsGrounded())
+        {
+            OnHookedTransform?.Invoke(transform);
         }
+        // if (_collisionDetector.IsTouchingPlayer)
+        // {
+        //     OnHookedVector?.Invoke(playerPos);
+        // }
+
         if (hitInfo.tag == "Player")
         {
             Debug.Log("parent");

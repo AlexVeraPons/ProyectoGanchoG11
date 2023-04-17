@@ -5,6 +5,15 @@ using UnityEngine;
 
 public class CollisionDetector : MonoBehaviour
 {
+    [Header("Movable Object Check")]
+    [SerializeField]
+    private LayerMask _whatIsMovableObject;
+
+    [SerializeField]
+    private Transform _movableObjectCheckTransform = null;
+    [SerializeField]
+    private float _movableObjectCheckRadius = 1f;
+
     [Header("Ground Check")]
     [SerializeField]
     private LayerMask _whatIsGround;
@@ -26,7 +35,7 @@ public class CollisionDetector : MonoBehaviour
 
     public bool IsGrounded()
     {
-        if(_groundCheckTransform == null) return false;
+        if (_groundCheckTransform == null) return false;
 
         var colliders = Physics2D.OverlapCircleAll(
             _groundCheckTransform.position,
@@ -38,7 +47,7 @@ public class CollisionDetector : MonoBehaviour
 
     public bool IsTouchingWall()
     {
-        if(_wallCheckTransform == null) return false;
+        if (_wallCheckTransform == null) return false;
 
         var colliders = Physics2D.OverlapCircleAll(
             _wallCheckTransform.position,
@@ -48,9 +57,21 @@ public class CollisionDetector : MonoBehaviour
         return colliders.Length > 0;
     }
 
+    public bool IsTouchingMovableObject()
+    {
+        if (_movableObjectCheckTransform == null) return false;
+
+        var colliders = Physics2D.OverlapCircleAll(
+            _movableObjectCheckTransform.position,
+            _movableObjectCheckRadius,
+            _whatIsMovableObject
+        );
+        return colliders.Length > 0;
+    }
+
     public bool IsTouchingInfront()
     {
-        if(_groundCheckTransform == null || _wallCheckTransform == null) return false;
+        if (_groundCheckTransform == null || _wallCheckTransform == null) return false;
 
         var collidersGround = Physics2D.OverlapCircleAll(
             _wallCheckTransform.position,
@@ -69,7 +90,7 @@ public class CollisionDetector : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if(_groundCheckTransform == null || _wallCheckTransform == null) return;
+        if (_groundCheckTransform == null || _wallCheckTransform == null) return;
 
         Gizmos.color = Color.red;
         DrawGizmosSphere(_groundCheckTransform.position, _groundCheckRadius);
