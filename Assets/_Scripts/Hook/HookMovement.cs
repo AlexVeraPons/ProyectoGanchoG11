@@ -6,6 +6,8 @@ using UnityEngine;
 public class HookMovement : MonoBehaviour
 {
     public static Action<bool> OnHookEntersPlayer;
+    public Action OnHooked;
+    public Action OnHookReleased;
     public GameObject PlayerPos;
     //---------
     [SerializeField]
@@ -40,7 +42,6 @@ public class HookMovement : MonoBehaviour
     public void StealDirection()
     {
         _finalDirection = (Vector3)_direction;
-        //Debug.Log(_finalDirection + "final");
     }
     void FixedUpdate()
     {
@@ -57,9 +58,6 @@ public class HookMovement : MonoBehaviour
     }
     void Update()
     {
-        //this.transform.position = Vector3.MoveTowards(pos.transform.position, this.transform.position, _speed * Time.deltaTime).normalized;
-        //_lineRenderer.SetPosition(0, this.transform.parent.transform.position); //pos final de la linea, mouse
-        //_lineRenderer.SetPosition(1, transform.position); //pos inicial de la linea, pj
 
     }
     public void ChangeHookDirection(bool movingRight)
@@ -77,10 +75,12 @@ public class HookMovement : MonoBehaviour
         {
             OnHookEntersPlayer?.Invoke(true);
             Debug.Log("muelto");
-            Destroy(gameObject);
-
         }
-        //Instantiate(impactEffect, transform.position, transform.rotation);
+        // var hookeable = hitInfo.GetComponent<IHookeable>();
+        // if (hookeable == null) return;
+        // hookeable.TakeDamage();
+
+
     }
     void MoveForward(Vector3 forward)
     {
@@ -88,7 +88,6 @@ public class HookMovement : MonoBehaviour
     }
     void ReturnToVector(Vector3 direccionDeVuelta)
     {
-        //_rigidBody2D.transform.position += (Vector3)_finalDirection * -_speed * Time.deltaTime;
         _rigidBody2D.transform.position -= direccionDeVuelta.normalized * _speed * Time.deltaTime;
     }
     private Vector2 GetVectorDirection(Vector3 InitialPosition, Vector3 finalPosition)

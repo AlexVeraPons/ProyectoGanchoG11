@@ -624,19 +624,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7523302917261301058, guid: 18f288ec9fcfa1543825d1cbcae6d524, type: 3}
   m_PrefabInstance: {fileID: 323520259}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1284707802
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1284707796}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2137c622a96938428604cb3363c7adb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
 --- !u!114 &1284707803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -649,7 +636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc30bfb122ab49848ac685238071debc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerPos: {x: 0, y: 0, z: 0}
+  PlayerPos: {fileID: 1618156009}
   _speed: 10
   hookDirection: {fileID: 1618156021}
 --- !u!120 &1284707808
@@ -1013,6 +1000,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HookPrefab: {fileID: 1284707796}
+  hookMovement: {fileID: 1284707803}
 --- !u!1 &1945012143
 GameObject:
   m_ObjectHideFlags: 0
