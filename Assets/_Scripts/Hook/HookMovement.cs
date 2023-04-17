@@ -6,7 +6,7 @@ using UnityEngine;
 public class HookMovement : MonoBehaviour
 {
     public static Action<bool> OnHookEntersPlayer;
-    public Action<Vector3> OnHookedVector;
+    public Action<Transform> OnHookedVector;
     public Action OnHookReleased;
     public GameObject PlayerPos;
     //---------
@@ -18,6 +18,7 @@ public class HookMovement : MonoBehaviour
     private bool _isMovingForward = false;
     private Vector2 _direction => hookDirection.GetDirectionVector();
     private Vector2 _finalDirection;
+    private CollisionDetector _collisionDetector;
     //---------
     public HookDirection hookDirection;
     private int _timesItColidesWithParent = 2;
@@ -36,6 +37,7 @@ public class HookMovement : MonoBehaviour
     {
         _rigidBody2D = GetComponent<Rigidbody2D>();
         _lineRenderer = GetComponent<LineRenderer>();
+        _collisionDetector = GetComponent<CollisionDetector>();
         _lineRenderer.enabled = false;
     }
 
@@ -66,7 +68,9 @@ public class HookMovement : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        Debug.Log("colisiono");
+        if(_collisionDetector.IsTouchingWall() || _collisionDetector.IsGrounded()){
+            OnHookedVector?.Invoke(transform);
+        }
         if (hitInfo.tag == "Player")
         {
             Debug.Log("parent");
