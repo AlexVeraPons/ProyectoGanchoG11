@@ -66,6 +66,7 @@ public class HookMovement : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
+        Debug.Log("colisiono");
         if (hitInfo.tag == "Player")
         {
             Debug.Log("parent");
