@@ -45,68 +45,72 @@ public class HookDirection : MonoBehaviour
                 return Vector2.zero;
         }
     }
-    private Direction GetDirection()
+private Direction GetDirection()
+{
+    // If the _mover object is facing right.
+    if (_mover.IsFacingRight)
     {
-        if (_mover.IsFacingRight)
+        // If moving up and right.
+        if (_input.y > 0 && _input.x > 0)
         {
-            if (_input.y > 0 && _input.x > 0)
-            {
-                return Direction.upRight;
-            }
-            else if (_input.y < 0 && _input.x > 0)
-            {
-                return Direction.downRight;
-            }
-            else if (_input.y > 0)
-            {
-                return Direction.up;
-            }
-            else if (_input.y < 0)
-            {
-                return Direction.down;
-            }
-            else
-            {
-                return Direction.right;
-            }
-
+            return Direction.upRight;
         }
+        // If moving down and right.
+        else if (_input.y < 0 && _input.x > 0)
+        {
+            return Direction.downRight;
+        }
+        // If moving up only.
+        else if (_input.y > 0)
+        {
+            return Direction.up;
+        }
+        // If moving down only.
+        else if (_input.y < 0)
+        {
+            return Direction.down;
+        }
+        // If moving right only.
         else
         {
-            if (_input.y > 0 && _input.x < 0)
-            {
-                return Direction.upLeft;
-            }
-            else if (_input.y < 0 && _input.x < 0)
-            {
-                return Direction.downLeft;
-            }
-            else if (_input.y > 0)
-            {
-                return Direction.up;
-            }
-            else if (_input.y < 0)
-            {
-                return Direction.down;
-            }
-            else
-            {
-                return Direction.left;
-            }
+            return Direction.right;
         }
     }
+    // If the _mover object is facing left.
+    else
+    {
+        // If moving up and left.
+        if (_input.y > 0 && _input.x < 0)
+        {
+            return Direction.upLeft;
+        }
+        // If moving down and left.
+        else if (_input.y < 0 && _input.x < 0)
+        {
+            return Direction.downLeft;
+        }
+        // If moving up only.
+        else if (_input.y > 0)
+        {
+            return Direction.up;
+        }
+        // If moving down only.
+        else if (_input.y < 0)
+        {
+            return Direction.down;
+        }
+        // If moving left only.
+        else
+        {
+            return Direction.left;
+        }
+    }
+}
+
 
     public void OnMove(InputValue value)
     {
         _input = value.Get<Vector2>();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log(GetDirection());
-        }
     }
 
     public void DirectionalInput(InputAction.CallbackContext context)

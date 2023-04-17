@@ -75,7 +75,6 @@ public class HookMovement : MonoBehaviour
         if (_collisionDetector.IsTouchingMovableObject())
         {
             //OnHookedTransform?.Invoke(PlayerPos.transform);
-            Debug.Log("dadjkl");
         }
 
         if (hitInfo.tag == "Player")

@@ -14,7 +14,9 @@ public class Mover : MonoBehaviour
 
     [SerializeField]
     private float _deceleration = 0.1f;
-
+    
+    [SerializeField]
+    private MoveToPosition _moveToPosition;
     private Rigidbody2D _rigidbody2D;
     private CollisionDetector _collisionDetector;
     public bool IsFacingRight => _facingRight;
@@ -22,8 +24,18 @@ public class Mover : MonoBehaviour
     private bool _isGrounded => _collisionDetector.IsGrounded();
     private float _input;
     private float _velocity;
-
+    private bool _isHooked = false;
     private bool _isTouchingWall => _collisionDetector.IsTouchingInfront();
+
+    private void OnEnable() {
+        _moveToPosition.OnOverridingMovement += SetIsHooked;
+        _moveToPosition.OnStopOverridingMovement += UnsetIsHooked;
+    }
+
+    private void OnDisable() {
+        _moveToPosition.OnOverridingMovement -= SetIsHooked;
+        _moveToPosition.OnStopOverridingMovement -= UnsetIsHooked;
+    }
 
     private void Awake()
     {
@@ -37,6 +49,7 @@ public class Mover : MonoBehaviour
         {
             MovementUpdate();
         }
+
         ShouldFlip();
 
         if (_isTouchingWall && !_isGrounded)
@@ -88,11 +101,21 @@ public class Mover : MonoBehaviour
 
     private bool CanMove()
     {
-        return _isGrounded;
+        return _isGrounded && !_isHooked;
     }
 
     public void DirectionalInput(InputAction.CallbackContext context)
     {
         _input = context.ReadValue<Vector2>().x;
     }
+
+    private void SetIsHooked()
+    {
+        _isHooked = true;
+    }
+    private void UnsetIsHooked()
+    {
+        _isHooked = false;
+    }
+
 }

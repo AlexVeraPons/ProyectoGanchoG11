@@ -34,13 +34,11 @@ public class ThowHook : MonoBehaviour
             if (_canThrow)
             {
                 Throw();
-                Debug.Log("pulsa");
             }
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {
             hookIsMovingRight?.Invoke(false);
-            Debug.Log("suelta");
         }
     }
     void Throw()
@@ -59,6 +57,5 @@ public class ThowHook : MonoBehaviour
     void enableThrow(bool canHook)
     {
         _canThrow = canHook;
-
     }
 }
