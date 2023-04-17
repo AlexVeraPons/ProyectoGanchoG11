@@ -16,21 +16,24 @@ public class HookMovement : MonoBehaviour
     private Rigidbody2D _rigidBody2D;
     private LineRenderer _lineRenderer;
     private bool _isMovingForward = false;
-    private Vector2 _direction => hookDirection.GetDirectionVector();
+    private Vector2 _direction => _hookDirection.GetDirectionVector();
     private Vector2 _finalDirection;
     private CollisionDetector _collisionDetector;
     //---------
-    public HookDirection hookDirection;
     private int _timesItColidesWithParent = 2;
+    public HookDirection _hookDirection;
+    private bool _canMove = true;
 
 
     void OnEnable()
     {
         ThowHook.hookIsMovingRight += ChangeHookDirection;
+        ThowHook.hookCanMove += SetCanMove;
     }
     void OnDisable()
     {
         ThowHook.hookIsMovingRight -= ChangeHookDirection;
+        ThowHook.hookCanMove -= SetCanMove;
     }
 
     void Start()
@@ -38,6 +41,7 @@ public class HookMovement : MonoBehaviour
         _rigidBody2D = GetComponent<Rigidbody2D>();
         _lineRenderer = GetComponent<LineRenderer>();
         _collisionDetector = GetComponent<CollisionDetector>();
+        //_hookDirection = GetComponent<HookDirection>();
         _lineRenderer.enabled = false;
     }
 
@@ -45,17 +49,26 @@ public class HookMovement : MonoBehaviour
     {
         _finalDirection = (Vector3)_direction;
     }
+    public void SetPosition()
+    {
+        if (!_collisionDetector.IsTouchingWall() && !_collisionDetector.IsGrounded())
+        {
+            transform.position = PlayerPos.transform.position + 2 * Vector3.up;
+        }
+    }
     void FixedUpdate()
     {
-
-        if (_isMovingForward)
+        if (_canMove)
         {
-            MoveForward(_finalDirection);
+            if (_isMovingForward)
+            {
+                MoveForward(_finalDirection);
 
-        }
-        else
-        {
-            ReturnToVector(GetVectorDirection(PlayerPos.transform.position, this.transform.position));
+            }
+            else if (!_isMovingForward)
+            {
+                ReturnToVector(GetVectorDirection(PlayerPos.transform.position, this.transform.position));
+            }
         }
     }
     void Update()
@@ -66,11 +79,18 @@ public class HookMovement : MonoBehaviour
     {
         _isMovingForward = movingRight;
     }
+    void SetCanMove(bool canMove)
+    {
+        _canMove = canMove;
+    }
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
         if (_collisionDetector.IsTouchingWall() || _collisionDetector.IsGrounded())
         {
             OnHookedTransform?.Invoke(transform);
+            _canMove = false;
+            StayStill();
+
         }
         if (_collisionDetector.IsTouchingMovableObject())
         {
@@ -80,6 +100,7 @@ public class HookMovement : MonoBehaviour
         if (hitInfo.tag == "Player")
         {
             _timesItColidesWithParent -= 1;
+            _canMove = true;
         }
         if (_timesItColidesWithParent <= 0)
         {
@@ -88,8 +109,6 @@ public class HookMovement : MonoBehaviour
         // var hookeable = hitInfo.GetComponent<IHookeable>();
         // if (hookeable == null) return;
         // hookeable.TakeDamage();
-
-
     }
     void MoveForward(Vector3 forward)
     {
@@ -103,5 +122,9 @@ public class HookMovement : MonoBehaviour
     {
         Vector2 VectorDirection = finalPosition - InitialPosition;
         return VectorDirection;
+    }
+    void StayStill()
+    {
+
     }
 }
