@@ -72,20 +72,19 @@ public class HookMovement : MonoBehaviour
         {
             OnHookedTransform?.Invoke(transform);
         }
-        // if (_collisionDetector.IsTouchingPlayer)
-        // {
-        //     OnHookedVector?.Invoke(playerPos);
-        // }
+        if (_collisionDetector.IsTouchingMovableObject())
+        {
+            //OnHookedTransform?.Invoke(PlayerPos.transform);
+            Debug.Log("dadjkl");
+        }
 
         if (hitInfo.tag == "Player")
         {
-            Debug.Log("parent");
             _timesItColidesWithParent -= 1;
         }
         if (_timesItColidesWithParent <= 0)
         {
             OnHookEntersPlayer?.Invoke(true);
-            Debug.Log("muelto");
         }
         // var hookeable = hitInfo.GetComponent<IHookeable>();
         // if (hookeable == null) return;
