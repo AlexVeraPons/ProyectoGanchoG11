@@ -6,7 +6,7 @@ using UnityEngine;
 public class HookMovement : MonoBehaviour
 {
     public static Action<bool> OnHookEntersPlayer;
-    public Action OnHooked;
+    public Action<Vector3> OnHookedVector;
     public Action OnHookReleased;
     public GameObject PlayerPos;
     //---------
