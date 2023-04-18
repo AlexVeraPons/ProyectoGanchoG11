@@ -8,22 +8,33 @@ public class MoveToPosition : MonoBehaviour
 
     [SerializeField]
     private HookMovement _hookMovement;
+
     [SerializeField]
     private float _speed = 1f;
     private Transform _targetTransform;
+    private Rigidbody2D _rigidbody2D;
 
-    private void OnEnable() {
+    private void OnEnable()
+    {
         _hookMovement.OnHookedTransform += SetTransform;
         _hookMovement.OnHookReleased += UnsetTransform;
     }
 
-    private void OnDisable() {
+    private void OnDisable()
+    {
         _hookMovement.OnHookedTransform -= SetTransform;
         _hookMovement.OnHookReleased -= UnsetTransform;
     }
+
+    private void Awake()
+    {
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+    }
+
     private void Update()
     {
-        if (_targetTransform == null) return;
+        if (_targetTransform == null)
+            return;
         MoveTowardsTransform(GetTargetTransform());
     }
 
@@ -32,12 +43,13 @@ public class MoveToPosition : MonoBehaviour
         _targetTransform = transform;
         OnOverridingMovement?.Invoke();
     }
+
     private void UnsetTransform()
     {
+        Debug.Log("Unset");
         _targetTransform = null;
         OnStopOverridingMovement?.Invoke();
     }
-
 
     private Vector3 GetTargetTransform()
     {
@@ -46,6 +58,8 @@ public class MoveToPosition : MonoBehaviour
 
     private void MoveTowardsTransform(Vector3 vector)
     {
-        transform.position = Vector3.MoveTowards(transform.position, vector, _speed * Time.deltaTime);
+        _rigidbody2D.MovePosition(
+            Vector3.MoveTowards(transform.position, vector, _speed * Time.deltaTime)
+        );
     }
 }

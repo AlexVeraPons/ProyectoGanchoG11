@@ -107,7 +107,6 @@ private Direction GetDirection()
     }
 }
 
-
     public void OnMove(InputValue value)
     {
         _input = value.Get<Vector2>();

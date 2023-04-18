@@ -23,7 +23,7 @@ public class Mover : MonoBehaviour
     private bool _facingRight = true;
     private bool _isGrounded => _collisionDetector.IsGrounded();
     private float _input;
-    private float _velocity;
+    private float _currentVelocity;
     private bool _isHooked = false;
     private bool _isTouchingWall => _collisionDetector.IsTouchingInfront();
 
@@ -60,25 +60,25 @@ public class Mover : MonoBehaviour
 
     private void MovementUpdate()
     {
-        _velocity = Mathf.Lerp(_velocity, _input * _speed, _acceleration * Time.deltaTime);
+        _currentVelocity = Mathf.Lerp(_currentVelocity, _input * _speed, _acceleration * Time.deltaTime);
 
         if (Mathf.Abs(_input) < 0.1f)
         {
-            _velocity = Mathf.Lerp(_velocity, 0, _deceleration * Time.deltaTime);
+            _currentVelocity = Mathf.Lerp(_currentVelocity, 0, _deceleration * Time.deltaTime);
         }
 
-        _rigidbody2D.velocity = new Vector2(_velocity, _rigidbody2D.velocity.y);
+        _rigidbody2D.velocity = new Vector2(_currentVelocity, _rigidbody2D.velocity.y);
     }
 
     private void ShouldFlip()
     {
         // If the input is moving the player right and the player is facing left...
-        if (_velocity > 0 && !_facingRight)
+        if (_input > 0 && !_facingRight)
         {
             Flip();
         }
         // Otherwise if the input is moving the player left and the player is facing right...
-        else if (_velocity < 0 && _facingRight)
+        else if (_input < 0 && _facingRight)
         {
             Flip();
         }
@@ -96,7 +96,7 @@ public class Mover : MonoBehaviour
 
     private void ResetVelocity()
     {
-        _velocity = 0;
+        _currentVelocity = 0;
     }
 
     private bool CanMove()
@@ -112,10 +112,13 @@ public class Mover : MonoBehaviour
     private void SetIsHooked()
     {
         _isHooked = true;
+        _rigidbody2D.gravityScale = 0;
+        _currentVelocity = 0;
     }
     private void UnsetIsHooked()
     {
         _isHooked = false;
+        _rigidbody2D.gravityScale = 1;
     }
 
 }

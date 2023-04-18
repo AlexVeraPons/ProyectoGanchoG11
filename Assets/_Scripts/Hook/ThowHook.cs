@@ -8,17 +8,18 @@ public class ThowHook : MonoBehaviour
     public GameObject HookPrefab;
     public HookMovement hookMovement;
     public static Action<bool> hookIsMovingRight;
+    public static Action<bool> hookCanMove;
     private bool _canThrow;
 
     public Vector2 InputtedDirection { get; private set; }
 
     void OnEnable()
     {
-        HookMovement.OnHookEntersPlayer += enableThrow;
+        HookMovement.OnHookEntersPlayer += EnableThrow;
     }
     void OnDisable()
     {
-        HookMovement.OnHookEntersPlayer -= enableThrow;
+        HookMovement.OnHookEntersPlayer -= EnableThrow;
 
     }
     void Start()
@@ -29,7 +30,7 @@ public class ThowHook : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
         {
             if (_canThrow)
             {
@@ -39,13 +40,23 @@ public class ThowHook : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.Space))
         {
             hookIsMovingRight?.Invoke(false);
+            hookCanMove?.Invoke(true);
+        }
+    }
+    void OnTriggerEnter2D(Collider2D hitInfo)
+    {
+        if (hitInfo.tag == "Hook")
+        {   
+            HookPrefab.SetActive(false);
+            EnableThrow(true);
         }
     }
     void Throw()
     {
-
+        HookPrefab.SetActive(true);
         hookIsMovingRight?.Invoke(true);
-        enableThrow(false);
+        EnableThrow(false);
+        hookMovement.SetPosition();
         //_canThrow = false;
         //var hook = Instantiate(HookPrefab, transform.position, Quaternion.identity);
         //hookMovement = hookMovement.GetComponent<HookMovement>();
@@ -54,7 +65,7 @@ public class ThowHook : MonoBehaviour
         hookMovement.StealDirection();
 
     }
-    void enableThrow(bool canHook)
+    void EnableThrow(bool canHook)
     {
         _canThrow = canHook;
     }

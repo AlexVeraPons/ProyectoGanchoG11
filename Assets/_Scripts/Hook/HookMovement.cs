@@ -73,7 +73,10 @@ public class HookMovement : MonoBehaviour
     }
     void Update()
     {
-
+            if(Input.GetKeyUp(KeyCode.Space))
+            {
+                OnHookReleased?.Invoke();
+            }
     }
     public void ChangeHookDirection(bool movingRight)
     {
@@ -89,7 +92,6 @@ public class HookMovement : MonoBehaviour
         {
             OnHookedTransform?.Invoke(transform);
             _canMove = false;
-            StayStill();
 
         }
         if (_collisionDetector.IsTouchingMovableObject())
@@ -122,9 +124,5 @@ public class HookMovement : MonoBehaviour
     {
         Vector2 VectorDirection = finalPosition - InitialPosition;
         return VectorDirection;
-    }
-    void StayStill()
-    {
-
     }
 }
