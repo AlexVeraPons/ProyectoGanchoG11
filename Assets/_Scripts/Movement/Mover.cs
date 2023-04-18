@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Mover : MonoBehaviour
+public class Mover : MonoBehaviour, IStunneable
 {
     [SerializeField]
     private float _speed = 5f;
@@ -25,6 +25,7 @@ public class Mover : MonoBehaviour
     private float _input;
     private float _currentVelocity;
     private bool _isHooked = false;
+    private bool _isStunned = false;
     private bool _isTouchingWall => _collisionDetector.IsTouchingInfront();
 
     private void OnEnable() {
@@ -101,7 +102,8 @@ public class Mover : MonoBehaviour
 
     private bool CanMove()
     {
-        return _isGrounded && !_isHooked;
+       // possiblidad de cambiar esto
+       return _isGrounded && !_isHooked && !_isStunned;
     }
 
     public void DirectionalInput(InputAction.CallbackContext context)
@@ -121,4 +123,14 @@ public class Mover : MonoBehaviour
         _rigidbody2D.gravityScale = 1;
     }
 
+    public void Stun()
+    {
+        _isStunned = true;
+        _currentVelocity = 0;
+    }
+
+    public void Unstun()
+    {
+        _isStunned = false;
+    }
 }

@@ -5,4 +5,5 @@ using UnityEngine;
 public interface IStunneable 
 {
     void Stun();
+    void Unstun();
 }
