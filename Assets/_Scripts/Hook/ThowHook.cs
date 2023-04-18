@@ -49,7 +49,7 @@ public class ThowHook : MonoBehaviour
         {
             if (hitInfo.tag == "Hook")
             {
-                HookPrefab.SetActive(false);
+                DisableHook();
                 Debug.Log("Hooked unactivated");
                 EnableThrow(true);
             }
@@ -57,16 +57,21 @@ public class ThowHook : MonoBehaviour
     }
     void Throw()
     {
-        HookPrefab.SetActive(true);
+        EnableHook();
         hookIsMovingRight?.Invoke(true);
         EnableThrow(false);
         hookMovement.SetPosition();
-
         hookMovement.StealDirection();
 
     }
     void EnableThrow(bool canHook)
     {
         _canThrow = canHook;
+    }
+    void EnableHook(){
+        HookPrefab.SetActive(true);
+    }
+    public void DisableHook(){
+        HookPrefab.SetActive(false);
     }
 }

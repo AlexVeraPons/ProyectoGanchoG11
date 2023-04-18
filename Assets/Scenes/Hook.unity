@@ -254,13 +254,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1515111923}
     - target: {fileID: 7860335731041414961, guid: 3395e047edfd7974ab5cc929905ac9a1, type: 3}
+      propertyPath: _movableObjectCheckRadius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7860335731041414961, guid: 3395e047edfd7974ab5cc929905ac9a1, type: 3}
       propertyPath: _whatIsMovableObject.m_Bits
       value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 7860335731041414961, guid: 3395e047edfd7974ab5cc929905ac9a1, type: 3}
       propertyPath: _movableObjectCheckTransform
       value: 
-      objectReference: {fileID: 1515111923}
+      objectReference: {fileID: 1627484521}
     - target: {fileID: 7860335731041414962, guid: 3395e047edfd7974ab5cc929905ac9a1, type: 3}
       propertyPath: m_ActionEvents.Array.size
       value: 2
@@ -383,6 +387,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1618156009}
     - target: {fileID: 1284707803, guid: 18f288ec9fcfa1543825d1cbcae6d524, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1284707803, guid: 18f288ec9fcfa1543825d1cbcae6d524, type: 3}
+      propertyPath: throwHook
+      value: 
+      objectReference: {fileID: 1618156028}
+    - target: {fileID: 1284707803, guid: 18f288ec9fcfa1543825d1cbcae6d524, type: 3}
       propertyPath: _hookDirection
       value: 
       objectReference: {fileID: 1618156021}
@@ -456,6 +468,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6113248659227142653, guid: 18f288ec9fcfa1543825d1cbcae6d524, type: 3}
+    - {fileID: 1284707803, guid: 18f288ec9fcfa1543825d1cbcae6d524, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 18f288ec9fcfa1543825d1cbcae6d524, type: 3}
 --- !u!1 &547680987
 GameObject:
@@ -703,6 +716,7 @@ MonoBehaviour:
   PlayerPos: {fileID: 1618156009}
   _speed: 10
   _hookDirection: {fileID: 1618156021}
+  _thowHook: {fileID: 1618156028}
 --- !u!120 &1284707808
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -802,17 +816,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &1284707810 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1284707803, guid: 18f288ec9fcfa1543825d1cbcae6d524, type: 3}
-  m_PrefabInstance: {fileID: 323520259}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1284707796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc30bfb122ab49848ac685238071debc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1284707815 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7523302917261301087, guid: 18f288ec9fcfa1543825d1cbcae6d524, type: 3}
@@ -1124,8 +1127,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1706a3130ac1afb4583d8b414eabe2b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hookMovement: {fileID: 1284707810}
+  _hookMovement: {fileID: 1284707803}
   _speed: 6
+--- !u!1 &1627484520
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1627484521}
+  m_Layer: 9
+  m_Name: PlayerChecker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1627484521
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627484520}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1618156027}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1945012143
 GameObject:
   m_ObjectHideFlags: 0

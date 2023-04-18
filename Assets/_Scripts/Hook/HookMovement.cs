@@ -22,6 +22,7 @@ public class HookMovement : MonoBehaviour
     private CollisionDetector _collisionDetector;
     //---------
     public HookDirection _hookDirection;
+    public ThowHook _thowHook;
     private bool _canMove = true;
 
 
@@ -73,6 +74,13 @@ public class HookMovement : MonoBehaviour
     }
     void Update()
     {
+        if (!_collisionDetector.IsTouchingWall() && !_collisionDetector.IsGrounded() && _collisionDetector.IsTouchingMovableObject() && !_movingForward)
+        {
+            _thowHook.DisableHook();
+            OnHookReleased?.Invoke();
+            OnHookEntersPlayer?.Invoke(true);
+            _movingForward = true;
+        }
     }
     public void ChangeHookDirection(bool movingRight)
     {
@@ -87,7 +95,6 @@ public class HookMovement : MonoBehaviour
         if (_collisionDetector.IsTouchingWall() || _collisionDetector.IsGrounded())
         {
             OnHookedTransform?.Invoke(transform);
-            Debug.Log("invoka when collides with wall or roof");
             _canMove = false;
 
         }
@@ -95,8 +102,9 @@ public class HookMovement : MonoBehaviour
         {
             if (_collisionDetector.IsTouchingMovableObject())
             {
-            _canMove = true;
-            OnHookEntersPlayer?.Invoke(true);
+                _canMove = true;
+                OnHookEntersPlayer?.Invoke(true);
+                OnHookReleased?.Invoke();
                 //OnHookedTransform?.Invoke(PlayerPos.transform);
             }
         }
@@ -106,11 +114,7 @@ public class HookMovement : MonoBehaviour
     }
     public void OnTriggerExit2D(Collider2D other)
     {
-        if (!_collisionDetector.IsTouchingWall() && !_collisionDetector.IsGrounded() && !_collisionDetector.IsTouchingMovableObject() && !_movingForward)
-        {
-            Debug.Log("solta");
-            OnHookReleased?.Invoke();
-        }
+
     }
     void MoveForward(Vector3 forward)
     {
