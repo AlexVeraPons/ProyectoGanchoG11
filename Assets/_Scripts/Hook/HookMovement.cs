@@ -110,14 +110,20 @@ public class HookMovement : MonoBehaviour
         if (_collisionDetector.IsTouchingMovableObject())
         {
             if (!_movingForward && IsSelfShooter(hitInfo))
-        {     
-            _canMove = true;
-            OnHookEntersPlayer?.Invoke(true);
-            OnHookReleased?.Invoke();
+            {
+                _canMove = true;
+                OnHookEntersPlayer?.Invoke(true);
+                OnHookReleased?.Invoke();
 
-        } if(!IsSelfShooter(hitInfo)){
-            Debug.Log(gameObject + "El mamahuevo del enemigo");
-        }
+            }
+            if (!IsSelfShooter(hitInfo))
+            {
+                OnHookedTransform?.Invoke(transform);
+                Debug.Log(gameObject + "El mamahuevo del enemigo");
+                var stunneable = hitInfo.GetComponent<IStunneable>();
+                if (stunneable == null) return;
+                stunneable.Stun();
+            }
             //OnHookedTransform?.Invoke(PlayerPos.transform);
         }
 
@@ -154,5 +160,5 @@ public class HookMovement : MonoBehaviour
         }
         return false;
     }
-    
+
 }

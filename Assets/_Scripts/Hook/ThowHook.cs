@@ -9,6 +9,7 @@ public class ThowHook : MonoBehaviour
     public HookMovement hookMovement;
     public static Action<bool> hookIsMovingRight;
     public static Action<bool> hookCanMove;
+    public Action onHookDetached;
     private bool _canThrow;
 
     public Vector2 InputtedDirection { get; private set; }
@@ -41,6 +42,7 @@ public class ThowHook : MonoBehaviour
         {
             hookIsMovingRight?.Invoke(false);
             hookCanMove?.Invoke(true);
+            onHookDetached?.Invoke();
         }
     }
     void OnTriggerEnter2D(Collider2D hitInfo)
