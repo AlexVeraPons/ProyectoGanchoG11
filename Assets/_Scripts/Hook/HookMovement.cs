@@ -92,17 +92,20 @@ public class HookMovement : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        if (_collisionDetector.IsTouchingWall() || _collisionDetector.IsGrounded())
+        if (IsMovingForward)
         {
-            OnHookedTransform?.Invoke(transform);
-            _canMove = false;
-            if (_collisionDetector.IsTouchingMovableObject())
+            if (_collisionDetector.IsTouchingWall() || _collisionDetector.IsGrounded())
             {
-                //es desactiva pero el seguent cop que s'activa esta al lloc on ha colisionat, no al lloc del player
-                // _thowHook.DisableHook();
-                // OnHookReleased?.Invoke();
-                // OnHookEntersPlayer?.Invoke(true);
-                // _movingForward = true;
+                OnHookedTransform?.Invoke(transform);
+                _canMove = false;
+                if (_collisionDetector.IsTouchingMovableObject())
+                {
+                    //es desactiva pero el seguent cop que s'activa esta al lloc on ha colisionat, no al lloc del player
+                    // _thowHook.DisableHook();
+                    // OnHookReleased?.Invoke();
+                    // OnHookEntersPlayer?.Invoke(true);
+                    // _movingForward = true;
+                }
             }
 
         }
@@ -126,10 +129,6 @@ public class HookMovement : MonoBehaviour
             }
             //OnHookedTransform?.Invoke(PlayerPos.transform);
         }
-
-        // var hookeable = hitInfo.GetComponent<IHookeable>();
-        // if (hookeable == null) return;
-        // hookeable.TakeDamage();
     }
     public void OnTriggerExit2D(Collider2D other)
     {
