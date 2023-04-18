@@ -10,7 +10,7 @@ public class MoveToPosition : MonoBehaviour
     private HookMovement _hookMovement;
 
     [SerializeField]
-    private float _speed = 1f;
+    private float _speed;
     private Transform _targetTransform;
     private Rigidbody2D _rigidbody2D;
 
@@ -46,7 +46,6 @@ public class MoveToPosition : MonoBehaviour
 
     private void UnsetTransform()
     {
-        Debug.Log("Unset");
         _targetTransform = null;
         OnStopOverridingMovement?.Invoke();
     }
