@@ -8,6 +8,8 @@ public class MoveToPosition : MonoBehaviour
 
     [SerializeField]
     private HookMovement _hookMovement;
+    [SerializeField]
+    private ThowHook _throwHook;
 
     [SerializeField]
     private float _speed;
@@ -17,13 +19,13 @@ public class MoveToPosition : MonoBehaviour
     private void OnEnable()
     {
         _hookMovement.OnHookedTransform += SetTransform;
-        _hookMovement.OnHookReleased += UnsetTransform;
+        _throwHook.onHookDetached += UnsetTransform;
     }
 
     private void OnDisable()
     {
         _hookMovement.OnHookedTransform -= SetTransform;
-        _hookMovement.OnHookReleased -= UnsetTransform;
+        _throwHook.onHookDetached -= UnsetTransform;
     }
 
     private void Awake()

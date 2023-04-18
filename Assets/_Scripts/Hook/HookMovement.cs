@@ -126,10 +126,6 @@ public class HookMovement : MonoBehaviour
             }
             //OnHookedTransform?.Invoke(PlayerPos.transform);
         }
-
-        // var hookeable = hitInfo.GetComponent<IHookeable>();
-        // if (hookeable == null) return;
-        // hookeable.TakeDamage();
     }
     public void OnTriggerExit2D(Collider2D other)
     {
