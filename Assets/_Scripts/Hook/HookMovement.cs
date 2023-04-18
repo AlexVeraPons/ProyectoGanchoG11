@@ -96,25 +96,41 @@ public class HookMovement : MonoBehaviour
         {
             OnHookedTransform?.Invoke(transform);
             _canMove = false;
-
-        }
-        if (!_movingForward)
-        {
             if (_collisionDetector.IsTouchingMovableObject())
             {
-                _canMove = true;
-                OnHookEntersPlayer?.Invoke(true);
-                OnHookReleased?.Invoke();
-                //OnHookedTransform?.Invoke(PlayerPos.transform);
+                //es desactiva pero el seguent cop que s'activa esta al lloc on ha colisionat, no al lloc del player
+                // _thowHook.DisableHook();
+                // OnHookReleased?.Invoke();
+                // OnHookEntersPlayer?.Invoke(true);
+                // _movingForward = true;
             }
+
         }
+
+        if (_collisionDetector.IsTouchingMovableObject())
+        {
+            if (!_movingForward && IsSelfShooter(hitInfo))
+        {     
+            _canMove = true;
+            OnHookEntersPlayer?.Invoke(true);
+            OnHookReleased?.Invoke();
+
+        } if(!IsSelfShooter(hitInfo)){
+            Debug.Log(gameObject + "El mamahuevo del enemigo");
+        }
+            //OnHookedTransform?.Invoke(PlayerPos.transform);
+        }
+
         // var hookeable = hitInfo.GetComponent<IHookeable>();
         // if (hookeable == null) return;
         // hookeable.TakeDamage();
     }
     public void OnTriggerExit2D(Collider2D other)
     {
-
+        if (!_collisionDetector.IsTouchingWall() && !_collisionDetector.IsGrounded() && !_movingForward)
+        {
+            //Debug.Log("solta");
+        }
     }
     void MoveForward(Vector3 forward)
     {
@@ -129,4 +145,14 @@ public class HookMovement : MonoBehaviour
         Vector2 VectorDirection = finalPosition - InitialPosition;
         return VectorDirection;
     }
+    bool IsSelfShooter(Collider2D Player)
+    {
+        if (PlayerPos.transform == Player.transform)
+        {
+            Debug.Log(gameObject + "player que ha disparat");
+            return true;
+        }
+        return false;
+    }
+    
 }
