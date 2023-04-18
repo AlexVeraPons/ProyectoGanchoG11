@@ -15,12 +15,12 @@ public class HookMovement : MonoBehaviour
     //---------
     private Rigidbody2D _rigidBody2D;
     private LineRenderer _lineRenderer;
-    private bool _isMovingForward = false;
+    public bool IsMovingForward => _movingForward;
+    private bool _movingForward = false;
     private Vector2 _direction => _hookDirection.GetDirectionVector();
     private Vector2 _finalDirection;
     private CollisionDetector _collisionDetector;
     //---------
-    private int _timesItColidesWithParent = 2;
     public HookDirection _hookDirection;
     private bool _canMove = true;
 
@@ -53,19 +53,19 @@ public class HookMovement : MonoBehaviour
     {
         if (!_collisionDetector.IsTouchingWall() && !_collisionDetector.IsGrounded())
         {
-            transform.position = PlayerPos.transform.position + 2 * Vector3.up;
+            transform.position = PlayerPos.transform.position;
         }
     }
     void FixedUpdate()
     {
         if (_canMove)
         {
-            if (_isMovingForward)
+            if (_movingForward)
             {
                 MoveForward(_finalDirection);
 
             }
-            else if (!_isMovingForward)
+            else if (!_movingForward)
             {
                 ReturnToVector(GetVectorDirection(PlayerPos.transform.position, this.transform.position));
             }
@@ -73,14 +73,10 @@ public class HookMovement : MonoBehaviour
     }
     void Update()
     {
-            if(Input.GetKeyUp(KeyCode.Space))
-            {
-                OnHookReleased?.Invoke();
-            }
     }
     public void ChangeHookDirection(bool movingRight)
     {
-        _isMovingForward = movingRight;
+        _movingForward = movingRight;
     }
     void SetCanMove(bool canMove)
     {
@@ -91,26 +87,30 @@ public class HookMovement : MonoBehaviour
         if (_collisionDetector.IsTouchingWall() || _collisionDetector.IsGrounded())
         {
             OnHookedTransform?.Invoke(transform);
+            Debug.Log("invoka when collides with wall or roof");
             _canMove = false;
 
         }
-        if (_collisionDetector.IsTouchingMovableObject())
+        if (!_movingForward)
         {
-            //OnHookedTransform?.Invoke(PlayerPos.transform);
-        }
-
-        if (hitInfo.tag == "Player")
-        {
-            _timesItColidesWithParent -= 1;
+            if (_collisionDetector.IsTouchingMovableObject())
+            {
             _canMove = true;
-        }
-        if (_timesItColidesWithParent <= 0)
-        {
             OnHookEntersPlayer?.Invoke(true);
+                //OnHookedTransform?.Invoke(PlayerPos.transform);
+            }
         }
         // var hookeable = hitInfo.GetComponent<IHookeable>();
         // if (hookeable == null) return;
         // hookeable.TakeDamage();
+    }
+    public void OnTriggerExit2D(Collider2D other)
+    {
+        if (!_collisionDetector.IsTouchingWall() && !_collisionDetector.IsGrounded() && !_collisionDetector.IsTouchingMovableObject() && !_movingForward)
+        {
+            Debug.Log("solta");
+            OnHookReleased?.Invoke();
+        }
     }
     void MoveForward(Vector3 forward)
     {

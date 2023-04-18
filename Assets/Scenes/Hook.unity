@@ -253,13 +253,41 @@ PrefabInstance:
       propertyPath: _wallCheckTransform
       value: 
       objectReference: {fileID: 1515111923}
+    - target: {fileID: 7860335731041414961, guid: 3395e047edfd7974ab5cc929905ac9a1, type: 3}
+      propertyPath: _whatIsMovableObject.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 7860335731041414961, guid: 3395e047edfd7974ab5cc929905ac9a1, type: 3}
+      propertyPath: _movableObjectCheckTransform
+      value: 
+      objectReference: {fileID: 1515111923}
+    - target: {fileID: 7860335731041414962, guid: 3395e047edfd7974ab5cc929905ac9a1, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7860335731041414962, guid: 3395e047edfd7974ab5cc929905ac9a1, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_ActionId
+      value: 6d418d6d-fac2-4737-a465-daccd5d5cfce
+      objectReference: {fileID: 0}
+    - target: {fileID: 7860335731041414962, guid: 3395e047edfd7974ab5cc929905ac9a1, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_ActionName
+      value: Player/Shoot[/Keyboard/space]
+      objectReference: {fileID: 0}
     - target: {fileID: 7860335731041414962, guid: 3395e047edfd7974ab5cc929905ac9a1, type: 3}
       propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7860335731041414962, guid: 3395e047edfd7974ab5cc929905ac9a1, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7860335731041414962, guid: 3395e047edfd7974ab5cc929905ac9a1, type: 3}
       propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7860335731041414962, guid: 3395e047edfd7974ab5cc929905ac9a1, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7860335731041414962, guid: 3395e047edfd7974ab5cc929905ac9a1, type: 3}
       propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -267,6 +295,10 @@ PrefabInstance:
       objectReference: {fileID: 1618156021}
     - target: {fileID: 7860335731041414962, guid: 3395e047edfd7974ab5cc929905ac9a1, type: 3}
       propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7860335731041414962, guid: 3395e047edfd7974ab5cc929905ac9a1, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7860335731041414962, guid: 3395e047edfd7974ab5cc929905ac9a1, type: 3}
@@ -329,6 +361,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7860335731041414968, guid: 3395e047edfd7974ab5cc929905ac9a1, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3395e047edfd7974ab5cc929905ac9a1, type: 3}
 --- !u!1001 &323520259
@@ -350,6 +386,18 @@ PrefabInstance:
       propertyPath: _hookDirection
       value: 
       objectReference: {fileID: 1618156021}
+    - target: {fileID: 1284707813, guid: 18f288ec9fcfa1543825d1cbcae6d524, type: 3}
+      propertyPath: _movableObjectCheckRadius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1284707813, guid: 18f288ec9fcfa1543825d1cbcae6d524, type: 3}
+      propertyPath: _whatIsMovableObject.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 1284707813, guid: 18f288ec9fcfa1543825d1cbcae6d524, type: 3}
+      propertyPath: _movableObjectCheckTransform
+      value: 
+      objectReference: {fileID: 1444029309}
     - target: {fileID: 7523302917261301058, guid: 18f288ec9fcfa1543825d1cbcae6d524, type: 3}
       propertyPath: m_Name
       value: Hook
@@ -765,6 +813,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc30bfb122ab49848ac685238071debc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1284707815 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7523302917261301087, guid: 18f288ec9fcfa1543825d1cbcae6d524, type: 3}
+  m_PrefabInstance: {fileID: 323520259}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1444029308
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1444029309}
+  m_Layer: 0
+  m_Name: MovableObjectChecker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1444029309
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444029308}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1284707815}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1515111923 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7860335731807816366, guid: 3395e047edfd7974ab5cc929905ac9a1, type: 3}

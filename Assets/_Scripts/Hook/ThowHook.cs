@@ -30,7 +30,7 @@ public class ThowHook : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (_canThrow)
             {
@@ -45,10 +45,14 @@ public class ThowHook : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        if (hitInfo.tag == "Hook")
-        {   
-            HookPrefab.SetActive(false);
-            EnableThrow(true);
+        if (!hookMovement.IsMovingForward)
+        {
+            if (hitInfo.tag == "Hook")
+            {
+                HookPrefab.SetActive(false);
+                Debug.Log("Hooked unactivated");
+                EnableThrow(true);
+            }
         }
     }
     void Throw()
@@ -57,11 +61,7 @@ public class ThowHook : MonoBehaviour
         hookIsMovingRight?.Invoke(true);
         EnableThrow(false);
         hookMovement.SetPosition();
-        //_canThrow = false;
-        //var hook = Instantiate(HookPrefab, transform.position, Quaternion.identity);
-        //hookMovement = hookMovement.GetComponent<HookMovement>();
-        //hookMovement.ChangeHookDirection(true);
-        //hook.transform.SetParent(this.transform);
+
         hookMovement.StealDirection();
 
     }
