@@ -122,7 +122,7 @@ public class HookMovement : MonoBehaviour
             if (!IsSelfShooter(hitInfo))
             {
                 OnHookedTransform?.Invoke(transform);
-                Debug.Log(gameObject + "El mamahuevo del enemigo");
+                _canMove = false;
                 var stunneable = hitInfo.GetComponent<IStunneable>();
                 if (stunneable == null) return;
                 stunneable.Stun();
@@ -130,6 +130,7 @@ public class HookMovement : MonoBehaviour
             //OnHookedTransform?.Invoke(PlayerPos.transform);
         }
     }
+
     public void OnTriggerExit2D(Collider2D other)
     {
         if (!_collisionDetector.IsTouchingWall() && !_collisionDetector.IsGrounded() && !_movingForward)
@@ -137,6 +138,7 @@ public class HookMovement : MonoBehaviour
             //Debug.Log("solta");
         }
     }
+
     void MoveForward(Vector3 forward)
     {
         _rigidBody2D.transform.position += (Vector3)forward * _speed * Time.deltaTime;
@@ -154,7 +156,6 @@ public class HookMovement : MonoBehaviour
     {
         if (PlayerPos.transform == Player.transform)
         {
-            Debug.Log(gameObject + "player que ha disparat");
             return true;
         }
         return false;

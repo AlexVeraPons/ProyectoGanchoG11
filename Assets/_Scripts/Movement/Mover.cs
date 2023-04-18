@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Mover : MonoBehaviour, IStunneable
+public class Mover : MonoBehaviour
 {
     [SerializeField]
     private float _speed = 5f;
@@ -16,7 +16,7 @@ public class Mover : MonoBehaviour, IStunneable
     private float _deceleration = 0.1f;
     
     [SerializeField]
-    private MoveToPosition _moveToPosition;
+    private MoveToPosition _moveToPosition = null;
     private Rigidbody2D _rigidbody2D;
     private CollisionDetector _collisionDetector;
     public bool IsFacingRight => _facingRight;
