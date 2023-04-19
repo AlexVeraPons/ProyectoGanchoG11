@@ -20,6 +20,9 @@ public class HookMovement : MonoBehaviour
     private Vector2 _direction => _hookDirection.GetDirectionVector();
     private Vector2 _finalDirection;
     private CollisionDetector _collisionDetector;
+    [SerializeField]
+    private float _hookMaxDistance = 5;
+    private float _hookCurrentDistance = 0;
     //---------
     public HookDirection _hookDirection;
     public ThowHook _thowHook;
@@ -75,6 +78,14 @@ public class HookMovement : MonoBehaviour
     }
     void Update()
     {
+        _hookCurrentDistance = Vector3.Distance(PlayerPos.transform.position, this.transform.position);
+        Debug.Log(_hookCurrentDistance);
+        if (_hookCurrentDistance >= _hookMaxDistance)
+        {
+            _movingForward = false;
+            Debug.Log("retorna");
+        }
+
         if (!_collisionDetector.IsTouchingWall() && !_collisionDetector.IsGrounded() && _collisionDetector.IsTouchingMovableObject() && !_movingForward)
         {
             _thowHook.DisableHook();
@@ -129,7 +140,7 @@ public class HookMovement : MonoBehaviour
     }
     void ReturnToVector(Vector3 direccionDeVuelta)
     {
-        _rigidBody2D.transform.position -= direccionDeVuelta.normalized * _speed *_returnSpeedModifier * Time.deltaTime;
+        _rigidBody2D.transform.position -= direccionDeVuelta.normalized * _speed * _returnSpeedModifier * Time.deltaTime;
     }
     private Vector2 GetVectorDirection(Vector3 InitialPosition, Vector3 finalPosition)
     {
