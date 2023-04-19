@@ -1608,7 +1608,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 449227157637780285, guid: 4787cee0390e69b42b5b3891626d04d1, type: 3}
       propertyPath: _speed
-      value: 24
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 449227157637780285, guid: 4787cee0390e69b42b5b3891626d04d1, type: 3}
       propertyPath: _throwHook
@@ -1625,6 +1625,18 @@ PrefabInstance:
     - target: {fileID: 449227158381733635, guid: 4787cee0390e69b42b5b3891626d04d1, type: 3}
       propertyPath: _movableObjectCheckRadius
       value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 449227158381733693, guid: 4787cee0390e69b42b5b3891626d04d1, type: 3}
+      propertyPath: _speed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 449227158381733693, guid: 4787cee0390e69b42b5b3891626d04d1, type: 3}
+      propertyPath: _hookMaxDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 449227158381733693, guid: 4787cee0390e69b42b5b3891626d04d1, type: 3}
+      propertyPath: _returnSpeedModifier
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 1056860120312127599, guid: 4787cee0390e69b42b5b3891626d04d1, type: 3}
       propertyPath: m_Name
@@ -1677,6 +1689,14 @@ PrefabInstance:
     - target: {fileID: 7723246800795002377, guid: 4787cee0390e69b42b5b3891626d04d1, type: 3}
       propertyPath: m_Constraints
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7723246800795002382, guid: 4787cee0390e69b42b5b3891626d04d1, type: 3}
+      propertyPath: _speed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7723246800795002382, guid: 4787cee0390e69b42b5b3891626d04d1, type: 3}
+      propertyPath: _acceleration
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7949941431527483321, guid: 4787cee0390e69b42b5b3891626d04d1, type: 3}
       propertyPath: m_LocalPosition.x
