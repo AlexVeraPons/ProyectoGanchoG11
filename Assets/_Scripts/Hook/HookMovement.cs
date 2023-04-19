@@ -24,7 +24,8 @@ public class HookMovement : MonoBehaviour
     public HookDirection _hookDirection;
     public ThowHook _thowHook;
     private bool _canMove = true;
-
+    [SerializeField]
+    private float _returnSpeedModifier = 1f;
 
     void OnEnable()
     {
@@ -145,7 +146,7 @@ public class HookMovement : MonoBehaviour
     }
     void ReturnToVector(Vector3 direccionDeVuelta)
     {
-        _rigidBody2D.transform.position -= direccionDeVuelta.normalized * _speed * Time.deltaTime;
+        _rigidBody2D.transform.position -= direccionDeVuelta.normalized * _speed *_returnSpeedModifier * Time.deltaTime;
     }
     private Vector2 GetVectorDirection(Vector3 InitialPosition, Vector3 finalPosition)
     {

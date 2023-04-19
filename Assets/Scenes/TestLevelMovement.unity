@@ -1603,9 +1603,25 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 449227157637780285, guid: 4787cee0390e69b42b5b3891626d04d1, type: 3}
+      propertyPath: _speed
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 449227157637780285, guid: 4787cee0390e69b42b5b3891626d04d1, type: 3}
       propertyPath: _throwHook
       value: 
       objectReference: {fileID: 1601893916}
+    - target: {fileID: 449227158381733635, guid: 4787cee0390e69b42b5b3891626d04d1, type: 3}
+      propertyPath: _wallCheckRadius
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 449227158381733635, guid: 4787cee0390e69b42b5b3891626d04d1, type: 3}
+      propertyPath: _groundCheckRadius
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 449227158381733635, guid: 4787cee0390e69b42b5b3891626d04d1, type: 3}
+      propertyPath: _movableObjectCheckRadius
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 1056860120312127599, guid: 4787cee0390e69b42b5b3891626d04d1, type: 3}
       propertyPath: m_Name
       value: PlayerKit
