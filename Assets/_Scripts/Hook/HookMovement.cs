@@ -79,11 +79,9 @@ public class HookMovement : MonoBehaviour
     void Update()
     {
         _hookCurrentDistance = Vector3.Distance(PlayerPos.transform.position, this.transform.position);
-        Debug.Log(_hookCurrentDistance);
         if (_hookCurrentDistance >= _hookMaxDistance)
         {
             _movingForward = false;
-            Debug.Log("retorna");
         }
 
         if (!_collisionDetector.IsTouchingWall() && !_collisionDetector.IsGrounded() && _collisionDetector.IsTouchingMovableObject() && !_movingForward)
