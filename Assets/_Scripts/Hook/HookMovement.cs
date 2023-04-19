@@ -99,14 +99,6 @@ public class HookMovement : MonoBehaviour
             {
                 OnHookedTransform?.Invoke(transform);
                 _canMove = false;
-                if (_collisionDetector.IsTouchingMovableObject())
-                {
-                    //es desactiva pero el seguent cop que s'activa esta al lloc on ha colisionat, no al lloc del player
-                    // _thowHook.DisableHook();
-                    // OnHookReleased?.Invoke();
-                    // OnHookEntersPlayer?.Invoke(true);
-                    // _movingForward = true;
-                }
             }
 
         }
@@ -128,15 +120,6 @@ public class HookMovement : MonoBehaviour
                 if (stunneable == null) return;
                 stunneable.Stun();
             }
-            //OnHookedTransform?.Invoke(PlayerPos.transform);
-        }
-    }
-
-    public void OnTriggerExit2D(Collider2D other)
-    {
-        if (!_collisionDetector.IsTouchingWall() && !_collisionDetector.IsGrounded() && !_movingForward)
-        {
-            //Debug.Log("solta");
         }
     }
 

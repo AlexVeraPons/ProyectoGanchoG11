@@ -52,7 +52,6 @@ public class ThowHook : MonoBehaviour
             if (hitInfo.tag == "Hook")
             {
                 DisableHook();
-                Debug.Log("Hooked unactivated");
                 EnableThrow(true);
             }
         }

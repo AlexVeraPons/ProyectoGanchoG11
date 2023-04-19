@@ -13,7 +13,6 @@ public class Stunner : MonoBehaviour, IStunneable
     {
         _mover.Stun();
         StartCoroutine(StunTimer());
-        Debug.Log("Stunned");
     }
 
     private IEnumerator StunTimer()
