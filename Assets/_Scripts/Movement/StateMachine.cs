@@ -4,7 +4,7 @@ public abstract class StateMachine : MonoBehaviour
 {
     public virtual State CurrentState { get; private set; }
 
-    public virtual  void dw(State startingState)
+    public virtual  void Initialize(State startingState)
     {
         CurrentState = startingState;
         CurrentState.Enter();

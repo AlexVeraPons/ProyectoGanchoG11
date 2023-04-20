@@ -5,6 +5,7 @@ public class Hooked : State
     private Rigidbody2D _rigidbody2D;
     private CollisionDetector _collisionDetector;
     private float _originalGravityScale;
+    private bool _isHooked;
 
     private bool _isGrounded => _collisionDetector.IsGrounded();
     public Hooked(StateMachine stateMachine) : base(stateMachine)
@@ -18,6 +19,7 @@ public class Hooked : State
         base.Enter();
         _originalGravityScale = _rigidbody2D.gravityScale;
         _rigidbody2D.gravityScale = 0;
+        _isHooked = true;
     }
 
     public override void Exit()
@@ -29,13 +31,17 @@ public class Hooked : State
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        ExitLogicUpdate();
+        if(_isHooked == false)
+        {
+            ExitLogicUpdate();
+        }
     }
 
     public override void ExitLogicUpdate()
     {
         base.ExitLogicUpdate();
 
+        
         if (_isGrounded)
         {
             _stateMachine.ChangeState(new Grounded(_stateMachine));
