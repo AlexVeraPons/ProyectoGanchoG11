@@ -1,27 +1,27 @@
 using UnityEngine;
 
-public class StateMachine : MonoBehaviour
+public abstract class StateMachine : MonoBehaviour
 {
-    public State CurrentState { get; private set; }
+    public virtual State CurrentState { get; private set; }
 
-    public void Initialize(State startingState)
+    public virtual  void dw(State startingState)
     {
         CurrentState = startingState;
         CurrentState.Enter();
     }
 
-    public void ChangeState(State newState)
+    public  virtual void ChangeState(State newState)
     {
         CurrentState.Exit();
         CurrentState = newState;
         CurrentState.Enter();
     }
 
-    public void FixedUpdate()
+    public virtual  void FixedUpdate()
     {
         CurrentState.PhysicsUpdate();
     }
-    public void Update()
+    public virtual void Update()
     {
         CurrentState.LogicUpdate();
     }

@@ -1,5 +1,5 @@
+using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Grounded : State
 {
@@ -8,15 +8,19 @@ public class Grounded : State
     private float _acceleration;
     private float _deceleration;
     private Rigidbody2D _rigidbody2D;
-    private float _input;
+    private CollisionDetector _collisionDetector;
+    private bool _isGrounded => _collisionDetector.IsGrounded();
+    private float _input => ((PlayerStateMachine)_stateMachine).DirectionalInput;
 
     public Grounded(StateMachine stateMachine)
-        : base(stateMachine) { 
-            _speed = ((PlayerStateMachine)stateMachine)._speed;
-            _acceleration = ((PlayerStateMachine)stateMachine)._acceleration;
-            _deceleration = ((PlayerStateMachine)stateMachine)._deceleration;
-            _rigidbody2D = ((PlayerStateMachine)stateMachine)._rigidbody2D;
-        }
+        : base(stateMachine)
+    {
+        _speed = ((PlayerStateMachine)stateMachine)._speed;
+        _acceleration = ((PlayerStateMachine)stateMachine)._acceleration;
+        _deceleration = ((PlayerStateMachine)stateMachine)._deceleration;
+        _rigidbody2D = ((PlayerStateMachine)stateMachine)._rigidbody2D;
+        _collisionDetector = ((PlayerStateMachine)stateMachine)._collisionDetection;
+    }
 
     public override void Enter()
     {
@@ -31,7 +35,16 @@ public class Grounded : State
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        _currentVelocity = Mathf.Lerp(_currentVelocity, _input * _speed, _acceleration * Time.deltaTime);
+        GroundMovementUpate();
+    }
+
+    private void GroundMovementUpate()
+    {
+        _currentVelocity = Mathf.Lerp(
+            _currentVelocity,
+            _input * _speed,
+            _acceleration * Time.deltaTime
+        );
 
         if (Mathf.Abs(_input) < 0.1f)
         {
@@ -44,10 +57,75 @@ public class Grounded : State
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        ExitLogicUpdate();
     }
 
-    private void OnMove(InputAction.CallbackContext context)
+    public override void ExitLogicUpdate()
     {
-        _input = context.ReadValue<Vector2>().x;
+        base.ExitLogicUpdate();
+        if (!_isGrounded)
+        {
+            _stateMachine.ChangeState(new Airborn(_stateMachine));
+        }
+    }
+}
+
+public class Airborn : State
+{
+    private Rigidbody2D _rigidbody2D;
+    private CollisionDetector _collisionDetector;
+    private bool _isTouchingWall => _collisionDetector.IsTouchingInfront();
+
+
+    public Airborn(StateMachine stateMachine)
+        : base(stateMachine)
+    {
+        _rigidbody2D = ((PlayerStateMachine)stateMachine)._rigidbody2D;
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+    }
+
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+        ExitLogicUpdate();
+    }
+
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+        MovementUpdate();
+        WallCollisionUpdate();
+    }
+
+    private void WallCollisionUpdate()
+    {
+         if (_isTouchingWall)
+        {
+            ResetVelocity();
+        }
+    }
+
+    private void ResetVelocity()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void MovementUpdate()
+    {
+        // waiting for decision on how to handle airborn movement
+    }
+
+    public override void ExitLogicUpdate()
+    {
+        base.ExitLogicUpdate();
     }
 }

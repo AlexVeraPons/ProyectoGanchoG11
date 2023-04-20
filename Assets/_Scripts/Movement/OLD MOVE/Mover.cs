@@ -14,7 +14,7 @@ public class Mover : MonoBehaviour
 
     [SerializeField]
     private float _deceleration = 0.1f;
-    
+
     [SerializeField]
     private MoveToPosition _moveToPosition = null;
     private Rigidbody2D _rigidbody2D;
@@ -28,12 +28,14 @@ public class Mover : MonoBehaviour
     private bool _isStunned = false;
     private bool _isTouchingWall => _collisionDetector.IsTouchingInfront();
 
-    private void OnEnable() {
+    private void OnEnable()
+    {
         _moveToPosition.OnOverridingMovement += SetIsHooked;
         _moveToPosition.OnStopOverridingMovement += UnsetIsHooked;
     }
 
-    private void OnDisable() {
+    private void OnDisable()
+    {
         _moveToPosition.OnOverridingMovement -= SetIsHooked;
         _moveToPosition.OnStopOverridingMovement -= UnsetIsHooked;
     }
@@ -61,7 +63,11 @@ public class Mover : MonoBehaviour
 
     private void MovementUpdate()
     {
-        _currentVelocity = Mathf.Lerp(_currentVelocity, _input * _speed, _acceleration * Time.deltaTime);
+        _currentVelocity = Mathf.Lerp(
+            _currentVelocity,
+            _input * _speed,
+            _acceleration * Time.deltaTime
+        );
 
         if (Mathf.Abs(_input) < 0.1f)
         {
@@ -102,8 +108,8 @@ public class Mover : MonoBehaviour
 
     private bool CanMove()
     {
-       // possiblidad de cambiar esto
-       return _isGrounded && !_isHooked && !_isStunned;
+        // possiblidad de cambiar esto
+        return _isGrounded && !_isHooked && !_isStunned;
     }
 
     public void DirectionalInput(InputAction.CallbackContext context)
@@ -117,6 +123,7 @@ public class Mover : MonoBehaviour
         _rigidbody2D.gravityScale = 0;
         _currentVelocity = 0;
     }
+
     private void UnsetIsHooked()
     {
         _isHooked = false;
