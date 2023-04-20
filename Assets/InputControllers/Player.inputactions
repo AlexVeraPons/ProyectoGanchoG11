@@ -16,12 +16,12 @@
                 },
                 {
                     "name": "ShootHook",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "6d418d6d-fac2-4737-a465-daccd5d5cfce",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
