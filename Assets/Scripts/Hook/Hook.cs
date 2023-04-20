@@ -23,7 +23,7 @@ public class Hook : MonoBehaviour
     [SerializeField] float _maxSpeed = 1f;
     [SerializeField] float _returnSpeedMultiplier = 1f;
     [SerializeField] float _returnThreshold = 0.3f;
-    [SerializeField] float _pushStrength = 5f;
+    [SerializeField] float _pushStrength = 5f; // This pushing should be on another script perhaps
 
     [SerializeField] LayerMask _collisionLayers;
 
@@ -38,22 +38,19 @@ public class Hook : MonoBehaviour
     private IHookable _hookedObject;
 
     // Actions executed on "OnEnterState" method
-
     public Action OnLaunch;
     public Action OnPeakReached;
     public Action OnFinish;
 
-
+    // Unity functions
     private void Awake()
     {
         _rigidBody2D = GetComponent<Rigidbody2D>();
     }
-
     private void Start()
     {
         this.gameObject.SetActive(false);
     }
-
     private void FixedUpdate()
     {
         switch (State)
@@ -89,7 +86,6 @@ public class Hook : MonoBehaviour
                 break;
         }
     }
-
     private void Update()
     {
         switch (State)
@@ -145,12 +141,10 @@ public class Hook : MonoBehaviour
     {
         return _currentSpeed < _maxSpeed;
     }
-
     bool HasBeenCancelled()
     {
         return _hookInputReference.action.ReadValue<float>() == 0 && _timer > _returnThreshold;
     }
-
     bool HasCollided()
     {
         var results = Physics2D.OverlapCircleAll((Vector2)this.gameObject.transform.position, 0.5f, _collisionLayers);
@@ -168,12 +162,10 @@ public class Hook : MonoBehaviour
 
         return false;
     }
-
     bool HasReachedPeak()
     {
         return Vector2.Distance(_origin, transform.position) > _grapplingGun.PeakDistance;
     }
-
     bool IsCloseToGrapplingGun()
     {
         return Vector2.Distance(_grapplingGun.gameObject.transform.position, this.transform.position) < _grapplingGun.GrabDistance;
@@ -187,46 +179,42 @@ public class Hook : MonoBehaviour
 
         _currentSpeed = Mathf.Lerp(0, _maxSpeed, _timer);
     }
-
     void MoveForward() // Used in Going state
     {
         _rigidBody2D.velocity = _direction * _currentSpeed * Time.deltaTime;
     }
-
     void MoveBackwards() // Used in Returning state
     {
         Vector2 vec = (Vector2)_grapplingGunOwner.transform.position - (Vector2)this.transform.position;
         vec = vec.normalized;
         _rigidBody2D.velocity = vec * _currentSpeed * _returnSpeedMultiplier * Time.deltaTime;
     }
-
     void RetrieveOwner() // Used in RetrieveOwner state
     {
         Vector2 dir = (Vector2)this.transform.position - (Vector2)_grapplingGun.gameObject.transform.position;
         dir = dir.normalized;
         _grapplingGunRigidbody2D.velocity = dir * _maxSpeed * Time.deltaTime;
     }
-
     void RetrieveTarget() // Used in RetrieveTarget state
     {
         Vector2 dir = (Vector2)_grapplingGun.gameObject.transform.position - (Vector2)_targetRigidbody2D.transform.position;
         dir = dir.normalized;
         _targetRigidbody2D.velocity = dir * _maxSpeed * _returnSpeedMultiplier * Time.deltaTime;
     }
+    //Perhaps all these move and retrieves could be in only one with different input parameters
+
 
     //In here there's all the void methods that get called in only 1 frame
     void Collide()
     {
         _hookedObject.OnHook(this);
     }
-
     void PushTargetAway()
     {
         Vector2 dir = (Vector2)_targetRigidbody2D.transform.position - (Vector2)_grapplingGun.gameObject.transform.position;
         dir = dir.normalized;
         _targetRigidbody2D.AddForce(dir * _pushStrength);
     }
-
     void ResetSelf()
     {
         _grapplingGun.ResetSelf();
@@ -234,7 +222,6 @@ public class Hook : MonoBehaviour
         _timer = 0f;
         this.gameObject.SetActive(false);
     }
-
     public void Launch(Vector2 position, Vector2 newDirection)
     {
         OnLaunch?.Invoke();
@@ -243,30 +230,29 @@ public class Hook : MonoBehaviour
         this.transform.position = _origin;
         AssignNewDirection(newDirection);
     }
-
     public void AssignNewDirection(Vector2 newDirection)
     {
         this._direction = newDirection;
     }
 
-    public void AssignGrapplingHook(GrapplingGun grapplingGun)
+    //In here there's all the void methods that get called only once on start
+    public void AssignGrapplingGun(GrapplingGun grapplingGun)
     {
         _grapplingGunOwner = grapplingGun.gameObject;
         this._grapplingGun = grapplingGun;
         _grapplingGunRigidbody2D = grapplingGun.gameObject.GetComponent<Rigidbody2D>();
     }
-
     public void AssignTarget(Rigidbody2D targetRigidbody2D)
     {
         this._targetRigidbody2D = targetRigidbody2D;
     }
 
+    //State machine-based functions/methods
     public void SwitchState(HookState newState, GameObject gameObject = null)
     {
         State = newState;
         OnEnterState(newState);
     }
-
     void OnEnterState(HookState newState, GameObject gameObject = null)
     {
         switch (newState)

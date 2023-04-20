@@ -23,6 +23,7 @@ public class GrapplingGun : MonoBehaviour
     private Vector2 _lastInput = Vector2.right;
     Hook _hook;
 
+    // Unity functions
     private void Awake()
     {
         _hook = _hookObject.GetComponent<Hook>();
@@ -48,7 +49,8 @@ public class GrapplingGun : MonoBehaviour
     }
 
     // In here there's all the bool logic
-    bool MovementInputTriggered() {
+    bool MovementInputTriggered()
+    {
         return _movementInputReference.action.triggered;
     }
     bool HasPressedButton()
@@ -87,7 +89,7 @@ public class GrapplingGun : MonoBehaviour
     //In here there's all the assignment logic, only called once ever
     private void SetGrapplingGunOwner()
     {
-        _hook.AssignGrapplingHook(this);
+        _hook.AssignGrapplingGun(this);
     }
 }
 
