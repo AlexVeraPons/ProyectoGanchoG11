@@ -10,8 +10,8 @@ public class Hooked : State
     private bool _isGrounded => _collisionDetector.IsGrounded();
     public Hooked(StateMachine stateMachine) : base(stateMachine)
     {
-        _rigidbody2D = ((PlayerStateMachine)stateMachine)._rigidbody2D;
-        _collisionDetector = ((PlayerStateMachine)stateMachine)._collisionDetector;
+        _rigidbody2D = ((PlayerStateMachine)stateMachine).RigidBody2D;
+        _collisionDetector = ((PlayerStateMachine)stateMachine).CollisionDetector;
     }
 
     public override void Enter()

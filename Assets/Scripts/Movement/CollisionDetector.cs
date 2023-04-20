@@ -5,15 +5,6 @@ using UnityEngine;
 
 public class CollisionDetector : MonoBehaviour
 {
-    [Header("Movable Object Check")]
-    [SerializeField]
-    private LayerMask _whatIsMovableObject;
-
-    [SerializeField]
-    private Transform _movableObjectCheckTransform = null;
-    [SerializeField]
-    private float _movableObjectCheckRadius = 1f;
-
     [Header("Ground Check")]
     [SerializeField]
     private LayerMask _whatIsGround;
@@ -31,7 +22,6 @@ public class CollisionDetector : MonoBehaviour
     private Transform _wallCheckTransform = null;
     [SerializeField]
     private float _wallCheckRadius = 1f;
-
 
     public bool IsGrounded()
     {
@@ -53,18 +43,6 @@ public class CollisionDetector : MonoBehaviour
             _wallCheckTransform.position,
             _wallCheckRadius,
             _whatIsWall
-        );
-        return colliders.Length > 0;
-    }
-
-    public bool IsTouchingMovableObject()
-    {
-        if (_movableObjectCheckTransform == null) return false;
-
-        var colliders = Physics2D.OverlapCircleAll(
-            _movableObjectCheckTransform.position,
-            _movableObjectCheckRadius,
-            _whatIsMovableObject
         );
         return colliders.Length > 0;
     }

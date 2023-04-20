@@ -10,16 +10,16 @@ public class Grounded : State
     private Rigidbody2D _rigidbody2D;
     private CollisionDetector _collisionDetector;
     private bool _isGrounded => _collisionDetector.IsGrounded();
-    private float _input => ((PlayerStateMachine)_stateMachine).DirectionalInput;
+    private float _input => ((PlayerStateMachine)_stateMachine).DirectionalInput();
 
     public Grounded(StateMachine stateMachine)
         : base(stateMachine)
     {
-        _speed = ((PlayerStateMachine)stateMachine)._speed;
-        _acceleration = ((PlayerStateMachine)stateMachine)._acceleration;
-        _deceleration = ((PlayerStateMachine)stateMachine)._deceleration;
-        _rigidbody2D = ((PlayerStateMachine)stateMachine)._rigidbody2D;
-        _collisionDetector = ((PlayerStateMachine)stateMachine)._collisionDetector;
+        _speed = ((PlayerStateMachine)stateMachine).Speed;
+        _acceleration = ((PlayerStateMachine)stateMachine).Acceleration;
+        _deceleration = ((PlayerStateMachine)stateMachine).Deceleration;
+        _rigidbody2D = ((PlayerStateMachine)stateMachine).RigidBody2D;
+        _collisionDetector = ((PlayerStateMachine)stateMachine).CollisionDetector;
     }
 
     public override void Enter()

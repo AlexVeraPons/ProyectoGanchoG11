@@ -11,7 +11,8 @@ public class Airborn : State
     public Airborn(StateMachine stateMachine)
         : base(stateMachine)
     {
-        _rigidbody2D = ((PlayerStateMachine)stateMachine)._rigidbody2D;
+        _rigidbody2D = ((PlayerStateMachine)stateMachine).RigidBody2D;
+        _collisionDetector = ((PlayerStateMachine)stateMachine).CollisionDetector;
     }
 
     public override void Enter()

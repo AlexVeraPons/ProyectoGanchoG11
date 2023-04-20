@@ -1,25 +1,41 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 
 public class PlayerStateMachine : StateMachine
 {
-    public float DirectionalInput => _directionalInput;
-    private float _directionalInput;
-
     public bool FacingRight => _facingRight;
     private bool _facingRight = true;
 
-    public float _speed { get; private set; }
-    public float _acceleration { get; private set; }
+    [SerializeField]
+    private float _speed;
 
-    public float _deceleration { get; private set; }
+    public float Speed => _speed;
 
-    public readonly Rigidbody2D _rigidbody2D;
+    [SerializeField]
+    private float _acceleration;
 
-    public readonly CollisionDetector _collisionDetector;
+    public float Acceleration => _acceleration;
 
-    private void Start()
+    [SerializeField]
+    private float _deceleration;
+
+    public float Deceleration => _deceleration;
+
+    private Rigidbody2D _rigidbody2D;
+
+    public Rigidbody2D RigidBody2D => _rigidbody2D;
+
+    private CollisionDetector _collisionDetector;
+    private float  _directionalInput;
+    public float DirectionalInput() => _directionalInput;
+
+    public CollisionDetector CollisionDetector => _collisionDetector;
+
+    private void Awake()
     {
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+        _collisionDetector = GetComponent<CollisionDetector>();
         Initialize(new Grounded(this));
     }
 
@@ -53,8 +69,9 @@ public class PlayerStateMachine : StateMachine
         transform.localScale = theScale;
     }
 
-    private void OnMove(InputAction.CallbackContext context)
+        public void DirectionalInput(InputAction.CallbackContext context)
     {
         _directionalInput = context.ReadValue<Vector2>().x;
     }
+    
 }
