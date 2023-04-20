@@ -17,16 +17,17 @@ public class Mover : MonoBehaviour
 
     [SerializeField]
     private MoveToPosition _moveToPosition = null;
-    private Rigidbody2D _rigidbody2D;
     private CollisionDetector _collisionDetector;
+    private Rigidbody2D _rigidbody2D;
+    private float _originalGravityScale;
     public bool IsFacingRight => _facingRight;
     private bool _facingRight = true;
     private bool _isGrounded => _collisionDetector.IsGrounded();
-    private float _input;
-    private float _currentVelocity;
     private bool _isHooked = false;
     private bool _isStunned = false;
     private bool _isTouchingWall => _collisionDetector.IsTouchingInfront();
+    private float _input;
+    private float _currentVelocity;
 
     private void OnEnable()
     {
@@ -45,7 +46,9 @@ public class Mover : MonoBehaviour
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _collisionDetector = GetComponent<CollisionDetector>();
     }
-
+    private void Start() {
+        _originalGravityScale = _rigidbody2D.gravityScale;
+    }
     private void FixedUpdate()
     {
         if (CanMove())
@@ -127,7 +130,8 @@ public class Mover : MonoBehaviour
     private void UnsetIsHooked()
     {
         _isHooked = false;
-        _rigidbody2D.gravityScale = 1;
+        _rigidbody2D.gravityScale = _originalGravityScale;
+        _rigidbody2D.velocity = Vector2.zero;
     }
 
     public void Stun()
