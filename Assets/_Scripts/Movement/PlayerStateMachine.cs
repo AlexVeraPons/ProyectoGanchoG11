@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,15 +14,13 @@ public class PlayerStateMachine : StateMachine
 
     public float _deceleration { get; private set; }
 
-    public Rigidbody2D _rigidbody2D { get; private set; }
+    public readonly Rigidbody2D _rigidbody2D;
 
-    public CollisionDetector _collisionDetector { get; private set; }
-
+    public readonly CollisionDetector _collisionDetector;
 
     private void Start()
     {
         Initialize(new Grounded(this));
-
     }
 
     public override void Update()
@@ -34,7 +31,7 @@ public class PlayerStateMachine : StateMachine
 
     private void FlipLogic()
     {
-         // If the input is moving the player right and the player is facing left...
+        // If the input is moving the player right and the player is facing left...
         if (_directionalInput > 0 && !_facingRight)
         {
             Flip();
@@ -55,7 +52,6 @@ public class PlayerStateMachine : StateMachine
         theScale.x *= -1;
         transform.localScale = theScale;
     }
-    
 
     private void OnMove(InputAction.CallbackContext context)
     {
