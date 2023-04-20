@@ -14,6 +14,7 @@ public class Hook : MonoBehaviour
     GrapplingGun _grapplingGun;
 
     Rigidbody2D _rigidBody2D;
+    Collider2D _collider2D;
 
     private Rigidbody2D _targetRigidbody2D;
 
@@ -36,6 +37,7 @@ public class Hook : MonoBehaviour
     Vector2 _direction;
     Vector2 _origin;
     private IHookable _hookedObject;
+    private const float _radius = 0.3f;
 
     // Actions executed on "OnEnterState" method
     public Action OnLaunch;
@@ -46,6 +48,7 @@ public class Hook : MonoBehaviour
     private void Awake()
     {
         _rigidBody2D = GetComponent<Rigidbody2D>();
+        _collider2D = GetComponent<Collider2D>();
     }
     private void Start()
     {
@@ -114,10 +117,18 @@ public class Hook : MonoBehaviour
                 break;
 
             case HookState.RetrievingOwner:
-                if (IsCloseToGrapplingGun())
+                if (IsCloseToGrapplingGun() == true)
                 {
                     _grapplingGunRigidbody2D.velocity = Vector2.zero;
                     SwitchState(HookState.Waiting);
+                }
+                else if (HasBeenCancelled() == true)
+                {
+                    SwitchState(HookState.Returning);
+                }
+                else if (TravelBlocked() == true)
+                {
+                    SwitchState(HookState.Returning);
                 }
                 break;
 
@@ -147,7 +158,7 @@ public class Hook : MonoBehaviour
     }
     bool HasCollided()
     {
-        var results = Physics2D.OverlapCircleAll((Vector2)this.gameObject.transform.position, 0.5f, _collisionLayers);
+        var results = Physics2D.OverlapCircleAll((Vector2)this.gameObject.transform.position, _radius, _collisionLayers);
         if (results.Length > 0)
         {
             foreach (var result in results)
@@ -169,6 +180,22 @@ public class Hook : MonoBehaviour
     bool IsCloseToGrapplingGun()
     {
         return Vector2.Distance(_grapplingGun.gameObject.transform.position, this.transform.position) < _grapplingGun.GrabDistance;
+    }
+    bool TravelBlocked()
+    {
+        var results = Physics2D.LinecastAll(_grapplingGunOwner.transform.position, this.transform.position);
+        if(results.Length > 0)
+        {
+            foreach(var result in results)
+            {
+                if(result.transform.gameObject != this.gameObject
+                && result.transform.gameObject != _grapplingGunOwner.gameObject)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     //In here there's all the physics logic, methods called continuously depending on the state
@@ -258,16 +285,20 @@ public class Hook : MonoBehaviour
         switch (newState)
         {
             case HookState.Going:
+                _rigidBody2D.bodyType = RigidbodyType2D.Dynamic;
+                _collider2D.enabled = true;
                 OnLaunch?.Invoke();
                 break;
 
             case HookState.Returning:
+                _collider2D.enabled = false;
                 OnPeakReached?.Invoke();
                 break;
 
             case HookState.RetrievingOwner:
-                OnPeakReached?.Invoke();
                 _rigidBody2D.velocity = Vector2.zero;
+                _rigidBody2D.bodyType = RigidbodyType2D.Kinematic;
+                OnPeakReached?.Invoke();
                 break;
 
             case HookState.RetrievingTarget:
@@ -282,6 +313,9 @@ public class Hook : MonoBehaviour
         }
     }
 
+    private void OnDrawGizmos() {
+        Gizmos.DrawWireSphere(transform.position, _radius);
+    }
 }
 
 public enum HookState
