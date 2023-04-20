@@ -48,7 +48,8 @@ GameObject:
   - component: {fileID: 8394477574975325751}
   - component: {fileID: 8394477574975325749}
   - component: {fileID: 2712535279819069945}
-  m_Layer: 0
+  - component: {fileID: 86144345}
+  m_Layer: 9
   m_Name: Entity
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -63,7 +64,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8394477574975325747}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.5, y: 2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -252,8 +253,21 @@ MonoBehaviour:
   _hookInputReference: {fileID: -2014102432266571821, guid: 5d6ba09b9c30c4941a2a4e2f2e0cfc71, type: 3}
   _movementInputReference: {fileID: 4584381917449772627, guid: 5d6ba09b9c30c4941a2a4e2f2e0cfc71, type: 3}
   _hookObject: {fileID: 6904903756403950963}
+  _status: 0
   _peakDistance: 10
-  _grabDistance: 0.5
+  _grabDistance: 1
+--- !u!114 &86144345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8394477574975325747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32a1c85eff4480c43853bbfdd74dd006, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8394477575313579350
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,11 +312,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2386577924257428768, guid: d60e0de0cb255f44685f18fba519bc79, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 2386577924257428768, guid: d60e0de0cb255f44685f18fba519bc79, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 2386577924257428768, guid: d60e0de0cb255f44685f18fba519bc79, type: 3}
       propertyPath: m_LocalPosition.z
@@ -336,9 +350,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2621468992111750510, guid: d60e0de0cb255f44685f18fba519bc79, type: 3}
+      propertyPath: _maxSpeed
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2621468992111750510, guid: d60e0de0cb255f44685f18fba519bc79, type: 3}
+      propertyPath: _pushStrength
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 2621468992111750510, guid: d60e0de0cb255f44685f18fba519bc79, type: 3}
+      propertyPath: _returnThreshold
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2621468992111750510, guid: d60e0de0cb255f44685f18fba519bc79, type: 3}
+      propertyPath: _hookInputReference
+      value: 
+      objectReference: {fileID: -2014102432266571821, guid: 5d6ba09b9c30c4941a2a4e2f2e0cfc71, type: 3}
+    - target: {fileID: 2621468992111750510, guid: d60e0de0cb255f44685f18fba519bc79, type: 3}
+      propertyPath: _returnSpeedMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2621468992111750510, guid: d60e0de0cb255f44685f18fba519bc79, type: 3}
+      propertyPath: _accelerationMultiplier
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2621468992111750510, guid: d60e0de0cb255f44685f18fba519bc79, type: 3}
+      propertyPath: _collisionLayers.m_Bits
+      value: 832
+      objectReference: {fileID: 0}
+    - target: {fileID: 5125065166979153953, guid: d60e0de0cb255f44685f18fba519bc79, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6665156661286069429, guid: d60e0de0cb255f44685f18fba519bc79, type: 3}
       propertyPath: m_Name
       value: Hook
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665156661286069429, guid: d60e0de0cb255f44685f18fba519bc79, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d60e0de0cb255f44685f18fba519bc79, type: 3}
