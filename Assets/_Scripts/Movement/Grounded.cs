@@ -19,7 +19,7 @@ public class Grounded : State
         _acceleration = ((PlayerStateMachine)stateMachine)._acceleration;
         _deceleration = ((PlayerStateMachine)stateMachine)._deceleration;
         _rigidbody2D = ((PlayerStateMachine)stateMachine)._rigidbody2D;
-        _collisionDetector = ((PlayerStateMachine)stateMachine)._collisionDetection;
+        _collisionDetector = ((PlayerStateMachine)stateMachine)._collisionDetector;
     }
 
     public override void Enter()
@@ -67,65 +67,5 @@ public class Grounded : State
         {
             _stateMachine.ChangeState(new Airborn(_stateMachine));
         }
-    }
-}
-
-public class Airborn : State
-{
-    private Rigidbody2D _rigidbody2D;
-    private CollisionDetector _collisionDetector;
-    private bool _isTouchingWall => _collisionDetector.IsTouchingInfront();
-
-
-    public Airborn(StateMachine stateMachine)
-        : base(stateMachine)
-    {
-        _rigidbody2D = ((PlayerStateMachine)stateMachine)._rigidbody2D;
-    }
-
-    public override void Enter()
-    {
-        base.Enter();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
-    public override void LogicUpdate()
-    {
-        base.LogicUpdate();
-        ExitLogicUpdate();
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
-        MovementUpdate();
-        WallCollisionUpdate();
-    }
-
-    private void WallCollisionUpdate()
-    {
-         if (_isTouchingWall)
-        {
-            ResetVelocity();
-        }
-    }
-
-    private void ResetVelocity()
-    {
-        throw new NotImplementedException();
-    }
-
-    private void MovementUpdate()
-    {
-        // waiting for decision on how to handle airborn movement
-    }
-
-    public override void ExitLogicUpdate()
-    {
-        base.ExitLogicUpdate();
     }
 }

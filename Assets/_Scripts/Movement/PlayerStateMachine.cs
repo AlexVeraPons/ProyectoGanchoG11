@@ -17,7 +17,8 @@ public class PlayerStateMachine : StateMachine
 
     public Rigidbody2D _rigidbody2D { get; private set; }
 
-    public CollisionDetector _collisionDetection { get; private set; }
+    public CollisionDetector _collisionDetector { get; private set; }
+
 
     private void Start()
     {
