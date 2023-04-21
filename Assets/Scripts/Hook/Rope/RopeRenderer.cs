@@ -4,21 +4,49 @@ using UnityEngine;
 
 public class RopeRenderer : MonoBehaviour
 {
+    Hook _hook;
+
     private LineRenderer _lineRenderer;
     [SerializeField]
     private Transform _playerPosition;
     [SerializeField]
     private Transform _hookPosition;
     // Start is called before the first frame update
-    void Start()
+
+    void Awake()
     {
-       _lineRenderer = GetComponent<LineRenderer>(); 
+        _lineRenderer = GetComponent<LineRenderer>();
+        _hook = GetComponentInParent<Hook>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        _lineRenderer.SetPosition(0, _playerPosition.position);
-        _lineRenderer.SetPosition(1, _hookPosition.position);
+        _hook.OnFinish += HideRenderer;
+        _hook.OnLaunch += ShowRenderer;
+    }
+
+    private void OnDisable()
+    {
+        _hook.OnFinish -= HideRenderer;
+        _hook.OnLaunch -= ShowRenderer;
+    }
+
+    private void LateUpdate()
+    {
+        if (_hook.State != HookState.Waiting)
+        {
+            _lineRenderer.SetPosition(0, _playerPosition.position);
+            _lineRenderer.SetPosition(1, _hookPosition.position);
+        }
+    }
+
+    void HideRenderer()
+    {
+        _lineRenderer.enabled = false;
+    }
+
+    void ShowRenderer()
+    {
+        _lineRenderer.enabled = true;
     }
 }
