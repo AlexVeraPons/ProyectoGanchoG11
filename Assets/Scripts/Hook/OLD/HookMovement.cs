@@ -84,7 +84,7 @@ public class HookMovement : MonoBehaviour
             _movingForward = false;
         }
 
-        if (!_collisionDetector.IsTouchingWall() && !_collisionDetector.IsGrounded() && _collisionDetector.IsTouchingMovableObject() && !_movingForward)
+        // if (!_collisionDetector.IsTouchingWall() && !_collisionDetector.IsGrounded() && _collisionDetector.IsTouchingMovableObject() && !_movingForward)
         {
             _thowHook.DisableHook();
             OnHookReleased?.Invoke();
@@ -112,7 +112,7 @@ public class HookMovement : MonoBehaviour
 
         }
 
-        if (_collisionDetector.IsTouchingMovableObject())
+        // if (_collisionDetector.IsTouchingMovableObject())
         {
             if (!_movingForward && IsSelfShooter(hitInfo))
             {
