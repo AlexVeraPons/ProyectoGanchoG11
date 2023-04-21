@@ -429,7 +429,7 @@ MonoBehaviour:
   _hookObject: {fileID: 6904903756403950963}
   _status: 0
   _peakDistance: 15
-  _grabDistance: 1
+  _grabDistance: 0.7
 --- !u!114 &86144353
 MonoBehaviour:
   m_ObjectHideFlags: 0
