@@ -19,11 +19,16 @@ public abstract class StateMachine : MonoBehaviour
 
     public virtual  void FixedUpdate()
     {
-        CurrentState.PhysicsUpdate();
+        CurrentState.FixedUpdate();
     }
     public virtual void Update()
     {
-        CurrentState.LogicUpdate();
+        CurrentState.Update();
+    }
+
+    public virtual void LateUpdate()
+    {
+        CurrentState.LateUpdate();
     }
 
 }

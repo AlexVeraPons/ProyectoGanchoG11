@@ -28,9 +28,9 @@ public class Hooked : State
         _rigidbody2D.gravityScale = _originalGravityScale;
     }
 
-    public override void LogicUpdate()
+    public override void Update()
     {
-        base.LogicUpdate();
+        base.Update();
         if(_isHooked == false)
         {
             ExitLogicUpdate();

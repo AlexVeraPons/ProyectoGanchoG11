@@ -11,9 +11,10 @@ public abstract class State
 
     public virtual void Exit() { }
 
-    public virtual void LogicUpdate() { }
+    public virtual void Update() { }
 
-    public virtual void PhysicsUpdate() { }
+    public virtual void FixedUpdate() { }
+    public virtual void LateUpdate() { }
 
     public virtual void ExitLogicUpdate() { }
 }
