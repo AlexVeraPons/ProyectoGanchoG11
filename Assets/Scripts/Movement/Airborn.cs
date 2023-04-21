@@ -25,22 +25,22 @@ public class Airborn : State
         base.Exit();
     }
 
-    public override void LogicUpdate()
+    public override void Update()
     {
-        base.LogicUpdate();
+        base.Update();
         ExitLogicUpdate();
     }
 
-    public override void PhysicsUpdate()
+    public override void FixedUpdate()
     {
-        base.PhysicsUpdate();
+        base.FixedUpdate();
         MovementUpdate();
         WallCollisionUpdate();
     }
 
     private void WallCollisionUpdate()
     {
-         if (_isTouchingWall)
+        if (_isTouchingWall)
         {
             ResetVelocity();
         }
@@ -63,6 +63,6 @@ public class Airborn : State
         {
             _stateMachine.ChangeState(new Grounded(_stateMachine));
         }
-        
+
     }
 }
