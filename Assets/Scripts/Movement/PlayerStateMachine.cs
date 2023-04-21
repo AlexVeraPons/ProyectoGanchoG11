@@ -69,7 +69,7 @@ public class PlayerStateMachine : StateMachine
         transform.localScale = theScale;
     }
 
-        public void DirectionalInput(InputAction.CallbackContext context)
+    public void DirectionalInput(InputAction.CallbackContext context)
     {
         _directionalInput = context.ReadValue<Vector2>().x;
     }

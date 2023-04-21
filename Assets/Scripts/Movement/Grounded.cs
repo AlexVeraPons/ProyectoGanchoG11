@@ -32,9 +32,9 @@ public class Grounded : State
         base.Exit();
     }
 
-    public override void PhysicsUpdate()
+    public override void FixedUpdate()
     {
-        base.PhysicsUpdate();
+        base.FixedUpdate();
         GroundMovementUpate();
     }
 
@@ -54,9 +54,9 @@ public class Grounded : State
         _rigidbody2D.velocity = new Vector2(_currentVelocity, _rigidbody2D.velocity.y);
     }
 
-    public override void LogicUpdate()
+    public override void Update()
     {
-        base.LogicUpdate();
+        base.Update();
         ExitLogicUpdate();
     }
 
