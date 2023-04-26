@@ -5,14 +5,19 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
-    //options pa deshardcodear, crear un string y anar al string
+    private ScenePicker _scenePicker;
+    private string _gameScene;
 
+    private void Start()
+    {
+        _scenePicker = GetComponent<ScenePicker>();
+        _gameScene = _scenePicker.scenePath.ToString();
+    }
 
-    [SerializeField] private string GameScene;
     public void LoadGame() //deshardcodear a quin lvl van
     {
         Debug.Log("Loading Game...");
-        SceneManager.LoadScene(GameScene); 
+        SceneManager.LoadScene(_gameScene);
     }
 
     public void QuitGame()
@@ -23,6 +28,6 @@ public class MainMenu : MonoBehaviour
     public void LoadOptions()
     {
         Debug.Log("Loading Options Menu...");
-        SceneManager.LoadScene("Options"); 
+        SceneManager.LoadScene("Options");
     }
 }
