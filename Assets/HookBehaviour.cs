@@ -30,6 +30,10 @@ public class HookBehaviour : MonoBehaviour
     {
         switch(_state)
         {
+            case HookState.NotActive:
+
+            break;
+
             case HookState.Going:
                 MoveSelf();
             break;
@@ -39,6 +43,14 @@ public class HookBehaviour : MonoBehaviour
                 targetRigidbody2D: this._rigidbody2D,
                 from: this.transform.position,
                 to: _playerTransform.position
+                );
+            break;
+
+            case HookState.Stuck:
+                Move(
+                    targetRigidbody2D: _grapplingGunRigidbody2D,
+                    from: _playerTransform.position,
+                    to: _impactPosition
                 );
             break;
         }
@@ -57,6 +69,13 @@ public class HookBehaviour : MonoBehaviour
                     }
                 }
                 else
+                {
+                    SwitchState(HookState.Returning);
+                }
+            break;
+
+            case HookState.Stuck:
+                if(_grapplingGun.HookHeld == false)
                 {
                     SwitchState(HookState.Returning);
                 }
@@ -104,12 +123,33 @@ public class HookBehaviour : MonoBehaviour
     bool ReachedEnd()
     {
         float distanceBetweenPoints = Vector2.Distance(_launchPosition, _impactPosition);
-        float distanceFromLaunch = Vector2.Distance(_launchPosition, this.transform.position);
-        float distanceFromEnd = Vector2.Distance(_impactPosition, this.transform.position);
 
-        
-        return distanceFromLaunch > distanceBetweenPoints
-            || distanceFromEnd > distanceBetweenPoints - 0.1f;
+        switch(_state)
+        {
+            case HookState.Going:
+                float distanceFromLaunch = Vector2.Distance(_launchPosition, this.transform.position);
+                return distanceFromLaunch > distanceBetweenPoints;
+
+            case HookState.Returning:
+                var results = Physics2D.OverlapCircleAll(_playerTransform.position, 0.3f);
+                if(results.Length > 0)
+                {
+                    foreach(var resultObject in results)
+                    {
+                        //Esto hay que cambiarlo por el layer
+                        if(resultObject.gameObject.name == "Hook")
+                        {
+                            return true;
+                        }
+                    }
+                }
+
+                return false;
+
+            default: 
+                print("Error"); 
+                return false;
+        }
     }
 
     void Move(Rigidbody2D targetRigidbody2D, Vector2 from, Vector2 to)

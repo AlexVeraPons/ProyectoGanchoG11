@@ -100,12 +100,16 @@ public class GrapplingGun : MonoBehaviour
     {
         _hook.gameObject.SetActive(true);
         _state = GrapplingGunState.InProgress;
-        _hook.Launch(newDirection: _lastInput);
+
+        Vector2 vec = (Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - (Vector2)this.transform.position;
+        vec = vec.normalized;
+        print(vec);
+
+        _hook.Launch(newDirection: vec);
     }
     public void ResetSelf()
     {
-        _state = GrapplingGunState.Waiting
-;
+        _state = GrapplingGunState.Waiting;
     }
 
     //In here there's all the assignment logic, only called once ever

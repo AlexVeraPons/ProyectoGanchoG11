@@ -1327,7 +1327,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 448
   _state: 0
-  _speed: 900
+  _speed: 1100
 --- !u!1 &1188869641
 GameObject:
   m_ObjectHideFlags: 0

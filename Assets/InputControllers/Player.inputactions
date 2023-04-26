@@ -16,7 +16,7 @@
                 },
                 {
                     "name": "ShootHook",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "6d418d6d-fac2-4737-a465-daccd5d5cfce",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -82,7 +82,7 @@
                 },
                 {
                     "name": "",
-                    "id": "3d064bb8-a09f-4983-968b-91a776318aba",
+                    "id": "97304f79-8870-4a7f-80b2-17415460cd1a",
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
