@@ -13,34 +13,72 @@ public class Chainsaw : Hazard
     [SerializeField]
     private float _distanceThreshold;
 
+    [SerializeField]
+    private Transform _nodesParent;
     private Rigidbody2D _rigidbody2D;
-    private GameObject[] _nodes;
+    private Vector2[] _nodes;
     private int _currentNodeIndex;
-    private GameObject _currentNode => _nodes[_currentNodeIndex];
+    private Vector2 _currentNode => _nodes[_currentNodeIndex];
 
     private void Awake()
     {
-        _rigidbody2D = GetComponent<Rigidbody2D>();
-        _nodes = new GameObject[transform.childCount];
+        _nodes = new Vector2[_nodesParent.childCount + 1];
+        _rigidbody2D = this.GetComponent<Rigidbody2D>();
     }
 
     private protected override void Appear()
     {
-        for (int i = 0; i < transform.childCount; i++)
+        _nodes[0] = this.transform.position;
+
+        for (int i = 0; i < _nodesParent.childCount; i++)
         {
-            _nodes[i] = transform.GetChild(i).gameObject;
+            _nodes[i+1] = _nodesParent.GetChild(i).gameObject.transform.position;
+        }
+
+        _currentNodeIndex = 0;
+    }
+
+    private protected override void HazardUpdate()
+    {
+        if (_distanceThreshold > DistanceToNode())
+        {
+            UpdateCurrentNodeIndex();
+        }
+
+        GoToNode();
+        Rotate();
+    }
+
+    private void Rotate()
+    {
+        _rigidbody2D.angularVelocity = _angularRotationalSpeed;
+    }
+
+    private void UpdateCurrentNodeIndex()
+    {
+        if (_currentNodeIndex == _nodes.Length - 1)
+        {
+            _currentNodeIndex = 0;
+        }
+        else
+        {
+            _currentNodeIndex++;
         }
     }
 
-    private protected override void HazardUpdate() 
+    private float DistanceToNode()
     {
-        GoToNode();
+        return Vector2.Distance(transform.position, _currentNode);
     }
 
     private void GoToNode()
     {
-        throw new NotImplementedException();
+        Vector2 direction = (Vector3)_currentNode - transform.position;
+        _rigidbody2D.velocity = direction.normalized * _linearSpeed;
     }
 
-    private protected override void Disappear() { }
+    private protected override void Disappear()
+    {
+        this.gameObject.SetActive(false);
+    }
 }

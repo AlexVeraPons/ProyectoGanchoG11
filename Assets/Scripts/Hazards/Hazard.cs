@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,7 @@ public abstract class Hazard : MonoBehaviour
     private void Start()
     {
         StartCoroutine(StartAfterDelay());
+        ComponentsDisabeler();
     }
 
     private IEnumerator StartAfterDelay()
@@ -37,14 +39,25 @@ public abstract class Hazard : MonoBehaviour
 
     private void StartRunning()
     {
+        ComponentEnebaler();
         Appear();
         _running = true;
     }
 
     private void StopRunning()
     {
-        Disappear();
         _running = false;
+        Disappear();
+    }
+
+    private protected void ComponentsDisabeler()
+    {
+        this.GetComponent<SpriteRenderer>().enabled = false;
+    }
+
+    private protected void ComponentEnebaler()
+    {
+        this.GetComponent<SpriteRenderer>().enabled = true;
     }
 
     private protected abstract void HazardUpdate();
