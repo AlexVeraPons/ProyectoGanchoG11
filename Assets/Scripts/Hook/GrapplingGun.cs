@@ -11,7 +11,7 @@ public class GrapplingGun : MonoBehaviour
 
     // Referenced values in inspector
     [SerializeField] GameObject _hookObject;
-    [SerializeField] GrapplingGunStatus _status = GrapplingGunStatus.unused;
+    [SerializeField] GrapplingGunState _state = GrapplingGunState.Waiting;
     [SerializeField] float _peakDistance = 10f;
     [SerializeField] float _grabDistance = 0.5f;
     
@@ -19,14 +19,17 @@ public class GrapplingGun : MonoBehaviour
     public float PeakDistance => _peakDistance;
     public float GrabDistance => _grabDistance;
     
+    public bool HookHeld => _hookActionHeld;
+
     // Private references
     private Vector2 _lastInput = Vector2.right;
-    Hook _hook;
+    private bool _hookActionHeld = false;
+    HookBehaviour _hook;
 
     // Unity functions
     private void Awake()
     {
-        _hook = _hookObject.GetComponent<Hook>();
+        _hook = _hookObject.GetComponent<HookBehaviour>();
     }
     private void Start()
     {
@@ -34,6 +37,8 @@ public class GrapplingGun : MonoBehaviour
     }
     private void Update()
     {
+        _hookActionHeld = HookActionHeld();
+
         if (MovementInputTriggered() == true)
         {
             if (MovementInput() != Vector2.zero)
@@ -42,9 +47,14 @@ public class GrapplingGun : MonoBehaviour
             }
         }
 
-        if (CanLaunchSelf() == true && HasPressedButton() == true)
+        switch(_state)
         {
-            LaunchHook();
+            case GrapplingGunState.Waiting:
+                if (CanLaunchSelf() == true && HasPressedButton() == true)
+                {
+                    LaunchHook();
+                }
+            break;
         }
     }
 
@@ -53,13 +63,24 @@ public class GrapplingGun : MonoBehaviour
     {
         return _movementInputReference.action.triggered;
     }
+
+    bool HookActionHeld()
+    {
+        return  _hookInputReference.action.ReadValue<float>() == 1;
+    }
+
     bool HasPressedButton()
     {
         return _hookInputReference.action.triggered;
     }
     bool CanLaunchSelf()
     {
-        return _status == GrapplingGunStatus.unused;
+        return _state == GrapplingGunState.Waiting
+;
+    }
+    bool IsHookTriggered()
+    {
+        return _hookInputReference.action.triggered;
     }
 
     // In here there's all the vector2 logic (Only used to read the values of the input movement)
@@ -78,23 +99,25 @@ public class GrapplingGun : MonoBehaviour
     private void LaunchHook()
     {
         _hook.gameObject.SetActive(true);
-        _status = GrapplingGunStatus.used;
-        _hook.Launch(position: this.transform.position, newDirection: _lastInput);
+        _state = GrapplingGunState.InProgress;
+        _hook.Launch(newDirection: _lastInput);
     }
     public void ResetSelf()
     {
-        _status = GrapplingGunStatus.unused;
+        _state = GrapplingGunState.Waiting
+;
     }
 
     //In here there's all the assignment logic, only called once ever
     private void SetGrapplingGunOwner()
     {
-        _hook.AssignGrapplingGun(this);
+        _hook.SetHook(this);
     }
 }
 
-public enum GrapplingGunStatus
+public enum GrapplingGunState
 {
-    unused,
-    used
+    Waiting,
+    InProgress,
+    Jammed,
 }
