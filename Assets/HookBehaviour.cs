@@ -9,7 +9,10 @@ public class HookBehaviour : MonoBehaviour
     [SerializeField] LayerMask _collidableLayers;
 
     public HookState _state;
-    public float _speed;
+
+    [SerializeField] float _travelSpeed;
+    [SerializeField] float _hookSpeed;
+
 
     GrapplingGun _grapplingGun;
     Vector2 _direction;
@@ -40,9 +43,10 @@ public class HookBehaviour : MonoBehaviour
 
             case HookState.Returning:
                 Move(
-                targetRigidbody2D: this._rigidbody2D,
-                from: this.transform.position,
-                to: _playerTransform.position
+                    targetRigidbody2D: this._rigidbody2D,
+                    from: this.transform.position,
+                    to: _playerTransform.position,
+                    with: _hookSpeed
                 );
             break;
 
@@ -50,7 +54,8 @@ public class HookBehaviour : MonoBehaviour
                 Move(
                     targetRigidbody2D: _grapplingGunRigidbody2D,
                     from: _playerTransform.position,
-                    to: _impactPosition
+                    to: _impactPosition,
+                    with: _travelSpeed
                 );
             break;
         }
@@ -152,15 +157,16 @@ public class HookBehaviour : MonoBehaviour
         }
     }
 
-    void Move(Rigidbody2D targetRigidbody2D, Vector2 from, Vector2 to)
+    void Move(Rigidbody2D targetRigidbody2D, Vector2 from, Vector2 to, float with)
     {
+        float value = with;
         Vector2 direction = (to - from).normalized;
-        targetRigidbody2D.velocity = direction * _speed * Time.deltaTime;
+        targetRigidbody2D.velocity = direction * value * Time.deltaTime;
     }
 
     void MoveSelf()
     {
-        _rigidbody2D.velocity = _direction * _speed * Time.deltaTime;
+        _rigidbody2D.velocity = _direction * _hookSpeed * Time.deltaTime;
     }
 
     void AssignNewDirection(Vector2 newDirection)
