@@ -136,7 +136,7 @@ public class HookBehaviour : MonoBehaviour
                 return distanceFromLaunch > distanceBetweenPoints;
 
             case HookState.Returning:
-                var results = Physics2D.OverlapCircleAll(_playerTransform.position, 0.3f);
+                var results = Physics2D.OverlapCircleAll(_playerTransform.position, 1f);
                 if(results.Length > 0)
                 {
                     foreach(var resultObject in results)

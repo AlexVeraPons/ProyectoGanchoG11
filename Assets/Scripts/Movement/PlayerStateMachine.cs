@@ -42,7 +42,7 @@ public class PlayerStateMachine : StateMachine
     public override void Update()
     {
         base.Update();
-        FlipLogic();
+        //FlipLogic();
     }
 
     private void FlipLogic()
