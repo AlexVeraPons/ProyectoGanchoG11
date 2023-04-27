@@ -22,20 +22,25 @@ public class Chainsaw : Hazard
 
     private void Awake()
     {
-        _nodes = new Vector2[_nodesParent.childCount + 1];
+        _nodes = new Vector2[_nodesParent.childCount];
         _rigidbody2D = this.GetComponent<Rigidbody2D>();
     }
 
     private protected override void Appear()
     {
+        // TODO: start the animation here
+        
+        
+        // populate the nodes array
+
         _nodes[0] = this.transform.position;
 
         for (int i = 0; i < _nodesParent.childCount; i++)
         {
-            _nodes[i+1] = _nodesParent.GetChild(i).gameObject.transform.position;
+            _nodes[i] = _nodesParent.GetChild(i).gameObject.transform.position;
         }
 
-        _currentNodeIndex = 0;
+        transform.position = _nodes[0];
     }
 
     private protected override void HazardUpdate()
@@ -51,7 +56,7 @@ public class Chainsaw : Hazard
 
     private void Rotate()
     {
-        _rigidbody2D.angularVelocity = _angularRotationalSpeed;
+        transform.Rotate(Vector3.forward * _angularRotationalSpeed * Time.deltaTime);
     }
 
     private void UpdateCurrentNodeIndex()
@@ -81,4 +86,16 @@ public class Chainsaw : Hazard
     {
         this.gameObject.SetActive(false);
     }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(_running == false)
+        {
+            return;
+        }
+
+        if (other.GetComponent<IKillable>() != null)
+        {
+            other.GetComponent<IKillable>().Kill();
+        }
+     }
 }

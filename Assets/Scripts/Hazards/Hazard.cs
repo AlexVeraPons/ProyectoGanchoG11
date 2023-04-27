@@ -5,13 +5,15 @@ using UnityEngine;
 
 public abstract class Hazard : MonoBehaviour
 {
+    [Header("Values")]
+
     [SerializeField]
     private protected float _startTime = 0;
 
     [SerializeField]
     private protected float _duration = 0;
 
-    private bool _running = false;
+    private protected bool _running = false;
 
     private void Start()
     {
@@ -60,9 +62,18 @@ public abstract class Hazard : MonoBehaviour
         this.GetComponent<SpriteRenderer>().enabled = true;
     }
 
+    /// <summary>
+    /// This method is called then the hazard is running.
+    /// </summary>
     private protected abstract void HazardUpdate();
 
+    /// <summary>
+    /// This method is called when the hazard starts.
+    /// </summary>
     private protected abstract void Appear();
 
+    /// <summary>
+    /// This method is called when the hazard stops.
+    /// </summary>
     private protected abstract void Disappear();
 }
