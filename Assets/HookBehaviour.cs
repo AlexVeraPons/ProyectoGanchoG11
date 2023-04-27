@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class HookBehaviour : MonoBehaviour
 {
-    const int _distance = 80;
+    [Range(10, 30)]
+    [SerializeField] int _distance;
 
-    [SerializeField] LayerMask _collidableLayers;
+    bool _hasHitObject = false;
 
-    public HookState _state;
-
+    [Range(400, 1200)]
     [SerializeField] float _travelSpeed;
+
+    [Range(800, 2000)]
     [SerializeField] float _hookSpeed;
 
-
+    [SerializeField] LayerMask _collidableLayers;
+    [SerializeField] public HookState _state;
     GrapplingGun _grapplingGun;
     Vector2 _direction;
     Rigidbody2D _rigidbody2D;
@@ -70,7 +73,14 @@ public class HookBehaviour : MonoBehaviour
                 {
                     if(ReachedEnd() == true)
                     {
-                        SwitchState(HookState.Stuck);
+                        if(_hasHitObject == true)
+                        {
+                            SwitchState(HookState.Stuck);
+                        }
+                        else
+                        {
+                            SwitchState(HookState.Returning);
+                        }
                     }
                 }
                 else
@@ -186,6 +196,12 @@ public class HookBehaviour : MonoBehaviour
         if(result.collider != null)
         {
             _impactPosition = result.point;
+            _hasHitObject = true;
+        }
+        else
+        {
+            _impactPosition = (Vector2)this.transform.position + _direction * _distance;
+            _hasHitObject = false;
         }
     }
 
