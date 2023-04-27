@@ -186,7 +186,6 @@ public class HookBehaviour : MonoBehaviour
         if(result.collider != null)
         {
             _impactPosition = result.point;
-            print(_impactPosition);
         }
     }
 

@@ -6,8 +6,10 @@ using UnityEngine.InputSystem;
 public class GrapplingGun : MonoBehaviour
 {
     // Input Action references
-    [SerializeField] InputActionReference _hookInputReference;
-    [SerializeField] InputActionReference _movementInputReference; // Pending change
+    [SerializeField] InputActionReference _hookKeyboardInputReference;
+    [SerializeField] InputActionReference _hookGamepadInputReference;
+
+    PlayerInput _input;
 
     // Referenced values in inspector
     [SerializeField] GameObject _hookObject;
@@ -30,6 +32,7 @@ public class GrapplingGun : MonoBehaviour
     private void Awake()
     {
         _hook = _hookObject.GetComponent<HookBehaviour>();
+        _input = GetComponent<PlayerInput>();
     }
     private void Start()
     {
@@ -38,14 +41,6 @@ public class GrapplingGun : MonoBehaviour
     private void Update()
     {
         _hookActionHeld = HookActionHeld();
-
-        if (MovementInputTriggered() == true)
-        {
-            if (MovementInput() != Vector2.zero)
-            {
-                AssignLastInput();
-            }
-        }
 
         switch(_state)
         {
@@ -58,20 +53,14 @@ public class GrapplingGun : MonoBehaviour
         }
     }
 
-    // In here there's all the bool logic
-    bool MovementInputTriggered()
-    {
-        return _movementInputReference.action.triggered;
-    }
-
     bool HookActionHeld()
     {
-        return  _hookInputReference.action.ReadValue<float>() == 1;
+        return  _hookKeyboardInputReference.action.ReadValue<float>() == 1;
     }
 
     bool HasPressedButton()
     {
-        return _hookInputReference.action.triggered;
+        return _hookKeyboardInputReference.action.triggered;
     }
     bool CanLaunchSelf()
     {
@@ -80,19 +69,7 @@ public class GrapplingGun : MonoBehaviour
     }
     bool IsHookTriggered()
     {
-        return _hookInputReference.action.triggered;
-    }
-
-    // In here there's all the vector2 logic (Only used to read the values of the input movement)
-    Vector2 MovementInput()
-    {
-        return _movementInputReference.action.ReadValue<Vector2>();
-    }
-
-    // In here there's functions called every frame
-    void AssignLastInput()
-    {
-        _lastInput = _movementInputReference.action.ReadValue<Vector2>();
+        return _hookKeyboardInputReference.action.triggered;
     }
 
     // In here there's functions only called once
@@ -101,11 +78,20 @@ public class GrapplingGun : MonoBehaviour
         _hook.gameObject.SetActive(true);
         _state = GrapplingGunState.InProgress;
 
-        Vector2 vec = (Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - (Vector2)this.transform.position;
-        vec = vec.normalized;
-        print(vec);
+        Vector2 direction;
 
-        _hook.Launch(newDirection: vec);
+        if(_input.currentControlScheme == "Keyboard&Mouse")
+        {
+            direction = (Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - (Vector2)this.transform.position;
+            direction = direction.normalized;
+        }
+        else
+        {
+            direction = _hookGamepadInputReference.action.ReadValue<Vector2>();
+            print(direction);
+        }
+
+        _hook.Launch(newDirection: direction);
     }
     public void ResetSelf()
     {
