@@ -17,12 +17,12 @@ public abstract class Hazard : MonoBehaviour
 
     private void OnEnable()
     {
-        // LevelManager.OnLevelStarted += LevelStarted;
+        WaveManager.OnLoadWave += LevelStarted;
     }
 
     private void OnDisable()
     {
-        // LevelManager.OnLevelStarted -= LevelStarted;
+        WaveManager.OnLoadWave -= LevelStarted;
     }
 
     private void Start()
