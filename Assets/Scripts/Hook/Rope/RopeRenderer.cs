@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RopeRenderer : MonoBehaviour
 {
-    Hook _hook;
+    HookBehaviour _hook;
 
     private LineRenderer _lineRenderer;
     [SerializeField]
@@ -16,28 +16,25 @@ public class RopeRenderer : MonoBehaviour
     void Awake()
     {
         _lineRenderer = GetComponent<LineRenderer>();
-        _hook = GetComponentInParent<Hook>();
+        _hook = GetComponentInParent<HookBehaviour>();
     }
 
     private void OnEnable()
     {
-        _hook.OnFinish += HideRenderer;
-        _hook.OnLaunch += ShowRenderer;
+        //_hook.OnFinish += HideRenderer;
+        //_hook.OnLaunch += ShowRenderer;
     }
 
     private void OnDisable()
     {
-        _hook.OnFinish -= HideRenderer;
-        _hook.OnLaunch -= ShowRenderer;
+        //_hook.OnFinish -= HideRenderer;
+        //_hook.OnLaunch -= ShowRenderer;
     }
 
     private void LateUpdate()
     {
-        if (_hook.State != HookState.Waiting)
-        {
-            _lineRenderer.SetPosition(0, _playerPosition.position);
-            _lineRenderer.SetPosition(1, _hookPosition.position);
-        }
+        _lineRenderer.SetPosition(0, _playerPosition.position);
+        _lineRenderer.SetPosition(1, _hookPosition.position);
     }
 
     void HideRenderer()
