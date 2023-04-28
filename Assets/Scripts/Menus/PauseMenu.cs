@@ -6,6 +6,7 @@ using UnityEngine;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject _pauseMenu;
+    [SerializeField] private GameObject _optionsMenu;
     private bool isPaused;
     // Start is called before the first frame update
     void Start()
@@ -52,6 +53,9 @@ public class PauseMenu : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
         Debug.Log("Loading Main Menu");
-
+    }
+    public void OptionsMenu()
+    {
+        _optionsMenu.SetActive(true);
     }
 }
