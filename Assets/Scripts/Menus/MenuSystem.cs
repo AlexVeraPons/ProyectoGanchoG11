@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class MenuSystem : MonoBehaviour
 {
-    [SerializeField] private GameObject _initialMenu;
-    [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _pauseMenu;
     [SerializeField] private GameObject _optionsMenu;
     private GameObject _currentMenu;
@@ -13,11 +11,7 @@ public class MenuSystem : MonoBehaviour
     private bool _isPaused;
     void Start()
     {
-        _initialMenu.SetActive(true);
-        _currentMenu = _initialMenu;
-        _previousMenu = _initialMenu;
         _isPaused = true;
-        _mainMenu.SetActive(false);
         _pauseMenu.SetActive(false);
         _optionsMenu.SetActive(false);
     }
@@ -48,7 +42,6 @@ public class MenuSystem : MonoBehaviour
     {
         DeActivatePreviousMenu(_currentMenu);
         _previousMenu = _currentMenu;
-        _currentMenu = _mainMenu;
         ActivateMenu(_currentMenu);
         _isPaused = true;
     }

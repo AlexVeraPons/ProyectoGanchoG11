@@ -1,33 +1,42 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject _initialMenu;
+    [SerializeField]
+    private GameObject _mainMenu;
     private ScenePicker _scenePicker;
     private string _gameScene;
+    private string _optionsScene;
 
     private void Start()
     {
         _scenePicker = GetComponent<ScenePicker>();
         _gameScene = _scenePicker.scenePath.ToString();
+        _optionsScene = _scenePicker.anotherScenePath.ToString();
+
+        _initialMenu.SetActive(true);
+        _mainMenu.SetActive(false);
     }
 
-    public void LoadGame() //deshardcodear a quin lvl van
+    public void GoToMainMenu()
     {
-        Debug.Log("Loading Game...");
+        _initialMenu.SetActive(false);
+        _mainMenu.SetActive(true);
+    }
+
+    public void LoadGame() 
+    {
         SceneManager.LoadScene(_gameScene);
-    }
-
-    public void QuitGame()
-    {
-        Debug.Log("Quitting Game");
-        Application.Quit();
     }
     public void LoadOptions()
     {
-        Debug.Log("Loading Options Menu...");
-        SceneManager.LoadScene("Options");
+        SceneManager.LoadScene(_optionsScene);
+    }
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

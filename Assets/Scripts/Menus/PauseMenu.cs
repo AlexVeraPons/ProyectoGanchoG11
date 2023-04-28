@@ -7,11 +7,17 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject _pauseMenu;
     [SerializeField] private GameObject _optionsMenu;
+    private ScenePicker _scenePicker;
+    private string _mainMenuScene;
     private bool isPaused;
     // Start is called before the first frame update
     void Start()
     {
+        _scenePicker = GetComponent<ScenePicker>();
+        _mainMenuScene = _scenePicker.scenePath.ToString();
+
         _pauseMenu.SetActive(false);
+        _optionsMenu.SetActive(false);
         Time.timeScale = 1f;
     }
 
@@ -51,8 +57,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void ReturnMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
-        Debug.Log("Loading Main Menu");
+        SceneManager.LoadScene(_mainMenuScene);
     }
     public void OptionsMenu()
     {
