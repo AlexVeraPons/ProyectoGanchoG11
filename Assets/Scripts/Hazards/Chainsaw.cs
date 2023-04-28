@@ -136,7 +136,7 @@ public class Chainsaw : Hazard
 
     private protected override void Disappear()
     {
-        this.gameObject.SetActive(false);
+        GetComponent<SpriteRenderer>().enabled = false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
