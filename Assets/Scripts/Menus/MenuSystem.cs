@@ -23,10 +23,24 @@ public class MenuSystem : MonoBehaviour
     }
     void Update()
     {
-        if(_isPaused){
-            Time.timeScale = 0f;
-        }else{
-            Time.timeScale = 1f;
+        if (_isPaused)
+            {
+                Time.timeScale = 0f;
+            }
+            else if (_isPaused == false)
+            {
+                Time.timeScale = 1f;
+            }
+        if (Input.GetKeyDown(KeyCode.Escape)) //pasar a nou input
+        {
+            if (_isPaused)
+            {
+                GoToPlayGame();
+            }
+            else if (_isPaused == false)
+            {
+                GoToPauseMenu();
+            }
         }
     }
 
@@ -36,6 +50,7 @@ public class MenuSystem : MonoBehaviour
         _previousMenu = _currentMenu;
         _currentMenu = _mainMenu;
         ActivateMenu(_currentMenu);
+        _isPaused = true;
     }
     public void GoToPauseMenu()
     {
@@ -43,6 +58,7 @@ public class MenuSystem : MonoBehaviour
         _previousMenu = _currentMenu;
         _currentMenu = _pauseMenu;
         ActivateMenu(_currentMenu);
+        _isPaused = true;
     }
     public void GoToOptionsMenu()
     {
@@ -50,6 +66,7 @@ public class MenuSystem : MonoBehaviour
         _previousMenu = _currentMenu;
         _currentMenu = _optionsMenu;
         ActivateMenu(_currentMenu);
+        _isPaused = true;
     }
     public void GoToPreviousMenu()
     {
