@@ -10,11 +10,14 @@ public class Chainsaw : Hazard
     private float _angularRotationalSpeed = 0;
 
     [SerializeField]
+    [Space(10)]
+    [Tooltip("Loop: the chainsaw will go through all the nodes and then start again from the first one.\n \nReturn: the chainsaw will go through all the nodes and then go back to the first one.")]
     private RouteType _routeType;
     private enum RouteType { Loop, Return }
+    [Space(10)]
 
     [Header("Nodes")]
-    
+
     [SerializeField]
     private Transform _nodesParent;
 
