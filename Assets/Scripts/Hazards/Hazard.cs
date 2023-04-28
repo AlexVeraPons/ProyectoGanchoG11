@@ -8,9 +8,11 @@ public abstract class Hazard : MonoBehaviour
     [Header("Values")]
 
     [SerializeField]
+    [Tooltip("The time after which the hazard will start.")]
     private protected float _startTime = 0;
 
     [SerializeField]
+    [Tooltip("The total duration of the hazard.")]
     private protected float _duration = 0;
 
     private protected bool _running = false;

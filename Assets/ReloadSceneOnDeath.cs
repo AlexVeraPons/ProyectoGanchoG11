@@ -7,7 +7,6 @@ public class ReloadSceneOnDeath : MonoBehaviour, IKillable
 {
     public void Kill()
     {
-        print("eeeeeeeeeeeeeeeeeeeeee");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

@@ -48,13 +48,11 @@ public class WaveManager : MonoBehaviour
         if(_resetWaveDebugAction.triggered)
         {
             ResetWaves();
-            print("Current Wave: " + _currentWave);
         }
 
         if(_nextWaveDebugAction.triggered)
         {
             GoToNextLevel();
-            print("Current Wave: " + _currentWave);
         }
     }
 
