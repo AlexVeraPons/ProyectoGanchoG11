@@ -24,7 +24,8 @@ public class HazardThatMoves : Hazard
     [SerializeField]
     private Transform _nodesParent;
 
-    private const float _distanceThreshold = 0.1f;
+    // the distance between the chainsaw and the node at which the chainsaw will start moving towards the next node
+    private const float _distanceThreshold = 0.15f;
     private Rigidbody2D _rigidbody2D;
     private Vector2[] _nodes;
     private int _currentNodeIndex;
@@ -62,6 +63,8 @@ public class HazardThatMoves : Hazard
         {
             UpdateCurrentNodeIndex();
         }
+
+        GoToNode();
     }
 
     private void UpdateCurrentNodeIndex()
