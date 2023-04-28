@@ -9,16 +9,21 @@ public class Chainsaw : Hazard
     [SerializeField]
     private float _angularRotationalSpeed = 0;
 
-    [Header("Hide Before Commit")]
     [SerializeField]
-    private float _distanceThreshold;
+    private RouteType _routeType;
+    private enum RouteType { Loop, Return }
 
+    [Header("Nodes")]
+    
     [SerializeField]
     private Transform _nodesParent;
+
+    private const float _distanceThreshold = 0.1f;
     private Rigidbody2D _rigidbody2D;
     private Vector2[] _nodes;
     private int _currentNodeIndex;
     private Vector2 _currentNode => _nodes[_currentNodeIndex];
+    private bool _goingBack = false;
 
     private void Awake()
     {
@@ -61,6 +66,39 @@ public class Chainsaw : Hazard
 
     private void UpdateCurrentNodeIndex()
     {
+        if (_routeType == RouteType.Return)
+        {
+            ReturnThroughNodes();
+        }
+        else
+        {
+            LoopThroughNodes();
+        }
+    }
+
+    private void ReturnThroughNodes()
+    {
+        if (_currentNodeIndex == _nodes.Length - 1)
+        {
+            _goingBack = true;
+        }
+        else if (_currentNodeIndex == 0)
+        {
+            _goingBack = false;
+        }
+
+        if (_goingBack)
+        {
+            _currentNodeIndex--;
+        }
+        else
+        {
+            _currentNodeIndex++;
+        }
+    }
+
+    private void LoopThroughNodes()
+    {
         if (_currentNodeIndex == _nodes.Length - 1)
         {
             _currentNodeIndex = 0;
@@ -74,6 +112,11 @@ public class Chainsaw : Hazard
     private float DistanceToNode()
     {
         return Vector2.Distance(transform.position, _currentNode);
+    }
+
+    private float DistanceToNode(int nodeIndex)
+    {
+        return Vector2.Distance(transform.position, _nodes[nodeIndex]);
     }
 
     private void GoToNode()
