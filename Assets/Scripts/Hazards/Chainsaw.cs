@@ -11,13 +11,19 @@ public class Chainsaw : Hazard
 
     [SerializeField]
     [Space(10)]
-    [Tooltip("Loop: the chainsaw will go through all the nodes and then start again from the first one.\n \nReturn: the chainsaw will go through all the nodes and then go back to the first one.")]
+    [Tooltip(
+        "Loop: the chainsaw will go through all the nodes and then start again from the first one.\n \nReturn: the chainsaw will go through all the nodes and then go back to the first one."
+    )]
     private RouteType _routeType;
-    private enum RouteType { Loop, Return }
+
+    public enum RouteType
+    {
+        Loop,
+        Return
+    }
+
     [Space(10)]
-
     [Header("Nodes")]
-
     [SerializeField]
     private Transform _nodesParent;
 
@@ -37,8 +43,8 @@ public class Chainsaw : Hazard
     private protected override void Appear()
     {
         // TODO: start the animation here
-        
-        
+
+
         // populate the nodes array
 
         _nodes[0] = this.transform.position;
@@ -133,8 +139,9 @@ public class Chainsaw : Hazard
         this.gameObject.SetActive(false);
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if(_running == false)
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (_running == false)
         {
             return;
         }
@@ -143,5 +150,5 @@ public class Chainsaw : Hazard
         {
             other.GetComponent<IKillable>().Kill();
         }
-     }
+    }
 }

@@ -15,10 +15,24 @@ public abstract class Hazard : MonoBehaviour
 
     private protected bool _running = false;
 
+    private void OnEnable()
+    {
+        // LevelManager.OnLevelStarted += LevelStarted;
+    }
+
+    private void OnDisable()
+    {
+        // LevelManager.OnLevelStarted -= LevelStarted;
+    }
+
     private void Start()
     {
-        StartCoroutine(StartAfterDelay());
         ComponentsDisabeler();
+    }
+
+    private void LevelStarted()
+    {
+        StartCoroutine(StartAfterDelay());
     }
 
     private IEnumerator StartAfterDelay()
@@ -77,3 +91,5 @@ public abstract class Hazard : MonoBehaviour
     /// </summary>
     private protected abstract void Disappear();
 }
+
+
