@@ -2112,6 +2112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7234722262ae5ee4ea0df03f784bdf00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _nextWaveTimeThreshold: 3
   _nextWaveDebugAction:
     m_Name: Next Wave Debug
     m_Type: 1

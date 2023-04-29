@@ -6,6 +6,9 @@ using UnityEngine.InputSystem;
 
 public class WaveManager : MonoBehaviour
 {
+    [SerializeField] float _nextWaveTimeThreshold = 3;
+    [Space(10)]
+    private float _currentTime;
     [SerializeField] InputAction _nextWaveDebugAction;
     [SerializeField] InputAction _resetWaveDebugAction;
     [SerializeField] private List<GameObject> _waves = new List<GameObject>();
@@ -45,6 +48,17 @@ public class WaveManager : MonoBehaviour
 
     void Update()
     {
+        if(_currentTime < _nextWaveTimeThreshold)
+        {
+            _currentTime += Time.deltaTime;
+        }
+        else if(CanIncreaseWave())
+        {
+            GoToNextWave();
+            _currentTime = 0;
+        }
+
+        //Debug stuff
         if(_resetWaveDebugAction.triggered)
         {
             ResetWaves();
@@ -53,7 +67,7 @@ public class WaveManager : MonoBehaviour
 
         if(_nextWaveDebugAction.triggered)
         {
-            GoToNextLevel();
+            GoToNextWave();
             print("Current Wave: " + _currentWave);
         }
     }
@@ -78,14 +92,11 @@ public class WaveManager : MonoBehaviour
         OnLoadWave?.Invoke();
     }
 
-    void GoToNextLevel()
+    void GoToNextWave()
     {
-        if(CanIncreaseWave() == true)
-           {
-            _currentWave += 1;
-            LoadCurrentWave();
-            UnloadPreviousWave();
-           }
+        _currentWave += 1;
+        LoadCurrentWave();
+        //UnloadPreviousWave(); Comentado porque son oleadas
     }
 
     void UnloadPreviousWave()
@@ -103,7 +114,7 @@ public class WaveManager : MonoBehaviour
 
     bool CanIncreaseWave()
     {
-        if(_currentWave < _waves.Count)
+        if(_currentWave < _waves.Count - 1)
         {
             return true;
         }
