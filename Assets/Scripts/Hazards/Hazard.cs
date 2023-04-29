@@ -55,14 +55,14 @@ public abstract class Hazard : MonoBehaviour
         HazardUpdate();
     }
 
-    private void StartRunning()
+    private protected void StartRunning()
     {
         ComponentEnebaler();
         Appear();
         _running = true;
     }
 
-    private void StopRunning()
+    private virtual protected void StopRunning()
     {
         _running = false;
         Disappear();
