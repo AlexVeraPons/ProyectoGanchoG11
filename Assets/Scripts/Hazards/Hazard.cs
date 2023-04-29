@@ -81,6 +81,11 @@ public abstract class Hazard : MonoBehaviour
     private protected void OnTriggerEnter2D(Collider2D collision)
     {
       if(!_running) return;
+
+        if(collision.GetComponent<IKillable>() != null)
+        {
+            collision.GetComponent<IKillable>().Kill();
+        }
     }
 
     /// <summary>
