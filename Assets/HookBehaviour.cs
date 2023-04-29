@@ -90,7 +90,7 @@ public class HookBehaviour : MonoBehaviour
             break;
 
             case HookState.Stuck:
-                if(_grapplingGun.HookHeld == false)
+                if(_grapplingGun.HookHeld == false || _grapplingGun.State == GrapplingGunState.Jammed)
                 {
                     SwitchState(HookState.Returning);
                 }
@@ -116,7 +116,10 @@ public class HookBehaviour : MonoBehaviour
         switch(newState)
         {
             case HookState.NotActive:
-            _grapplingGun.ResetSelf();
+            if(_grapplingGun.State != GrapplingGunState.Jammed)
+            {
+                _grapplingGun.ResetSelf();
+            }
             this.gameObject.SetActive(false);
             break;
 

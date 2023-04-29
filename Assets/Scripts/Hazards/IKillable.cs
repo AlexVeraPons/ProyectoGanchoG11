@@ -1,4 +1,0 @@
-interface IKillable
-{
-    void Kill();
-}

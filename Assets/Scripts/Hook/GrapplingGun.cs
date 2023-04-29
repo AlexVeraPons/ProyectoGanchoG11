@@ -14,6 +14,7 @@ public class GrapplingGun : MonoBehaviour
     // Referenced values in inspector
     [SerializeField] GameObject _hookObject;
     [SerializeField] GrapplingGunState _state = GrapplingGunState.Waiting;
+    public GrapplingGunState State => _state;
     [SerializeField] float _peakDistance = 10f;
     [SerializeField] float _grabDistance = 0.5f;
     
@@ -38,6 +39,17 @@ public class GrapplingGun : MonoBehaviour
     {
         SetGrapplingGunOwner();
     }
+
+    private void OnEnable()
+    {
+        LifeComponent.OnDeath += JamGun;
+    }
+
+    private void OnDisable()
+    {
+        LifeComponent.OnDeath -= JamGun;    
+    }
+
     private void Update()
     {
         _hookActionHeld = HookActionHeld();
@@ -102,6 +114,11 @@ public class GrapplingGun : MonoBehaviour
     private void SetGrapplingGunOwner()
     {
         _hook.SetHook(this);
+    }
+
+    void JamGun()
+    {
+        _state = GrapplingGunState.Jammed;
     }
 }
 

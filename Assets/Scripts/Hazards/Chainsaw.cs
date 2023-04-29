@@ -146,9 +146,9 @@ public class Chainsaw : Hazard
             return;
         }
 
-        if (other.GetComponent<IKillable>() != null)
+        if (other.GetComponent<IDamageable>() != null)
         {
-            other.GetComponent<IKillable>().Kill();
+            other.GetComponent<IDamageable>().TakeDamage(1);
         }
     }
 }
