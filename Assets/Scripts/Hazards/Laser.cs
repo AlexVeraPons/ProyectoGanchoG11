@@ -9,7 +9,7 @@ public class Laser : HazardWithWarning
 
     private void Awake()
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _warningZone.SetActive(false);
     }
 
     private protected override void WarningFinished()
