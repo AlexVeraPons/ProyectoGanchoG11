@@ -402,7 +402,7 @@ GameObject:
   - component: {fileID: 364081051}
   - component: {fileID: 364081054}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -423,8 +423,8 @@ MonoBehaviour:
   _startTime: 1
   _duration: 10
   _timeBeforeWarning: 1
-  _warningDuration: 4
-  _growthSpeed: 20
+  _warningDuration: 2
+  _growthSpeed: 10
   _warningZone: {fileID: 1978896844}
 --- !u!212 &364081052
 SpriteRenderer:
@@ -543,7 +543,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 379641960}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.39, y: 0.03, z: 0}
+  m_LocalPosition: {x: 6.3, y: -0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -997,7 +997,7 @@ GameObject:
   - component: {fileID: 1978896846}
   - component: {fileID: 1978896845}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Final Size
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1045,7 +1045,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 0.23529412}
+  m_Color: {r: 1, g: 0, b: 0, a: 0.19215687}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1063,8 +1063,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1978896844}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: 0}
-  m_LocalScale: {x: 3.1349645, y: 11.499529, z: 15.870138}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 6.8135314, y: 17.630314, z: 15.870138}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 379641961}

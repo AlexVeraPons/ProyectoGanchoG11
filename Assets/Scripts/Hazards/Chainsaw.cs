@@ -18,12 +18,9 @@ public class Chainsaw : HazardThatMoves
         transform.Rotate(Vector3.forward * _angularRotationalSpeed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private new void OnTriggerEnter2D(Collider2D other)
     {
-        if (_running == false)
-        {
-            return;
-        }
+        base.OnTriggerEnter2D(other);
 
         if (other.GetComponent<IKillable>() != null)
         {

@@ -78,6 +78,11 @@ public abstract class Hazard : MonoBehaviour
         this.GetComponent<SpriteRenderer>().enabled = true;
     }
 
+    private protected void OnTriggerEnter2D(Collider2D collision)
+    {
+      if(!_running) return;
+    }
+
     /// <summary>
     /// This method is called then the hazard is running.
     /// </summary>
