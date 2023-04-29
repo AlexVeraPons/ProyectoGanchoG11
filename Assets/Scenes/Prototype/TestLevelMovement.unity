@@ -2786,7 +2786,6 @@ GameObject:
   - component: {fileID: 1118691248}
   - component: {fileID: 1118691247}
   - component: {fileID: 1118691246}
-  - component: {fileID: 1118691249}
   m_Layer: 5
   m_Name: Options Panel
   m_TagString: Untagged
@@ -2858,20 +2857,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1118691249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1118691245}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb91db9d6327cb54cbd354b56f089336, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pausePanel: {fileID: 2002208466}
-  _optionsMenu: {fileID: 1118691245}
 --- !u!1 &1125656746
 GameObject:
   m_ObjectHideFlags: 0
@@ -4342,8 +4327,6 @@ GameObject:
   - component: {fileID: 2002208467}
   - component: {fileID: 2002208469}
   - component: {fileID: 2002208468}
-  - component: {fileID: 2002208471}
-  - component: {fileID: 2002208470}
   m_Layer: 5
   m_Name: Pause Panel
   m_TagString: Untagged
@@ -4413,34 +4396,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2002208466}
   m_CullTransparentMesh: 1
---- !u!114 &2002208470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2002208466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60c842acd0f32f448ae36b3c476c2b19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pauseMenu: {fileID: 2002208466}
-  _optionsMenu: {fileID: 1118691245}
---- !u!114 &2002208471
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2002208466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bef5ae97128f79045b78ba579f5752a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scenePath: Assets/Scenes/MainMenu.unity
-  anotherScenePath: Assets/Scenes/MainMenu.unity
 --- !u!1 &2021203734
 GameObject:
   m_ObjectHideFlags: 0
