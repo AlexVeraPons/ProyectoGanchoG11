@@ -26,11 +26,14 @@ public class LifeComponent : MonoBehaviour, IDamageable
 
     private void Update()
     {
+        //Debug stuff
+        /*
         if(_debugTakeDamageAction.triggered)
         {
             print("Debug Action: TakeDamage(1) executed.");
             TakeDamage(1);
-        }    
+        } 
+        */   
     }
 
     public void TakeDamage(int ammount)

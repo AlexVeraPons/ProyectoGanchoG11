@@ -559,6 +559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0979d506c07227d4d9ad620f5bf5eb3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _waveTime: 2
 --- !u!1 &366070222
 GameObject:
   m_ObjectHideFlags: 0
@@ -1476,6 +1477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0979d506c07227d4d9ad620f5bf5eb3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _waveTime: 1
 --- !u!1 &1079403992
 GameObject:
   m_ObjectHideFlags: 0
@@ -2112,7 +2114,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7234722262ae5ee4ea0df03f784bdf00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nextWaveTimeThreshold: 3
   _nextWaveDebugAction:
     m_Name: Next Wave Debug
     m_Type: 1
@@ -2120,15 +2121,7 @@ MonoBehaviour:
     m_Id: bbe9d894-b531-4b52-aa09-20fd5cde7699
     m_Processors: 
     m_Interactions: Press
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: e383dc0b-2632-4018-a0c2-967bed0e9565
-      m_Path: <Keyboard>/n
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Next Wave Debug
-      m_Flags: 0
+    m_SingletonActionBindings: []
     m_Flags: 1
   _resetWaveDebugAction:
     m_Name: Reset Wave Debug
@@ -2137,15 +2130,7 @@ MonoBehaviour:
     m_Id: 1095330c-65ba-4ede-a251-1d8fb62ad2cd
     m_Processors: 
     m_Interactions: Press
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 6bc8090e-31fe-4a1e-b128-f85f4ca4da66
-      m_Path: <Keyboard>/r
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Reset Wave Debug
-      m_Flags: 0
+    m_SingletonActionBindings: []
     m_Flags: 1
   _waves: []
 --- !u!1 &1563306014
@@ -2476,6 +2461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0979d506c07227d4d9ad620f5bf5eb3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _waveTime: 8
 --- !u!1 &2056640116
 GameObject:
   m_ObjectHideFlags: 0
@@ -2521,6 +2507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0979d506c07227d4d9ad620f5bf5eb3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _waveTime: 4
 --- !u!1 &2064460736
 GameObject:
   m_ObjectHideFlags: 0

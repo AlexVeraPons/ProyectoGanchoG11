@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Wave : MonoBehaviour, IWave
 {
+    [SerializeField] float _waveTime = 1;
+    public float WaveTime => _waveTime;
     /*
     public List<GameObject> Levels => _levels;
     [SerializeField] List<GameObject> _levels = new List<GameObject>();

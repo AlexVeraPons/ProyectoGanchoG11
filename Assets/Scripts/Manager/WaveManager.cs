@@ -6,8 +6,7 @@ using UnityEngine.InputSystem;
 
 public class WaveManager : MonoBehaviour
 {
-    [SerializeField] float _nextWaveTimeThreshold = 3;
-    [Space(10)]
+    float _nextWaveTimeThreshold = 1;
     private float _currentTime;
     [SerializeField] InputAction _nextWaveDebugAction;
     [SerializeField] InputAction _resetWaveDebugAction;
@@ -58,6 +57,7 @@ public class WaveManager : MonoBehaviour
             _currentTime = 0;
         }
 
+        /*
         //Debug stuff
         if(_resetWaveDebugAction.triggered)
         {
@@ -70,6 +70,7 @@ public class WaveManager : MonoBehaviour
             GoToNextWave();
             print("Current Wave: " + _currentWave);
         }
+        */
     }
 
     void UnloadAllWaves()
@@ -84,6 +85,7 @@ public class WaveManager : MonoBehaviour
     {
         OnWaveStart?.Invoke();
         LoadCurrentWave();
+        SetWaveTime();
     }
 
     void LoadCurrentWave()
@@ -96,7 +98,13 @@ public class WaveManager : MonoBehaviour
     {
         _currentWave += 1;
         LoadCurrentWave();
+        SetWaveTime();
         //UnloadPreviousWave(); Comentado porque son oleadas
+    }
+
+    void SetWaveTime()
+    {
+        _nextWaveTimeThreshold = _waves[_currentWave].GetComponent<Wave>().WaveTime;
     }
 
     void UnloadPreviousWave()
