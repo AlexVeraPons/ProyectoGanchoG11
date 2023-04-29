@@ -20,8 +20,9 @@ public class HazardThatMoves : Hazard
     }
 
     [Space(10)]
-    [Header("Nodes")]
+    [Header("References (DO NOT MODIFY)")]
     [SerializeField]
+    [Tooltip("The parent of the nodes that the hazard will go through.")]
     private Transform _nodesParent;
 
     // the distance between the chainsaw and the node at which the chainsaw will start moving towards the next node

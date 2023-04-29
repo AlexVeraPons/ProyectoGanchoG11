@@ -13,7 +13,7 @@ public abstract class HazardWithWarning : Hazard
     private protected float _warningDuration = 0;
 
     [Space(10)]
-    [Header("References")]
+    [Header("References (DO NOT MODIFY)")]
     [SerializeField]
     [Tooltip("The warning zone that will be displayed before the box grows.")]
     private protected GameObject _warningZone;

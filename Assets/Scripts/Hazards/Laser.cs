@@ -5,7 +5,6 @@ public class Laser : HazardWithWarning
 {
     [SerializeField]
     private float _horizontalSpeedGrowth = 0;
-    private SpriteRenderer _spriteRenderer;
 
     private void Awake()
     {
@@ -14,7 +13,6 @@ public class Laser : HazardWithWarning
 
     private protected override void WarningFinished()
     {
-        _spriteRenderer.enabled = true;
     }
 
     private protected override void AfterWarningUpdate() { 
