@@ -36,6 +36,28 @@ public class ActivablePlatform : Hazard, IInteractable
         {
             Move(direction: _direction);
         }
+        else if(_state == ActivablePlatformState.MovingBackward)
+        {
+            Move(direction: -_direction);
+        }
+    }
+
+    private protected override void HazardUpdate()
+    {
+        if(_state == ActivablePlatformState.MovingForward)
+        {
+            if(ReachedNode(_nodes[1], _direction))
+            {
+                SwitchState(ActivablePlatformState.ReachedEnd);
+            }
+        }
+        else if(_state == ActivablePlatformState.MovingBackward)
+        {
+            if(ReachedNode(_nodes[0], -_direction))
+            {
+                SwitchState(ActivablePlatformState.ReachedBegining);
+            }
+        }
     }
 
     void Move(Vector2 direction)
@@ -43,21 +65,27 @@ public class ActivablePlatform : Hazard, IInteractable
         _rigidbody2D.velocity = direction * _linearSpeed * Time.deltaTime;
     }
 
-    bool ReachedNode(Vector2 nodePosition)
+    bool ReachedNode(Vector2 nodePosition, Vector2 direction)
     {
-        Vector2 position = nodePosition + _direction * this.transform.localScale.x / 2
-            + _direction * _checkRadius;
+        float _distance = Vector2.Distance(_nodes[0], _nodes[1]);
 
-        var results = Physics2D.OverlapCircleAll(position, _checkRadius,_layerMask);
-        if(results.Length > 0)
+        switch(_state)
         {
-            foreach(var result in results)
-            {
-                if(result.gameObject == this.gameObject)
+            case ActivablePlatformState.MovingForward:
+                if(Vector2.Distance(this.transform.position, _nodes[0]) > _distance)
                 {
                     return true;
                 }
-            }
+            break;
+
+            case ActivablePlatformState.MovingBackward:
+                if(Vector2.Distance(this.transform.position, _nodes[1]) > _distance)
+                {
+                    return true;
+                }
+            break;
+
+            default: break;
         }
 
         return false;
@@ -74,7 +102,6 @@ public class ActivablePlatform : Hazard, IInteractable
             _nodes[i] = _nodesParent.GetChild(i).gameObject.transform.position;
         }
 
-        print("He hecho el appear");
         transform.position = _nodes[0];
 
         _direction = _nodes[1] - _nodes[0];
@@ -84,17 +111,6 @@ public class ActivablePlatform : Hazard, IInteractable
     private protected override void Disappear()
     {
         GetComponent<SpriteRenderer>().enabled = false;
-    }
-
-    private protected override void HazardUpdate()
-    {
-         if(_state == ActivablePlatformState.MovingForward)
-        {
-            if(ReachedNode(_nodes[1]))
-            {
-                SwitchState(ActivablePlatformState.ReachedEnd);
-            }
-        }
     }
 
     void SwitchState(ActivablePlatformState newState)
@@ -123,6 +139,12 @@ public class ActivablePlatform : Hazard, IInteractable
                 this.transform.position = _nodes[1];
             break;
 
+            case ActivablePlatformState.ReachedBegining:
+                GetComponent<SpriteRenderer>().color = Color.red;
+                _rigidbody2D.velocity = Vector2.zero;
+                this.transform.position = _nodes[0];
+            break;
+
             default: break;
         }
     }
@@ -142,11 +164,11 @@ public class ActivablePlatform : Hazard, IInteractable
         {
             if(_state == ActivablePlatformState.ReachedEnd)
             {
-                SwitchState(ActivablePlatformState.MovingForward);
+                SwitchState(ActivablePlatformState.MovingBackward);
             }
             else if(_state == ActivablePlatformState.ReachedBegining)
             {
-                SwitchState(ActivablePlatformState.MovingBackward);
+                SwitchState(ActivablePlatformState.MovingForward);
             }
         }
     }

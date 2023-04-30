@@ -8,9 +8,11 @@ public abstract class Hazard : MonoBehaviour
     [Header("Values")]
 
     [SerializeField]
+    [Tooltip("The time after which the hazard will start.")]
     private protected float _startTime = 0;
 
     [SerializeField]
+    [Tooltip("The total duration of the hazard.")]
     private protected float _duration = 0;
 
     private protected bool _running = false;
@@ -53,14 +55,14 @@ public abstract class Hazard : MonoBehaviour
         HazardUpdate();
     }
 
-    private void StartRunning()
+    private protected void StartRunning()
     {
         ComponentEnebaler();
         Appear();
         _running = true;
     }
 
-    private void StopRunning()
+    private virtual protected void StopRunning()
     {
         _running = false;
         Disappear();
@@ -74,6 +76,16 @@ public abstract class Hazard : MonoBehaviour
     private protected void ComponentEnebaler()
     {
         this.GetComponent<SpriteRenderer>().enabled = true;
+    }
+
+    private protected void OnTriggerEnter2D(Collider2D collision)
+    {
+      if(!_running) return;
+
+        if(collision.GetComponent<IDamageable>() != null)
+        {
+            collision.GetComponent<IDamageable>().TakeDamage(1);
+        }
     }
 
     /// <summary>
