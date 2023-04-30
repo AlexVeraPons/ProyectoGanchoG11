@@ -23,5 +23,6 @@ public class ShowCanvasOnDeath : MonoBehaviour
     void ShowUICanvasGroup()
     {
         _canvasGroup.alpha = 1;
+        _canvasGroup.interactable = true;
     }
 }

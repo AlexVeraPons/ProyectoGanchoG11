@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class HideCanvasOnStart : MonoBehaviour
 {
+    CanvasGroup _canvasGroup;
+
+    private void Awake()
+    {
+        _canvasGroup = GetComponent<CanvasGroup>();
+    }
+
     void Start()
     {
-        GetComponent<CanvasGroup>().alpha = 0;
+        _canvasGroup.alpha = 0;
+        _canvasGroup.interactable = false;
     }
 }
