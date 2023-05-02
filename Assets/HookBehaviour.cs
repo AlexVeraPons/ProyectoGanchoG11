@@ -11,16 +11,16 @@ public class HookBehaviour : MonoBehaviour
     [SerializeField] float _hookSpeed;
     [SerializeField] LayerMask _collidableLayers;
     [SerializeField] public HookState _state;
+    [SerializeField] Transform _playerTransform;
 
     //Private Grappling Gun related variables
     GrapplingGun _grapplingGun;
-    Transform _playerTransform;
     Rigidbody2D _grapplingGunRigidbody2D;
+    [SerializeField] Transform _impactTransform;
 
     //Private Hook related variables
     Rigidbody2D _rigidbody2D;
     Vector2 _direction;
-    Vector2 _impactPosition;
     Vector2 _launchPosition;
     IInteractable _impactInteractable;
     bool _hasHitObject = false;
@@ -52,10 +52,12 @@ public class HookBehaviour : MonoBehaviour
             break;
 
             case HookState.Stuck:
+                this.transform.position = _impactTransform.position;
+                
                 Move(
                     targetRigidbody2D: _grapplingGunRigidbody2D,
                     from: _playerTransform.position,
-                    to: _impactPosition,
+                    to: _impactTransform.position,
                     with: _travelSpeed
                 );
             break;
@@ -124,6 +126,8 @@ public class HookBehaviour : MonoBehaviour
                     SwitchState(HookState.NotActive);
                 }
             break;
+
+            default: break;
         }
     }
 
@@ -167,18 +171,13 @@ public class HookBehaviour : MonoBehaviour
             {
                 _grapplingGun.ResetSelf();
             }
+            this.transform.SetParent(_grapplingGun.transform.parent);
             this.gameObject.SetActive(false);
-            break;
-
-            case HookState.Going:
             break;
 
             case HookState.Stuck:
             _rigidbody2D.velocity = Vector2.zero; //Reset velocity to 0
             AlignPositionToImpact();
-            break;
-
-            case HookState.Returning:
             break;
 
             default: break;
@@ -191,7 +190,7 @@ public class HookBehaviour : MonoBehaviour
     /// </summary>
     bool ReachedEnd()
     {
-        float distanceBetweenPoints = Vector2.Distance(_launchPosition, _impactPosition);
+        float distanceBetweenPoints = Vector2.Distance(_launchPosition, _impactTransform.position);
 
         switch(_state)
         {
@@ -206,7 +205,7 @@ public class HookBehaviour : MonoBehaviour
                     foreach(var resultObject in results)
                     {
                         //Esto hay que cambiarlo por el layer
-                        if(resultObject.gameObject.name == "Hook")
+                        if(resultObject.gameObject == this.gameObject)
                         {
                             return true;
                         }
@@ -214,6 +213,22 @@ public class HookBehaviour : MonoBehaviour
                 }
 
                 return false;
+
+            case HookState.Stuck:
+                var otherResult = Physics2D.OverlapCircleAll(_impactTransform.position, 0.3f);
+                if(otherResult.Length > 0)
+                {
+                    foreach(var resultObject in otherResult)
+                    {
+                        //Esto hay que cambiarlo por el layer
+                        if(resultObject.gameObject == this.gameObject)
+                        {
+                            return true;
+                        }
+                    }
+                }
+
+            return false;
 
             default: 
                 print("Error"); 
@@ -269,13 +284,17 @@ public class HookBehaviour : MonoBehaviour
         if(result.collider != null)
         {
             _impactInteractable = result.collider.gameObject.GetComponent<IInteractable>();
-            _impactPosition = result.point;
+            //_impactPosition = result.point;
+            _impactTransform.position = result.point;
+            _impactTransform.SetParent(result.collider.transform);
             _hasHitObject = true;
         }
         else
         {
             _impactInteractable = null;
-            _impactPosition = (Vector2)this.transform.position + _direction * _distance;
+            //_impactPosition = (Vector2)this.transform.position + _direction * _distance;
+            _impactTransform.SetParent(null);
+            _impactTransform.position = (Vector2)this.transform.position + _direction * _distance;
             _hasHitObject = false;
         }
     }
@@ -286,7 +305,7 @@ public class HookBehaviour : MonoBehaviour
     /// </summary>
     void AlignPositionToImpact()
     {
-        this.transform.position = _impactPosition;
+        this.transform.position = _impactTransform.position;
     }
 
     /// <summary>
@@ -322,10 +341,10 @@ public class HookBehaviour : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        if(_impactPosition != null)
+        if(_impactTransform != null)
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(_impactPosition, 0.15f);
+            Gizmos.DrawWireSphere(_impactTransform.position, 0.15f);
         }
     }
 }

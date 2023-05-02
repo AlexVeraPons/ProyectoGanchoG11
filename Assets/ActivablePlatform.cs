@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActivablePlatform : Hazard, IInteractable
+public class ActivablePlatform : MonoBehaviour, IInteractable
 {
     [SerializeField]
     private LayerMask _layerMask;
@@ -28,21 +28,23 @@ public class ActivablePlatform : Hazard, IInteractable
     {
         _nodes = new Vector2[_nodesParent.childCount];
         _rigidbody2D = this.GetComponent<Rigidbody2D>();
+
+        // populate the nodes array
+
+        _nodes[0] = this.transform.position;
+
+        for (int i = 0; i < _nodesParent.childCount; i++)
+        {
+            _nodes[i] = _nodesParent.GetChild(i).gameObject.transform.position;
+        }
+
+        transform.position = _nodes[0];
+
+        _direction = _nodes[1] - _nodes[0];
+        _direction = _direction.normalized;
     }
 
-    private void FixedUpdate()
-    {
-        if(_state == ActivablePlatformState.MovingForward)
-        {
-            Move(direction: _direction);
-        }
-        else if(_state == ActivablePlatformState.MovingBackward)
-        {
-            Move(direction: -_direction);
-        }
-    }
-
-    private protected override void HazardUpdate()
+    void Update()
     {
         if(_state == ActivablePlatformState.MovingForward)
         {
@@ -57,6 +59,18 @@ public class ActivablePlatform : Hazard, IInteractable
             {
                 SwitchState(ActivablePlatformState.ReachedBegining);
             }
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if(_state == ActivablePlatformState.MovingForward)
+        {
+            Move(direction: _direction);
+        }
+        else if(_state == ActivablePlatformState.MovingBackward)
+        {
+            Move(direction: -_direction);
         }
     }
 
@@ -89,28 +103,6 @@ public class ActivablePlatform : Hazard, IInteractable
         }
 
         return false;
-    }
-
-    private protected override void Appear()
-    {
-        // populate the nodes array
-
-        _nodes[0] = this.transform.position;
-
-        for (int i = 0; i < _nodesParent.childCount; i++)
-        {
-            _nodes[i] = _nodesParent.GetChild(i).gameObject.transform.position;
-        }
-
-        transform.position = _nodes[0];
-
-        _direction = _nodes[1] - _nodes[0];
-        _direction = _direction.normalized;
-    }
-
-    private protected override void Disappear()
-    {
-        GetComponent<SpriteRenderer>().enabled = false;
     }
 
     void SwitchState(ActivablePlatformState newState)
@@ -149,9 +141,9 @@ public class ActivablePlatform : Hazard, IInteractable
         }
     }
 
-        public void DoInteraction()
+    public void DoInteraction()
     {
-        //It does nothing on interaction
+            //THIS HAS TO BE EMPTY
     }
 
     public void UndoInteraction()
@@ -171,6 +163,11 @@ public class ActivablePlatform : Hazard, IInteractable
                 SwitchState(ActivablePlatformState.MovingForward);
             }
         }
+    }
+
+    public GameObject GetGameObject()
+    {
+        return this.gameObject;
     }
 }
 

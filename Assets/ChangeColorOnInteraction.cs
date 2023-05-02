@@ -20,4 +20,9 @@ public class ChangeColorOnInteraction : MonoBehaviour, IInteractable
     {
         _spriteRenderer.color = Color.white;
     }
+
+    public GameObject GetGameObject()
+    {
+        return this.gameObject;
+    }
 }

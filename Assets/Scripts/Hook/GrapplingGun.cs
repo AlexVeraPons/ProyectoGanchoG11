@@ -100,7 +100,6 @@ public class GrapplingGun : MonoBehaviour
         else
         {
             direction = _hookGamepadInputReference.action.ReadValue<Vector2>();
-            print(direction);
         }
 
         _hook.Launch(newDirection: direction);
