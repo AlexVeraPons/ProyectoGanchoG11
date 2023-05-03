@@ -9,14 +9,11 @@ public class SpringPlatform : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        print("peop");
         if(_affectedLayer == (1 << other.gameObject.layer))
         {
-            print("pepito");
             var rigidbody = other.gameObject.GetComponent<Rigidbody2D>();
             if(rigidbody != null)
             {
-                print("do it");
                 rigidbody.AddForce(transform.right * _strength);
             }
         }
