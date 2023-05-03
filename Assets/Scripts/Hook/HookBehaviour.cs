@@ -279,7 +279,7 @@ public class HookBehaviour : MonoBehaviour
     /// </summary>
     void SetImpactPosition()
     {
-        var result = Physics2D.Raycast(this.transform.position,
+        var result = Physics2D.Raycast(_grapplingGun.transform.position,
         _direction, _distance, _collidableLayers);
         if(result.collider != null)
         {
