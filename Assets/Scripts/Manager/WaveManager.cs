@@ -84,7 +84,8 @@ public class WaveManager : MonoBehaviour
     void Begin()
     {
         OnWaveStart?.Invoke();
-        LoadCurrentWave();
+        LoadCurrentWave(); //In here the current wave value gets updated
+        UnloadPreviousWave();
         SetWaveTime();
     }
 
@@ -98,8 +99,8 @@ public class WaveManager : MonoBehaviour
     {
         _currentWave += 1;
         LoadCurrentWave();
+        UnloadPreviousWave();
         SetWaveTime();
-        //UnloadPreviousWave(); Comentado porque son oleadas
     }
 
     void SetWaveTime()
