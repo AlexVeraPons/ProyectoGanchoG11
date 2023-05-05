@@ -113,16 +113,6 @@ public class HookBehaviour : MonoBehaviour
             case HookState.Returning:
                 if(ReachedEnd() == true)
                 {
-                    if(HitObjectIsInteractable() == true
-                    && _impactInteractable != null)
-                    {
-                        ExecuteUndoInteraction();
-                        _impactInteractable = null;
-                        //We have to make sure _impactInteractable
-                        //is after everything or it will call a function
-                        //that doesn't exist
-                    }
-
                     SwitchState(HookState.NotActive);
                 }
             break;

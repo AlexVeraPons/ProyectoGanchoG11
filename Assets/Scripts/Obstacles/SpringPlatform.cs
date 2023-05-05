@@ -14,6 +14,7 @@ public class SpringPlatform : MonoBehaviour
             var rigidbody = other.gameObject.GetComponent<Rigidbody2D>();
             if(rigidbody != null)
             {
+                rigidbody.velocity = Vector2.zero;
                 rigidbody.AddForce(transform.right * _strength);
             }
         }
