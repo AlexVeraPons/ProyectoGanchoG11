@@ -14,6 +14,6 @@ public class Chainsaw : HazardThatMoves
 
     private void Rotate()
     {
-        transform.Rotate(Vector3.forward * _angularRotationalSpeed * Time.deltaTime);
+        this.transform.Rotate(Vector3.forward * _angularRotationalSpeed * Time.deltaTime);
     }
 }
