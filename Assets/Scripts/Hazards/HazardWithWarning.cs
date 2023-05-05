@@ -27,6 +27,8 @@ public abstract class HazardWithWarning : Hazard
 
     private protected override void Appear()
     {
+        base.Appear();
+        
         _warningZone.SetActive(false);
         StartCoroutine(Warning());
     }

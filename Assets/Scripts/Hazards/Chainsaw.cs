@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Chainsaw : HazardThatMoves
+public class Chainsaw : HazardWithPath
 {
     [Space(10)]
     [Header("Chainsaw Settings")]
