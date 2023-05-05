@@ -22,6 +22,8 @@ public class Missile : Hazard
     private void Awake()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
+
+        _target = GameObject.FindObjectOfType<PlayerEntity>().gameObject;
     }
 
     private protected override void Appear()
