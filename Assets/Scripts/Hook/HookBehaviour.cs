@@ -1,31 +1,29 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class HookBehaviour : MonoBehaviour
 {
-    [Range(10, 30)]
+    //Serialized variables for the inspector
     [SerializeField] int _distance;
-
-    bool _hasHitObject = false;
-
-    [Range(400, 1200)]
     [SerializeField] float _travelSpeed;
-
-    [Range(800, 2000)]
     [SerializeField] float _hookSpeed;
-
     [SerializeField] LayerMask _collidableLayers;
     [SerializeField] public HookState _state;
+    [SerializeField] Transform _playerTransform;
+
+    //Private Grappling Gun related variables
     GrapplingGun _grapplingGun;
-    Vector2 _direction;
-    Rigidbody2D _rigidbody2D;
     Rigidbody2D _grapplingGunRigidbody2D;
+    [SerializeField] Transform _impactTransform;
 
-    Transform _playerTransform;
-
-    Vector2 _impactPosition;
+    //Private Hook related variables
+    Rigidbody2D _rigidbody2D;
+    Vector2 _direction;
     Vector2 _launchPosition;
+    IInteractable _impactInteractable;
+    bool _hasHitObject = false;
 
     void Awake()
     {
@@ -54,10 +52,12 @@ public class HookBehaviour : MonoBehaviour
             break;
 
             case HookState.Stuck:
+                this.transform.position = _impactTransform.position;
+                
                 Move(
                     targetRigidbody2D: _grapplingGunRigidbody2D,
                     from: _playerTransform.position,
-                    to: _impactPosition,
+                    to: _impactTransform.position,
                     with: _travelSpeed
                 );
             break;
@@ -75,6 +75,12 @@ public class HookBehaviour : MonoBehaviour
                     {
                         if(_hasHitObject == true)
                         {
+                            if(HitObjectIsInteractable() == true
+                            && _impactInteractable != null)
+                            {
+                                ExecuteDoInteraction();
+                            }
+
                             SwitchState(HookState.Stuck);
                         }
                         else
@@ -90,8 +96,16 @@ public class HookBehaviour : MonoBehaviour
             break;
 
             case HookState.Stuck:
-                if(_grapplingGun.HookHeld == false)
+                if(_grapplingGun.HookHeld == false
+                || _grapplingGun.State == GrapplingGunState.Jammed)
                 {
+                    if(HitObjectIsInteractable() == true
+                    && _impactInteractable != null)
+                    {
+                        ExecuteUndoInteraction();
+                        _impactInteractable = null;
+                    }
+
                     SwitchState(HookState.Returning);
                 }
             break;
@@ -102,8 +116,35 @@ public class HookBehaviour : MonoBehaviour
                     SwitchState(HookState.NotActive);
                 }
             break;
+
+            default: break;
         }
     }
+
+    /// <summary>
+    /// Executes the "ExecuteUndoInteraction" function of the _impactInteractable reference
+    /// </summary>
+    private void ExecuteUndoInteraction()
+    {
+        _impactInteractable.UndoInteraction();
+    }
+
+    /// <summary>
+    /// Executes the "ExecuteDoInteraction" function of the _impactInteractable reference
+    /// </summary>
+    private void ExecuteDoInteraction()
+    {
+        _impactInteractable.DoInteraction();
+    }
+
+    /// <summary>
+    ///Checks if the object that the reference stored when the raycast
+    ///hit the object is actually there or not
+    /// </summary>
+    private bool HitObjectIsInteractable()
+    {
+        return _impactInteractable != null;
+    }  
 
     public void SwitchState(HookState newState)
     {
@@ -116,11 +157,12 @@ public class HookBehaviour : MonoBehaviour
         switch(newState)
         {
             case HookState.NotActive:
-            _grapplingGun.ResetSelf();
+            if(_grapplingGun.State != GrapplingGunState.Jammed)
+            {
+                _grapplingGun.ResetSelf();
+            }
+            this.transform.SetParent(_grapplingGun.transform.parent);
             this.gameObject.SetActive(false);
-            break;
-
-            case HookState.Going:
             break;
 
             case HookState.Stuck:
@@ -128,16 +170,17 @@ public class HookBehaviour : MonoBehaviour
             AlignPositionToImpact();
             break;
 
-            case HookState.Returning:
-            break;
-
             default: break;
         }
     }
 
+    /// <summary>
+    ///Checks if the hook has reached the end of it's trajectory
+    ///by creating an OverlapCircle from the _impactPosition value
+    /// </summary>
     bool ReachedEnd()
     {
-        float distanceBetweenPoints = Vector2.Distance(_launchPosition, _impactPosition);
+        float distanceBetweenPoints = Vector2.Distance(_launchPosition, _impactTransform.position);
 
         switch(_state)
         {
@@ -152,7 +195,7 @@ public class HookBehaviour : MonoBehaviour
                     foreach(var resultObject in results)
                     {
                         //Esto hay que cambiarlo por el layer
-                        if(resultObject.gameObject.name == "Hook")
+                        if(resultObject.gameObject == this.gameObject)
                         {
                             return true;
                         }
@@ -161,12 +204,32 @@ public class HookBehaviour : MonoBehaviour
 
                 return false;
 
+            case HookState.Stuck:
+                var otherResult = Physics2D.OverlapCircleAll(_impactTransform.position, 0.3f);
+                if(otherResult.Length > 0)
+                {
+                    foreach(var resultObject in otherResult)
+                    {
+                        //Esto hay que cambiarlo por el layer
+                        if(resultObject.gameObject == this.gameObject)
+                        {
+                            return true;
+                        }
+                    }
+                }
+
+            return false;
+
             default: 
                 print("Error"); 
                 return false;
         }
     }
 
+    /// <summary>
+    ///Function that moves a target rigidbody from a position to
+    ///a position and the reference value of speed
+    /// </summary>
     void Move(Rigidbody2D targetRigidbody2D, Vector2 from, Vector2 to, float with)
     {
         float value = with;
@@ -174,47 +237,78 @@ public class HookBehaviour : MonoBehaviour
         targetRigidbody2D.velocity = direction * value * Time.deltaTime;
     }
 
+    /// <summary>
+    ///Function that only moves the hook itself
+    /// </summary>
     void MoveSelf()
     {
         _rigidbody2D.velocity = _direction * _hookSpeed * Time.deltaTime;
     }
 
+    /// <summary>
+    ///Assigns a new direction that the hook will take on launch
+    /// </summary>
     void AssignNewDirection(Vector2 newDirection)
     {
         _direction = newDirection;
     }
 
+    /// <summary>
+    ///Assigns the position the owner of the grappling gun is in
+    ///when the hook is launched
+    /// </summary>
     void AssignNewPosition()
     {
         this.transform.position = _playerTransform.position;
     }
 
+    /// <summary>
+    ///Assigns the _impactPosition value by creating a raycast.
+    ///Depending if it hit something compatible or not
+    ///the _impactInteractable reference will be asigned
+    /// </summary>
     void SetImpactPosition()
     {
-        var result = Physics2D.Raycast(this.transform.position,
+        var result = Physics2D.Raycast(_grapplingGun.transform.position,
         _direction, _distance, _collidableLayers);
         if(result.collider != null)
         {
-            _impactPosition = result.point;
+            _impactInteractable = result.collider.gameObject.GetComponent<IInteractable>();
+            //_impactPosition = result.point;
+            _impactTransform.position = result.point;
+            _impactTransform.SetParent(result.collider.transform);
             _hasHitObject = true;
         }
         else
         {
-            _impactPosition = (Vector2)this.transform.position + _direction * _distance;
+            _impactInteractable = null;
+            //_impactPosition = (Vector2)this.transform.position + _direction * _distance;
+            _impactTransform.SetParent(null);
+            _impactTransform.position = (Vector2)this.transform.position + _direction * _distance;
             _hasHitObject = false;
         }
     }
 
+    /// <summary>
+    ///Aligns the position of the hook to it's _impactPostion when
+    ///the end is reached
+    /// </summary>
     void AlignPositionToImpact()
     {
-        this.transform.position = _impactPosition;
+        this.transform.position = _impactTransform.position;
     }
 
+    /// <summary>
+    ///Stores the _launchPosition of the hook for reference
+    /// </summary>
     void SetLaunchPosition()
     {
         _launchPosition = this.transform.position;
     }
 
+    /// <summary>
+    ///Assigns the Grappling Gun that will throw this hook
+    /// </summary>
     public void SetHook(GrapplingGun gun)
     {
         _grapplingGun = gun;
@@ -223,6 +317,9 @@ public class HookBehaviour : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
+    /// <summary>
+    ///Launches the hook in the desired direction
+    /// </summary>
     public void Launch(Vector2 newDirection)
     {
         AssignNewPosition();
@@ -234,10 +331,10 @@ public class HookBehaviour : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        if(_impactPosition != null)
+        if(_impactTransform != null)
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(_impactPosition, 0.15f);
+            Gizmos.DrawWireSphere(_impactTransform.position, 0.15f);
         }
     }
 }

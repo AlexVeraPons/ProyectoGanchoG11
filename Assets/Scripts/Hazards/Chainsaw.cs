@@ -1,10 +1,8 @@
 using System;
 using UnityEngine;
 
-public class Chainsaw : HazardWithPath
+public class Chainsaw : HazardThatMoves
 {
-    [Space(10)]
-    [Header("Chainsaw Settings")]
     [SerializeField]
     private float _angularRotationalSpeed = 0;
 

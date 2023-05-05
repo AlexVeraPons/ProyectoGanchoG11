@@ -27,8 +27,6 @@ public abstract class HazardWithWarning : Hazard
 
     private protected override void Appear()
     {
-        base.Appear();
-        
         _warningZone.SetActive(false);
         StartCoroutine(Warning());
     }
@@ -80,9 +78,9 @@ public abstract class HazardWithWarning : Hazard
         if (!_running || !_warningFinished)
             return;
 
-        if (collision.GetComponent<IKillable>() != null)
+        if (collision.GetComponent<IDamageable>() != null)
         {
-            collision.GetComponent<IKillable>().Kill();
+            collision.GetComponent<IDamageable>().TakeDamage(1);
         }
     }
 }
