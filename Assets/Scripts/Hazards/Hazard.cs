@@ -96,7 +96,9 @@ public abstract class Hazard : MonoBehaviour
     /// <summary>
     /// This method is called when the hazard starts.
     /// </summary>
-    private protected abstract void Appear();
+    private protected virtual void Appear(){
+        this.gameObject.SetActive(true);
+    }
 
     /// <summary>
     /// This method is called when the hazard stops.
