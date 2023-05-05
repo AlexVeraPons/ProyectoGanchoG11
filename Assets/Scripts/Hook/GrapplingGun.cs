@@ -6,12 +6,15 @@ using UnityEngine.InputSystem;
 public class GrapplingGun : MonoBehaviour
 {
     // Input Action references
-    [SerializeField] InputActionReference _hookInputReference;
-    [SerializeField] InputActionReference _movementInputReference; // Pending change
+    [SerializeField] InputActionReference _hookKeyboardInputReference;
+    [SerializeField] InputActionReference _hookGamepadInputReference;
+
+    PlayerInput _input;
 
     // Referenced values in inspector
     [SerializeField] GameObject _hookObject;
-    [SerializeField] GrapplingGunStatus _status = GrapplingGunStatus.unused;
+    [SerializeField] GrapplingGunState _state = GrapplingGunState.Waiting;
+    public GrapplingGunState State => _state;
     [SerializeField] float _peakDistance = 10f;
     [SerializeField] float _grabDistance = 0.5f;
     
@@ -19,82 +22,108 @@ public class GrapplingGun : MonoBehaviour
     public float PeakDistance => _peakDistance;
     public float GrabDistance => _grabDistance;
     
+    public bool HookHeld => _hookActionHeld;
+
     // Private references
     private Vector2 _lastInput = Vector2.right;
-    Hook _hook;
+    private bool _hookActionHeld = false;
+    HookBehaviour _hook;
 
     // Unity functions
     private void Awake()
     {
-        _hook = _hookObject.GetComponent<Hook>();
+        _hook = _hookObject.GetComponent<HookBehaviour>();
+        _input = GetComponent<PlayerInput>();
     }
     private void Start()
     {
         SetGrapplingGunOwner();
     }
+
+    private void OnEnable()
+    {
+        LifeComponent.OnDeath += JamGun;
+    }
+
+    private void OnDisable()
+    {
+        LifeComponent.OnDeath -= JamGun;    
+    }
+
     private void Update()
     {
-        if (MovementInputTriggered() == true)
-        {
-            if (MovementInput() != Vector2.zero)
-            {
-                AssignLastInput();
-            }
-        }
+        _hookActionHeld = HookActionHeld();
 
-        if (CanLaunchSelf() == true && HasPressedButton() == true)
+        switch(_state)
         {
-            LaunchHook();
+            case GrapplingGunState.Waiting:
+                if (CanLaunchSelf() == true && HasPressedButton() == true)
+                {
+                    LaunchHook();
+                }
+            break;
         }
     }
 
-    // In here there's all the bool logic
-    bool MovementInputTriggered()
+    bool HookActionHeld()
     {
-        return _movementInputReference.action.triggered;
+        return  _hookKeyboardInputReference.action.ReadValue<float>() == 1;
     }
+
     bool HasPressedButton()
     {
-        return _hookInputReference.action.triggered;
+        return _hookKeyboardInputReference.action.triggered;
     }
     bool CanLaunchSelf()
     {
-        return _status == GrapplingGunStatus.unused;
+        return _state == GrapplingGunState.Waiting
+;
     }
-
-    // In here there's all the vector2 logic (Only used to read the values of the input movement)
-    Vector2 MovementInput()
+    bool IsHookTriggered()
     {
-        return _movementInputReference.action.ReadValue<Vector2>();
-    }
-
-    // In here there's functions called every frame
-    void AssignLastInput()
-    {
-        _lastInput = _movementInputReference.action.ReadValue<Vector2>();
+        return _hookKeyboardInputReference.action.triggered;
     }
 
     // In here there's functions only called once
     private void LaunchHook()
     {
         _hook.gameObject.SetActive(true);
-        _status = GrapplingGunStatus.used;
-        _hook.Launch(position: this.transform.position, newDirection: _lastInput);
+        _state = GrapplingGunState.InProgress;
+
+        Vector2 direction;
+
+        if(_input.currentControlScheme == "Keyboard&Mouse")
+        {
+            direction = (Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - (Vector2)this.transform.position;
+            direction = direction.normalized;
+        }
+        else
+        {
+            direction = _hookGamepadInputReference.action.ReadValue<Vector2>();
+        }
+
+        _hook.Launch(newDirection: direction);
     }
     public void ResetSelf()
     {
-        _status = GrapplingGunStatus.unused;
+        _state = GrapplingGunState.Waiting;
     }
 
     //In here there's all the assignment logic, only called once ever
     private void SetGrapplingGunOwner()
     {
-        _hook.AssignGrapplingGun(this);
+        _hook.SetHook(this);
+    }
+
+    void JamGun()
+    {
+        _state = GrapplingGunState.Jammed;
     }
 }
 
-public enum GrapplingGunStatus
+public enum GrapplingGunState
 {
-    unused,
-    used
+    Waiting,
+    InProgress,
+    Jammed,
 }

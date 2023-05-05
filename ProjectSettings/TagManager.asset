@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Object
   - Platform
+  - Hook
   layers:
   - Default
   - TransparentFX
@@ -18,8 +19,8 @@ TagManager:
   - Roof
   - Player
   - Hook
-  - 
-  - 
+  - LevelBound
+  - Interactable
   - 
   - 
   - 
@@ -42,4 +43,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2455140813
     locked: 0

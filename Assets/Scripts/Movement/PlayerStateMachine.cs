@@ -8,6 +8,11 @@ public class PlayerStateMachine : StateMachine
     private bool _facingRight = true;
 
     [SerializeField]
+    private LifeComponent _lifeComponent;
+
+    public LifeComponent LifeComponent => _lifeComponent;
+
+    [SerializeField]
     private float _speed;
 
     public float Speed => _speed;
@@ -36,13 +41,14 @@ public class PlayerStateMachine : StateMachine
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _collisionDetector = GetComponent<CollisionDetector>();
+        _lifeComponent = GetComponent<LifeComponent>();
         Initialize(new Grounded(this));
     }
 
     public override void Update()
     {
         base.Update();
-        FlipLogic();
+        //FlipLogic();
     }
 
     private void FlipLogic()
