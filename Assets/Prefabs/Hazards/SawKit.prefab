@@ -147,8 +147,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startTime: 1
   _duration: 20
-  _linearSpeed: 20
-  _routeType: 1
+  _linearSpeed: 15
+  _routeType: 0
   _nodesParent: {fileID: 2581941181209836025}
   _angularRotationalSpeed: 1000
 --- !u!50 &2581941181276043750
