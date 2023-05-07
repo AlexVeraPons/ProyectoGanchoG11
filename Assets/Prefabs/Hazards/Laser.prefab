@@ -131,9 +131,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startTime: 3
-  _duration: 7
+  _duration: 2
   _timeBeforeWarning: 0
-  _warningDuration: 3
+  _warningDuration: 0.8
   _warningZone: {fileID: 2210899555476336387}
   _horizontalSpeedGrowth: 20
 --- !u!212 &2210899556932731823
