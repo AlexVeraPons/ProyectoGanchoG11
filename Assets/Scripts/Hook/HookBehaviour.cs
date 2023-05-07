@@ -88,6 +88,16 @@ public class HookBehaviour : MonoBehaviour
                             SwitchState(HookState.Returning);
                         }
                     }
+                    else
+                    {
+                        if(_hasHitObject == true)
+                        {
+                            if(ParentTransformIsStillActive() == false)
+                            {
+                                SwitchState(HookState.Returning);
+                            }
+                        }
+                    }
                 }
                 else
                 {
@@ -107,6 +117,13 @@ public class HookBehaviour : MonoBehaviour
                     }
 
                     SwitchState(HookState.Returning);
+                }
+                else
+                {
+                    if(ParentTransformIsStillActive() == false)
+                    {
+                        SwitchState(HookState.Returning);
+                    }
                 }
             break;
 
@@ -156,6 +173,10 @@ public class HookBehaviour : MonoBehaviour
     {
         switch(newState)
         {
+            case HookState.Going:
+                AudioManager._instance.PlaySingleSound(SingleSound.HookLaunch);
+            break;
+        
             case HookState.NotActive:
             if(_grapplingGun.State != GrapplingGunState.Jammed)
             {
@@ -166,8 +187,13 @@ public class HookBehaviour : MonoBehaviour
             break;
 
             case HookState.Stuck:
-            _rigidbody2D.velocity = Vector2.zero; //Reset velocity to 0
-            AlignPositionToImpact();
+                AudioManager._instance.PlaySingleSound(SingleSound.HookStuck);
+                _rigidbody2D.velocity = Vector2.zero; //Reset velocity to 0
+                AlignPositionToImpact();
+            break;
+
+            case HookState.Returning:
+                //SoundManager._instance.PlaySingleSound(SingleSound.HookRetrieving);
             break;
 
             default: break;
@@ -224,6 +250,23 @@ public class HookBehaviour : MonoBehaviour
                 print("Error"); 
                 return false;
         }
+    }
+
+    bool ParentTransformIsStillActive()
+    {
+        var results = Physics2D.OverlapCircleAll(_impactTransform.position, 0.3f, _collidableLayers);
+        if(results.Length > 0)
+        {
+            foreach(var result in results)
+            {
+                if(result.transform == _impactTransform.parent)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     /// <summary>
