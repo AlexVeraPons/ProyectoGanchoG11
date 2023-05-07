@@ -61,6 +61,7 @@ public class Airborn : State
         base.ExitLogicUpdate();
         if (_isGrounded)
         {
+            AudioManager._instance.PlaySingleSound(SingleSound.PlayerGround);
             _stateMachine.ChangeState(new Grounded(_stateMachine));
         }
 
