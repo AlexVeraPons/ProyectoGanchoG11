@@ -47,7 +47,6 @@ public class LifeComponent : MonoBehaviour, IDamageable
             }
             else
             {
-                AudioManager._instance.PlaySingleSound(SingleSound.PlayerDeath);
                 OnDeath?.Invoke();
             }
         }

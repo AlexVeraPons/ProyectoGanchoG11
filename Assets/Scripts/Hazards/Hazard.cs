@@ -29,7 +29,7 @@ public abstract class Hazard : MonoBehaviour
 
     private void Start()
     {
-        ComponentDisabler();
+        ComponentsDisabeler();
     }
 
     private void LevelStarted()
@@ -55,64 +55,38 @@ public abstract class Hazard : MonoBehaviour
         HazardUpdate();
     }
 
-    private virtual protected void StartRunning()
+    private protected void StartRunning()
     {
-        PlayRunSound();
-        ComponentEnabler();
+        ComponentEnebaler();
         Appear();
         _running = true;
     }
 
     private virtual protected void StopRunning()
     {
-        StopRunSound();
         _running = false;
         Disappear();
     }
 
-    private protected void ComponentDisabler()
+    private protected void ComponentsDisabeler()
     {
         this.GetComponent<SpriteRenderer>().enabled = false;
     }
 
-    private protected void ComponentEnabler()
+    private protected void ComponentEnebaler()
     {
         this.GetComponent<SpriteRenderer>().enabled = true;
     }
 
-    private protected virtual void OnTriggerEnter2D(Collider2D collision)
+    private protected void OnTriggerEnter2D(Collider2D collision)
     {
-        if(!_running) return;
+      if(!_running) return;
 
         if(collision.GetComponent<IDamageable>() != null)
         {
-            DamageableAction(collision);
+            collision.GetComponent<IDamageable>().TakeDamage(1);
         }
     }
-
-    private protected virtual void DamageableAction(Collider2D collision)
-    {
-        collision.GetComponent<IDamageable>().TakeDamage(1);
-    }
-
-    private protected virtual void GenerateUniqueSound()
-    {
-        //This should be the only thing here
-        AudioManager._instance.PlaySingleSound(SingleSound.EnemyAppear);
-    }
-    
-    /// <summary>
-    /// This method is called to generate a sound.
-    /// </summary>
-    private protected virtual void PlayRunSound()
-    {
-        AudioManager._instance.PlaySingleSound(SingleSound.EnemyAppear);
-    }
-
-    /// <summary>
-    /// This method is called to stop a sound. Only use this if the generated sound is looped.
-    /// </summary>
-    private protected virtual void StopRunSound() {}
 
     /// <summary>
     /// This method is called then the hazard is running.
@@ -122,8 +96,7 @@ public abstract class Hazard : MonoBehaviour
     /// <summary>
     /// This method is called when the hazard starts.
     /// </summary>
-    private protected virtual void Appear()
-    {
+    private protected virtual void Appear(){
         this.gameObject.SetActive(true);
     }
 

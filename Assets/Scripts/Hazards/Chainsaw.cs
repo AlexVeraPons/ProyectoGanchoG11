@@ -16,15 +16,4 @@ public class Chainsaw : HazardThatMoves
     {
         this.transform.Rotate(Vector3.forward * _angularRotationalSpeed * Time.deltaTime);
     }
-
-    private protected override void PlayRunSound()
-    {
-        base.PlayRunSound();
-        AudioManager._instance.PlayLoopingSound(LoopingSound.Saw);
-    }
-
-    private protected override void StopRunSound()
-    {
-        AudioManager._instance.StopLoopingSound(LoopingSound.Saw);
-    }
 }

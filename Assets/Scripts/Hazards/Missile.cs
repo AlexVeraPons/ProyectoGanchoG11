@@ -32,8 +32,6 @@ public class Missile : Hazard
 
         _trailRenderer = GetComponent<TrailRenderer>();
         _trailRenderer.enabled = true;
-
-        //SoundManager._instance.PlaySingleSound(SingleSound.MissileFollowing);
     }
 
     private protected override void Disappear()
@@ -51,11 +49,5 @@ public class Missile : Hazard
         _rigidbody2D.angularVelocity = -_rotationalSpeed * rotationAmount.z;
 
         _rigidbody2D.velocity = transform.up * _speed;
-    }
-
-    private protected override void DamageableAction(Collider2D collision)
-    {
-        base.DamageableAction(collision);
-        AudioManager._instance.PlaySingleSound(SingleSound.MissileCrash);
     }
 }
