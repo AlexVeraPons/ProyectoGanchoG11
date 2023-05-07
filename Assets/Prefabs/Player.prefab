@@ -442,8 +442,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6423ad08b8504046a41b522930873d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _distance: 21
-  _travelSpeed: 1200
+  _distance: 15
+  _travelSpeed: 800
   _hookSpeed: 2000
   _collidableLayers:
     serializedVersion: 2
