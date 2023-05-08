@@ -33,8 +33,10 @@ public class HazardWithPath : Hazard
     private Vector2 _currentNode => _nodes[_currentNodeIndex];
     private bool _goingBack = false;
 
-    private void Awake()
+    private protected override void Awake()
     {
+        base.Awake();
+
         _nodes = new Vector2[_nodesParent.childCount];
         _rigidbody2D = this.GetComponent<Rigidbody2D>();
     }
