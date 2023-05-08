@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class HazardWithPath : Hazard
+public class HazardThatMoves : Hazard
 {
     [SerializeField]
     private float _linearSpeed = 0;
@@ -41,8 +41,8 @@ public class HazardWithPath : Hazard
 
     private protected override void Appear()
     {
-        base.Appear();
         // populate the nodes array
+
         _nodes[0] = this.transform.position;
 
         for (int i = 0; i < _nodesParent.childCount; i++)

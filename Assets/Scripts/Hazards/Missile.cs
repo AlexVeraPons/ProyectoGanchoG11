@@ -19,9 +19,8 @@ public class Missile : Hazard
     private Rigidbody2D _rigidbody2D;
     private TrailRenderer _trailRenderer;
 
-    private protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
         _rigidbody2D = GetComponent<Rigidbody2D>();
 
         _target = GameObject.FindObjectOfType<PlayerEntity>().gameObject;

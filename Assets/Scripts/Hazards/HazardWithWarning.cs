@@ -20,18 +20,9 @@ public abstract class HazardWithWarning : Hazard
 
     private bool _warningFinished = false;
 
-    private GlitchController _glitchController;
-
-    private protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
-
         _warningZone.SetActive(false);
-        if (_warningZone.GetComponent<GlitchController>() != null)
-        {
-            _glitchController = _warningZone.GetComponent<GlitchController>();
-            _glitchController.ModifyGlitchDuration(0.5f);
-        }
     }
 
     private protected override void Appear()
@@ -44,19 +35,10 @@ public abstract class HazardWithWarning : Hazard
     {
         yield return new WaitForSeconds(seconds: _timeBeforeWarning);
         ShowWarning();
-        GlitchWarnnig();
 
         yield return new WaitForSeconds(seconds: _warningDuration);
         _warningFinished = true;
         WarningFinished();
-    }
-
-    private void GlitchWarnnig()
-    {
-        if (_glitchController != null)
-        {
-            _glitchController.Glitch();
-        }
     }
 
     /// <summary>

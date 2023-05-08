@@ -129,7 +129,6 @@ GameObject:
   - component: {fileID: 2639059825821497783}
   - component: {fileID: 2639059825821497776}
   - component: {fileID: 2639059825821497778}
-  - component: {fileID: 3286616190102286923}
   m_Layer: 0
   m_Name: Zone
   m_TagString: Untagged
@@ -165,7 +164,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startTime: 1
-  _wakeUpDuration: 0
   _duration: 10
   _timeBeforeWarning: 1
   _warningDuration: 2
@@ -249,18 +247,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3286616190102286923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2639059825821497782}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6161d187fbe97b64bac1cbab4229cdff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _glitchDuration: 0
-  _glitchMaterial: {fileID: 2100000, guid: fd6f3075e12aa5f458cce45f639f07ec, type: 2}
-  _glitchOnWaveStart: 0

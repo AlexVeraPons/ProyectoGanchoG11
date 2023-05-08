@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7964928729064753188}
   - component: {fileID: 7964928729064753191}
-  - component: {fileID: 7849080220040350398}
   m_Layer: 0
   m_Name: Bottom
   m_TagString: Untagged
@@ -85,21 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7849080220040350398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7964928729064753189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6161d187fbe97b64bac1cbab4229cdff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _glitchDuration: 0.6
-  _glitchMaterial: {fileID: 2100000, guid: fd6f3075e12aa5f458cce45f639f07ec, type: 2}
-  _glitchOnWaveStart: 1
 --- !u!1 &7964928729205741711
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,7 +94,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7964928729205741710}
   - component: {fileID: 7964928729205741705}
-  - component: {fileID: 5192355713768379466}
   m_Layer: 0
   m_Name: Top
   m_TagString: Untagged
@@ -185,21 +168,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5192355713768379466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7964928729205741711}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6161d187fbe97b64bac1cbab4229cdff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _glitchDuration: 0.6
-  _glitchMaterial: {fileID: 2100000, guid: fd6f3075e12aa5f458cce45f639f07ec, type: 2}
-  _glitchOnWaveStart: 1
 --- !u!1 &7964928730248017247
 GameObject:
   m_ObjectHideFlags: 0
