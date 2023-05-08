@@ -9,6 +9,9 @@ public class DeathZone : HazardWithWarning
     [SerializeField]
     private float _growthSpeed = 0;
 
+    bool _firstFrameHorizontalPlayed = false;
+    bool _firstFrameVerticalPlayed = false;
+
     private protected override void WarningFinished() { }
 
     private protected override void AfterWarningUpdate()
@@ -23,6 +26,12 @@ public class DeathZone : HazardWithWarning
 
     private IEnumerator GrowX()
     {
+        if(_firstFrameHorizontalPlayed == false)
+        {
+            AudioManager._instance.PlaySingleSound(SingleSound.HazardAreaHorizontalScale);
+            _firstFrameHorizontalPlayed = true;
+        }
+
         if (this.transform.localScale.x >= _warningZone.transform.localScale.x - 0.1f)
         {
             StartCoroutine(GrowY());
@@ -45,6 +54,12 @@ public class DeathZone : HazardWithWarning
     private IEnumerator GrowY()
     {
         yield return null;
+
+        if(_firstFrameVerticalPlayed == false)
+        {
+            AudioManager._instance.PlaySingleSound(SingleSound.HazardAreaVerticalScale);
+            _firstFrameVerticalPlayed = true;
+        }
 
         var yScale = Mathf.Lerp(
             this.transform.localScale.y,

@@ -76,7 +76,7 @@ Transform:
   m_GameObject: {fileID: 2581941181276043755}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5280379, y: 1.5280379, z: 1.5280379}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2581941181362871253}
@@ -149,8 +149,8 @@ MonoBehaviour:
   _startTime: 1
   _wakeUpDuration: 2
   _duration: 20
-  _linearSpeed: 20
-  _routeType: 1
+  _linearSpeed: 15
+  _routeType: 0
   _nodesParent: {fileID: 2581941181209836025}
   _angularRotationalSpeed: 1000
 --- !u!50 &2581941181276043750
