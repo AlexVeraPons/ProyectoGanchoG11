@@ -54,6 +54,26 @@ public class AudioManager : MonoBehaviour
         return _instance == null;
     }
 
+    private void OnDestroy()
+    {
+        _instance.ClearAll();
+    }
+
+    public void ClearAll()
+    {
+        _singleSoundSources.Clear();
+        _loopSoundSources.Clear();
+        _musicSources.Clear();
+
+        for(int i = 0; i < transform.childCount - 1; i++)
+        {
+            for(int j = 0; j < transform.GetChild(i).childCount; j++)
+            {
+                Destroy(transform.GetChild(i).transform.GetChild(j).gameObject);
+            }
+        }
+    }
+
     public void PlaySingleSound(SingleSound singleSound)
     {
         AudioClip clip;
@@ -73,8 +93,10 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    //Deprecated
     public void PlayLoopingSound(LoopingSound loopingSound)
     {
+        /*
         AudioClip clip;
         _loopSoundDictionary.TryGetValue(loopingSound, out clip);
         if (clip != null)
@@ -90,24 +112,29 @@ public class AudioManager : MonoBehaviour
                 GenerateSoundSource(doesLoop: true);
                 PlayLoopingSound(loopingSound);
             }
-        }
+        }*/
     }
 
+    //Deprecated
     public void StopLoopingSound(LoopingSound loopingSound)
     {
+        /*
         AudioClip clip;
         _loopSoundDictionary.TryGetValue(loopingSound, out clip);
         if(clip != null)
         {
             for(int i = 0; i < _loopSoundSources.Count; i++)
             {
+                SoundLoopAudioClipPair loopClip;
+                _loopSoundDictionary.TryGetValue(loopingSound, out clip);
                 if(_loopSoundSources[i].clip == clip)
                 {
+                    print("stopppppp");
                     _loopSoundSources[i].Stop();
                     Destroy(_loopSoundSources[i].gameObject);
                 }
             }
-        }
+        }*/
     }
 
     public void PlayMusic(Music music)
@@ -119,6 +146,19 @@ public class AudioManager : MonoBehaviour
             _musicSource.Stop();
             _musicSource.clip = musicClip;
             _musicSource.Play();
+        }
+    }
+
+    public void CreateLoopSourceComponent(GameObject gameObject, LoopingSound loopSound)
+    {
+        AudioClip clip;
+        _loopSoundDictionary.TryGetValue(loopSound, out clip);
+        if(clip != null)
+        {
+            AudioSource tempSource = gameObject.AddComponent<AudioSource>();
+            tempSource.loop = true;
+            tempSource.clip = clip;
+            tempSource.Play();
         }
     }
 

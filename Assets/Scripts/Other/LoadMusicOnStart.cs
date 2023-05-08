@@ -10,7 +10,7 @@ public class LoadMusicOnStart : MonoBehaviour
 
     private void Start()
     {
+        print("he starteao");
         AudioManager._instance.PlayMusic(_music);
-        Destroy(this.gameObject);
     }
 }
