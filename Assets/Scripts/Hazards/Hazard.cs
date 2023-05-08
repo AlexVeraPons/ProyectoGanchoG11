@@ -12,10 +12,24 @@ public abstract class Hazard : MonoBehaviour
     private protected float _startTime = 0;
 
     [SerializeField]
+    private protected float _wakeUpDuration = 0;
+
+    [SerializeField]
     [Tooltip("The total duration of the hazard.")]
     private protected float _duration = 0;
 
     private protected bool _running = false;
+
+    private GlitchController _glitchController;
+
+    private protected virtual void Awake()
+    {
+        if (GetComponent<GlitchController>() != null)
+        {
+            _glitchController = GetComponent<GlitchController>();
+            _glitchController.ModifyGlitchDuration(_wakeUpDuration);
+        }
+    }
 
     private void OnEnable()
     {
@@ -40,6 +54,9 @@ public abstract class Hazard : MonoBehaviour
     private IEnumerator StartAfterDelay()
     {
         yield return new WaitForSeconds(seconds: _startTime);
+        Appear();
+        ComponentEnebaler();
+        yield return new WaitForSeconds(seconds: _wakeUpDuration);
         StartRunning();
         yield return new WaitForSeconds(seconds: _duration);
         StopRunning();
@@ -57,8 +74,6 @@ public abstract class Hazard : MonoBehaviour
 
     private protected void StartRunning()
     {
-        ComponentEnebaler();
-        Appear();
         _running = true;
     }
 
@@ -98,6 +113,10 @@ public abstract class Hazard : MonoBehaviour
     /// </summary>
     private protected virtual void Appear(){
         this.gameObject.SetActive(true);
+        if (_glitchController != null)
+        {
+            _glitchController.Glitch();
+        }
     }
 
     /// <summary>
