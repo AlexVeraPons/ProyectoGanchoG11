@@ -55,11 +55,12 @@ public abstract class Hazard : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds: _startTime);
         Appear();
-        ComponentEnebaler();
+        ComponentEnabler();
         yield return new WaitForSeconds(seconds: _wakeUpDuration);
         StartRunning();
         yield return new WaitForSeconds(seconds: _duration);
         StopRunning();
+        Disappear();
     }
 
     private void Update()
@@ -75,8 +76,6 @@ public abstract class Hazard : MonoBehaviour
     private virtual protected void StartRunning()
     {
         PlayRunSound();
-        ComponentEnabler();
-        Appear();
         _running = true;
     }
 
@@ -84,7 +83,6 @@ public abstract class Hazard : MonoBehaviour
     {
         StopRunSound();
         _running = false;
-        Disappear();
     }
 
     private protected void ComponentDisabler()

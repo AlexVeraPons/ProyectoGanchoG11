@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startTime: 1
-  _wakeUpDuration: 2
+  _wakeUpDuration: 1
   _duration: 20
   _linearSpeed: 15
   _routeType: 0
