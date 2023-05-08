@@ -1642,6 +1642,10 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -420419595745355753, guid: 76aa0994171e6564d92269b344ae5983, type: 2}
+    - target: {fileID: 5735465259344299562, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_Alpha
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6206091036113898042, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
       propertyPath: m_fontSize
       value: 70
