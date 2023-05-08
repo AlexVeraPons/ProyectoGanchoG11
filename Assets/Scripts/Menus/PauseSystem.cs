@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PauseSystem : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class PauseSystem : MonoBehaviour
     private bool _isPaused;
     private ScenePicker _scenePicker;
     private string _mainMenuScene;
+    //private CustomInput _input = null;
+
     void Start()
     {
         _scenePicker = GetComponent<ScenePicker>();
