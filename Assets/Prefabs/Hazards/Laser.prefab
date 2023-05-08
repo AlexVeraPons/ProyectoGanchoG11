@@ -133,7 +133,7 @@ MonoBehaviour:
   _startTime: 3
   _duration: 2
   _timeBeforeWarning: 0
-  _warningDuration: 0.8
+  _warningDuration: 0.9
   _warningZone: {fileID: 2210899555476336387}
   _horizontalSpeedGrowth: 20
 --- !u!212 &2210899556932731823
