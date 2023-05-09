@@ -10,6 +10,7 @@ public class Grounded : State
     private float _deceleration;
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
+
     private CollisionDetector _collisionDetector;
     private bool _isGrounded => _collisionDetector.IsGrounded();
     private float _input => ((PlayerStateMachine)_stateMachine).DirectionalInput();
@@ -61,6 +62,16 @@ public class Grounded : State
     public override void Update()
     {
         base.Update();
+
+        if(Mathf.Abs(_input) < 0.1f)
+        {
+            _animator.SetBool("isIdle", true);
+        }
+        else
+        {
+            _animator.SetBool("isIdle", false);
+        }
+
         ExitLogicUpdate();
     }
 
