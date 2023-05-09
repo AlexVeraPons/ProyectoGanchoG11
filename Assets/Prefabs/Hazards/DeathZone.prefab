@@ -181,7 +181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startTime: 1
   _wakeUpDuration: 0
-  _duration: 3
+  _duration: 2
   _timeBeforeWarning: 0.5
   _warningDuration: 0.5
   _warningZone: {fileID: 2639059824215115744}
