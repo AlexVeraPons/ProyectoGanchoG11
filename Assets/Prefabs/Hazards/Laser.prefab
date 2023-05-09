@@ -150,7 +150,7 @@ MonoBehaviour:
   _wakeUpDuration: 0
   _duration: 2
   _timeBeforeWarning: 0
-  _warningDuration: 0.9
+  _warningDuration: 1
   _warningZone: {fileID: 2210899555476336387}
   _horizontalSpeedGrowth: 20
 --- !u!212 &2210899556932731823
