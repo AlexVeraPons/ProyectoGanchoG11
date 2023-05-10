@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.14098358, g: 1, b: 0, a: 1}
+  m_Color: {r: 0.990566, g: 0.81441516, b: 0.1541919, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -150,8 +150,8 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 4096
-  _activatedColor: {r: 0.05281806, g: 1, b: 0, a: 1}
-  _pendingColor: {r: 1, g: 0.9372189, b: 0, a: 1}
+  _activatedColor: {r: 0.6769151, g: 0.9245283, b: 0.11774653, a: 1}
+  _pendingColor: {r: 0.8396226, g: 0.6282274, b: 0.1544589, a: 0.972549}
   _linearSpeed: 300
   _nodesParent: {fileID: 7621952015471772123}
   _state: 0
