@@ -65,18 +65,18 @@ public class Airborn : State
 
     private void MovementUpdate()
     {
-        _currentVelocity = Mathf.Lerp(
-            _currentVelocity,
-            _input * _speed,
-            _acceleration * Time.deltaTime
-        );
+        //_currentVelocity = Mathf.Lerp(
+        //    _currentVelocity,
+        //    _input * _speed,
+        //    _acceleration * Time.deltaTime
+        //);
 
-        if (Mathf.Abs(_input) < 0.1f)
-        {
-            _currentVelocity = Mathf.Lerp(_currentVelocity, 0, _deceleration * Time.deltaTime);
-        }
+        //if (Mathf.Abs(_input) < 0.1f)
+        //{
+        //    _currentVelocity = Mathf.Lerp(_currentVelocity, 0, _deceleration * Time.deltaTime);
+        //}
 
-        _rigidbody2D.velocity = new Vector2(_currentVelocity/_airResistance, _rigidbody2D.velocity.y);
+        //_rigidbody2D.velocity = new Vector2(_currentVelocity/_airResistance, _rigidbody2D.velocity.y);
     }
 
     public override void ExitLogicUpdate()
