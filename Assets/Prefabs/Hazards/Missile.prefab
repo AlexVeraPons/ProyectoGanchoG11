@@ -124,9 +124,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startTime: 2
   _wakeUpDuration: 2
-  _duration: 10
-  _rotationalSpeed: 300
-  _speed: 17
+  _duration: 3
+  _rotationalSpeed: 250
+  _speed: 10
   _target: {fileID: 0}
 --- !u!96 &266641539083961635
 TrailRenderer:
