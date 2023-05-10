@@ -20264,6 +20264,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AnimatedPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 3203049619141546622, guid: f49dd3fd330b07944a20f06c463b9cdb, type: 3}
+      propertyPath: _returnTime
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3468154731737500122, guid: f49dd3fd330b07944a20f06c463b9cdb, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.55

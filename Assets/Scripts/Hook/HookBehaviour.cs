@@ -6,16 +6,30 @@ using UnityEngine;
 public class HookBehaviour : MonoBehaviour
 {
     //Serialized variables for the inspector
+    [Header("STANDARD VALUES")]
+    [Tooltip("The total distance the hook will travel")]
     [SerializeField] int _distance;
+    [Tooltip("The speed on which the hook will move")]
     [SerializeField] float _travelSpeed;
+    [Tooltip("The speed on which the Grapple Gun Owner will move")]
     [SerializeField] float _hookSpeed;
+    [Tooltip("Time that takes from the STUCK state to the RETRIEVE (If held). Set to 0 to disable.")]
+    [SerializeField] float _returnTime;
+    float _hookTime = 1;
+
+    [Space(10)]
+    [Header("LOGIC RELATED VALUES")]
+    [Tooltip("Layers affected by the raycast")]
     [SerializeField] LayerMask _collidableLayers;
+    [Tooltip("The current state of the hook")]
     [SerializeField] public HookState _state;
+    [Tooltip("The transform associated to the Grapple Gun Owner")]
     [SerializeField] Transform _playerTransform;
 
     //Private Grappling Gun related variables
     GrapplingGun _grapplingGun;
     Rigidbody2D _grapplingGunRigidbody2D;
+    [Tooltip("The transform used as the impact of the raycast")]
     [SerializeField] Transform _impactTransform;
 
     //Private Hook related variables
@@ -107,7 +121,8 @@ public class HookBehaviour : MonoBehaviour
 
             case HookState.Stuck:
                 if(_grapplingGun.HookHeld == false
-                || _grapplingGun.State == GrapplingGunState.Jammed)
+                || _grapplingGun.State == GrapplingGunState.Jammed
+                || IsTimerFinished() == true)
                 {
                     if(HitObjectIsInteractable() == true
                     && _impactInteractable != null)
@@ -189,6 +204,7 @@ public class HookBehaviour : MonoBehaviour
             case HookState.Stuck:
                 AudioManager._instance.PlaySingleSound(SingleSound.HookStuck);
                 _rigidbody2D.velocity = Vector2.zero; //Reset velocity to 0
+                if(_returnTime != 0) { _hookTime = Time.time + _returnTime; }
                 AlignPositionToImpact();
             break;
 
@@ -249,6 +265,25 @@ public class HookBehaviour : MonoBehaviour
             default: 
                 print("Error"); 
                 return false;
+        }
+    }
+
+    bool IsTimerFinished()
+    {
+        if(_returnTime == 0)
+        {
+            return false;
+        }
+        else
+        {
+            if(Time.time > _hookTime)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 
