@@ -24,7 +24,7 @@ public class ResolutionLogic : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(_widthResolutions[_resolutionLogic.Index] + " " + _heightResolutions[_resolutionLogic.Index]);
+        //Debug.Log(_widthResolutions[_resolutionLogic.Index] + " " + _heightResolutions[_resolutionLogic.Index]);
     }
     public void ChangeResolution()
     {
