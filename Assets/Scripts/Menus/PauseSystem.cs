@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class PauseSystem : MonoBehaviour
 {
     [SerializeField] private GameObject _pauseMenu;
     [SerializeField] private GameObject _optionsMenu;
+    [SerializeField] private Button _ResumeButton;
     private bool _isPaused;
     private ScenePicker _scenePicker;
     private string _mainMenuScene;
@@ -53,6 +55,7 @@ public class PauseSystem : MonoBehaviour
     {
         _isPaused = true;
         _pauseMenu.SetActive(true);
+        _ResumeButton.Select();
     }
     public void ResumeGame()
     {

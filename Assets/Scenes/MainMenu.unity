@@ -1221,6 +1221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _initialMenu: {fileID: 1457996803}
   _mainMenu: {fileID: 796183762}
+  _playButton: {fileID: 1399004200}
 --- !u!114 &1389577256
 MonoBehaviour:
   m_ObjectHideFlags: 0
