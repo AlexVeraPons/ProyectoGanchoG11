@@ -62,6 +62,7 @@ public class Grounded : State
     public override void Update()
     {
         base.Update();
+        _animator.SetBool("isGrounded", true);
 
         if(Mathf.Abs(_input) < 0.1f)
         {
@@ -80,6 +81,7 @@ public class Grounded : State
         base.ExitLogicUpdate();
         if (!_isGrounded)
         {
+            _animator.SetBool("isGrounded", false);
             _stateMachine.ChangeState(new Airborn(_stateMachine));
         }
         else if(_life.Current == 0)

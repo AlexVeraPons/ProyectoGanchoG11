@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Airborn : State
 {
+    private Animator _animator;
     private Rigidbody2D _rigidbody2D;
     private CollisionDetector _collisionDetector;
     private bool _isTouchingWall => _collisionDetector.IsTouchingInfront();
@@ -13,6 +14,7 @@ public class Airborn : State
     {
         _rigidbody2D = ((PlayerStateMachine)stateMachine).RigidBody2D;
         _collisionDetector = ((PlayerStateMachine)stateMachine).CollisionDetector;
+        _animator = ((PlayerStateMachine)stateMachine).Animator;
     }
 
     public override void Enter()
@@ -28,6 +30,7 @@ public class Airborn : State
     public override void Update()
     {
         base.Update();
+        _animator.SetBool("isGrounded", false);
         ExitLogicUpdate();
     }
 
