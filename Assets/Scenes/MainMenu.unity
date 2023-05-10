@@ -1171,6 +1171,7 @@ GameObject:
   - component: {fileID: 1399004202}
   - component: {fileID: 1399004201}
   - component: {fileID: 1399004200}
+  - component: {fileID: 1399004203}
   m_Layer: 5
   m_Name: Play Button
   m_TagString: Untagged
@@ -1243,9 +1244,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1389577255}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: LoadGame
+      - m_Target: {fileID: 1399004203}
+        m_TargetAssemblyTypeName: LoadSceneUIButton, Assembly-CSharp
+        m_MethodName: OnPress
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1293,6 +1294,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1399004198}
   m_CullTransparentMesh: 1
+--- !u!114 &1399004203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399004198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eda9306f4dfc97a49989d21cb5e5acb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sceneName: Levels
+  _sceneIndex: -1
 --- !u!1 &1457996803
 GameObject:
   m_ObjectHideFlags: 0
@@ -1424,7 +1439,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5246194258632725916, guid: 33da5b8d8a76e5848a6df10b6b23e7bd, type: 3}
       propertyPath: m_Name
-      value: SoundManager
+      value: AudioManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33da5b8d8a76e5848a6df10b6b23e7bd, type: 3}

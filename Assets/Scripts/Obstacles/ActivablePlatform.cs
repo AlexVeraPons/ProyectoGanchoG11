@@ -12,6 +12,12 @@ public class ActivablePlatform : MonoBehaviour, IInteractable
     
     [Header("ActivablePlatformValues")]
     [SerializeField]
+    private Color _activatedColor;
+    [SerializeField]
+    private Color _pendingColor;
+    private SpriteRenderer _spriteRenderer;
+
+    [SerializeField]
     private float _linearSpeed = 0;
     
     [SerializeField]
@@ -28,6 +34,7 @@ public class ActivablePlatform : MonoBehaviour, IInteractable
     {
         _nodes = new Vector2[_nodesParent.childCount];
         _rigidbody2D = this.GetComponent<Rigidbody2D>();
+        _spriteRenderer = this.GetComponent<SpriteRenderer>();
 
         // populate the nodes array
 
@@ -42,6 +49,11 @@ public class ActivablePlatform : MonoBehaviour, IInteractable
 
         _direction = _nodes[1] - _nodes[0];
         _direction = _direction.normalized;
+    }
+
+    private void Start()
+    {
+        _spriteRenderer.color = _pendingColor;
     }
 
     void Update()
@@ -116,23 +128,23 @@ public class ActivablePlatform : MonoBehaviour, IInteractable
         switch(newState)
         {
             case ActivablePlatformState.MovingForward:
-                GetComponent<SpriteRenderer>().color = Color.green;
+                _spriteRenderer.color = _activatedColor;
                 OnMoveForward?.Invoke();
             break;
 
             case ActivablePlatformState.MovingBackward:
-                GetComponent<SpriteRenderer>().color = Color.green;
+                _spriteRenderer.color = _activatedColor;
                 OnMoveBackward?.Invoke();
             break;
 
             case ActivablePlatformState.ReachedEnd:
-                GetComponent<SpriteRenderer>().color = Color.red;
+                _spriteRenderer.color = _pendingColor;
                 _rigidbody2D.velocity = Vector2.zero;
                 this.transform.position = _nodes[1];
             break;
 
             case ActivablePlatformState.ReachedBegining:
-                GetComponent<SpriteRenderer>().color = Color.red;
+                _spriteRenderer.color = _pendingColor;
                 _rigidbody2D.velocity = Vector2.zero;
                 this.transform.position = _nodes[0];
             break;
