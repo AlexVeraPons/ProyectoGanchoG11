@@ -125,7 +125,7 @@ MonoBehaviour:
   _startTime: 2
   _wakeUpDuration: 2
   _duration: 3
-  _rotationalSpeed: 300
+  _rotationalSpeed: 250
   _speed: 10
   _target: {fileID: 0}
 --- !u!96 &266641539083961635
