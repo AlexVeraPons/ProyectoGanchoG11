@@ -99,6 +99,7 @@ public class WaveManager : MonoBehaviour
         _currentWave += 1;
         LoadCurrentWave();
         UnloadPreviousWave();
+        //DeletePreviousWave();
         SetWaveTime();
     }
 
@@ -110,6 +111,11 @@ public class WaveManager : MonoBehaviour
     void UnloadPreviousWave()
     {
         _waves[_currentWave - 1].SetActive(false);
+    }
+
+    void DeletePreviousWave()
+    {
+        Destroy(_waves[_currentWave - 1].gameObject);
     }
 
     void LoadAllWaves()

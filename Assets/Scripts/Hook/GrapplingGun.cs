@@ -5,29 +5,32 @@ using UnityEngine.InputSystem;
 
 public class GrapplingGun : MonoBehaviour
 {
-    // Input Action references
-    [SerializeField] InputActionReference _hookKeyboardInputReference;
-    [SerializeField] InputActionReference _hookGamepadInputReference;
-
-    PlayerInput _input;
-
+    [Header("STANDARD VALUES")]
     // Referenced values in inspector
-    [SerializeField] GameObject _hookObject;
-    [SerializeField] GrapplingGunState _state = GrapplingGunState.Waiting;
-    public GrapplingGunState State => _state;
-    [SerializeField] float _peakDistance = 10f;
+    [Tooltip("Minimum distance at which the hook will be retrieved")]
     [SerializeField] float _grabDistance = 0.5f;
-    
-    // Public references
-    public float PeakDistance => _peakDistance;
-    public float GrabDistance => _grabDistance;
-    
+
     public bool HookHeld => _hookActionHeld;
 
     // Private references
     private Vector2 _lastInput = Vector2.right;
     private bool _hookActionHeld = false;
     HookBehaviour _hook;
+    
+    // Input Action references
+    [Space(10)]
+    [Header("PERMANENT VALUES")]
+    [Tooltip("The input reference used for the keyboard")]
+    [SerializeField] InputActionReference _hookKeyboardInputReference;
+    [Tooltip("The input reference used for the gamepad")]
+    [SerializeField] InputActionReference _hookGamepadInputReference;
+    [Tooltip("The hook object")]
+    [SerializeField] GameObject _hookObject;
+    [Tooltip("The current state of the gun")]
+    [SerializeField] GrapplingGunState _state = GrapplingGunState.Waiting;
+    public GrapplingGunState State => _state;
+
+    PlayerInput _input;
 
     // Unity functions
     private void Awake()

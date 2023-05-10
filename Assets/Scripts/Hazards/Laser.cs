@@ -6,8 +6,9 @@ public class Laser : HazardWithWarning
     [SerializeField]
     private float _horizontalSpeedGrowth = 0;
 
-    private void Awake()
+    private protected override void Awake()
     {
+        base.Awake();
         _warningZone.SetActive(false);
     }
 

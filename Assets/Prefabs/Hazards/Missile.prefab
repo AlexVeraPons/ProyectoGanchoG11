@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 266641539083961639}
   - component: {fileID: 266641539083961635}
   - component: {fileID: 266641539083961633}
+  - component: {fileID: 210657148}
   m_Layer: 0
   m_Name: Missile
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 266641539083961640}
-  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -10.42, y: -1.41, z: 0}
   m_LocalScale: {x: 1.6722078, y: 1.6722078, z: 1.6722072}
   m_ConstrainProportionsScale: 0
@@ -121,12 +122,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 750bb0701391205408e02f9c66d0b9c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startTime: 1
-  _wakeupDuration: 1
-  _disappearTime: 1
+  _startTime: 2
+  _wakeUpDuration: 2
   _duration: 3
-  _rotationalSpeed: 300
-  _speed: 17
+  _rotationalSpeed: 250
+  _speed: 10
   _target: {fileID: 0}
 --- !u!96 &266641539083961635
 TrailRenderer:
@@ -262,3 +262,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.54}
   m_EdgeRadius: 0
+--- !u!114 &210657148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266641539083961640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6161d187fbe97b64bac1cbab4229cdff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _glitchDuration: 0.4
+  _glitchMaterial: {fileID: 2100000, guid: fd6f3075e12aa5f458cce45f639f07ec, type: 2}
+  _glitchOnWaveStart: 0
