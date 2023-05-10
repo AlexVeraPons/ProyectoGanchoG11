@@ -656,6 +656,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4123535386188362490, guid: d9a1c266079f9a54d9db677ce7ddf29a, type: 3}
+      propertyPath: _airResistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6187471722180236054, guid: d9a1c266079f9a54d9db677ce7ddf29a, type: 3}
       propertyPath: _hookPosition
       value: 

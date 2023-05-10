@@ -7,12 +7,24 @@ public class Airborn : State
     private bool _isTouchingWall => _collisionDetector.IsTouchingInfront();
     private bool _isGrounded => _collisionDetector.IsGrounded();
 
+     private LifeComponent _life;
+    private float _currentVelocity;
+    private float _speed;
+    private float _acceleration;
+    private float _deceleration;
+    private float _airResistance;
+    private float _input => ((PlayerStateMachine)_stateMachine).DirectionalInput();
 
     public Airborn(StateMachine stateMachine)
         : base(stateMachine)
     {
         _rigidbody2D = ((PlayerStateMachine)stateMachine).RigidBody2D;
         _collisionDetector = ((PlayerStateMachine)stateMachine).CollisionDetector;
+        _life = ((PlayerStateMachine)stateMachine).LifeComponent;
+        _speed = ((PlayerStateMachine)stateMachine).Speed;
+        _acceleration = ((PlayerStateMachine)stateMachine).Acceleration;
+        _deceleration = ((PlayerStateMachine)stateMachine).Deceleration;
+        _airResistance = ((PlayerStateMachine)stateMachine).AirResistance;
     }
 
     public override void Enter()
@@ -53,7 +65,18 @@ public class Airborn : State
 
     private void MovementUpdate()
     {
-        // waiting for decision on how to handle airborn movement
+        _currentVelocity = Mathf.Lerp(
+            _currentVelocity,
+            _input * _speed,
+            _acceleration * Time.deltaTime
+        );
+
+        if (Mathf.Abs(_input) < 0.1f)
+        {
+            _currentVelocity = Mathf.Lerp(_currentVelocity, 0, _deceleration * Time.deltaTime);
+        }
+
+        _rigidbody2D.velocity = new Vector2(_currentVelocity/_airResistance, _rigidbody2D.velocity.y);
     }
 
     public override void ExitLogicUpdate()
@@ -64,6 +87,5 @@ public class Airborn : State
             AudioManager._instance.PlaySingleSound(SingleSound.PlayerGround);
             _stateMachine.ChangeState(new Grounded(_stateMachine));
         }
-
     }
 }
