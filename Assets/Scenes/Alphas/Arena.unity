@@ -180,6 +180,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ac668be64eb46449b04cdfd837402dd, type: 3}
+--- !u!1 &181478082 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5735465258361767350, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+  m_PrefabInstance: {fileID: 2125272219}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &181478085 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5735465258361767352, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+  m_PrefabInstance: {fileID: 2125272219}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181478082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &181478088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181478082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 436022c34ccabf746aed9e884f3db319, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &416498504 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7621952016111052628, guid: 1b121235a0ac8054a9a46c43c184cd1f, type: 3}
@@ -618,6 +646,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1017833231 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5735465257482522191, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+  m_PrefabInstance: {fileID: 2125272219}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1017833234 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5735465257482522225, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+  m_PrefabInstance: {fileID: 2125272219}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017833231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1017833237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017833231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 436022c34ccabf746aed9e884f3db319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1029411734
@@ -1268,6 +1324,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 266641539083961636, guid: a0bf2da04c3793d4eb5ec418dd181ed9, type: 3}
   m_PrefabInstance: {fileID: 1064443155}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2062065873 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1853233073362780487, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+  m_PrefabInstance: {fileID: 2125272219}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2125272219
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1403,6 +1470,18 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 1853233072662135305, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_Transition
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1853233072662135305, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8476090804fcee34090754644e0aed4d, type: 3}
+    - target: {fileID: 1853233072662135305, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_SpriteState.m_SelectedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8476090804fcee34090754644e0aed4d, type: 3}
     - target: {fileID: 1853233072662135307, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 187
@@ -1519,6 +1598,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1853233073076128243, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: _BrilloSlider
+      value: 
+      objectReference: {fileID: 2062065873}
     - target: {fileID: 1853233073076128243, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
       propertyPath: _ResumeButton
       value: 
@@ -1647,6 +1730,18 @@ PrefabInstance:
       propertyPath: m_FillRect
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1853233073362780487, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_Transition
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1853233073362780487, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8476090804fcee34090754644e0aed4d, type: 3}
+    - target: {fileID: 1853233073362780487, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_SpriteState.m_SelectedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8476090804fcee34090754644e0aed4d, type: 3}
     - target: {fileID: 1853233073413117808, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
       propertyPath: m_Type
       value: 0
@@ -1831,6 +1926,30 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 4d9fe06a97df9e0428982a6564031281, type: 3}
+    - target: {fileID: 5735465257482522225, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_Transition
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5735465257482522225, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5735465257482522225, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 181478085}
+    - target: {fileID: 5735465257482522225, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 181478085}
+    - target: {fileID: 5735465257482522225, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 60e783af0e6f39b429072dba9514c4ec, type: 3}
+    - target: {fileID: 5735465257482522225, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_SpriteState.m_SelectedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 60e783af0e6f39b429072dba9514c4ec, type: 3}
     - target: {fileID: 5735465257959815696, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
       propertyPath: m_Name
       value: YOU DIED
@@ -1847,6 +1966,30 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -420419595745355753, guid: 76aa0994171e6564d92269b344ae5983, type: 2}
+    - target: {fileID: 5735465258361767352, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_Transition
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5735465258361767352, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5735465258361767352, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_Navigation.m_SelectOnUp
+      value: 
+      objectReference: {fileID: 1017833234}
+    - target: {fileID: 5735465258361767352, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_Navigation.m_SelectOnDown
+      value: 
+      objectReference: {fileID: 1017833234}
+    - target: {fileID: 5735465258361767352, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 60e783af0e6f39b429072dba9514c4ec, type: 3}
+    - target: {fileID: 5735465258361767352, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_SpriteState.m_SelectedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 60e783af0e6f39b429072dba9514c4ec, type: 3}
     - target: {fileID: 5735465258361767355, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
       propertyPath: m_Type
       value: 0
@@ -1871,6 +2014,10 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 5735465259344299560, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: _restartButton
+      value: 
+      objectReference: {fileID: 1017833234}
     - target: {fileID: 5735465259344299562, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
       propertyPath: m_Alpha
       value: 1
