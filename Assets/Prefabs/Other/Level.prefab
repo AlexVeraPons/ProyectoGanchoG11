@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9136235309931794489}
   - component: {fileID: 861990630285355135}
   m_Layer: 6
-  m_Name: BoxPart (3)
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 713402669802422958}
   - component: {fileID: 7336580553354199257}
   m_Layer: 11
-  m_Name: BoxPart (2)
+  m_Name: Roof
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -302,7 +302,7 @@ GameObject:
   - component: {fileID: 7850578348060540892}
   - component: {fileID: 7850578348060540895}
   m_Layer: 11
-  m_Name: BoxPart
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -497,7 +497,7 @@ GameObject:
   - component: {fileID: 1390559813240409418}
   - component: {fileID: 9186450961815389743}
   m_Layer: 11
-  m_Name: BoxPart (1)
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
