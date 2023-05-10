@@ -28,10 +28,11 @@ public class PlayerStateMachine : StateMachine
     public float Deceleration => _deceleration;
 
     [SerializeField]
+    [Tooltip("The amount of air resistance to apply to the player when in the air.")]
     private float _airResistance = 1f;
 
     public float AirResistance => _airResistance;
-
+    
     private Rigidbody2D _rigidbody2D;
 
     public Rigidbody2D RigidBody2D => _rigidbody2D;
