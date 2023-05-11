@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Airborn : State
 {
+    private Animator _animator;
     private Rigidbody2D _rigidbody2D;
     private CollisionDetector _collisionDetector;
     private bool _isTouchingWall => _collisionDetector.IsTouchingInfront();
@@ -30,6 +31,7 @@ public class Airborn : State
         _deceleration = ((PlayerStateMachine)stateMachine).Deceleration;
         _airResistance = ((PlayerStateMachine)stateMachine).AirResistance;
         _currentVelocity = _rigidbody2D.velocity.x;
+        _animator = ((PlayerStateMachine)stateMachine).Animator;
     }
 
     public override void Enter()
@@ -60,6 +62,7 @@ public class Airborn : State
     public override void Update()
     {
         base.Update();
+        _animator.SetBool("isGrounded", false);
         ExitLogicUpdate();
         Delay();
     }
@@ -130,5 +133,6 @@ public class Airborn : State
             AudioManager._instance.PlaySingleSound(SingleSound.PlayerGround);
             _stateMachine.ChangeState(new Grounded(_stateMachine));
         }
+
     }
 }

@@ -2,14 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class PauseSystem : MonoBehaviour
 {
     [SerializeField] private GameObject _pauseMenu;
     [SerializeField] private GameObject _optionsMenu;
+    [SerializeField] private Button _ResumeButton;
+    [SerializeField] private Slider _BrilloSlider;
     private bool _isPaused;
     private ScenePicker _scenePicker;
     private string _mainMenuScene;
+    //private CustomInput _input = null;
+
     void Start()
     {
         _scenePicker = GetComponent<ScenePicker>();
@@ -50,6 +56,7 @@ public class PauseSystem : MonoBehaviour
     {
         _isPaused = true;
         _pauseMenu.SetActive(true);
+        _ResumeButton.Select();
     }
     public void ResumeGame()
     {
@@ -60,11 +67,13 @@ public class PauseSystem : MonoBehaviour
     {
         _pauseMenu.SetActive(false);
         _optionsMenu.SetActive(true);
+        _BrilloSlider.Select();
     }
     public void ReturnPausePanel()
     {
         _optionsMenu.SetActive(false);
         _pauseMenu.SetActive(true);
+        _ResumeButton.Select();
     }
     public void GoToMainMenu()
     {

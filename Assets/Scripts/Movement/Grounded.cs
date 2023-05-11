@@ -9,6 +9,8 @@ public class Grounded : State
     private float _acceleration;
     private float _deceleration;
     private Rigidbody2D _rigidbody2D;
+    private Animator _animator;
+
     private CollisionDetector _collisionDetector;
     private bool _isGrounded => _collisionDetector.IsGrounded();
     private float _input => ((PlayerStateMachine)_stateMachine).DirectionalInput();
@@ -22,6 +24,7 @@ public class Grounded : State
         _deceleration = ((PlayerStateMachine)stateMachine).Deceleration;
         _rigidbody2D = ((PlayerStateMachine)stateMachine).RigidBody2D;
         _collisionDetector = ((PlayerStateMachine)stateMachine).CollisionDetector;
+        _animator = ((PlayerStateMachine)stateMachine).Animator;
     }
 
     public override void Enter()
@@ -59,6 +62,17 @@ public class Grounded : State
     public override void Update()
     {
         base.Update();
+        _animator.SetBool("isGrounded", true);
+
+        if(Mathf.Abs(_input) < 0.1f)
+        {
+            _animator.SetBool("isIdle", true);
+        }
+        else
+        {
+            _animator.SetBool("isIdle", false);
+        }
+
         ExitLogicUpdate();
     }
 
@@ -67,6 +81,7 @@ public class Grounded : State
         base.ExitLogicUpdate();
         if (!_isGrounded)
         {
+            _animator.SetBool("isGrounded", false);
             _stateMachine.ChangeState(new Airborn(_stateMachine));
         }
         else if(_life.Current == 0)

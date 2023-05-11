@@ -12,6 +12,10 @@ public class PlayerStateMachine : StateMachine
 
     public LifeComponent LifeComponent => _lifeComponent;
 
+    //Animator
+    public Animator Animator => _animator;
+    private Animator _animator;
+
     [SerializeField]
     private float _speed;
 
@@ -48,6 +52,7 @@ public class PlayerStateMachine : StateMachine
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _collisionDetector = GetComponent<CollisionDetector>();
         _lifeComponent = GetComponent<LifeComponent>();
+        _animator = GetComponent<Animator>();
         Initialize(new Grounded(this));
     }
 

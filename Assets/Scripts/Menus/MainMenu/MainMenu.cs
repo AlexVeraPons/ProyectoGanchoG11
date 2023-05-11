@@ -1,5 +1,6 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class MainMenu : MonoBehaviour
     private ScenePicker _scenePicker;
     private string _gameScene;
     private string _optionsScene;
+    [SerializeField]
+    private Button _playButton;
+    
 
     private void Start()
     {
@@ -25,6 +29,7 @@ public class MainMenu : MonoBehaviour
     {
         _initialMenu.SetActive(false);
         _mainMenu.SetActive(true);
+        _playButton.Select();
     }
 
     public void LoadGame() 
