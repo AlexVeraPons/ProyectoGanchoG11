@@ -26239,11 +26239,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 532318044802935138, guid: b0c189a05e6c6414bac03edcbc8b80b4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 532318046837094983, guid: b0c189a05e6c6414bac03edcbc8b80b4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2223421248041252662, guid: b0c189a05e6c6414bac03edcbc8b80b4, type: 3}
       propertyPath: _sceneName
@@ -26251,11 +26251,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5258897262582172234, guid: b0c189a05e6c6414bac03edcbc8b80b4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5258897263451190920, guid: b0c189a05e6c6414bac03edcbc8b80b4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5258897264368136369, guid: b0c189a05e6c6414bac03edcbc8b80b4, type: 3}
       propertyPath: m_Pivot.x
@@ -26347,7 +26347,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5258897264368136380, guid: b0c189a05e6c6414bac03edcbc8b80b4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0c189a05e6c6414bac03edcbc8b80b4, type: 3}
