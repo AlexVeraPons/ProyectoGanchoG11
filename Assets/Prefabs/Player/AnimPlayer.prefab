@@ -523,6 +523,7 @@ MonoBehaviour:
   _distance: 10
   _travelSpeed: 800
   _hookSpeed: 2000
+  _returnTime: 0
   _collidableLayers:
     serializedVersion: 2
     m_Bits: 6592
@@ -579,6 +580,7 @@ GameObject:
   - component: {fileID: 4149584894438781468}
   - component: {fileID: 49527430661512958}
   - component: {fileID: 49527430501777987}
+  - component: {fileID: 4489188702897478621}
   m_Layer: 9
   m_Name: Entity
   m_TagString: Player
@@ -703,7 +705,7 @@ Animator:
   m_GameObject: {fileID: 7051284086477677472}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 065f8daa85573b04f8a15d1a78f34695, type: 2}
+  m_Controller: {fileID: 9100000, guid: b44cfd6475d721941ad51e8aabe3a688, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -762,6 +764,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: f5d298f1-65ef-4ab9-b71b-b431bc3b1766
     m_ActionName: Player/AimHook[/XInputControllerWindows/rightStick/up,/XInputControllerWindows/rightStick/down,/XInputControllerWindows/rightStick/left,/XInputControllerWindows/rightStick/right]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c6c53c22-ad12-4ebf-abb8-75b69af81f39
+    m_ActionName: Player/Pause/Back[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Controller
   m_DefaultActionMap: Player
@@ -801,12 +807,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec813039dd69c44fa474d44d15204f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _grabDistance: 0.7
   _hookKeyboardInputReference: {fileID: -2014102432266571821, guid: 5d6ba09b9c30c4941a2a4e2f2e0cfc71, type: 3}
   _hookGamepadInputReference: {fileID: 7762273570662272099, guid: 5d6ba09b9c30c4941a2a4e2f2e0cfc71, type: 3}
   _hookObject: {fileID: 3203049619141546608}
   _state: 0
-  _peakDistance: 15
-  _grabDistance: 0.7
 --- !u!114 &4149584894438781468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -823,6 +828,7 @@ MonoBehaviour:
   _speed: 15
   _acceleration: 6
   _deceleration: 6
+  _airResistance: 1.7
 --- !u!114 &49527430661512958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -856,6 +862,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e81072ea9da60cb46a5e307a05bb376c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4489188702897478621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7051284086477677472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b4d3b3cbcef9df478eaac6b11122637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8129398080105904221
