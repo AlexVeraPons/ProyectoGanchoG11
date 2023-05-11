@@ -180,10 +180,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startTime: 1
-  _wakeUpDuration: 0
-  _duration: 3
-  _timeBeforeWarning: 0.5
-  _warningDuration: 0.5
+  _wakeUpDuration: 0.7
+  _duration: 2.5
+  _timeBeforeWarning: 0.7
+  _warningDuration: 0.9
   _warningZone: {fileID: 2639059824215115744}
   _growthSpeed: 20
 --- !u!212 &2639059825821497776
