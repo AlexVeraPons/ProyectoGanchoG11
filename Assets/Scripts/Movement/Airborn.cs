@@ -26,12 +26,14 @@ public class Airborn : State
         _rigidbody2D = ((PlayerStateMachine)stateMachine).RigidBody2D;
         _collisionDetector = ((PlayerStateMachine)stateMachine).CollisionDetector;
         _life = ((PlayerStateMachine)stateMachine).LifeComponent;
-        _speed = ((PlayerStateMachine)stateMachine).Speed;
         _acceleration = ((PlayerStateMachine)stateMachine).Acceleration;
         _deceleration = ((PlayerStateMachine)stateMachine).Deceleration;
         _airResistance = ((PlayerStateMachine)stateMachine).AirResistance;
+        _speed = ((PlayerStateMachine)stateMachine).Speed - _airResistance;
         _currentVelocity = _rigidbody2D.velocity.x;
         _animator = ((PlayerStateMachine)stateMachine).Animator;
+        
+        Debug.Log("current velocity: " + _currentVelocity);
     }
 
     public override void Enter()
@@ -70,8 +72,17 @@ public class Airborn : State
     public override void FixedUpdate()
     {
         base.FixedUpdate();
+        CheckIfDifferentVelocity();
         MovementUpdate();
         WallCollisionUpdate();
+    }
+
+    private void CheckIfDifferentVelocity()
+    {
+        if (_currentVelocity != _rigidbody2D.velocity.x)
+        {
+            _currentVelocity = _rigidbody2D.velocity.x;
+        }
     }
 
     private void WallCollisionUpdate()
@@ -89,34 +100,26 @@ public class Airborn : State
 
     private void MovementUpdate()
     {
-        if (_delayDone == false)
+      
+        if(_input != 0)
         {
-            return;
-        }
-
-        bool Hasinputted = false;
-
-        if (Mathf.Abs(_input) > 0.1f)
-        {
-            _currentVelocity = Mathf.Lerp(
+                _currentVelocity = Mathf.Lerp(
                 _currentVelocity,
                 _input * _speed,
                 _acceleration * Time.deltaTime
             );
-
-            Hasinputted = true;
-            ResetTimer();
+    
+            if (Mathf.Abs(_input) < 0.1f)
+            {
+                _currentVelocity = Mathf.Lerp(_currentVelocity, 0, _deceleration * Time.deltaTime);
+            }
+           
+           Debug.Log("input: " + _input + " speed: " + _speed + " currentVelocity: " + _currentVelocity);
+    
         }
 
-        if (Hasinputted == false)
-        {
-            return;
-        }
 
-        _rigidbody2D.velocity = new Vector2(
-            _currentVelocity / _airResistance,
-            _rigidbody2D.velocity.y
-        );
+        _rigidbody2D.velocity = new Vector2(_currentVelocity, _rigidbody2D.velocity.y);
     }
 
     private void ResetTimer()
@@ -133,6 +136,5 @@ public class Airborn : State
             AudioManager._instance.PlaySingleSound(SingleSound.PlayerGround);
             _stateMachine.ChangeState(new Grounded(_stateMachine));
         }
-
     }
 }
