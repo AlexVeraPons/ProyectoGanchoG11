@@ -13,7 +13,8 @@ public class MainMenu : MonoBehaviour
     private string _optionsScene;
     [SerializeField]
     private Button _playButton;
-    
+    private bool _isInMainMenu = false;
+
 
     private void Start()
     {
@@ -23,16 +24,24 @@ public class MainMenu : MonoBehaviour
 
         _initialMenu.SetActive(true);
         _mainMenu.SetActive(false);
+
+        if (_isInMainMenu)
+        {
+            _initialMenu.SetActive(false);
+            _mainMenu.SetActive(true);
+        }
+
     }
 
     public void GoToMainMenu()
     {
         _initialMenu.SetActive(false);
         _mainMenu.SetActive(true);
+        _isInMainMenu = true;
         _playButton.Select();
     }
 
-    public void LoadGame() 
+    public void LoadGame()
     {
         SceneManager.LoadScene(_gameScene);
     }
