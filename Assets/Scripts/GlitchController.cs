@@ -20,13 +20,13 @@ public class GlitchController : MonoBehaviour
     {
         if (_glitchOnWaveStart)
         {
-            WaveManager.OnLoadWave += Glitch;
+            //WaveManager.OnLoadWave += Glitch;
         }
     }
 
     private void OnDisable()
     {
-        WaveManager.OnLoadWave -= Glitch;
+        //WaveManager.OnLoadWave -= Glitch;
     }
 
     private void Awake()

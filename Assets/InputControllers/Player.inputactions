@@ -177,6 +177,17 @@
                 },
                 {
                     "name": "",
+                    "id": "c1fe2f4d-0ab6-4edb-80d4-b2bb8ed80228",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "ShootHook",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "326d265a-166d-40da-a272-27bbf660cbc0",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
