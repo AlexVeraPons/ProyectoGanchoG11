@@ -7,37 +7,34 @@ public class WaveManager : MonoBehaviour
 {
     public static WaveManager _instance;
 
-    public WaveState State => _state;
-    private WaveState _state;
-
     public WorldCollector Collector => _collector;
     private WorldCollector _collector;
     private WaveSpawner _spawner;
 
+    public static Action OnResetWave;
     public static Action OnUnloadWave;
     public static Action OnLoadWave;
 
-    [SerializeField] private Transform _playerTransform;
-
-    [SerializeField] InputActionReference _debugNextWaveAction;
-
+    [Header("MANAGER VALUES")]
     [SerializeField] bool _respawnOnWave;
+    [SerializeField] float _timeBetweenWaves = 1f;
+
+    [Space(10)]
+    [Header("DO NOT TOUCH")]
+    [SerializeField] private Transform _playerTransform;
     [SerializeField] bool _inProgress = false;
     [SerializeField] int _currentWaveID = 0;
     [SerializeField] int _currentWorldID = 0;
-    [SerializeField] float _timeBetweenWaves = 1f;
 
     private void Awake()
     {
         _collector = GetComponent<WorldCollector>();
         _spawner = GetComponent<WaveSpawner>();
 
-        if(_instance == null) { _instance = this; }
+        if (_instance == null) { _instance = this; }
         else { Destroy(this.gameObject); }
 
         AssignIDs();
-
-        //_debugNextWaveAction.action.Enable();
     }
 
     void OnEnable()
@@ -58,32 +55,15 @@ public class WaveManager : MonoBehaviour
         OnLoadWave?.Invoke();
     }
 
-    private void Update()
-    {
-        //if(_debugNextWaveAction.action.triggered) { NextWave(); }
-
-        switch(_state)
-        {
-            case WaveState.Pending:
-            break;
-
-            case WaveState.Ongoing:
-            break;
-
-            case WaveState.Finished:
-            break;
-        }
-    }
-
     public void NextWave()
     {
-        if(_inProgress == false)
+        if (_inProgress == false)
         {
             _inProgress = true;
 
             Wave nextWave = GetWaveByID(_currentWaveID + 1);
             World currentWorld = GetWorldByID(_currentWorldID);
-            if(nextWave != null)
+            if (nextWave != null)
             {
                 WavePacket previousPacket = new WavePacket(_currentWorldID, _currentWaveID);
 
@@ -102,8 +82,6 @@ public class WaveManager : MonoBehaviour
 
     public IEnumerator Next(WavePacket previousPacket, WavePacket nextPacket)
     {
-        _playerTransform.position = GetWaveByID(nextPacket.GetWaveID()).SpawnPosition;
-
         OnUnloadWave?.Invoke();
 
         this._spawner.DespawnWave(_collector, previousPacket.GetWorldID(), previousPacket.GetWaveID());
@@ -115,29 +93,13 @@ public class WaveManager : MonoBehaviour
         _inProgress = false;
     }
 
-    public void SwitchState(WaveState newState)
-    {
-        _state = newState;
-        OnEnterState(newState);
-    }
-
-    void OnEnterState(WaveState newState)
-    {
-        switch(newState)
-        {
-            default:
-
-                break;
-        }
-    }
-
     void AssignIDs()
     {
         int newWorldID = 0;
         int newWaveID = 0;
-        foreach(World world in _collector.Worlds)
+        foreach (World world in _collector.Worlds)
         {
-            foreach(Wave wave in world.WaveList)
+            foreach (Wave wave in world.WaveList)
             {
                 wave.SetID(newWaveID);
 
@@ -148,18 +110,20 @@ public class WaveManager : MonoBehaviour
 
             newWorldID += 1;
         }
+    }
 
-        print("Worlds: " + newWorldID);
-        print("Waves: " + newWaveID);
+    void ResetPlayerPosition()
+    {
+        _playerTransform.position = GetWaveByID(_currentWaveID).SpawnPosition;
     }
 
     Wave GetWaveByID(int ID)
     {
-        foreach(World world in _collector.Worlds)
+        foreach (World world in _collector.Worlds)
         {
-            foreach(Wave wave in world.WaveList)
+            foreach (Wave wave in world.WaveList)
             {
-                if(wave.ID == ID)
+                if (wave.ID == ID)
                 {
                     return wave;
                 }
@@ -172,9 +136,9 @@ public class WaveManager : MonoBehaviour
 
     World GetWorldByID(int ID)
     {
-        foreach(World world in _collector.Worlds)
+        foreach (World world in _collector.Worlds)
         {
-            if(world.ID == ID)
+            if (world.ID == ID)
             {
                 return world;
             }
@@ -186,9 +150,9 @@ public class WaveManager : MonoBehaviour
 
     bool NextWaveIsInAnotherWorld(World currentWorld, Wave newWave)
     {
-        foreach(Wave wave in currentWorld.WaveList)
+        foreach (Wave wave in currentWorld.WaveList)
         {
-            if(wave == newWave)
+            if (wave == newWave)
             {
                 return false;
             }
@@ -196,13 +160,6 @@ public class WaveManager : MonoBehaviour
 
         return true;
     }
-}
-
-public enum WaveState
-{
-    Pending,
-    Ongoing,
-    Finished
 }
 
 public class WavePacket
@@ -219,4 +176,4 @@ public class WavePacket
 
     public int GetWorldID() { return _worldID; }
     public int GetWaveID() { return _waveID; }
-} 
+}
