@@ -6,11 +6,6 @@ using UnityEngine;
 public abstract class Hazard : MonoBehaviour
 {
     [Header("Values")]
-
-    [SerializeField]
-    [Tooltip("The time after which the hazard will start.")]
-    private protected float _startTime = 0;
-
     [SerializeField]
     private protected float _wakeUpDuration = 0;
 
@@ -31,29 +26,18 @@ public abstract class Hazard : MonoBehaviour
         }
     }
 
-    private void OnEnable()
-    {
-        WaveManager.OnLoadWave += LevelStarted;
-    }
-
-    private void OnDisable()
-    {
-        WaveManager.OnLoadWave -= LevelStarted;
-    }
-
     private void Start()
     {
         ComponentDisabler();
     }
 
-    private void LevelStarted()
+    public void HazardStarted()
     {
         StartCoroutine(StartAfterDelay());
     }
 
     private IEnumerator StartAfterDelay()
     {
-        yield return new WaitForSeconds(seconds: _startTime);
         Appear();
         ComponentEnabler();
         yield return new WaitForSeconds(seconds: _wakeUpDuration);
@@ -61,6 +45,11 @@ public abstract class Hazard : MonoBehaviour
         yield return new WaitForSeconds(seconds: _duration);
         StopRunning();
         Disappear();
+    }
+
+    private bool IsTimeToStart()
+    {
+        throw new NotImplementedException();
     }
 
     private void Update()
@@ -150,6 +139,14 @@ public abstract class Hazard : MonoBehaviour
     /// This method is called when the hazard stops.
     /// </summary>
     private protected abstract void Disappear();
+
+    /// <summary>
+    /// This method is called when the hazard has to be reset
+    /// </summary>
+    private protected virtual void ResetHazard()
+    {
+        _running = false;
+    }
 }
 
 

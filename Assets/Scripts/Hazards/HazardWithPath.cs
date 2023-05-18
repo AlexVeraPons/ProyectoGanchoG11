@@ -130,4 +130,12 @@ public class HazardWithPath : Hazard
         Vector2 direction = (Vector3)_currentNode - transform.position;
         _rigidbody2D.velocity = direction.normalized * _linearSpeed;
     }
+
+    private protected override void ResetHazard()
+    {
+        _currentNodeIndex = 0;
+        _goingBack = false;
+        Disappear();
+        base.ResetHazard();
+    }
 }

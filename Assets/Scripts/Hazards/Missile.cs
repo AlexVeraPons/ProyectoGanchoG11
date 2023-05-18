@@ -18,6 +18,8 @@ public class Missile : Hazard
 
     private Rigidbody2D _rigidbody2D;
     private TrailRenderer _trailRenderer;
+    private Vector2 _intialPosition;
+    
 
     private protected override void Awake()
     {
@@ -26,6 +28,10 @@ public class Missile : Hazard
 
         _target = GameObject.FindObjectOfType<PlayerEntity>().gameObject;
     }
+    private void Start()
+    {
+        _intialPosition = transform.position;
+    }
 
     private protected override void Appear()
     {
@@ -33,8 +39,6 @@ public class Missile : Hazard
 
         _trailRenderer = GetComponent<TrailRenderer>();
         _trailRenderer.enabled = true;
-
-        //SoundManager._instance.PlaySingleSound(SingleSound.MissileFollowing);
     }
 
     private protected override void Disappear()
@@ -58,5 +62,11 @@ public class Missile : Hazard
     {
         base.DamageableAction(collision);
         AudioManager._instance.PlaySingleSound(SingleSound.MissileCrash);
+    }
+
+    private protected override void ResetHazard()
+    {
+        transform.position = _intialPosition;
+        base.ResetHazard();
     }
 }

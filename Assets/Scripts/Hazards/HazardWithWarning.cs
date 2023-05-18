@@ -101,4 +101,9 @@ public abstract class HazardWithWarning : Hazard
             collision.GetComponent<IDamageable>().TakeDamage(1);
         }
     }
+
+    private protected override void StartRunning()
+    {
+        _running = true;
+    }
 }
