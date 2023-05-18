@@ -84,9 +84,5 @@ public class Grounded : State
             _animator.SetBool("isGrounded", false);
             _stateMachine.ChangeState(new Airborn(_stateMachine));
         }
-        else if(_life.Current == 0)
-        {
-            _stateMachine.ChangeState(new Dead(_stateMachine));
-        }
     }
 }
