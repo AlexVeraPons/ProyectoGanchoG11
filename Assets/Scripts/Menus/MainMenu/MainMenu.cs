@@ -31,13 +31,11 @@ public class MainMenu : MonoBehaviour
         if (DataManager._instance._gameAlredyPlayed)
         {
             GoToMainMenu();
-            Debug.Log("true");
         }
         else
         {
             _initialMenu.SetActive(true);
             _mainMenu.SetActive(false);
-            Debug.Log(DataManager._instance._gameAlredyPlayed);
         }
 
     }
@@ -48,7 +46,6 @@ public class MainMenu : MonoBehaviour
         _initialMenu.SetActive(false);
         _mainMenu.SetActive(true);
         _playButton.Select();
-        Debug.Log("MainMenu");
     }
 
     public void LoadGame()
