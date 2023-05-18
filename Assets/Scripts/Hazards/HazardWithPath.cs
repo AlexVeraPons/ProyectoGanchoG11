@@ -131,7 +131,7 @@ public class HazardWithPath : Hazard
         _rigidbody2D.velocity = direction.normalized * _linearSpeed;
     }
 
-    private protected override void ResetHazard()
+    public override void ResetHazard()
     {
         _currentNodeIndex = 0;
         _goingBack = false;

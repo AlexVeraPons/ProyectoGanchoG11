@@ -16,9 +16,33 @@ public class HazardContainer
     [SerializeField]
     private List<Hazard> _hazards = new List<Hazard>();
 
-    internal void StartContainer()
+    public void StartContainer()
     {
-        throw new NotImplementedException();
+        foreach (Hazard hazard in _hazards)
+        {
+            hazard.HazardStart();
+        }
+    }
+
+    public void ResetContainer()
+    {
+        foreach (Hazard hazard in _hazards)
+        {
+            hazard.ResetHazard();
+        }
+    }
+
+    public float GetDuration()
+    {
+        float duration = 0;
+        foreach (Hazard hazard in _hazards)
+        {
+            if (hazard.Duration > duration)
+            {
+                duration = hazard.Duration;
+            }
+        }
+        return duration;
     }
 }
 

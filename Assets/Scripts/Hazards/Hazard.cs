@@ -12,6 +12,7 @@ public abstract class Hazard : MonoBehaviour
     [SerializeField]
     [Tooltip("The total duration of the hazard.")]
     private protected float _duration = 0;
+    public float Duration => _duration;
 
     private protected bool _running = false;
 
@@ -31,7 +32,7 @@ public abstract class Hazard : MonoBehaviour
         ComponentDisabler();
     }
 
-    public void HazardStarted()
+    public void HazardStart()
     {
         StartCoroutine(StartAfterDelay());
     }
@@ -86,9 +87,10 @@ public abstract class Hazard : MonoBehaviour
 
     private protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if(!_running) return;
+        if (!_running)
+            return;
 
-        if(collision.GetComponent<IDamageable>() != null)
+        if (collision.GetComponent<IDamageable>() != null)
         {
             DamageableAction(collision);
         }
@@ -104,7 +106,7 @@ public abstract class Hazard : MonoBehaviour
         //This should be the only thing here
         AudioManager._instance.PlaySingleSound(SingleSound.EnemyAppear);
     }
-    
+
     /// <summary>
     /// This method is called to generate a sound.
     /// </summary>
@@ -113,10 +115,15 @@ public abstract class Hazard : MonoBehaviour
         AudioManager._instance.PlaySingleSound(SingleSound.EnemyAppear);
     }
 
+    private protected void PseudoDisappear()
+    {
+        this.GetComponent<SpriteRenderer>().enabled = false;
+    }
+
     /// <summary>
     /// This method is called to stop a sound. Only use this if the generated sound is looped.
     /// </summary>
-    private protected virtual void StopRunSound() {}
+    private protected virtual void StopRunSound() { }
 
     /// <summary>
     /// This method is called then the hazard is running.
@@ -143,10 +150,9 @@ public abstract class Hazard : MonoBehaviour
     /// <summary>
     /// This method is called when the hazard has to be reset
     /// </summary>
-    private protected virtual void ResetHazard()
+    public virtual void ResetHazard()
     {
         _running = false;
+        PseudoDisappear();
     }
 }
-
-

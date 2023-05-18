@@ -64,7 +64,7 @@ public class Missile : Hazard
         AudioManager._instance.PlaySingleSound(SingleSound.MissileCrash);
     }
 
-    private protected override void ResetHazard()
+    public override void ResetHazard()
     {
         transform.position = _intialPosition;
         base.ResetHazard();

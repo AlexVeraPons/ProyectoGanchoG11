@@ -83,7 +83,7 @@ public abstract class HazardWithWarning : Hazard
     {
         _warningZone.SetActive(false);
         _warningFinished = false;
-        this.gameObject.SetActive(false);
+        PseudoDisappear();
     }
 
     /// <summary>
@@ -105,5 +105,13 @@ public abstract class HazardWithWarning : Hazard
     private protected override void StartRunning()
     {
         _running = true;
+    }
+
+    public override void ResetHazard()
+    {
+        _warningFinished = false;
+        _warningZone.SetActive(false);
+
+        base.ResetHazard();
     }
 }

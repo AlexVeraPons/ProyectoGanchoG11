@@ -12,20 +12,44 @@ public class HazardOrganizer : MonoBehaviour
     private void OnEnable()
     {
         WaveManager.OnLoadWave += LevelStarted;
+        WaveManager.OnUnloadWave += ResetContainers;
+        WaveManager.OnResetWave += ResetContainers;
+        WaveManager.OnResetWave += resetContainerIndex;
     }
 
     private void OnDisable()
     {
         WaveManager.OnLoadWave -= LevelStarted;
+        WaveManager.OnUnloadWave -= ResetContainers;
+        WaveManager.OnResetWave -= ResetContainers;
+        WaveManager.OnResetWave -= resetContainerIndex;
     }
 
     private void LevelStarted()
     {
-        StartCoroutine(NextContainerAfterDelay());
+        StartCoroutine(StartInitialContainer());
     }
 
-    private IEnumerator NextContainerAfterDelay()
+    private IEnumerator StartInitialContainer()
     {
+        yield return new WaitForSeconds(
+            seconds: _hazardContainers[0].StartTime
+        );
+        _currentContainer.StartContainer();
+        StartCoroutine(NextContainerAfterDelay(_currentContainer.GetDuration()));
+    }
+
+    private IEnumerator NextContainerAfterDelay(float duration = 0)
+    {
+        yield return new WaitForSeconds(
+            seconds: duration
+        );
+
+        if (_currentContainerIndex == _hazardContainers.Length - 1)
+        {
+            yield break;
+        }
+
         yield return new WaitForSeconds(
             seconds: _hazardContainers[_currentContainerIndex + 1].StartTime
         );
@@ -36,5 +60,19 @@ public class HazardOrganizer : MonoBehaviour
     {
         _currentContainerIndex++;
         _currentContainer.StartContainer();
+        StartCoroutine(NextContainerAfterDelay(_currentContainer.GetDuration()));
+    }
+
+    private void ResetContainers()
+    {
+        foreach (HazardContainer container in _hazardContainers)
+        {
+            container.ResetContainer();
+        }
+    }
+
+    private void resetContainerIndex()
+    {
+        _currentContainerIndex = 0;
     }
 }
