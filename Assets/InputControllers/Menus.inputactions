@@ -1,0 +1,76 @@
+{
+    "name": "Menus",
+    "maps": [
+        {
+            "name": "Interactuar",
+            "id": "02b03177-61ee-4320-a354-355df9981974",
+            "actions": [
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "fc6f20d2-0b91-4647-ad42-9e490df8bf54",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "GoBack",
+                    "type": "Button",
+                    "id": "788df189-8ef0-4145-a09b-6b5e348badec",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "56cbca93-3361-49b7-a581-1df103e43cc7",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3c15a813-17fc-4b5b-8a0d-002d3f5435b7",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "229ed34e-93a8-4cbc-b8e3-09fc31400af6",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GoBack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "70bbeb50-5458-4a9d-9ef4-86d30b16717c",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GoBack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

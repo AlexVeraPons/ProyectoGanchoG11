@@ -14,10 +14,15 @@ public class PauseSystem : MonoBehaviour
     private bool _isPaused;
     private ScenePicker _scenePicker;
     private string _mainMenuScene;
+    private MenusMap _myInput;
+   
     //private CustomInput _input = null;
 
     void Start()
     {
+        _myInput = new MenusMap();
+        _myInput.Interactuar.Enable();
+        
         _scenePicker = GetComponent<ScenePicker>();
         _mainMenuScene = _scenePicker.scenePath.ToString();
 
@@ -36,7 +41,7 @@ public class PauseSystem : MonoBehaviour
             Time.timeScale = 1f;
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape)) //pasar a nou input
+        if (_myInput.Interactuar.Pause.WasPressedThisFrame())
         {
             if (_isPaused && _optionsMenu.activeSelf == false)
             {
@@ -49,6 +54,16 @@ public class PauseSystem : MonoBehaviour
             else if (_isPaused == false)
             {
                 PauseGame();
+            }
+        }
+        if(_myInput.Interactuar.GoBack.WasPressedThisFrame()){
+            if (_isPaused && _optionsMenu.activeSelf == false)
+            {
+                ResumeGame();
+            }
+            else if (_isPaused && _optionsMenu.activeSelf)
+            {
+                ReturnPausePanel();
             }
         }
     }
