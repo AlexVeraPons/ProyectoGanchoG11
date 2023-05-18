@@ -10,6 +10,13 @@ public class MainOptionsMenu : MonoBehaviour
         _scenePicker = GetComponent<ScenePicker>();
         _mainMenuScene = _scenePicker.scenePath.ToString();
     }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)) //new input
+        {
+            LoadMainMenu();
+        }
+    }
 
     public void LoadMainMenu()
     {

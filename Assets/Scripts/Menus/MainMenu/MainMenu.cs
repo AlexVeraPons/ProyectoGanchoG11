@@ -28,18 +28,25 @@ public class MainMenu : MonoBehaviour
         _optionsScene = _scenePicker.anotherScenePath.ToString();
 
 
-        if (DataManager._instance._gameAlredyPlayed)
-        {
-            GoToMainMenu();
-        }
-        else
+        if (DataManager._instance._gameAlredyPlayed == false)
         {
             _initialMenu.SetActive(true);
             _mainMenu.SetActive(false);
         }
+        else
+        {
+            GoToMainMenu();
+        }
 
     }
 
+    private void Update()
+    {
+        if (Input.anyKey && _initialMenu.activeSelf)
+        {
+            GoToMainMenu();
+        }
+    }
     public void GoToMainMenu()
     {
         DataManager._instance._gameAlredyPlayed = true;
