@@ -5,10 +5,10 @@ using UnityEngine.InputSystem;
 
 public class GrapplingGun : MonoBehaviour
 {
-    [Header("STANDARD VALUES")]
+    //[Header("STANDARD VALUES")]
     // Referenced values in inspector
-    [Tooltip("Minimum distance at which the hook will be retrieved")]
-    [SerializeField] float _grabDistance = 0.5f;
+    //[Tooltip("Minimum distance at which the hook will be retrieved")]
+    //[SerializeField] float _grabDistance = 0.5f;
 
     public bool HookHeld => _hookActionHeld;
 
@@ -118,9 +118,14 @@ public class GrapplingGun : MonoBehaviour
         _hook.SetHook(this);
     }
 
-    void JamGun()
+    public void JamGun()
     {
         _state = GrapplingGunState.Jammed;
+    }
+
+    public void UnJamGun()
+    {
+        _state = GrapplingGunState.Waiting;
     }
 }
 

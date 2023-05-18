@@ -32,14 +32,11 @@ public class Airborn : State
         _speed = ((PlayerStateMachine)stateMachine).Speed - _airResistance;
         _currentVelocity = _rigidbody2D.velocity.x;
         _animator = ((PlayerStateMachine)stateMachine).Animator;
-        
-        Debug.Log("current velocity: " + _currentVelocity);
     }
 
     public override void Enter()
     {
         base.Enter();
-
     }
 
     private void Delay()
@@ -100,26 +97,24 @@ public class Airborn : State
 
     private void MovementUpdate()
     {
-      
-        if(_input != 0)
+        if (_input != 0)
         {
-                _currentVelocity = Mathf.Lerp(
+            _currentVelocity = Mathf.Lerp(
                 _currentVelocity,
                 _input * _speed,
                 _acceleration * Time.deltaTime
             );
-    
+
             if (Mathf.Abs(_input) < 0.1f)
             {
                 _currentVelocity = Mathf.Lerp(_currentVelocity, 0, _deceleration * Time.deltaTime);
             }
-           
-           Debug.Log("input: " + _input + " speed: " + _speed + " currentVelocity: " + _currentVelocity);
-    
         }
 
-
-        _rigidbody2D.velocity = new Vector2(_currentVelocity, _rigidbody2D.velocity.y);
+        if (_rigidbody2D.bodyType != RigidbodyType2D.Static)
+        {
+            _rigidbody2D.velocity = new Vector2(_currentVelocity, _rigidbody2D.velocity.y);
+        }
     }
 
     private void ResetTimer()

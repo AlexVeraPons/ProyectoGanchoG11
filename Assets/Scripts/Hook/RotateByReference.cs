@@ -17,7 +17,7 @@ public class RotateByReference : MonoBehaviour
     {
         _parentTransform = gameObject.transform.parent.transform;
         _input = _parentTransform.GetComponent<PlayerInput>();
-
+        
     }
 
     private void Update()

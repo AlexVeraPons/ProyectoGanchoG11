@@ -13,26 +13,42 @@ public class MainMenu : MonoBehaviour
     private string _optionsScene;
     [SerializeField]
     private Button _playButton;
-    
 
+
+    [SerializeField]
+    private DataManager _dataManager;
+    private void Awake()
+    {
+
+    }
     private void Start()
     {
         _scenePicker = GetComponent<ScenePicker>();
         _gameScene = _scenePicker.scenePath.ToString();
         _optionsScene = _scenePicker.anotherScenePath.ToString();
 
-        _initialMenu.SetActive(true);
-        _mainMenu.SetActive(false);
+
+        if (DataManager._instance._gameAlredyPlayed)
+        {
+            GoToMainMenu();
+        }
+        else
+        {
+            _initialMenu.SetActive(true);
+            _mainMenu.SetActive(false);
+        }
+
     }
 
     public void GoToMainMenu()
     {
+        DataManager._instance._gameAlredyPlayed = true;
         _initialMenu.SetActive(false);
         _mainMenu.SetActive(true);
         _playButton.Select();
     }
 
-    public void LoadGame() 
+    public void LoadGame()
     {
         SceneManager.LoadScene(_gameScene);
     }

@@ -7,6 +7,7 @@ TagManager:
   - Object
   - Platform
   - Hook
+  - dataManager
   layers:
   - Default
   - TransparentFX

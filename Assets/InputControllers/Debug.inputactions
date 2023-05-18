@@ -1,0 +1,46 @@
+{
+    "name": "Debug",
+    "maps": [
+        {
+            "name": "Debug",
+            "id": "06ded0ab-80c8-43d9-9471-bf6d82bdbb9a",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "64c66245-ed6a-45cd-99fe-429484a5f6cd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9980081c-9511-4c67-ac65-a2ac5894bbc8",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "New control scheme",
+            "bindingGroup": "New control scheme",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

@@ -24,20 +24,11 @@ public class LifeComponent : MonoBehaviour, IDamageable
         _debugTakeDamageAction.Enable();
     }
 
-    private void Update()
-    {
-        //Debug stuff
-        /*
-        if(_debugTakeDamageAction.triggered)
-        {
-            print("Debug Action: TakeDamage(1) executed.");
-            TakeDamage(1);
-        } 
-        */   
-    }
-
     public void TakeDamage(int ammount)
     {
+        OnDeath?.Invoke();
+
+        /*
         if(IsDead() == false)
         {
             _current = Math.Max(_current - ammount, 0);
@@ -50,7 +41,9 @@ public class LifeComponent : MonoBehaviour, IDamageable
                 AudioManager._instance.PlaySingleSound(SingleSound.PlayerDeath);
                 OnDeath?.Invoke();
             }
-        }
+        }*/
+
+        //We have to remove this later
     }
 
     bool IsDead()
