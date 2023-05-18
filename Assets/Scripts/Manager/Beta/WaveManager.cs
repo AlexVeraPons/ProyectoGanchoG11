@@ -99,6 +99,7 @@ public class WaveManager : MonoBehaviour
             }
             else
             {
+                print("ya no XD");
                 _inLastWave = true;
                 OnLoadWave?.Invoke();
             }
