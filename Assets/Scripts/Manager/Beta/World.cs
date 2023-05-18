@@ -19,4 +19,10 @@ public class World : MonoBehaviour
     {
         _worldID = id;
     }
+
+    //Should be used
+    public int GetFirstWaveID()
+    {
+        return _waveList[0].ID;
+    }
 }

@@ -118,9 +118,14 @@ public class GrapplingGun : MonoBehaviour
         _hook.SetHook(this);
     }
 
-    void JamGun()
+    public void JamGun()
     {
         _state = GrapplingGunState.Jammed;
+    }
+
+    public void UnJamGun()
+    {
+        _state = GrapplingGunState.Waiting;
     }
 }
 
