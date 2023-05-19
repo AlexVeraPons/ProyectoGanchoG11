@@ -28,7 +28,7 @@
                     "type": "Value",
                     "id": "f5d298f1-65ef-4ab9-b71b-b431bc3b1766",
                     "expectedControlType": "Stick",
-                    "processors": "",
+                    "processors": "StickDeadzone",
                     "interactions": "",
                     "initialStateCheck": true
                 },
@@ -191,8 +191,8 @@
                     "id": "326d265a-166d-40da-a272-27bbf660cbc0",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
-                    "processors": "",
-                    "groups": "",
+                    "processors": "StickDeadzone",
+                    "groups": "Controller",
                     "action": "AimHook",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -203,7 +203,7 @@
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard&Mouse",
                     "action": "Pause/Back",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -214,7 +214,7 @@
                     "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Controller",
                     "action": "Pause/Back",
                     "isComposite": false,
                     "isPartOfComposite": false

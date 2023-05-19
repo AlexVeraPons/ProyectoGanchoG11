@@ -26,7 +26,6 @@ public class WaveManager : MonoBehaviour
     bool _inProgress = false;
     int _currentWaveID = 0;
     int _currentWorldID = 0;
-    bool _inLastWave = false;
 
     private void Awake()
     {
@@ -99,7 +98,6 @@ public class WaveManager : MonoBehaviour
             }
             else
             {
-                _inLastWave = true;
                 OnLoadWave?.Invoke();
             }
         }
@@ -228,4 +226,20 @@ public class WaveManager : MonoBehaviour
         Debug.LogError("The wave ID is erroneous!");
         return -1;
     }
+}
+
+public class WaveData
+{
+    int _worldID;
+    int _waveID;
+
+
+    public WaveData(int worldID, int waveID)
+    {
+        this._worldID = worldID;
+        this._waveID = waveID;
+    }
+
+    public int GetWorldID() { return _worldID; }
+    public int GetWaveID() { return _waveID; }
 }
