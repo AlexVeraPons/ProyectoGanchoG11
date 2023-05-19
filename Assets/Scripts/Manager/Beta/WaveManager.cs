@@ -110,9 +110,10 @@ public class WaveManager : MonoBehaviour
         yield return new WaitForSeconds(_timeBetweenWaves);
         this._spawner.SpawnWave(_collector, nextWaveData.GetWorldID(), nextWaveData.GetWaveID());
 
+        ResetWavePlayerPosition(nextWaveData);
+        
         if(isRespawning == true)
         {
-            ResetWavePlayerPosition(nextWaveData);
             OnResetWave?.Invoke();
         }
 
