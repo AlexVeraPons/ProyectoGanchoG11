@@ -1,58 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 
 public class FullScreenLogic : MonoBehaviour
 {
     [SerializeField]
-    private Toggle _toggle;
-    [SerializeField]
-    private TMP_Dropdown _resolutionDropdown;
-    Resolution[] _resolutions;
+    private ButtonLogic _buttonLogic;
+    // private int _buttonIndex;
+    private bool _isFullscreen;
+    private void OnEnable()
+    {
+        _buttonLogic.OnChangeIndex += CheckIndex;
+    }
+    private void OnDisable()
+    {
+        _buttonLogic.OnChangeIndex -= CheckIndex;
+    }
     void Start()
     {
         if (Screen.fullScreen)
         {
-            _toggle.isOn = true;
+            _isFullscreen = true;
+            _buttonLogic.Index = 0;
         }
         else
         {
-            _toggle.isOn = false;
+            _isFullscreen = false;
+            _buttonLogic.Index = 1;
         }
-        CheckResolutions();
+
     }
-    public void CheckResolutions()
+    private void CheckIndex(int Index)
     {
-        _resolutions = Screen.resolutions;
-        _resolutionDropdown.ClearOptions();
-        List<string> options = new List<string>();
-        int actualResolution = 0;
-        for (int i = 0; i < _resolutions.Length; i++)
+        //Debug.Log("fullscreen");
+        if (Index == 0)
         {
-            string option = _resolutions[i].width + " x " + _resolutions[i].height;
-            options.Add(option);
-
-            if (Screen.fullScreen && _resolutions[i].width == Screen.currentResolution.width && _resolutions[i].height == Screen.currentResolution.height)
-            {
-                actualResolution = i;
-            }
+            _isFullscreen = true;
+            Screen.fullScreen = _isFullscreen;
         }
-        _resolutionDropdown.AddOptions(options);
-        _resolutionDropdown.value = actualResolution;
-        _resolutionDropdown.RefreshShownValue();
-
-        _resolutionDropdown.value = PlayerPrefs.GetInt("resolutionNumber", 0);
+        if (Index == 1)
+        {
+            _isFullscreen = false;
+            Screen.fullScreen = _isFullscreen;
+        }
     }
-    public void ChangeResolution(int resoltuionIndex)
-    {
-        PlayerPrefs.SetInt("resolutionNumber", _resolutionDropdown.value);
-        Resolution resolution = _resolutions[resoltuionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
-    }
-    public void ActivateFullScreen(bool fullScreen)
-    {
-        Screen.fullScreen = fullScreen;
-    }
-} 
+}
