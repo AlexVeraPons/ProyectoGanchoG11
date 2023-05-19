@@ -15,14 +15,14 @@ public class PauseSystem : MonoBehaviour
     private ScenePicker _scenePicker;
     private string _mainMenuScene;
     private MenusMap _myInput;
-   
+
     //private CustomInput _input = null;
 
     void Start()
     {
         _myInput = new MenusMap();
         _myInput.Interactuar.Enable();
-        
+
         _scenePicker = GetComponent<ScenePicker>();
         _mainMenuScene = _scenePicker.scenePath.ToString();
 
@@ -40,32 +40,20 @@ public class PauseSystem : MonoBehaviour
         {
             Time.timeScale = 1f;
         }
-
-        if (_myInput.Interactuar.Pause.WasPressedThisFrame())
+        
+        
+        if (_isPaused == false && _myInput.Interactuar.Pause.WasPressedThisFrame())
         {
-            if (_isPaused && _optionsMenu.activeSelf == false)
-            {
-                ResumeGame();
-            }
-            else if (_isPaused && _optionsMenu.activeSelf)
-            {
-                ReturnPausePanel();
-            }
-            else if (_isPaused == false)
-            {
-                PauseGame();
-            }
+            PauseGame();
         }
-        if(_myInput.Interactuar.GoBack.WasPressedThisFrame()){
-            if (_isPaused && _optionsMenu.activeSelf == false)
-            {
-                ResumeGame();
-            }
-            else if (_isPaused && _optionsMenu.activeSelf)
-            {
-                ReturnPausePanel();
-            }
+        else if((_isPaused && _optionsMenu.activeSelf == false) && (_myInput.Interactuar.GoBack.WasPressedThisFrame() || _myInput.Interactuar.Pause.WasPressedThisFrame())){
+            ResumeGame();
         }
+        else if((_isPaused && _optionsMenu.activeSelf == true) && _myInput.Interactuar.GoBack.WasPressedThisFrame()){
+            ReturnPausePanel();
+        }
+
+
     }
     public void PauseGame()
     {
