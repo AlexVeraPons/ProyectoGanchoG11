@@ -19,6 +19,9 @@ public class Collectible : Hazard
 
     private protected override void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!_running)
+            return;
+
         if(collision.CompareTag("Player") == true)
         {
             OnCollected?.Invoke();
