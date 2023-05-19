@@ -19,6 +19,7 @@ public class Missile : Hazard
     private Rigidbody2D _rigidbody2D;
     private TrailRenderer _trailRenderer;
     private Vector2 _intialPosition;
+    private Quaternion _initialRotation;
     
 
     private protected override void Awake()
@@ -27,10 +28,12 @@ public class Missile : Hazard
         _rigidbody2D = GetComponent<Rigidbody2D>();
 
         _target = GameObject.FindObjectOfType<PlayerEntity>().gameObject;
+        this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
     private void Start()
     {
         _intialPosition = transform.position;
+        _initialRotation = transform.rotation;
     }
 
     private protected override void Appear()
@@ -43,7 +46,9 @@ public class Missile : Hazard
 
     private protected override void Disappear()
     {
-        this.gameObject.SetActive(false);
+        base.Disappear();
+
+        _trailRenderer.enabled = false;
     }
 
     private protected override void HazardUpdate()
@@ -67,6 +72,7 @@ public class Missile : Hazard
     public override void ResetHazard()
     {
         transform.position = _intialPosition;
+        transform.rotation = _initialRotation;
         base.ResetHazard();
     }
 }

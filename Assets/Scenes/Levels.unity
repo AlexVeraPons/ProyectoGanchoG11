@@ -1735,7 +1735,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &66970303
 Transform:
   m_ObjectHideFlags: 0
@@ -7913,7 +7913,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb25bfb37f7d2824283670782c3d34a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startTime: 0
   _wakeUpDuration: 0
   _duration: 99999
 --- !u!212 &341193755
@@ -13400,7 +13399,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb25bfb37f7d2824283670782c3d34a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startTime: 0
   _wakeUpDuration: 0
   _duration: 99999
 --- !u!212 &624164194
@@ -18454,7 +18452,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb25bfb37f7d2824283670782c3d34a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startTime: 0
   _wakeUpDuration: 0
   _duration: 99999
 --- !u!212 &904840410
@@ -19339,7 +19336,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb25bfb37f7d2824283670782c3d34a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startTime: 0
   _wakeUpDuration: 0
   _duration: 99999
 --- !u!212 &950628216
@@ -21586,7 +21582,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1056906747
 Transform:
   m_ObjectHideFlags: 0
@@ -22566,7 +22562,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb25bfb37f7d2824283670782c3d34a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startTime: 10
   _wakeUpDuration: 2
   _duration: 99999
 --- !u!212 &1096653689
@@ -24099,7 +24094,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb25bfb37f7d2824283670782c3d34a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startTime: 0
   _wakeUpDuration: 0
   _duration: 99999
 --- !u!212 &1194226156
@@ -24487,7 +24481,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3203049619141546622, guid: f49dd3fd330b07944a20f06c463b9cdb, type: 3}
       propertyPath: _distance
-      value: 20
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5147694667978627905, guid: f49dd3fd330b07944a20f06c463b9cdb, type: 3}
       propertyPath: m_Sprite
@@ -25500,7 +25494,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1275950383
 Transform:
   m_ObjectHideFlags: 0
@@ -27194,7 +27188,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb25bfb37f7d2824283670782c3d34a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startTime: 0
   _wakeUpDuration: 0
   _duration: 99999
 --- !u!212 &1340569749
@@ -32625,7 +32618,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb25bfb37f7d2824283670782c3d34a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startTime: 10
   _wakeUpDuration: 2
   _duration: 99999
 --- !u!212 &1595048023

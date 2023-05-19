@@ -32,18 +32,19 @@ public class HazardOrganizer : MonoBehaviour
 
     private IEnumerator StartInitialContainer()
     {
-        yield return new WaitForSeconds(
-            seconds: _hazardContainers[0].StartTime
-        );
+        yield return new WaitForSeconds(seconds: _hazardContainers[0].StartTime);
         _currentContainer.StartContainer();
         StartCoroutine(NextContainerAfterDelay(_currentContainer.GetDuration()));
     }
 
     private IEnumerator NextContainerAfterDelay(float duration = 0)
     {
-        yield return new WaitForSeconds(
-            seconds: duration
-        );
+        if (_hazardContainers[_currentContainerIndex + 1].IgnorePreviousDuration)
+        {
+            duration = 0;
+        }
+
+        yield return new WaitForSeconds(seconds: duration);
 
         if (_currentContainerIndex == _hazardContainers.Length - 1)
         {
@@ -53,6 +54,7 @@ public class HazardOrganizer : MonoBehaviour
         yield return new WaitForSeconds(
             seconds: _hazardContainers[_currentContainerIndex + 1].StartTime
         );
+        
         NextContainer();
     }
 
@@ -60,6 +62,18 @@ public class HazardOrganizer : MonoBehaviour
     {
         _currentContainerIndex++;
         _currentContainer.StartContainer();
+
+        if (_currentContainerIndex == _hazardContainers.Length - 1)
+        {
+            return;
+        }
+
+        if (_currentContainer.IgnorePreviousDuration)
+        {
+            StartCoroutine(NextContainerAfterDelay());
+            return;
+        }
+
         StartCoroutine(NextContainerAfterDelay(_currentContainer.GetDuration()));
     }
 

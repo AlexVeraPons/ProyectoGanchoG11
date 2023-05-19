@@ -110,7 +110,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2639059825770346053}
   m_Layer: 0
-  m_Name: DeathZone
+  m_Name: DeathZoneKit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

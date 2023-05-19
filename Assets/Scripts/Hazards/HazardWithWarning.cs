@@ -5,10 +5,6 @@ using UnityEngine;
 public abstract class HazardWithWarning : Hazard
 {
     [SerializeField]
-    [Tooltip("The time before the warning is displayed.")]
-    private protected float _timeBeforeWarning = 0;
-
-    [SerializeField]
     [Tooltip("The time the warning will be displayed before the box grows.")]
     private protected float _warningDuration = 0;
 
@@ -30,7 +26,6 @@ public abstract class HazardWithWarning : Hazard
         if (_warningZone.GetComponent<GlitchController>() != null)
         {
             _glitchController = _warningZone.GetComponent<GlitchController>();
-            _glitchController.ModifyGlitchDuration(0.5f);
         }
     }
 
@@ -42,7 +37,6 @@ public abstract class HazardWithWarning : Hazard
 
     private IEnumerator Warning()
     {
-        yield return new WaitForSeconds(seconds: _timeBeforeWarning);
         ShowWarning();
         GlitchWarnnig();
 
@@ -55,7 +49,7 @@ public abstract class HazardWithWarning : Hazard
     {
         if (_glitchController != null)
         {
-            _glitchController.Glitch();
+            _glitchController.Glitch(_glitchDuration);
         }
     }
 
@@ -81,9 +75,10 @@ public abstract class HazardWithWarning : Hazard
 
     private protected override void Disappear()
     {
-        _warningZone.SetActive(false);
+        Debug.Log("Disappear");
         _warningFinished = false;
-        PseudoDisappear();
+        _warningZone.SetActive(false);
+        base.Disappear();
     }
 
     /// <summary>

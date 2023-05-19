@@ -9,9 +9,15 @@ public class HazardContainer
     public HazardContainer() { }
 
     [SerializeField]
-    [Tooltip("The time after which the hazard will start, after the last slot has finished.")]
+    [Tooltip("The time after which the hazard will start, after the last slot has finished its duration.")]
     private float _starTime;
     public float StartTime => _starTime;
+
+    [SerializeField]
+    [Tooltip("Ignore the duration of the previous Container, and start this one immediately after the start time has elapsed.")]
+    private bool _ignorePreviousDuration;
+
+    public bool IgnorePreviousDuration => _ignorePreviousDuration;
 
     [SerializeField]
     private List<Hazard> _hazards = new List<Hazard>();
@@ -35,6 +41,7 @@ public class HazardContainer
     public float GetDuration()
     {
         float duration = 0;
+
         foreach (Hazard hazard in _hazards)
         {
             if (hazard.Duration > duration)
@@ -42,6 +49,7 @@ public class HazardContainer
                 duration = hazard.Duration;
             }
         }
+
         return duration;
     }
 }

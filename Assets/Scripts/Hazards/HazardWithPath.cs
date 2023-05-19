@@ -57,7 +57,7 @@ public class HazardWithPath : Hazard
 
     private protected override void Disappear()
     {
-        this.gameObject.SetActive(false);
+        base.Disappear();
     }
 
     private protected override void HazardUpdate()

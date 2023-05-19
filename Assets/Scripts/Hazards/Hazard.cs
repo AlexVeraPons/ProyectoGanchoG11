@@ -7,7 +7,7 @@ public abstract class Hazard : MonoBehaviour
 {
     [Header("Values")]
     [SerializeField]
-    private protected float _wakeUpDuration = 0;
+    private protected float _glitchDuration = 0;
 
     [SerializeField]
     [Tooltip("The total duration of the hazard.")]
@@ -23,7 +23,6 @@ public abstract class Hazard : MonoBehaviour
         if (GetComponent<GlitchController>() != null)
         {
             _glitchController = GetComponent<GlitchController>();
-            _glitchController.ModifyGlitchDuration(_wakeUpDuration);
         }
     }
 
@@ -41,11 +40,12 @@ public abstract class Hazard : MonoBehaviour
     {
         Appear();
         ComponentEnabler();
-        yield return new WaitForSeconds(seconds: _wakeUpDuration);
+        yield return new WaitForSeconds(seconds: _glitchDuration);
+        Debug.Log("Starting hazard: " + this.gameObject.name + "has had" + _glitchDuration + "seconds of glitch");
         StartRunning();
-        yield return new WaitForSeconds(seconds: _duration);
-        StopRunning();
+        yield return new WaitForSeconds(seconds: _duration - _glitchDuration);
         Disappear();
+        StopRunning();
     }
 
     private bool IsTimeToStart()
@@ -77,12 +77,12 @@ public abstract class Hazard : MonoBehaviour
 
     private protected void ComponentDisabler()
     {
-        this.GetComponent<SpriteRenderer>().enabled = false;
+        this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     private protected void ComponentEnabler()
     {
-        this.GetComponent<SpriteRenderer>().enabled = true;
+        this.gameObject.GetComponent<SpriteRenderer>().enabled = true;
     }
 
     private protected virtual void OnTriggerEnter2D(Collider2D collision)
@@ -108,16 +108,11 @@ public abstract class Hazard : MonoBehaviour
     }
 
     /// <summary>
-    /// This method is called to generate a sound.
+    /// This method is called to generate a swound.
     /// </summary>
     private protected virtual void PlayRunSound()
     {
         AudioManager._instance.PlaySingleSound(SingleSound.EnemyAppear);
-    }
-
-    private protected void PseudoDisappear()
-    {
-        this.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     /// <summary>
@@ -135,24 +130,26 @@ public abstract class Hazard : MonoBehaviour
     /// </summary>
     private protected virtual void Appear()
     {
-        this.gameObject.SetActive(true);
         if (_glitchController != null)
         {
-            _glitchController.Glitch();
+            _glitchController.Glitch(_glitchDuration);
         }
     }
 
     /// <summary>
     /// This method is called when the hazard stops.
     /// </summary>
-    private protected abstract void Disappear();
+    private protected virtual void Disappear()
+    {
+        ComponentDisabler();
+    }
 
     /// <summary>
     /// This method is called when the hazard has to be reset
     /// </summary>
     public virtual void ResetHazard()
     {
-        _running = false;
-        PseudoDisappear();
+        StopRunning();
+        Disappear();
     }
 }
