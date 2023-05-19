@@ -53,8 +53,6 @@ public class GlitchController : MonoBehaviour
     {
         GetComponent<SpriteRenderer>().material = new Material(_glitchMaterial);
 
-        Debug.Log("Glitching for: " + _glitchDuration + " seconds");
-
         yield return new WaitForSeconds(_glitchDuration);
         GetComponent<SpriteRenderer>().material = _originalMaterial;
     }

@@ -40,9 +40,10 @@ public abstract class Hazard : MonoBehaviour
     {
         Appear();
         ComponentEnabler();
+
         yield return new WaitForSeconds(seconds: _glitchDuration);
-        Debug.Log("Starting hazard: " + this.gameObject.name + "has had" + _glitchDuration + "seconds of glitch");
         StartRunning();
+        
         yield return new WaitForSeconds(seconds: _duration - _glitchDuration);
         Disappear();
         StopRunning();

@@ -39,9 +39,12 @@ public class HazardOrganizer : MonoBehaviour
 
     private IEnumerator NextContainerAfterDelay(float duration = 0)
     {
-        if (_hazardContainers[_currentContainerIndex + 1].IgnorePreviousDuration)
+        if (_hazardContainers[_currentContainerIndex + 1] != null)
         {
-            duration = 0;
+            if (_hazardContainers[_currentContainerIndex + 1].IgnorePreviousDuration)
+            {
+                duration = 0;
+            }
         }
 
         yield return new WaitForSeconds(seconds: duration);
@@ -54,7 +57,7 @@ public class HazardOrganizer : MonoBehaviour
         yield return new WaitForSeconds(
             seconds: _hazardContainers[_currentContainerIndex + 1].StartTime
         );
-        
+
         NextContainer();
     }
 
