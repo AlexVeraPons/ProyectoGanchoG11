@@ -93,50 +93,6 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    //Deprecated
-    public void PlayLoopingSound(LoopingSound loopingSound)
-    {
-        /*
-        AudioClip clip;
-        _loopSoundDictionary.TryGetValue(loopingSound, out clip);
-        if (clip != null)
-        {
-            AudioSource source;
-            if (SoundSourceAvailable(_loopSoundSources, out source) == true)
-            {
-                source.clip = clip;
-                source.Play();
-            }
-            else
-            {
-                GenerateSoundSource(doesLoop: true);
-                PlayLoopingSound(loopingSound);
-            }
-        }*/
-    }
-
-    //Deprecated
-    public void StopLoopingSound(LoopingSound loopingSound)
-    {
-        /*
-        AudioClip clip;
-        _loopSoundDictionary.TryGetValue(loopingSound, out clip);
-        if(clip != null)
-        {
-            for(int i = 0; i < _loopSoundSources.Count; i++)
-            {
-                SoundLoopAudioClipPair loopClip;
-                _loopSoundDictionary.TryGetValue(loopingSound, out clip);
-                if(_loopSoundSources[i].clip == clip)
-                {
-                    print("stopppppp");
-                    _loopSoundSources[i].Stop();
-                    Destroy(_loopSoundSources[i].gameObject);
-                }
-            }
-        }*/
-    }
-
     public void PlayMusic(Music music)
     {
         AudioClip musicClip;
