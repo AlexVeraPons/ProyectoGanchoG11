@@ -7,6 +7,11 @@ public class Collectible : Hazard
 {
     public static Action OnCollected;
 
+    private protected override void Appear()
+    {
+        _shouldDespawn = false;
+    }
+
     private protected override void Disappear()
     {
         

@@ -14,6 +14,8 @@ public abstract class Hazard : MonoBehaviour
     private protected float _duration = 0;
     public float Duration => _duration;
 
+    private protected bool _shouldDespawn = true;
+
     private protected bool _running = false;
 
     private GlitchController _glitchController;
@@ -44,6 +46,11 @@ public abstract class Hazard : MonoBehaviour
         yield return new WaitForSeconds(seconds: _glitchDuration);
         StartRunning();
         
+        if (!_shouldDespawn)
+        {
+            yield break;
+        }
+
         yield return new WaitForSeconds(seconds: _duration - _glitchDuration);
         Disappear();
         StopRunning();
