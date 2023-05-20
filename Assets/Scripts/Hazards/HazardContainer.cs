@@ -10,8 +10,8 @@ public class HazardContainer
 
     [SerializeField]
     [Tooltip("The time after which the hazard will start, after the last slot has finished its duration.")]
-    private float _starTime;
-    public float StartTime => _starTime;
+    private float _startTime;
+    public float StartTime => _startTime;
 
     [SerializeField]
     [Tooltip("Ignore the duration of the previous Container, and start this one immediately after the start time has elapsed.")]
