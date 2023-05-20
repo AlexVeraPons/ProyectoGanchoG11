@@ -523,10 +523,13 @@ MonoBehaviour:
   _distance: 20
   _travelSpeed: 800
   _hookSpeed: 2000
-  _returnTime: 0
+  _maxStickTime: 0
   _collidableLayers:
     serializedVersion: 2
     m_Bits: 6592
+  _playerLayer:
+    serializedVersion: 2
+    m_Bits: 512
   _state: 0
   _playerTransform: {fileID: 3203049618110633433}
   _impactTransform: {fileID: 49527431916691470}

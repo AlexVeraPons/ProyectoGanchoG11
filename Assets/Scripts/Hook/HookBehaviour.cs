@@ -14,13 +14,14 @@ public class HookBehaviour : MonoBehaviour
     [Tooltip("The speed on which the Grapple Gun Owner will move")]
     [SerializeField] float _hookSpeed;
     [Tooltip("Time that takes from the STUCK state to the RETRIEVE (If held). Set to 0 to disable.")]
-    [SerializeField] float _returnTime;
-    float _hookTime = 1;
+    [SerializeField] float _maxStickTime;
+    float _stickTimer;
 
     [Space(10)]
     [Header("LOGIC RELATED VALUES")]
     [Tooltip("Layers affected by the raycast")]
     [SerializeField] LayerMask _collidableLayers;
+    [SerializeField] LayerMask _playerLayer;
     [Tooltip("The current state of the hook")]
     [SerializeField] public HookState _state;
     [Tooltip("The transform associated to the Grapple Gun Owner")]
@@ -121,8 +122,7 @@ public class HookBehaviour : MonoBehaviour
 
             case HookState.Stuck:
                 if(_grapplingGun.HookHeld == false
-                || _grapplingGun.State == GrapplingGunState.Jammed
-                || IsTimerFinished() == true)
+                || _grapplingGun.State == GrapplingGunState.Jammed)
                 {
                     if(HitObjectIsInteractable() == true
                     && _impactInteractable != null)
@@ -135,12 +135,20 @@ public class HookBehaviour : MonoBehaviour
                 }
                 else
                 {
-                    if(ParentTransformIsStillActive() == false)
+                    if (PlayerReachedEnd() == true && StickTimeIsEnabled() == true)
+                    {
+                        if (StickPeriodOver() == true)
+                        {
+                            SwitchState(HookState.Returning);
+                        }
+                    }
+
+                    if (ParentTransformIsStillActive() == false)
                     {
                         SwitchState(HookState.Returning);
                     }
                 }
-            break;
+                break;
 
             case HookState.Returning:
                 if(ReachedEnd() == true)
@@ -151,6 +159,22 @@ public class HookBehaviour : MonoBehaviour
 
             default: break;
         }
+    }
+
+    private bool StickTimeIsEnabled()
+    {
+        return _maxStickTime != 0;
+    }
+
+    private bool StickPeriodOver()
+    {
+        _stickTimer += Time.deltaTime;
+        if (_stickTimer > _maxStickTime)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     /// <summary>
@@ -178,6 +202,17 @@ public class HookBehaviour : MonoBehaviour
         return _impactInteractable != null;
     }  
 
+    private bool PlayerReachedEnd()
+    {
+        var result = Physics2D.OverlapCircleAll(_impactTransform.position, 0.5f, _playerLayer);
+        if(result.Length > 0)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     public void SwitchState(HookState newState)
     {
         OnEnterState(newState);
@@ -189,6 +224,7 @@ public class HookBehaviour : MonoBehaviour
         switch(newState)
         {
             case HookState.Going:
+                _stickTimer = 0f;
                 AudioManager._instance.PlaySingleSound(SingleSound.HookLaunch);
             break;
         
@@ -204,7 +240,6 @@ public class HookBehaviour : MonoBehaviour
             case HookState.Stuck:
                 AudioManager._instance.PlaySingleSound(SingleSound.HookStuck);
                 _rigidbody2D.velocity = Vector2.zero; //Reset velocity to 0
-                if(_returnTime != 0) { _hookTime = Time.time + _returnTime; }
                 AlignPositionToImpact();
             break;
 
@@ -265,25 +300,6 @@ public class HookBehaviour : MonoBehaviour
             default: 
                 print("Error"); 
                 return false;
-        }
-    }
-
-    bool IsTimerFinished()
-    {
-        if(_returnTime == 0)
-        {
-            return false;
-        }
-        else
-        {
-            if(Time.time > _hookTime)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
         }
     }
 
