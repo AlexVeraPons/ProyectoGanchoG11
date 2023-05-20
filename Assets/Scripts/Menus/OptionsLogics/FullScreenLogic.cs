@@ -10,11 +10,13 @@ public class FullScreenLogic : MonoBehaviour
     private bool _isFullscreen;
     private void OnEnable()
     {
-        _buttonLogic.OnChangeIndex += CheckIndex;
+        _buttonLogic.OnChangeLeft += CheckIndex;
+        _buttonLogic.OnChangeRight += CheckIndex;
     }
     private void OnDisable()
     {
-        _buttonLogic.OnChangeIndex -= CheckIndex;
+        _buttonLogic.OnChangeLeft -= CheckIndex;
+        _buttonLogic.OnChangeRight -= CheckIndex;
     }
     void Start()
     {

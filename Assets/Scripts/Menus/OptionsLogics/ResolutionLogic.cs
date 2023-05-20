@@ -13,11 +13,13 @@ public class ResolutionLogic : MonoBehaviour
     private List<int> _heightResolutions;
         private void OnEnable()
     {
-        _buttonLogic.OnChangeIndex += ChangeResolution;
+        _buttonLogic.OnChangeLeft += ChangeResolution;
+        _buttonLogic.OnChangeRight += ChangeResolution;
     }
     private void OnDisable()
     {
-        _buttonLogic.OnChangeIndex -= ChangeResolution;
+        _buttonLogic.OnChangeLeft -= ChangeResolution;
+        _buttonLogic.OnChangeRight -= ChangeResolution;
     }
     void Start()
     {

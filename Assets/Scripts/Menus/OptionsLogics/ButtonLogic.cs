@@ -10,7 +10,8 @@ public class ButtonLogic : MonoBehaviour
     [SerializeField]
     private TMP_Text _text;
     private MenusMap _myInput;
-    public Action<int> OnChangeIndex;
+    public Action<int> OnChangeLeft;
+    public Action<int> OnChangeRight;
     private int _defaultIndex = 0;
     private int _index = 0;
     public int Index
@@ -58,7 +59,7 @@ public class ButtonLogic : MonoBehaviour
                     _index--;
                 }
                 _text.text = _data[_index];
-                OnChangeIndex?.Invoke(_index);
+                OnChangeLeft?.Invoke(_index);
                 Debug.Log("esquerda");
             }
 
@@ -73,7 +74,7 @@ public class ButtonLogic : MonoBehaviour
                     _index++;
                 }
                 _text.text = _data[_index];
-                OnChangeIndex?.Invoke(_index);
+                OnChangeRight?.Invoke(_index);
                 Debug.Log("dereita");
             }
         }
