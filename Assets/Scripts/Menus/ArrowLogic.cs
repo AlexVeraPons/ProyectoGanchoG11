@@ -7,36 +7,43 @@ using UnityEngine;
 public class ArrowLogic : MonoBehaviour
 {
     [SerializeField]
-    private Sprite _selectedArrow;
-    [SerializeField]
     private ButtonLogic _buttonLogic;
     [SerializeField]
-    private Image _image;
+    private Sprite _leftArrow;
+    [SerializeField]
+    private Sprite _rightArrow;
     // private int _buttonIndex;
+    [SerializeField]
+    private Sprite _clickedArrow;
+    
 
     private void OnEnable()
     {
-        _buttonLogic.OnChangeLeft += Modify;
-        _buttonLogic.OnChangeRight += Modify;
+        _buttonLogic.OnChangeLeft += ModifyLeftArrow;
+        _buttonLogic.OnChangeRight += ModifyRightArrow;
     }
     private void OnDisable()
     {
-        _buttonLogic.OnChangeLeft -= Modify;
-        _buttonLogic.OnChangeRight -= Modify;
+        _buttonLogic.OnChangeLeft -= ModifyLeftArrow;
+        _buttonLogic.OnChangeRight -= ModifyRightArrow;
     }
-    // Start is called before the first frame update
     void Start()
     {
         //_image = GetComponent<Image>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-
+        
     }
-    void Modify(int Index)
+    void ModifyLeftArrow(int Index)
     {
-        Debug.Log("modify");
+        _leftArrow = _clickedArrow;
+        Debug.Log("arrow esquerra");
+    }
+    void ModifyRightArrow(int Index)
+    {
+        _rightArrow = _clickedArrow;
+        Debug.Log("arrow dreta");
     }
 }
