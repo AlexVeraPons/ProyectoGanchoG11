@@ -11,6 +11,7 @@ public class SliderLogic : MonoBehaviour
     public Action<float> OnSliderValueChange;
     public Action OnChangeLeft;
     public Action OnChangeRight;
+    
     void Start()
     {
         _myInput = new MenusMap();

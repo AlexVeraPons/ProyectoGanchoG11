@@ -13,12 +13,19 @@ public class OptionSliderSelected : MonoBehaviour
     private Image _sliderBackground;
     [SerializeField]
     private Image _sliderToggle;
+    [SerializeField]
+    private Image _leftArrow;
+    [SerializeField]
+    private Image _rightArrow;
+    [SerializeField]
+    private Sprite _selectedArrow;
+    [SerializeField]
+    private Sprite _defaultArrow;
     void Start()
     {
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (EventSystem.current.currentSelectedGameObject == this.gameObject)
@@ -26,18 +33,16 @@ public class OptionSliderSelected : MonoBehaviour
             _TextName.color = Color.black;
             _sliderBackground.color = Color.black;
             _sliderToggle.color = Color.black;
-            // _TextInfo.color = Color.black;
-            // _leftArrow.sprite = _selectedArrow;
-            // _rightArrow.sprite = _selectedArrow;
+            _leftArrow.sprite = _selectedArrow;
+            _rightArrow.sprite = _selectedArrow;
         }
         else
         {
             _TextName.color = Color.white;
             _sliderBackground.color = Color.white;
             _sliderToggle.color = Color.white;
-            // _TextInfo.color = Color.white;
-            // _leftArrow.sprite = _defaultArrow;
-            // _rightArrow.sprite = _defaultArrow;
+            _leftArrow.sprite = _defaultArrow;
+            _rightArrow.sprite = _defaultArrow;
 
         }
     }

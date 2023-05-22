@@ -20,10 +20,8 @@ public class OptionButtonSelected : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //_TextName = GetComponentInChildren<TMP_Text>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         // Compare selected gameObject with referenced Button gameObject
