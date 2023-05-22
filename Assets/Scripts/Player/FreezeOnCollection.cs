@@ -14,12 +14,14 @@ public class FreezeOnCollection : MonoBehaviour
     private void OnEnable()
     {
         LifeComponent.OnDeath += TurnStatic;
+        WaveManager.OnUnloadWave += TurnStatic;
         WaveManager.OnLoadWave += TurnDynamic;
     }
 
     private void OnDisable()
     {
         LifeComponent.OnDeath -= TurnStatic;
+        WaveManager.OnUnloadWave -= TurnStatic;
         WaveManager.OnLoadWave -= TurnDynamic;
     }
     

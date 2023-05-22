@@ -26,7 +26,6 @@ public class WaveManager : MonoBehaviour
     bool _inProgress = false;
     int _currentWaveID = 0;
     int _currentWorldID = 0;
-    bool _inLastWave = false;
 
     private void Awake()
     {
@@ -99,8 +98,6 @@ public class WaveManager : MonoBehaviour
             }
             else
             {
-                print("ya no XD");
-                _inLastWave = true;
                 OnLoadWave?.Invoke();
             }
         }
@@ -113,9 +110,10 @@ public class WaveManager : MonoBehaviour
         yield return new WaitForSeconds(_timeBetweenWaves);
         this._spawner.SpawnWave(_collector, nextWaveData.GetWorldID(), nextWaveData.GetWaveID());
 
+        ResetWavePlayerPosition(nextWaveData);
+        
         if(isRespawning == true)
         {
-            ResetWavePlayerPosition(nextWaveData);
             OnResetWave?.Invoke();
         }
 

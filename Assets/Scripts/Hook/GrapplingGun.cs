@@ -16,7 +16,7 @@ public class GrapplingGun : MonoBehaviour
     private Vector2 _lastInput = Vector2.right;
     private bool _hookActionHeld = false;
     HookBehaviour _hook;
-    
+
     // Input Action references
     [Space(10)]
     [Header("PERMANENT VALUES")]
@@ -29,6 +29,9 @@ public class GrapplingGun : MonoBehaviour
     [Tooltip("The current state of the gun")]
     [SerializeField] GrapplingGunState _state = GrapplingGunState.Waiting;
     public GrapplingGunState State => _state;
+
+    public ScriptableVector2 Direction => _referenceDirection;
+    [SerializeField] private ScriptableVector2 _referenceDirection;
 
     PlayerInput _input;
 
@@ -50,27 +53,51 @@ public class GrapplingGun : MonoBehaviour
 
     private void OnDisable()
     {
-        LifeComponent.OnDeath -= JamGun;    
+        LifeComponent.OnDeath -= JamGun;
     }
 
     private void Update()
     {
         _hookActionHeld = HookActionHeld();
 
-        switch(_state)
+        UpdateVectorValue();
+
+        switch (_state)
         {
             case GrapplingGunState.Waiting:
-                if (CanLaunchSelf() == true && HasPressedButton() == true)
+
+                if (CanLaunchSelf() == true
+                    && HasPressedButton() == true
+                    && VectorIsNotZero() == true)
                 {
                     LaunchHook();
                 }
-            break;
+                break;
         }
+    }
+
+    bool VectorIsNotZero()
+    {
+        Vector2 direction;
+
+        if (_input.currentControlScheme == "Keyboard&Mouse")
+        {
+            direction = (Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - (Vector2)this.transform.position;
+            direction = direction.normalized;
+        }
+        else
+        {
+            direction = _hookGamepadInputReference.action.ReadValue<Vector2>().normalized;
+        }
+
+        if (direction == Vector2.zero) { return false; }
+
+        return true;
     }
 
     bool HookActionHeld()
     {
-        return  _hookKeyboardInputReference.action.ReadValue<float>() == 1;
+        return _hookKeyboardInputReference.action.ReadValue<float>() == 1;
     }
 
     bool HasPressedButton()
@@ -87,6 +114,20 @@ public class GrapplingGun : MonoBehaviour
         return _hookKeyboardInputReference.action.triggered;
     }
 
+    void UpdateVectorValue()
+    {
+        if (_input.currentControlScheme == "Keyboard&Mouse")
+        {
+            _referenceDirection.Value = (Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - (Vector2)this.transform.position;
+            _referenceDirection.Value = _referenceDirection.Value.normalized;
+        }
+        else
+        {
+            _referenceDirection.Value = _hookGamepadInputReference.action.ReadValue<Vector2>().normalized;
+        }
+
+    }
+
     // In here there's functions only called once
     private void LaunchHook()
     {
@@ -95,7 +136,7 @@ public class GrapplingGun : MonoBehaviour
 
         Vector2 direction;
 
-        if(_input.currentControlScheme == "Keyboard&Mouse")
+        if (_input.currentControlScheme == "Keyboard&Mouse")
         {
             direction = (Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - (Vector2)this.transform.position;
             direction = direction.normalized;

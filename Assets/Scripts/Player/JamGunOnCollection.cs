@@ -12,12 +12,14 @@ public class JamGunOnCollection : MonoBehaviour
     private void OnEnable()
     {
         LifeComponent.OnDeath += JamGun;
+        WaveManager.OnUnloadWave += JamGun;
         WaveManager.OnLoadWave += UnJamGun;
     }
 
     private void OnDisable()
     {
         LifeComponent.OnDeath -= JamGun;
+        WaveManager.OnUnloadWave -= JamGun;
         WaveManager.OnLoadWave -= UnJamGun;
     }
 

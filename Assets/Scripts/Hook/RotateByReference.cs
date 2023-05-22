@@ -5,32 +5,27 @@ using UnityEngine.InputSystem;
 
 public class RotateByReference : MonoBehaviour
 {
-    PlayerInput _input;
-
+    SpriteRenderer _spriteRenderer;
     Transform _parentTransform;
 
-    [SerializeField] InputActionReference _aimInputReference;
-
-    Vector2 _lastInput;
+    [SerializeField] ScriptableVector2 _vector;
 
     private void Awake()
     {
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _parentTransform = gameObject.transform.parent.transform;
-        _input = _parentTransform.GetComponent<PlayerInput>();
-        
     }
 
     private void Update()
     {
-        if(_input.currentControlScheme == "Keyboard&Mouse")
+        if(_vector.Value != Vector2.zero)
         {
-            Vector2 direction = (Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - _parentTransform.transform.position).normalized;
-            transform.rotation = Quaternion.AngleAxis(Mathf.Rad2Deg * Mathf.Atan2(direction.y, direction.x), Vector3.forward);
+            _spriteRenderer.enabled = true;
+            transform.rotation = Quaternion.AngleAxis(Mathf.Rad2Deg * Mathf.Atan2(_vector.Value.y, _vector.Value.x), Vector3.forward);
         }
         else
         {
-            Vector2 direction = _aimInputReference.action.ReadValue<Vector2>();
-            transform.rotation = Quaternion.AngleAxis(Mathf.Rad2Deg * Mathf.Atan2(direction.y, direction.x), Vector3.forward);
+            _spriteRenderer.enabled = false;
         }
     }
 }
