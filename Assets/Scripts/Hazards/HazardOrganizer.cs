@@ -14,7 +14,7 @@ public class HazardOrganizer : MonoBehaviour
         WaveManager.OnLoadWave += LevelStarted;
         WaveManager.OnUnloadWave += ResetContainers;
         WaveManager.OnResetWave += ResetContainers;
-        WaveManager.OnResetWave += resetContainerIndex;
+        WaveManager.OnResetWave += ResetContainerIndex;
     }
 
     private void OnDisable()
@@ -22,7 +22,7 @@ public class HazardOrganizer : MonoBehaviour
         WaveManager.OnLoadWave -= LevelStarted;
         WaveManager.OnUnloadWave -= ResetContainers;
         WaveManager.OnResetWave -= ResetContainers;
-        WaveManager.OnResetWave -= resetContainerIndex;
+        WaveManager.OnResetWave -= ResetContainerIndex;
     }
 
     private void LevelStarted()
@@ -88,7 +88,7 @@ public class HazardOrganizer : MonoBehaviour
         }
     }
 
-    private void resetContainerIndex()
+    private void ResetContainerIndex()
     {
         _currentContainerIndex = 0;
     }
