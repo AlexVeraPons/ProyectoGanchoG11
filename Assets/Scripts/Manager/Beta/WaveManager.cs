@@ -17,12 +17,16 @@ public class WaveManager : MonoBehaviour
     public static Action OnLoadWave;
 
     [Header("MANAGER VALUES")]
-    [SerializeField] bool _respawnOnWave;
-    [SerializeField] float _timeBetweenWaves = 1f;
+    [SerializeField]
+    bool _respawnOnWave;
+
+    [SerializeField]
+    float _timeBetweenWaves = 0.3f;
 
     [Space(10)]
     [Header("DO NOT TOUCH")]
-    [SerializeField] private Transform _playerTransform;
+    [SerializeField]
+    private Transform _playerTransform;
     bool _inProgress = false;
     int _currentWaveID = 0;
     int _currentWorldID = 0;
@@ -32,8 +36,14 @@ public class WaveManager : MonoBehaviour
         _collector = GetComponent<WorldCollector>();
         _spawner = GetComponent<WaveSpawner>();
 
-        if (_instance == null) { _instance = this; }
-        else { Destroy(this.gameObject); }
+        if (_instance == null)
+        {
+            _instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
 
         AssignIDs();
     }
@@ -42,7 +52,7 @@ public class WaveManager : MonoBehaviour
     {
         Collectible.OnCollected += NextWave;
 
-        if(_respawnOnWave == true)
+        if (_respawnOnWave == true)
         {
             LifeComponent.OnDeath += ResetWave;
         }
@@ -56,7 +66,7 @@ public class WaveManager : MonoBehaviour
     {
         Collectible.OnCollected -= NextWave;
 
-        if(_respawnOnWave == true)
+        if (_respawnOnWave == true)
         {
             LifeComponent.OnDeath -= ResetWave;
         }
@@ -103,16 +113,24 @@ public class WaveManager : MonoBehaviour
         }
     }
 
-    public IEnumerator Next(WaveData previousPacket, WaveData nextWaveData, bool isRespawning = false)
+    public IEnumerator Next(
+        WaveData previousPacket,
+        WaveData nextWaveData,
+        bool isRespawning = false
+    )
     {
         OnUnloadWave?.Invoke();
-        this._spawner.DespawnWave(_collector, previousPacket.GetWorldID(), previousPacket.GetWaveID());
+        this._spawner.DespawnWave(
+            _collector,
+            previousPacket.GetWorldID(),
+            previousPacket.GetWaveID()
+        );
         yield return new WaitForSeconds(_timeBetweenWaves);
         this._spawner.SpawnWave(_collector, nextWaveData.GetWorldID(), nextWaveData.GetWaveID());
 
         ResetWavePlayerPosition(nextWaveData);
-        
-        if(isRespawning == true)
+
+        if (isRespawning == true)
         {
             OnResetWave?.Invoke();
         }
@@ -146,24 +164,31 @@ public class WaveManager : MonoBehaviour
         WaveData waveData = new WaveData(_currentWorldID, _currentWaveID);
         StartCoroutine(Next(waveData, waveData, isRespawning: true));
     }
-    
+
     void ResetWorld()
     {
-        WaveData waveData = new WaveData(_currentWorldID, 
-        this._collector.Worlds[_currentWorldID].WaveList[0].ID);
+        WaveData waveData = new WaveData(
+            _currentWorldID,
+            this._collector.Worlds[_currentWorldID].WaveList[0].ID
+        );
 
         StartCoroutine(Next(waveData, waveData, isRespawning: true));
     }
 
     void ResetWavePlayerPosition(WaveData waveData)
     {
-        if(waveData.GetWorldID() > 0) //If there is a world ID
+        if (waveData.GetWorldID() > 0) //If there is a world ID
         {
-            _playerTransform.position = GetWorldByID(waveData.GetWorldID()).WaveList[0].SpawnPosition;
+            _playerTransform.position = GetWorldByID(waveData.GetWorldID()).WaveList[
+                0
+            ].SpawnPosition;
         }
         else
         {
-            _playerTransform.position = GetWaveByID(waveData.GetWaveID()).SpawnPosition;
+            if (GetWaveByID(waveData.GetWaveID()).SpawnPosition != new Vector2(0, 0))
+            {
+                _playerTransform.position = GetWaveByID(waveData.GetWaveID()).SpawnPosition;
+            }
         }
     }
 
@@ -210,14 +235,14 @@ public class WaveManager : MonoBehaviour
 
         return true;
     }
-    
+
     public int GetWorldIDByWave(int waveID)
     {
-        foreach(World world in _collector.Worlds)
+        foreach (World world in _collector.Worlds)
         {
-            foreach(Wave wave in world.WaveList)
+            foreach (Wave wave in world.WaveList)
             {
-                if(wave.ID == waveID) 
+                if (wave.ID == waveID)
                 {
                     return world.ID;
                 }
@@ -228,4 +253,3 @@ public class WaveManager : MonoBehaviour
         return -1;
     }
 }
-
