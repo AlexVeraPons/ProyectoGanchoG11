@@ -10,7 +10,7 @@ public class PauseSystem : MonoBehaviour
     [SerializeField] private GameObject _pauseMenu;
     [SerializeField] private GameObject _optionsMenu;
     [SerializeField] private Button _ResumeButton;
-    [SerializeField] private Slider _BrilloSlider;
+    [SerializeField] private Button _BrilloButton;
     private bool _isPaused;
     private ScenePicker _scenePicker;
     private string _mainMenuScene;
@@ -70,7 +70,7 @@ public class PauseSystem : MonoBehaviour
     {
         _pauseMenu.SetActive(false);
         _optionsMenu.SetActive(true);
-        _BrilloSlider.Select();
+        _BrilloButton.Select();
     }
     public void ReturnPausePanel()
     {
