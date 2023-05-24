@@ -50,6 +50,8 @@ public class WaveSpawner : MonoBehaviour
     {
         foreach (World world in collector.Worlds)
         {
+            world.gameObject.SetActive(false);
+
             foreach (Wave wave in world.WaveList)
             {
                 wave.gameObject.SetActive(false);
@@ -61,6 +63,8 @@ public class WaveSpawner : MonoBehaviour
     {
         foreach (World world in collector.Worlds)
         {
+            world.gameObject.SetActive(true);
+
             foreach (Wave wave in world.WaveList)
             {
                 wave.gameObject.SetActive(true);

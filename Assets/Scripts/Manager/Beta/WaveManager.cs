@@ -79,6 +79,7 @@ public class WaveManager : MonoBehaviour
     private void Start()
     {
         _spawner.DespawnAll(this._collector);
+        _spawner.SpawnWorld(this.Collector, _currentWorldID);
         _spawner.SpawnWave(this._collector, _currentWorldID, _currentWaveID);
 
         OnLoadWave?.Invoke();
@@ -96,7 +97,7 @@ public class WaveManager : MonoBehaviour
             {
                 WaveData previousWaveData = new WaveData(_currentWorldID, _currentWaveID);
 
-                if (NextWaveIsInAnotherWorld(currentWorld, nextWave) == true)
+                if (WaveIsInAnotherWorld(currentWorld, nextWave) == true)
                 {
                     _currentWorldID += 1;
                     _respawnOnWave = GetWorldByID(_currentWorldID).SetRespawnType();
@@ -124,7 +125,14 @@ public class WaveManager : MonoBehaviour
         OnUnloadWave?.Invoke();
 
         this._spawner.DespawnWave(_collector, previousWaveData.GetWorldID(), previousWaveData.GetWaveID());
-        this._spawner.DespawnWorld(_collector, previousWaveData.GetWorldID());
+
+        Wave currentWave = GetWaveByID(_currentWaveID);
+        World currentWorld = GetWorldByID(_currentWorldID);
+
+        if (WaveIsInAnotherWorld(currentWorld, currentWave) == true)
+        {
+            this._spawner.DespawnWorld(_collector, previousWaveData.GetWorldID());
+        }
 
         yield return new WaitForSeconds(_timeBetweenWaves);
 
@@ -227,7 +235,7 @@ public class WaveManager : MonoBehaviour
         return null;
     }
 
-    bool NextWaveIsInAnotherWorld(World currentWorld, Wave newWave)
+    bool WaveIsInAnotherWorld(World currentWorld, Wave newWave)
     {
         foreach (Wave wave in currentWorld.WaveList)
         {
