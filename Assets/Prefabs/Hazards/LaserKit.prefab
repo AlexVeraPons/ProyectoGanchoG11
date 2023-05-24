@@ -146,11 +146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03299d82103ca0049b622b15f4dda289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startTime: 3
-  _wakeUpDuration: 0.9
-  _duration: 1
-  _timeBeforeWarning: 0
-  _warningDuration: 1.5
+  _glitchDuration: 0
+  _duration: 3
+  _warningDuration: 1
   _warningZone: {fileID: 2210899555476336387}
   _horizontalSpeedGrowth: 20
 --- !u!212 &2210899556932731823
