@@ -30,7 +30,6 @@ public class Collectible : Hazard
         if(collision.CompareTag("Player") == true)
         {
             OnCollected?.Invoke();
-            Destroy(this.gameObject);
         }
     }
 }

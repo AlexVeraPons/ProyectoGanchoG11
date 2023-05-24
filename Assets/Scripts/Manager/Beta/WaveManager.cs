@@ -18,7 +18,7 @@ public class WaveManager : MonoBehaviour
 
     [Header("MANAGER VALUES")]
     [SerializeField]
-    bool _respawnOnWave;
+    RespawnType _respawnType;
 
     [SerializeField]
     float _timeBetweenWaves = 0.3f;
@@ -52,7 +52,7 @@ public class WaveManager : MonoBehaviour
     {
         Collectible.OnCollected += NextWave;
 
-        if (_respawnOnWave == true)
+        if (_respawnType == RespawnType.Wave)
         {
             LifeComponent.OnDeath += ResetWave;
         }
@@ -66,7 +66,7 @@ public class WaveManager : MonoBehaviour
     {
         Collectible.OnCollected -= NextWave;
 
-        if (_respawnOnWave == true)
+        if (_respawnType == RespawnType.Wave)
         {
             LifeComponent.OnDeath -= ResetWave;
         }
@@ -100,7 +100,23 @@ public class WaveManager : MonoBehaviour
                 if (WaveIsInAnotherWorld(currentWorld, nextWave) == true)
                 {
                     _currentWorldID += 1;
-                    _respawnOnWave = GetWorldByID(_currentWorldID).SetRespawnType();
+
+                    RespawnType newRespawnType = GetWorldByID(_currentWorldID).GetRespawnType();
+                    if (_respawnType != newRespawnType)
+                    {
+                        if (newRespawnType == RespawnType.Wave)
+                        {
+                            LifeComponent.OnDeath -= ResetWorld;
+                            LifeComponent.OnDeath += ResetWave;
+                        }
+                        else
+                        {
+                            LifeComponent.OnDeath += ResetWorld;
+                            LifeComponent.OnDeath -= ResetWave;
+                        }
+
+                        _respawnType = newRespawnType;
+                    }
                 }
 
                 _currentWaveID += 1;
@@ -124,7 +140,7 @@ public class WaveManager : MonoBehaviour
     {
         OnUnloadWave?.Invoke();
 
-        this._spawner.DespawnWave(_collector, previousWaveData.GetWorldID(), previousWaveData.GetWaveID());
+        this._spawner.DespawnAllWaves(this._collector);
 
         Wave currentWave = GetWaveByID(_currentWaveID);
         World currentWorld = GetWorldByID(_currentWorldID);
@@ -136,16 +152,19 @@ public class WaveManager : MonoBehaviour
 
         yield return new WaitForSeconds(_timeBetweenWaves);
 
-
         this._spawner.SpawnWave(_collector, nextWaveData.GetWorldID(), nextWaveData.GetWaveID());
         this._spawner.SpawnWorld(_collector, nextWaveData.GetWorldID());
 
-        ResetWavePlayerPosition(nextWaveData);
-
         if (isRespawning == true)
         {
+            if (_respawnType == RespawnType.World)
+            {
+                _currentWaveID = this._collector.Worlds[GetWorldIDByWave(_currentWaveID)].GetFirstWaveID();
+            }
             OnResetWave?.Invoke();
         }
+
+        ResetWavePlayerPosition(nextWaveData);
 
         OnLoadWave?.Invoke();
 

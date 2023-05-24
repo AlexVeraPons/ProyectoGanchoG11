@@ -28,8 +28,9 @@ public class WaveSpawner : MonoBehaviour
     {
         foreach (World world in collector.Worlds)
         {
-            if(world.ID == worldID)
+            if (world.ID == worldID)
             {
+                world.LoadContingentObjects();
                 world.gameObject.SetActive(true);
             }
         }
@@ -39,8 +40,9 @@ public class WaveSpawner : MonoBehaviour
     {
         foreach (World world in collector.Worlds)
         {
-            if(world.ID == worldID)
+            if (world.ID == worldID)
             {
+                world.UnloadContingentObjects();
                 world.gameObject.SetActive(false);
             }
         }
@@ -50,8 +52,20 @@ public class WaveSpawner : MonoBehaviour
     {
         foreach (World world in collector.Worlds)
         {
+            world.UnloadContingentObjects();
             world.gameObject.SetActive(false);
 
+            foreach (Wave wave in world.WaveList)
+            {
+                wave.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    public void DespawnAllWaves(WorldCollector collector)
+    {
+        foreach (World world in collector.Worlds)
+        {
             foreach (Wave wave in world.WaveList)
             {
                 wave.gameObject.SetActive(false);
@@ -63,6 +77,7 @@ public class WaveSpawner : MonoBehaviour
     {
         foreach (World world in collector.Worlds)
         {
+            world.LoadContingentObjects();
             world.gameObject.SetActive(true);
 
             foreach (Wave wave in world.WaveList)

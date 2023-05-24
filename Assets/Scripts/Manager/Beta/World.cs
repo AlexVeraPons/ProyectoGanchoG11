@@ -1,9 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 public class World : MonoBehaviour
 {
+    public List<GameObject> _contingentObjects;
+
     public int ID => _worldID;
     private int _worldID;
     public List<Wave> WaveList => _waveList;
@@ -30,15 +33,24 @@ public class World : MonoBehaviour
     /// <summary>
     /// Sets the returning bool on true if it respawns on waves, false if it respawns on worlds.
     /// </summary>
-    public bool SetRespawnType()
+    public RespawnType GetRespawnType()
     {
-        if(_respawnType == RespawnType.Wave)
+        return _respawnType;
+    }
+
+    public void LoadContingentObjects()
+    {
+        foreach(GameObject gameObject in _contingentObjects)
         {
-            return true;
+            gameObject.SetActive(true);
         }
-        else
+    }
+
+    public void UnloadContingentObjects()
+    {
+        foreach(GameObject gameObject in _contingentObjects)
         {
-            return false;
+            gameObject.SetActive(false);
         }
     }
 }

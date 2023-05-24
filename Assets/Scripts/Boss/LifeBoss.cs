@@ -28,6 +28,7 @@ public class LifeBoss : MonoBehaviour
 
     public void RemoveOneLife()
     {
+        print("dw");
         if (lifeBoss.Count > 0 && _currentLifes > 0)
         {
             GameObject life = lifeBoss[_currentLifes - 1];
