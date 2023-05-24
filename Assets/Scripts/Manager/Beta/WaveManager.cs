@@ -99,6 +99,7 @@ public class WaveManager : MonoBehaviour
                 if (NextWaveIsInAnotherWorld(currentWorld, nextWave) == true)
                 {
                     _currentWorldID += 1;
+                    _respawnOnWave = GetWorldByID(_currentWorldID).SetRespawnType();
                 }
 
                 _currentWaveID += 1;
