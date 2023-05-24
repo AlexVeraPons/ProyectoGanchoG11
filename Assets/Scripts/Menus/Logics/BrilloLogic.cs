@@ -34,6 +34,14 @@ public class BrilloLogic : MonoBehaviour
         PlayerPrefs.SetFloat("brillo", SliderValue);
         _brightnessPanel.color = new Color(_brightnessPanel.color.r, _brightnessPanel.color.g, _brightnessPanel.color.g, _slider.value);
     }
+    public void ChangeSlider(float value)
+    {
+        SliderValue = value; //se que no es lo ideal, pero soluciona un problema que em dona el slider al ficarlo de left to right a right to left que de normal no passa
+        _slider.value = SliderValue;
+        //ChechBrightness();
+        PlayerPrefs.SetFloat("brillo", SliderValue);
+        _brightnessPanel.color = new Color(_brightnessPanel.color.r, _brightnessPanel.color.g, _brightnessPanel.color.g, _slider.value);
+    }
     private void ChechBrightness()
     {
         if (SliderValue < _slider.minValue)

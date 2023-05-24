@@ -228,6 +228,17 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 0
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+--- !u!114 &1280520637 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2134746490, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+  m_PrefabInstance: {fileID: 2394151319869903812}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6044277820b5de47917ee78bbf7bdc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1454835406 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1420936920, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
@@ -248,6 +259,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1564458869 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 805164195, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+  m_PrefabInstance: {fileID: 2394151319869903812}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27630e3a7ea416b4fbbce41efc9ce441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1565840721 stripped
@@ -397,6 +419,62 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 112873321, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 112873321, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 112873321, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1564458869}
+    - target: {fileID: 112873321, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 112873321, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeSlider
+      objectReference: {fileID: 0}
+    - target: {fileID: 112873321, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: BrilloLogic, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 112873321, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1589173894, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1589173894, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1589173894, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1280520637}
+    - target: {fileID: 1589173894, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1589173894, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeSlider
+      objectReference: {fileID: 0}
+    - target: {fileID: 1589173894, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: VolumeLogic, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1589173894, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2065086276, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

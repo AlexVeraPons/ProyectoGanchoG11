@@ -13,21 +13,29 @@ public class VolumeLogic : MonoBehaviour
     private Slider _slider;
     private void OnEnable()
     {
-        _sliderLogic.OnSliderValueChange += ChangeSlider;
+        _sliderLogic.OnSliderValueChange += ChangeVolumeSlider;
     }
     private void OnDisable()
     {
-        _sliderLogic.OnSliderValueChange -= ChangeSlider;
+        _sliderLogic.OnSliderValueChange -= ChangeVolumeSlider;
     }
     void Start()
     {
         _slider.value = PlayerPrefs.GetFloat("volumeAudio", 0.05f);
         AudioListener.volume = _slider.value;
     }
-    void ChangeSlider(float value)
+    void ChangeVolumeSlider(float value)
     {
         _slider.value += value;
         ChechVolumes();
+        PlayerPrefs.SetFloat("volumeAudio", _slider.value);
+        AudioListener.volume = _slider.value;
+        //am i mute
+    }
+    public void ChangeSlider(float value)
+    {
+        _slider.value = value;
+        //ChechVolumes();
         PlayerPrefs.SetFloat("volumeAudio", _slider.value);
         AudioListener.volume = _slider.value;
         //am i mute
