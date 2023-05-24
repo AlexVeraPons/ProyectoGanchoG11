@@ -19874,6 +19874,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _waveList: []
+  _respawnType: 0
 --- !u!1 &1057902922
 GameObject:
   m_ObjectHideFlags: 0
@@ -22491,6 +22492,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerKit
       objectReference: {fileID: 0}
+    - target: {fileID: 3203049619141546622, guid: f49dd3fd330b07944a20f06c463b9cdb, type: 3}
+      propertyPath: _collidableLayers.m_Bits
+      value: 6592
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203049619141546622, guid: f49dd3fd330b07944a20f06c463b9cdb, type: 3}
+      propertyPath: _returnableLayers.m_Bits
+      value: 2048
+      objectReference: {fileID: 0}
+    - target: {fileID: 3468154731737500122, guid: f49dd3fd330b07944a20f06c463b9cdb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 3960012913474230847, guid: f49dd3fd330b07944a20f06c463b9cdb, type: 3}
+      propertyPath: _groundCheckRadius
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3960012913474230847, guid: f49dd3fd330b07944a20f06c463b9cdb, type: 3}
+      propertyPath: _whatIsGround.m_Bits
+      value: 2048
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f49dd3fd330b07944a20f06c463b9cdb, type: 3}
 --- !u!1001 &1214271053
@@ -23519,6 +23540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _waveList: []
+  _respawnType: 0
 --- !u!4 &1278227789 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 266641539083961636, guid: a0bf2da04c3793d4eb5ec418dd181ed9, type: 3}
@@ -23712,6 +23734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _waveList: []
+  _respawnType: 0
 --- !u!1001 &1283998009
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40976,6 +40999,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1922442171}
     m_Modifications:
+    - target: {fileID: 713402669802422958, guid: 8ac668be64eb46449b04cdfd837402dd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1390559813240409418, guid: 8ac668be64eb46449b04cdfd837402dd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2317183660913826680, guid: 8ac668be64eb46449b04cdfd837402dd, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -41020,25 +41051,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2633262958175064872, guid: 8ac668be64eb46449b04cdfd837402dd, type: 3}
-      propertyPath: m_Name
-      value: Ground
-      objectReference: {fileID: 0}
     - target: {fileID: 5477238996945346130, guid: 8ac668be64eb46449b04cdfd837402dd, type: 3}
       propertyPath: m_Name
       value: Level
       objectReference: {fileID: 0}
-    - target: {fileID: 6685499029536538407, guid: 8ac668be64eb46449b04cdfd837402dd, type: 3}
-      propertyPath: m_Name
-      value: Roof
+    - target: {fileID: 7850578348060540892, guid: 8ac668be64eb46449b04cdfd837402dd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7850578348060540882, guid: 8ac668be64eb46449b04cdfd837402dd, type: 3}
-      propertyPath: m_Name
-      value: Wall
-      objectReference: {fileID: 0}
-    - target: {fileID: 7995667629491268050, guid: 8ac668be64eb46449b04cdfd837402dd, type: 3}
-      propertyPath: m_Name
-      value: Wall
+    - target: {fileID: 9136235309931794489, guid: 8ac668be64eb46449b04cdfd837402dd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ac668be64eb46449b04cdfd837402dd, type: 3}
