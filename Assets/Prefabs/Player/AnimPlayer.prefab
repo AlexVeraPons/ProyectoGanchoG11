@@ -527,6 +527,9 @@ MonoBehaviour:
   _collidableLayers:
     serializedVersion: 2
     m_Bits: 6592
+  _returnableLayers:
+    serializedVersion: 2
+    m_Bits: 2048
   _playerLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -794,9 +797,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _whatIsGround:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 2048
   _groundCheckTransform: {fileID: 3468154731737500122}
-  _groundCheckRadius: 0.3
+  _groundCheckRadius: 0.1
   _whatIsWall:
     serializedVersion: 2
     m_Bits: 128
@@ -955,7 +958,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8129398080105904221}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.521, z: 0}
+  m_LocalPosition: {x: 0, y: -0.86, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
