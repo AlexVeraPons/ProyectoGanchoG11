@@ -39,7 +39,7 @@ public class HazardOrganizer : MonoBehaviour
 
     private IEnumerator NextContainerAfterDelay(float duration = 0)
     {
-        if (_hazardContainers[_currentContainerIndex + 1] != null)
+        if (_currentContainerIndex < _hazardContainers.Length - 1)
         {
             if (_hazardContainers[_currentContainerIndex + 1].IgnorePreviousDuration)
             {

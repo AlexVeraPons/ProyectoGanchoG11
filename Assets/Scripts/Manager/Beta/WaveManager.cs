@@ -79,6 +79,7 @@ public class WaveManager : MonoBehaviour
     private void Start()
     {
         _spawner.DespawnAll(this._collector);
+        _spawner.SpawnWorld(this._collector, _currentWorldID);
         _spawner.SpawnWave(this._collector, _currentWorldID, _currentWaveID);
 
         OnLoadWave?.Invoke();
@@ -114,8 +115,7 @@ public class WaveManager : MonoBehaviour
         }
     }
 
-    public IEnumerator Next
-    (
+    public IEnumerator Next(
         WaveData previousWaveData,
         WaveData nextWaveData,
         bool isRespawning = false
@@ -123,11 +123,18 @@ public class WaveManager : MonoBehaviour
     {
         OnUnloadWave?.Invoke();
 
-        this._spawner.DespawnWave(_collector, previousWaveData.GetWorldID(), previousWaveData.GetWaveID());
-        this._spawner.DespawnWorld(_collector, previousWaveData.GetWorldID());
+        if (isRespawning == false)
+        {
+            this._spawner.DespawnWorld(_collector, previousWaveData.GetWorldID());
+        }
+
+        this._spawner.DespawnWave(
+            _collector,
+            previousWaveData.GetWorldID(),  
+            previousWaveData.GetWaveID()
+        );
 
         yield return new WaitForSeconds(_timeBetweenWaves);
-
 
         this._spawner.SpawnWave(_collector, nextWaveData.GetWorldID(), nextWaveData.GetWaveID());
         this._spawner.SpawnWorld(_collector, nextWaveData.GetWorldID());

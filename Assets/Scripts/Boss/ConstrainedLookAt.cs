@@ -10,7 +10,6 @@ public class ConstrainedLookAt : MonoBehaviour
     [SerializeField]
     [Tooltip("The radius of the circle that restrains your movement")]
     private float _radius;
-
     [SerializeField]
     [Tooltip("The radius of the image of the image that you are controlling")]
     private float _imageRadius;
