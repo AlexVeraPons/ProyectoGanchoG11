@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using UnityEngine;
@@ -50,33 +49,39 @@ public class ButtonLogic : MonoBehaviour
         {
             if (_myInput.ButtonNavegation.GoLeft.WasPressedThisFrame())
             {
-                if (_index == 0)
-                {
-                    _index = _data.Count - 1;
-                }
-                else
-                {
-                    _index--;
-                }
-                _text.text = _data[_index];
-                OnChangeLeft?.Invoke(_index);
-                Debug.Log("esquerda");
+                ClickedLeft();
             }
 
             if (_myInput.ButtonNavegation.GoRight.WasPressedThisFrame())
             {
-                if ((_index + 1) >= _data.Count)
-                {
-                    _index = 0;
-                }
-                else
-                {
-                    _index++;
-                }
-                _text.text = _data[_index];
-                OnChangeRight?.Invoke(_index);
-                Debug.Log("dereita");
+                ClickedRight();
             }
         }
+    }
+    public void ClickedLeft()
+    {
+        if (_index == 0)
+        {
+            _index = _data.Count - 1;
+        }
+        else
+        {
+            _index--;
+        }
+        _text.text = _data[_index];
+        OnChangeLeft?.Invoke(_index);
+    }
+    public void ClickedRight()
+    {
+        if ((_index + 1) >= _data.Count)
+        {
+            _index = 0;
+        }
+        else
+        {
+            _index++;
+        }
+        _text.text = _data[_index];
+        OnChangeRight?.Invoke(_index);
     }
 }
