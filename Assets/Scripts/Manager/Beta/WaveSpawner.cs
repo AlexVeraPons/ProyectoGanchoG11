@@ -24,6 +24,28 @@ public class WaveSpawner : MonoBehaviour
         }
     }
 
+    public void SpawnWorld(WorldCollector collector, int worldID)
+    {
+        foreach (World world in collector.Worlds)
+        {
+            if(world.ID == worldID)
+            {
+                world.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    public void DespawnWorld(WorldCollector collector, int worldID)
+    {
+        foreach (World world in collector.Worlds)
+        {
+            if(world.ID == worldID)
+            {
+                world.gameObject.SetActive(false);
+            }
+        }
+    }
+
     public void DespawnAll(WorldCollector collector)
     {
         foreach (World world in collector.Worlds)

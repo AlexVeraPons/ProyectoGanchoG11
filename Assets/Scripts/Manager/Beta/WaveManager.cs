@@ -98,7 +98,6 @@ public class WaveManager : MonoBehaviour
 
                 if (NextWaveIsInAnotherWorld(currentWorld, nextWave) == true)
                 {
-                    print("Next wave is in another world");
                     _currentWorldID += 1;
                     _respawnOnWave = GetWorldByID(_currentWorldID).SetRespawnType();
                 }
@@ -115,20 +114,23 @@ public class WaveManager : MonoBehaviour
         }
     }
 
-    public IEnumerator Next(
-        WaveData previousPacket,
+    public IEnumerator Next
+    (
+        WaveData previousWaveData,
         WaveData nextWaveData,
         bool isRespawning = false
     )
     {
         OnUnloadWave?.Invoke();
-        this._spawner.DespawnWave(
-            _collector,
-            previousPacket.GetWorldID(),
-            previousPacket.GetWaveID()
-        );
+
+        this._spawner.DespawnWave(_collector, previousWaveData.GetWorldID(), previousWaveData.GetWaveID());
+        this._spawner.DespawnWorld(_collector, previousWaveData.GetWorldID());
+
         yield return new WaitForSeconds(_timeBetweenWaves);
+
+
         this._spawner.SpawnWave(_collector, nextWaveData.GetWorldID(), nextWaveData.GetWaveID());
+        this._spawner.SpawnWorld(_collector, nextWaveData.GetWorldID());
 
         ResetWavePlayerPosition(nextWaveData);
 
