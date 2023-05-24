@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ConstrainedLookAt : MonoBehaviour
 {
-    [SerializeField]
     private Transform _target;
     private Vector2 _targetPosition => _target.position;
 
@@ -19,6 +18,7 @@ public class ConstrainedLookAt : MonoBehaviour
     private void Start()
     {
         _initialVector = this.transform.position;
+        _target = GameObject.FindObjectOfType<PlayerEntity>().gameObject.transform;
     }
 
     private void Update()
