@@ -6,9 +6,6 @@ using UnityEditor;
 [CustomEditor(typeof(HazardGenerator))]
 public class HazardGeneratorEditor : Editor
 {
-    private const int _buttonsPerRow = 2;
-    private int _buttonCount = 0;
-
     public override void OnInspectorGUI()
     {
         HazardGenerator hazardGenerator = (HazardGenerator)target;

@@ -17,12 +17,17 @@ public class HazardGenerator : MonoBehaviour
 
     private void Start()
     {
-        RegenerateHazardList();
+        RegenereateGameObjects();
+        RegenerateContainerGameObject();
+    }
+
+    private void RegenerateContainerGameObject()
+    {
         GameObject[] hazardContainers = Resources.LoadAll<GameObject>("Container");
         _hazardContainer = hazardContainers[0];
     }
 
-    public void RegenerateHazardList()
+    private void RegenerateHazardList()
     {
         _hazards = Resources.LoadAll<GameObject>("Hazards");
         _hazardNames = new string[_hazards.Length];
@@ -30,6 +35,12 @@ public class HazardGenerator : MonoBehaviour
         {
             _hazardNames[i] = _hazards[i].name;
         }
+    }
+
+    public void RegenereateGameObjects()
+    {
+        RegenerateHazardList();
+        RegenerateContainerGameObject();
     }
 
     public void AddHazardFromName(string name = null)
