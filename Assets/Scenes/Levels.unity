@@ -29947,6 +29947,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1770672584804623300, guid: 774726ec2909fc8459b55fc241cc3bb1, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2133906228762019581, guid: 774726ec2909fc8459b55fc241cc3bb1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -29995,6 +29999,22 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5710939665852379538, guid: 774726ec2909fc8459b55fc241cc3bb1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -2.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5710939665852379541, guid: 774726ec2909fc8459b55fc241cc3bb1, type: 3}
+      propertyPath: m_fontSize
+      value: 64.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5710939665852379541, guid: 774726ec2909fc8459b55fc241cc3bb1, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 64.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5710939665852379541, guid: 774726ec2909fc8459b55fc241cc3bb1, type: 3}
+      propertyPath: m_characterSpacing
+      value: -2.3
+      objectReference: {fileID: 0}
     - target: {fileID: 9039295730701008659, guid: 774726ec2909fc8459b55fc241cc3bb1, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -30034,6 +30054,14 @@ PrefabInstance:
     - target: {fileID: 9039295731387907044, guid: 774726ec2909fc8459b55fc241cc3bb1, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9039295732028883541, guid: 774726ec2909fc8459b55fc241cc3bb1, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -15.8764
+      objectReference: {fileID: 0}
+    - target: {fileID: 9039295732028883541, guid: 774726ec2909fc8459b55fc241cc3bb1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.7216034
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3335099101201059939, guid: 774726ec2909fc8459b55fc241cc3bb1, type: 3}
