@@ -32,6 +32,10 @@ public class HazardOrganizer : MonoBehaviour
 
     private IEnumerator StartInitialContainer()
     {
+        if (_hazardContainers.Length == 0)
+        {
+            yield break;
+        }
         yield return new WaitForSeconds(seconds: _hazardContainers[0].StartTime);
         _currentContainer.StartContainer();
         StartCoroutine(NextContainerAfterDelay(_currentContainer.GetDuration()));
@@ -92,4 +96,59 @@ public class HazardOrganizer : MonoBehaviour
     {
         _currentContainerIndex = 0;
     }
+
+    public void PopulateListFromChildren()
+    {
+        PopulateContainersFromChildren();
+    }
+
+    private void PopulateContainersFromChildren()
+    {
+        int numberOfContainers = 0;
+
+        foreach (Transform child in transform)
+        {
+            if (child.GetComponent<HazardContainerObject>() != null)
+            {
+                numberOfContainers++;
+            }
+        }
+
+        _hazardContainers = new HazardContainer[numberOfContainers];
+        numberOfContainers = 0;
+
+        foreach (Transform child in transform)
+        {
+            if (child.GetComponent<HazardContainerObject>() != null)
+            {
+                HazardContainerObject HazardContainerObject = child.GetComponent<HazardContainerObject>();
+                _hazardContainers[numberOfContainers] = new HazardContainer();
+                PopulateHazardsFromContainer(HazardContainerObject, numberOfContainers);
+                numberOfContainers++;
+            }
+        }
+    }
+
+    private void PopulateHazardsFromContainer(HazardContainerObject hazardContainerObject, int containerIndex = 0)
+    {
+        foreach (Transform child in hazardContainerObject.transform)
+        {
+            if (child.GetComponent<Hazard>() != null)
+            {
+                _hazardContainers[containerIndex].Hazards.Add(child.GetComponent<Hazard>());
+            }
+            else
+            {
+                foreach (Transform grandchild in child)
+                {
+                    if (grandchild.GetComponent<Hazard>() != null)
+                    {
+                        _hazardContainers[containerIndex].Hazards.Add(grandchild.GetComponent<Hazard>());
+                    }
+                }
+            }
+        }
+    }
 }
+
+
