@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 using UnityEngine;
 using System;
-using TMPro;
+
 public class SliderLogic : MonoBehaviour
 {
     private MenusMap _myInput;

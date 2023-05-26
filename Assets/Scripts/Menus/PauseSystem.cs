@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.InputSystem;
+
 
 public class PauseSystem : MonoBehaviour
 {
