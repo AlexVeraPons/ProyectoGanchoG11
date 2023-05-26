@@ -12,16 +12,13 @@ public class HazardContainer
     [Tooltip(
         "The time after which the hazard will start, after the last slot has finished its duration."
     )]
-    private float _startTime;
-    public float StartTime => _startTime;
+    public float StartTime;
 
     [SerializeField]
     [Tooltip(
         "Ignore the duration of the previous Container, and start this one immediately after the start time has elapsed."
     )]
-    private bool _ignorePreviousDuration;
-
-    public bool IgnorePreviousDuration => _ignorePreviousDuration;
+    public bool IgnorePreviousDuration;
 
     [SerializeField]
     public List<Hazard> Hazards = new List<Hazard>();
@@ -55,5 +52,10 @@ public class HazardContainer
         }
 
         return duration;
+    }
+
+    internal void CopyValuesFrom(HazardContainer hazardContainer)
+    {
+        throw new NotImplementedException();
     }
 }

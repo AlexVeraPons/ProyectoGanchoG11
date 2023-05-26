@@ -6,6 +6,7 @@ public class HazardOrganizer : MonoBehaviour
 {
     [SerializeField]
     private HazardContainer[] _hazardContainers;
+    private HazardContainer[] _temporaryHazardContainers;
     private int _currentContainerIndex = 0;
     private HazardContainer _currentContainer => _hazardContainers[_currentContainerIndex];
 
@@ -114,28 +115,70 @@ public class HazardOrganizer : MonoBehaviour
             }
         }
 
-        _hazardContainers = new HazardContainer[numberOfContainers];
+        Debug.Log("Number of containers: " + numberOfContainers);
+        _temporaryHazardContainers = new HazardContainer[numberOfContainers];
         numberOfContainers = 0;
 
         foreach (Transform child in transform)
         {
             if (child.GetComponent<HazardContainerObject>() != null)
             {
-                HazardContainerObject HazardContainerObject = child.GetComponent<HazardContainerObject>();
-                _hazardContainers[numberOfContainers] = new HazardContainer();
+                HazardContainerObject HazardContainerObject =
+                    child.GetComponent<HazardContainerObject>();
+                _temporaryHazardContainers[numberOfContainers] = new HazardContainer();
                 PopulateHazardsFromContainer(HazardContainerObject, numberOfContainers);
                 numberOfContainers++;
             }
         }
+
+        FillHazardContainerFromTemporaryContainers();
     }
 
-    private void PopulateHazardsFromContainer(HazardContainerObject hazardContainerObject, int containerIndex = 0)
+    private void FillHazardContainerFromTemporaryContainers()
+    {
+        for (int i = 0; i < _temporaryHazardContainers.Length; i++)
+        {
+            bool same = true;
+            //same hazards in the same container
+            if(_temporaryHazardContainers[i].Hazards.Count == _hazardContainers[i].Hazards.Count)
+            {
+                for (int j = 0; j < _temporaryHazardContainers[i].Hazards.Count; j++)
+                {
+                    if(_temporaryHazardContainers[i].Hazards[j] != _hazardContainers[i].Hazards[j])
+                    {
+                        same = false;
+                    }
+                }
+
+                if(same)
+                {
+                    _temporaryHazardContainers[i].StartTime = _hazardContainers[i].StartTime;
+                    _temporaryHazardContainers[i].IgnorePreviousDuration = _hazardContainers[i].IgnorePreviousDuration;
+                }
+            }
+
+        
+            //resize _hazardContainers
+            Array.Resize(ref _hazardContainers, _temporaryHazardContainers.Length);
+
+
+            _hazardContainers[i] = _temporaryHazardContainers[i];
+        }
+        //firstly if there is a container that already exists and is the same copy the start time etc..
+    }
+
+    private void PopulateHazardsFromContainer(
+        HazardContainerObject hazardContainerObject,
+        int containerIndex = 0
+    )
     {
         foreach (Transform child in hazardContainerObject.transform)
         {
             if (child.GetComponent<Hazard>() != null)
             {
-                _hazardContainers[containerIndex].Hazards.Add(child.GetComponent<Hazard>());
+                _temporaryHazardContainers[containerIndex].Hazards.Add(
+                    child.GetComponent<Hazard>()
+                );
             }
             else
             {
@@ -143,12 +186,12 @@ public class HazardOrganizer : MonoBehaviour
                 {
                     if (grandchild.GetComponent<Hazard>() != null)
                     {
-                        _hazardContainers[containerIndex].Hazards.Add(grandchild.GetComponent<Hazard>());
+                        _temporaryHazardContainers[containerIndex].Hazards.Add(
+                            grandchild.GetComponent<Hazard>()
+                        );
                     }
                 }
             }
         }
     }
 }
-
-
