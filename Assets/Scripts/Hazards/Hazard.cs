@@ -6,17 +6,15 @@ using UnityEngine;
 public abstract class Hazard : MonoBehaviour
 {
     [Header("Values")]
-
     [SerializeField]
-    [Tooltip("The time after which the hazard will start.")]
-    private protected float _startTime = 0;
-
-    [SerializeField]
-    private protected float _wakeUpDuration = 0;
+    private protected float _glitchDuration = 0;
 
     [SerializeField]
     [Tooltip("The total duration of the hazard.")]
     private protected float _duration = 0;
+    public float Duration => _duration;
+
+    private protected bool _shouldDespawn = true;
 
     private protected bool _running = false;
 
@@ -27,18 +25,7 @@ public abstract class Hazard : MonoBehaviour
         if (GetComponent<GlitchController>() != null)
         {
             _glitchController = GetComponent<GlitchController>();
-            _glitchController.ModifyGlitchDuration(_wakeUpDuration);
         }
-    }
-
-    private void OnEnable()
-    {
-        WaveManager.OnLoadWave += LevelStarted;
-    }
-
-    private void OnDisable()
-    {
-        WaveManager.OnLoadWave -= LevelStarted;
     }
 
     private void Start()
@@ -46,21 +33,32 @@ public abstract class Hazard : MonoBehaviour
         ComponentDisabler();
     }
 
-    private void LevelStarted()
+    public void HazardStart()
     {
         StartCoroutine(StartAfterDelay());
     }
 
     private IEnumerator StartAfterDelay()
     {
-        yield return new WaitForSeconds(seconds: _startTime);
         Appear();
         ComponentEnabler();
-        yield return new WaitForSeconds(seconds: _wakeUpDuration);
+
+        yield return new WaitForSeconds(seconds: _glitchDuration);
         StartRunning();
-        yield return new WaitForSeconds(seconds: _duration);
-        StopRunning();
+        
+        if (!_shouldDespawn)
+        {
+            yield break;
+        }
+
+        yield return new WaitForSeconds(seconds: _duration - _glitchDuration);
         Disappear();
+        StopRunning();
+    }
+
+    private bool IsTimeToStart()
+    {
+        throw new NotImplementedException();
     }
 
     private void Update()
@@ -87,19 +85,20 @@ public abstract class Hazard : MonoBehaviour
 
     private protected void ComponentDisabler()
     {
-        this.GetComponent<SpriteRenderer>().enabled = false;
+        this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     private protected void ComponentEnabler()
     {
-        this.GetComponent<SpriteRenderer>().enabled = true;
+        this.gameObject.GetComponent<SpriteRenderer>().enabled = true;
     }
 
     private protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if(!_running) return;
+        if (!_running)
+            return;
 
-        if(collision.GetComponent<IDamageable>() != null)
+        if (collision.GetComponent<IDamageable>() != null)
         {
             DamageableAction(collision);
         }
@@ -115,9 +114,9 @@ public abstract class Hazard : MonoBehaviour
         //This should be the only thing here
         AudioManager._instance.PlaySingleSound(SingleSound.EnemyAppear);
     }
-    
+
     /// <summary>
-    /// This method is called to generate a sound.
+    /// This method is called to generate a swound.
     /// </summary>
     private protected virtual void PlayRunSound()
     {
@@ -127,7 +126,7 @@ public abstract class Hazard : MonoBehaviour
     /// <summary>
     /// This method is called to stop a sound. Only use this if the generated sound is looped.
     /// </summary>
-    private protected virtual void StopRunSound() {}
+    private protected virtual void StopRunSound() { }
 
     /// <summary>
     /// This method is called then the hazard is running.
@@ -139,17 +138,26 @@ public abstract class Hazard : MonoBehaviour
     /// </summary>
     private protected virtual void Appear()
     {
-        this.gameObject.SetActive(true);
         if (_glitchController != null)
         {
-            _glitchController.Glitch();
+            _glitchController.Glitch(_glitchDuration);
         }
     }
 
     /// <summary>
     /// This method is called when the hazard stops.
     /// </summary>
-    private protected abstract void Disappear();
+    private protected virtual void Disappear()
+    {
+        ComponentDisabler();
+    }
+
+    /// <summary>
+    /// This method is called when the hazard has to be reset
+    /// </summary>
+    public virtual void ResetHazard()
+    {
+        StopRunning();
+        Disappear();
+    }
 }
-
-

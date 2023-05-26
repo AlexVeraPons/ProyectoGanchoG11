@@ -34,15 +34,21 @@ public class GlitchController : MonoBehaviour
         _originalMaterial = GetComponent<SpriteRenderer>().material;
     }
 
-    public void ModifyGlitchDuration(float newDuration)
+    public void Glitch(float duration = 0)
     {
-        _glitchDuration = newDuration;
+        if (duration != 0)
+        {
+            _glitchDuration = duration;
+        }
+
+        StartCoroutine(GlitchCoroutine());
     }
+
     public void Glitch()
     {
         StartCoroutine(GlitchCoroutine());
     }
-
+    
     private IEnumerator GlitchCoroutine()
     {
         GetComponent<SpriteRenderer>().material = new Material(_glitchMaterial);

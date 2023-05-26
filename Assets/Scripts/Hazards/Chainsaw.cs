@@ -29,9 +29,4 @@ public class Chainsaw : HazardWithPath
             thisSource.volume = 0.2f;
         }
     }
-
-    private protected override void StopRunSound()
-    {
-        //AudioManager._instance.StopLoopingSound(LoopingSound.Saw);
-    }
 }

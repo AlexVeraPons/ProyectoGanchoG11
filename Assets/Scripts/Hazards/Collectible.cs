@@ -7,6 +7,11 @@ public class Collectible : Hazard
 {
     public static Action OnCollected;
 
+    private protected override void Appear()
+    {
+        _shouldDespawn = false;
+    }
+
     private protected override void Disappear()
     {
         
@@ -19,10 +24,12 @@ public class Collectible : Hazard
 
     private protected override void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!_running)
+            return;
+
         if(collision.CompareTag("Player") == true)
         {
             OnCollected?.Invoke();
-            Destroy(this.gameObject);
         }
     }
 }

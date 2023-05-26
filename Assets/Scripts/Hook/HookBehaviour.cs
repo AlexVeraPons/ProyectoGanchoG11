@@ -21,6 +21,8 @@ public class HookBehaviour : MonoBehaviour
     [Header("LOGIC RELATED VALUES")]
     [Tooltip("Layers affected by the raycast")]
     [SerializeField] LayerMask _collidableLayers;
+    [Tooltip("Layers that can just be collided and wont make the hook stuck")]
+    [SerializeField] LayerMask _returnableLayers;
     [SerializeField] LayerMask _playerLayer;
     [Tooltip("The current state of the hook")]
     [SerializeField] public HookState _state;
@@ -47,15 +49,15 @@ public class HookBehaviour : MonoBehaviour
 
     void FixedUpdate()
     {
-        switch(_state)
+        switch (_state)
         {
             case HookState.NotActive:
 
-            break;
+                break;
 
             case HookState.Going:
                 MoveSelf();
-            break;
+                break;
 
             case HookState.Returning:
                 Move(
@@ -64,39 +66,47 @@ public class HookBehaviour : MonoBehaviour
                     to: _playerTransform.position,
                     with: _hookSpeed
                 );
-            break;
+                break;
 
             case HookState.Stuck:
                 this.transform.position = _impactTransform.position;
-                
+
                 Move(
                     targetRigidbody2D: _grapplingGunRigidbody2D,
                     from: _playerTransform.position,
                     to: _impactTransform.position,
                     with: _travelSpeed
                 );
-            break;
+                break;
         }
     }
 
     void Update()
     {
-        switch(_state)
+        switch (_state)
         {
             case HookState.Going:
-                if(_grapplingGun.HookHeld == true)
+                if (_grapplingGun.HookHeld == true)
                 {
-                    if(ReachedEnd() == true)
+                    if (ReachedEnd() == true)
                     {
-                        if(_hasHitObject == true)
+                        if (_hasHitObject == true)
                         {
-                            if(HitObjectIsInteractable() == true
-                            && _impactInteractable != null)
+                            if (HitObjectIsReturnable() == false)
                             {
-                                ExecuteDoInteraction();
-                            }
+                                if (HitObjectIsInteractable() == true
+                                && _impactInteractable != null)
+                                {
+                                    ExecuteDoInteraction();
+                                }
 
-                            SwitchState(HookState.Stuck);
+                                SwitchState(HookState.Stuck);
+                            }
+                            else
+                            {
+                                this.transform.position = _impactTransform.position;
+                                SwitchState(HookState.Returning);
+                            }
                         }
                         else
                         {
@@ -105,9 +115,9 @@ public class HookBehaviour : MonoBehaviour
                     }
                     else
                     {
-                        if(_hasHitObject == true)
+                        if (_hasHitObject == true)
                         {
-                            if(ParentTransformIsStillActive() == false)
+                            if (ParentTransformIsStillActive() == false)
                             {
                                 SwitchState(HookState.Returning);
                             }
@@ -118,13 +128,13 @@ public class HookBehaviour : MonoBehaviour
                 {
                     SwitchState(HookState.Returning);
                 }
-            break;
+                break;
 
             case HookState.Stuck:
-                if(_grapplingGun.HookHeld == false
+                if (_grapplingGun.HookHeld == false
                 || _grapplingGun.State == GrapplingGunState.Jammed)
                 {
-                    if(HitObjectIsInteractable() == true
+                    if (HitObjectIsInteractable() == true
                     && _impactInteractable != null)
                     {
                         ExecuteUndoInteraction();
@@ -151,14 +161,26 @@ public class HookBehaviour : MonoBehaviour
                 break;
 
             case HookState.Returning:
-                if(ReachedEnd() == true)
+                if (ReachedEnd() == true)
                 {
                     SwitchState(HookState.NotActive);
                 }
-            break;
+                break;
 
             default: break;
         }
+    }
+
+    private bool HitObjectIsReturnable()
+    {
+        var result = Physics2D.OverlapCircle(_impactTransform.position, 0.3f, _returnableLayers);
+        if (result != null)
+        {
+            print("hehe");
+            return true;
+        }
+
+        return false;
     }
 
     private bool StickTimeIsEnabled()
@@ -200,12 +222,12 @@ public class HookBehaviour : MonoBehaviour
     private bool HitObjectIsInteractable()
     {
         return _impactInteractable != null;
-    }  
+    }
 
     private bool PlayerReachedEnd()
     {
         var result = Physics2D.OverlapCircleAll(_impactTransform.position, 0.5f, _playerLayer);
-        if(result.Length > 0)
+        if (result.Length > 0)
         {
             return true;
         }
@@ -221,31 +243,31 @@ public class HookBehaviour : MonoBehaviour
 
     void OnEnterState(HookState newState)
     {
-        switch(newState)
+        switch (newState)
         {
             case HookState.Going:
                 _stickTimer = 0f;
                 AudioManager._instance.PlaySingleSound(SingleSound.HookLaunch);
-            break;
-        
+                break;
+
             case HookState.NotActive:
-            if(_grapplingGun.State != GrapplingGunState.Jammed)
-            {
-                _grapplingGun.ResetSelf();
-            }
-            this.transform.SetParent(_grapplingGun.transform.parent);
-            this.gameObject.SetActive(false);
-            break;
+                if (_grapplingGun.State != GrapplingGunState.Jammed)
+                {
+                    _grapplingGun.ResetSelf();
+                }
+                this.transform.SetParent(_grapplingGun.transform.parent);
+                this.gameObject.SetActive(false);
+                break;
 
             case HookState.Stuck:
                 AudioManager._instance.PlaySingleSound(SingleSound.HookStuck);
                 _rigidbody2D.velocity = Vector2.zero; //Reset velocity to 0
                 AlignPositionToImpact();
-            break;
+                break;
 
             case HookState.Returning:
                 //SoundManager._instance.PlaySingleSound(SingleSound.HookRetrieving);
-            break;
+                break;
 
             default: break;
         }
@@ -259,7 +281,7 @@ public class HookBehaviour : MonoBehaviour
     {
         float distanceBetweenPoints = Vector2.Distance(_launchPosition, _impactTransform.position);
 
-        switch(_state)
+        switch (_state)
         {
             case HookState.Going:
                 float distanceFromLaunch = Vector2.Distance(_launchPosition, this.transform.position);
@@ -267,12 +289,12 @@ public class HookBehaviour : MonoBehaviour
 
             case HookState.Returning:
                 var results = Physics2D.OverlapCircleAll(_playerTransform.position, 1f);
-                if(results.Length > 0)
+                if (results.Length > 0)
                 {
-                    foreach(var resultObject in results)
+                    foreach (var resultObject in results)
                     {
                         //Esto hay que cambiarlo por el layer
-                        if(resultObject.gameObject == this.gameObject)
+                        if (resultObject.gameObject == this.gameObject)
                         {
                             return true;
                         }
@@ -283,22 +305,22 @@ public class HookBehaviour : MonoBehaviour
 
             case HookState.Stuck:
                 var otherResult = Physics2D.OverlapCircleAll(_impactTransform.position, 0.3f);
-                if(otherResult.Length > 0)
+                if (otherResult.Length > 0)
                 {
-                    foreach(var resultObject in otherResult)
+                    foreach (var resultObject in otherResult)
                     {
                         //Esto hay que cambiarlo por el layer
-                        if(resultObject.gameObject == this.gameObject)
+                        if (resultObject.gameObject == this.gameObject)
                         {
                             return true;
                         }
                     }
                 }
 
-            return false;
+                return false;
 
-            default: 
-                print("Error"); 
+            default:
+                print("Error");
                 return false;
         }
     }
@@ -306,11 +328,11 @@ public class HookBehaviour : MonoBehaviour
     bool ParentTransformIsStillActive()
     {
         var results = Physics2D.OverlapCircleAll(_impactTransform.position, 0.3f, _collidableLayers);
-        if(results.Length > 0)
+        if (results.Length > 0)
         {
-            foreach(var result in results)
+            foreach (var result in results)
             {
-                if(result.transform == _impactTransform.parent)
+                if (result.transform == _impactTransform.parent)
                 {
                     return true;
                 }
@@ -365,10 +387,9 @@ public class HookBehaviour : MonoBehaviour
     {
         var result = Physics2D.Raycast(_grapplingGun.transform.position,
         _direction, _distance, _collidableLayers);
-        if(result.collider != null)
+        if (result.collider != null)
         {
             _impactInteractable = result.collider.gameObject.GetComponent<IInteractable>();
-            //_impactPosition = result.point;
             _impactTransform.position = result.point;
             _impactTransform.SetParent(result.collider.transform);
             _hasHitObject = true;
@@ -376,7 +397,6 @@ public class HookBehaviour : MonoBehaviour
         else
         {
             _impactInteractable = null;
-            //_impactPosition = (Vector2)this.transform.position + _direction * _distance;
             _impactTransform.SetParent(null);
             _impactTransform.position = (Vector2)this.transform.position + _direction * _distance;
             _hasHitObject = false;
@@ -425,7 +445,7 @@ public class HookBehaviour : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        if(_impactTransform != null)
+        if (_impactTransform != null)
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(_impactTransform.position, 0.15f);

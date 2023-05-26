@@ -12,6 +12,14 @@ public class DeathZone : HazardWithWarning
     bool _firstFrameHorizontalPlayed = false;
     bool _firstFrameVerticalPlayed = false;
 
+    private Vector2 _initialScale;
+
+    private protected override void Awake()
+    {
+        base.Awake();
+        _initialScale = this.transform.localScale;
+    }
+
     private protected override void WarningFinished() { }
 
     private protected override void AfterWarningUpdate()
@@ -26,7 +34,7 @@ public class DeathZone : HazardWithWarning
 
     private IEnumerator GrowX()
     {
-        if(_firstFrameHorizontalPlayed == false)
+        if (_firstFrameHorizontalPlayed == false)
         {
             AudioManager._instance.PlaySingleSound(SingleSound.HazardAreaHorizontalScale);
             _firstFrameHorizontalPlayed = true;
@@ -55,7 +63,7 @@ public class DeathZone : HazardWithWarning
     {
         yield return null;
 
-        if(_firstFrameVerticalPlayed == false)
+        if (_firstFrameVerticalPlayed == false)
         {
             AudioManager._instance.PlaySingleSound(SingleSound.HazardAreaVerticalScale);
             _firstFrameVerticalPlayed = true;
@@ -72,5 +80,13 @@ public class DeathZone : HazardWithWarning
         yield return new WaitUntil(
             () => this.transform.localScale.y >= _warningZone.transform.localScale.y - 0.1f
         );
+    }
+
+    public override void ResetHazard()
+    {
+        base.ResetHazard();
+        _firstFrameHorizontalPlayed = false;
+        _firstFrameVerticalPlayed = false;
+        this.transform.localScale = _initialScale;
     }
 }

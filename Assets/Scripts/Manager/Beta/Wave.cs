@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class Wave : MonoBehaviour
 {
@@ -10,7 +11,10 @@ public class Wave : MonoBehaviour
 
     void Awake()
     {
-        _spawnPosition = GetComponentInChildren<SpawnPosition>().gameObject.transform.position;
+        if (GetComponentInChildren<SpawnPosition>() != null)
+        {
+            _spawnPosition = GetComponentInChildren<SpawnPosition>().gameObject.transform.position;
+        }
     }
 
     public void SetID(int id)

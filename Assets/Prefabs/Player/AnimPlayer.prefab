@@ -520,13 +520,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6423ad08b8504046a41b522930873d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _distance: 20
+  _distance: 15
   _travelSpeed: 800
   _hookSpeed: 2000
-  _maxStickTime: 0
+  _maxStickTime: 0.01
   _collidableLayers:
     serializedVersion: 2
     m_Bits: 6592
+  _returnableLayers:
+    serializedVersion: 2
+    m_Bits: 2048
   _playerLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -603,7 +606,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7051284086477677472}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -15.15, y: -7.44, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -794,9 +797,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _whatIsGround:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 2048
   _groundCheckTransform: {fileID: 3468154731737500122}
-  _groundCheckRadius: 0.3
+  _groundCheckRadius: 0.1
   _whatIsWall:
     serializedVersion: 2
     m_Bits: 128
@@ -835,7 +838,7 @@ MonoBehaviour:
   _speed: 15
   _acceleration: 6
   _deceleration: 6
-  _airResistance: 1.7
+  _airResistance: 6
 --- !u!114 &49527430661512958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -955,7 +958,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8129398080105904221}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.521, z: 0}
+  m_LocalPosition: {x: 0, y: -0.86, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
