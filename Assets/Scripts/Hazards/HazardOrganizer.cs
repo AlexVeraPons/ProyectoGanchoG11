@@ -115,7 +115,6 @@ public class HazardOrganizer : MonoBehaviour
             }
         }
 
-        Debug.Log("Number of containers: " + numberOfContainers);
         _temporaryHazardContainers = new HazardContainer[numberOfContainers];
         numberOfContainers = 0;
 
