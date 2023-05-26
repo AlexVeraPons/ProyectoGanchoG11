@@ -10,6 +10,7 @@ public class PauseSystem : MonoBehaviour
     [SerializeField] private Button _ResumeButton;
     [SerializeField] private Button _optionButton;
     [SerializeField] private Button _exitButton;
+    [SerializeField] private Button _displayButton;
     [SerializeField] private Button _BrilloButton;
     [SerializeField] private Image _brilloButtonSelectedImage;
     [SerializeField] private Image _brilloButtonDefaultImage;
@@ -85,7 +86,7 @@ public class PauseSystem : MonoBehaviour
         _pauseMenu.SetActive(false);
         _optionsMenu.SetActive(true);
         ResetButonColors();
-        _BrilloButton.Select();
+        _displayButton.Select();
     }
     public void ReturnPausePanel()
     {
