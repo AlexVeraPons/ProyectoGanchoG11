@@ -64,7 +64,7 @@ public class Grounded : State
         base.Update();
         _animator.SetBool("isGrounded", true);
 
-        if(Mathf.Abs(_input) < 0.1f)
+        if (Mathf.Abs(_input) < 0.1f)
         {
             _animator.SetBool("isIdle", true);
         }

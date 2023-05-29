@@ -176,7 +176,6 @@ public class HookBehaviour : MonoBehaviour
         var result = Physics2D.OverlapCircle(_impactTransform.position, 0.3f, _returnableLayers);
         if (result != null)
         {
-            print("hehe");
             return true;
         }
 

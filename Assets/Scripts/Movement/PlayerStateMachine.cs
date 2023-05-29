@@ -36,13 +36,13 @@ public class PlayerStateMachine : StateMachine
     private float _airResistance = 1f;
 
     public float AirResistance => _airResistance;
-    
+
     private Rigidbody2D _rigidbody2D;
 
     public Rigidbody2D RigidBody2D => _rigidbody2D;
 
     private CollisionDetector _collisionDetector;
-    private float  _directionalInput;
+    private float _directionalInput;
     public float DirectionalInput() => _directionalInput;
 
     public CollisionDetector CollisionDetector => _collisionDetector;
@@ -90,6 +90,6 @@ public class PlayerStateMachine : StateMachine
     {
         _directionalInput = context.ReadValue<Vector2>().x;
     }
-    
-    
+
+
 }

@@ -339,6 +339,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _videoPlayer: {fileID: 1921587399}
   _sceneID: 1
+  _canSkip: 0
+  _skipAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!4 &1957435012
 Transform:
   m_ObjectHideFlags: 0
