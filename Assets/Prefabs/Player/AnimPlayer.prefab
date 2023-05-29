@@ -133,9 +133,9 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 979834373
+  m_SortingLayer: 3
+  m_SortingOrder: 1
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
@@ -159,8 +159,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0, g: 0.9686275, b: 0.9921569, a: 1}
-      key1: {r: 0, g: 0.6901961, b: 0.7058824, a: 1}
+      key0: {r: 0.80392164, g: 0.43137258, b: 0.7607844, a: 1}
+      key1: {r: 0.80392164, g: 0.43137258, b: 0.7607844, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -312,7 +312,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3203049618528051805}
   m_LocalRotation: {x: -0, y: -0, z: 0.0035299766, w: 0.9999938}
-  m_LocalPosition: {x: 0.9999984, y: -0.0000022057, z: 0}
+  m_LocalPosition: {x: 3.1590233, y: -0.0000022057, z: 0}
   m_LocalScale: {x: 2.60365, y: 2.60365, z: 2.60365}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -399,7 +399,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3203049619141546608}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -447,11 +447,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 979834373
+  m_SortingLayer: 3
+  m_SortingOrder: 2
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 0, g: 0.88675547, b: 1, a: 1}
+  m_Color: {r: 0.75294125, g: 0.33333334, b: 0.5019608, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -524,6 +524,7 @@ MonoBehaviour:
   _travelSpeed: 800
   _hookSpeed: 2000
   _maxStickTime: 0.01
+  _launchOffset: {x: 0, y: -0.5}
   _collidableLayers:
     serializedVersion: 2
     m_Bits: 6592
@@ -560,7 +561,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4109438786644382186}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.326, y: 0.066, z: 0}
+  m_LocalPosition: {x: 1.02, y: -0.87, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -591,6 +592,7 @@ GameObject:
   - component: {fileID: 220002413}
   - component: {fileID: 7636206709669769597}
   - component: {fileID: 7070648087881396501}
+  - component: {fileID: 277676903}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -654,10 +656,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: efe478ff3b25f3540b57486ac7e66a54, type: 3}
+  m_SortingLayerID: 979834373
+  m_SortingLayer: 3
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 1637243430, guid: 7438407cca7d0f04c808ab45b820b1f3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -702,8 +704,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Offset: {x: 0, y: -1.0509205}
+  m_Size: {x: 2.47, y: 2.8885007}
   m_Direction: 0
 --- !u!95 &49527430661512937
 Animator:
@@ -934,6 +936,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a61a81014ba52443a22c1c89cfa9cf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &277676903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7051284086477677472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 014d0b60e57313342ae1f62473cc3b6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8129398080105904221
 GameObject:
   m_ObjectHideFlags: 0
@@ -946,7 +960,7 @@ GameObject:
   m_Layer: 0
   m_Name: GroundChecker
   m_TagString: Untagged
-  m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -958,7 +972,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8129398080105904221}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.86, z: 0}
+  m_LocalPosition: {x: 0, y: -2.61, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
