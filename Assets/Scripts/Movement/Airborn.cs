@@ -84,14 +84,14 @@ public class Airborn : State
 
         if (_lastVelocity.y > 0 && this._rigidbody2D.velocity.y < 0)
         {
+            Debug.Log("pepe");
             _animator.SetTrigger("fell");
         }
         else
         {
             _animator.ResetTrigger("fell");
+            _lastVelocity = this._rigidbody2D.velocity;
         }
-
-        _lastVelocity = this._rigidbody2D.velocity;
     }
 
     /// <summary>

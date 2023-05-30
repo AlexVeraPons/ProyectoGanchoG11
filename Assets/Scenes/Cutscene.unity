@@ -339,24 +339,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _videoPlayer: {fileID: 1921587399}
   _sceneID: 1
-  _canSkip: 1
+  _canSkip: 0
   _skipAction:
-    m_Name: Skip
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: 3d4c5c5c-be29-442b-8590-b81ae0604595
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: b4f6e7b5-65c3-4f43-8005-bc0b8edce9e8
-      m_Path: <Mouse>/leftButton
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Skip
-      m_Flags: 0
-    m_Flags: 1
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!4 &1957435012
 Transform:
   m_ObjectHideFlags: 0
