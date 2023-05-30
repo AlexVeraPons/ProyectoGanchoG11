@@ -524,6 +524,7 @@ MonoBehaviour:
   _travelSpeed: 800
   _hookSpeed: 2000
   _maxStickTime: 0.01
+  _launchOffset: {x: 0, y: 0}
   _collidableLayers:
     serializedVersion: 2
     m_Bits: 6592
@@ -592,6 +593,9 @@ GameObject:
   - component: {fileID: 7636206709669769597}
   - component: {fileID: 7070648087881396501}
   - component: {fileID: 277676903}
+  - component: {fileID: 478713838}
+  - component: {fileID: 478713839}
+  - component: {fileID: 478713840}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -947,6 +951,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 014d0b60e57313342ae1f62473cc3b6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &478713838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7051284086477677472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e74eefebe9b574b4ead6f73cf6694655, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animationName: Respawn
+--- !u!114 &478713839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7051284086477677472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6197303b9be6a4348a9027ef8258be58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animationName: Die
+--- !u!114 &478713840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7051284086477677472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45f0eb5761f85d2488421c9591909966, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animationName: Eat
 --- !u!1 &8129398080105904221
 GameObject:
   m_ObjectHideFlags: 0

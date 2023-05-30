@@ -15,6 +15,7 @@ public class WaveManager : MonoBehaviour
     public static Action OnResetWorld;
     public static Action OnUnloadWave;
     public static Action OnLoadWave;
+    public static Action OnMovePlayerPosition;
 
     [Header("MANAGER VALUES")]
     [SerializeField]
@@ -208,6 +209,8 @@ public class WaveManager : MonoBehaviour
 
     void ResetWavePlayerPosition(WaveData waveData)
     {
+        OnMovePlayerPosition?.Invoke();
+
         if (waveData.GetWorldID() > 0) //If there is a world ID
         {
             _playerTransform.position = GetWorldByID(waveData.GetWorldID()).WaveList[
