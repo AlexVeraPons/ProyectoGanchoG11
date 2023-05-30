@@ -533,7 +533,7 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -554,7 +554,7 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -575,7 +575,7 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -596,7 +596,7 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -617,7 +617,7 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -638,7 +638,7 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -661,10 +661,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      animaciones playerBienHechas_34: 1065979463
+      animaciones playerBienHechas_41: -312524926
       animaciones playerBienHechas_43: 1064296049
       animaciones playerBienHechas_18: 1244687305
-      Lengua4: 100057941
       animaciones playerBienHechas_37: 1922995029
       animaciones playerBienHechas_38: -815105350
       animaciones playerBienHechas_42: -1975184737
@@ -720,11 +719,12 @@ TextureImporter:
       Idle1: -742791058
       animaciones playerBienHechas_28: 481957429
       animaciones playerBienHechas_32: 1814087293
+      Lengua4: 100057941
       Fall0: 238436697
       Impact3: 422532589
       animaciones playerBienHechas_30: 351717681
       animaciones playerBienHechas_22: 2108819175
-      animaciones playerBienHechas_41: -312524926
+      animaciones playerBienHechas_34: 1065979463
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
