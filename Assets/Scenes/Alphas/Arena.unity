@@ -495,12 +495,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 1853233073076128248, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 1853233073234572046, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1853233073234572046, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1853233073234572046, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6206091037238661158, guid: 3c330047951ff1443b7a2047de5d77b1, type: 3}
@@ -627,7 +631,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0979d506c07227d4d9ad620f5bf5eb3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _waveTime: 10
 --- !u!1 &1130971800 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7022454785383523142, guid: d9a1c266079f9a54d9db677ce7ddf29a, type: 3}
@@ -883,25 +886,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7234722262ae5ee4ea0df03f784bdf00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nextWaveDebugAction:
-    m_Name: Next Wave Debug
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: bbe9d894-b531-4b52-aa09-20fd5cde7699
-    m_Processors: 
-    m_Interactions: Press
-    m_SingletonActionBindings: []
-    m_Flags: 1
-  _resetWaveDebugAction:
-    m_Name: Reset Wave Debug
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: 1095330c-65ba-4ede-a251-1d8fb62ad2cd
-    m_Processors: 
-    m_Interactions: Press
-    m_SingletonActionBindings: []
-    m_Flags: 1
-  _waves: []
 --- !u!4 &1761308299 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3681033432282577656, guid: d9a1c266079f9a54d9db677ce7ddf29a, type: 3}

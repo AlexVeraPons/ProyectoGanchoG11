@@ -33,7 +33,7 @@ public class RopeRenderer : MonoBehaviour
 
     private void LateUpdate()
     {
-        _lineRenderer.SetPosition(0, _playerPosition.position);
+        _lineRenderer.SetPosition(0, _playerPosition.position + (Vector3)_hook.LaunchOffset);
         _lineRenderer.SetPosition(1, _hookPosition.position);
     }
 

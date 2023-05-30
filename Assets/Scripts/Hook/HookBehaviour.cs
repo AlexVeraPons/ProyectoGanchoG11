@@ -15,6 +15,8 @@ public class HookBehaviour : MonoBehaviour
     [SerializeField] float _hookSpeed;
     [Tooltip("Time that takes from the STUCK state to the RETRIEVE (If held). Set to 0 to disable.")]
     [SerializeField] float _maxStickTime;
+    public Vector2 LaunchOffset => _launchOffset;
+    [SerializeField] Vector2 _launchOffset;
     float _stickTimer;
 
     [Space(10)]
@@ -374,7 +376,7 @@ public class HookBehaviour : MonoBehaviour
     /// </summary>
     void AssignNewPosition()
     {
-        this.transform.position = _playerTransform.position;
+        this.transform.position = (Vector2)_playerTransform.position + _launchOffset;
     }
 
     /// <summary>
@@ -384,7 +386,7 @@ public class HookBehaviour : MonoBehaviour
     /// </summary>
     void SetImpactPosition()
     {
-        var result = Physics2D.Raycast(_grapplingGun.transform.position,
+        var result = Physics2D.Raycast(_launchPosition,
         _direction, _distance, _collidableLayers);
         if (result.collider != null)
         {
