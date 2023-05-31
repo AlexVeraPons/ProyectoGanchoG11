@@ -31,6 +31,10 @@ public class HookBehaviour : MonoBehaviour
     [Tooltip("The transform associated to the Grapple Gun Owner")]
     [SerializeField] Transform _playerTransform;
 
+    [Space(10)]
+    [Header("PARTICLES")]
+    [SerializeField] private ParticleSystem _tongueStuckPartickle;
+
     //Private Grappling Gun related variables
     GrapplingGun _grapplingGun;
     Rigidbody2D _grapplingGunRigidbody2D;
@@ -261,6 +265,7 @@ public class HookBehaviour : MonoBehaviour
                 break;
 
             case HookState.Stuck:
+                _tongueStuckPartickle.Play(); //Play tongue particle on hit
                 AudioManager._instance.PlaySingleSound(SingleSound.HookStuck);
                 _rigidbody2D.velocity = Vector2.zero; //Reset velocity to 0
                 AlignPositionToImpact();
