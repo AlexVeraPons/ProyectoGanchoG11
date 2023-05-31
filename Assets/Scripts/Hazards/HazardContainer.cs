@@ -39,23 +39,30 @@ public class HazardContainer
         }
     }
 
-    public float GetDuration()
-    {
-        float duration = 0;
+    // public float GetDuration()
+    // {
+    //     float duration = 0;
 
-        foreach (Hazard hazard in Hazards)
-        {
-            if (hazard.Duration > duration)
-            {
-                duration = hazard.Duration;
-            }
-        }
+    //     foreach (Hazard hazard in Hazards)
+    //     {
+    //         if (hazard.Duration > duration)
+    //         {
+    //             duration = hazard.Duration;
+    //         }
+    //     }
 
-        return duration;
-    }
+    //     return duration;
+    // }
 
     internal void CopyValuesFrom(HazardContainer hazardContainer)
     {
         throw new NotImplementedException();
+    }
+
+    public bool IsFinished()
+    {
+        Debug.Log("Checking if container is finished");
+        Debug.Log("Hazards: " + Hazards.TrueForAll(hazard => hazard.IsFinished()));
+        return Hazards.TrueForAll(hazard => hazard.IsFinished());
     }
 }

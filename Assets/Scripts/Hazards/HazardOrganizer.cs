@@ -29,7 +29,7 @@ public class HazardOrganizer : MonoBehaviour
     private void LevelStarted()
     {
         StartCoroutine(StartInitialContainer());
-        Debug.Log(this.transform.parent.name+" Started");
+        Debug.Log(this.transform.parent.name + " Started");
     }
 
     private void Start()
@@ -45,20 +45,39 @@ public class HazardOrganizer : MonoBehaviour
         }
         yield return new WaitForSeconds(seconds: _hazardContainers[0].StartTime);
         _currentContainer.StartContainer();
-        StartCoroutine(NextContainerAfterDelay(_currentContainer.GetDuration()));
+        StartCoroutine(NextContainerAfterDelay());
     }
 
-    private IEnumerator NextContainerAfterDelay(float duration = 0)
+    private IEnumerator NextContainerAfterDelay()
     {
+        bool shouldIgnore = false;
+
         if (_currentContainerIndex < _hazardContainers.Length - 1)
         {
             if (_hazardContainers[_currentContainerIndex + 1].IgnorePreviousDuration)
             {
-                duration = 0;
+                shouldIgnore = true;
             }
         }
 
-        yield return new WaitForSeconds(seconds: duration);
+        yield return null;
+
+        if (shouldIgnore)
+        {
+            yield return new WaitForSeconds(
+                seconds: _hazardContainers[_currentContainerIndex + 1].StartTime
+            );
+
+            NextContainer();
+
+            Debug.Log("Ignored");
+
+            yield break;
+        }
+        else
+        {
+            yield return new WaitUntil(() => _currentContainer.IsFinished());
+        }
 
         if (_currentContainerIndex == _hazardContainers.Length - 1)
         {
@@ -88,7 +107,7 @@ public class HazardOrganizer : MonoBehaviour
             return;
         }
 
-        StartCoroutine(NextContainerAfterDelay(_currentContainer.GetDuration()));
+        StartCoroutine(NextContainerAfterDelay());
     }
 
     private void ResetContainers()
@@ -145,27 +164,27 @@ public class HazardOrganizer : MonoBehaviour
         {
             bool same = true;
             //same hazards in the same container
-            if(_temporaryHazardContainers[i].Hazards.Count == _hazardContainers[i].Hazards.Count)
+            if (_temporaryHazardContainers[i].Hazards.Count == _hazardContainers[i].Hazards.Count)
             {
                 for (int j = 0; j < _temporaryHazardContainers[i].Hazards.Count; j++)
                 {
-                    if(_temporaryHazardContainers[i].Hazards[j] != _hazardContainers[i].Hazards[j])
+                    if (_temporaryHazardContainers[i].Hazards[j] != _hazardContainers[i].Hazards[j])
                     {
                         same = false;
                     }
                 }
 
-                if(same)
+                if (same)
                 {
                     _temporaryHazardContainers[i].StartTime = _hazardContainers[i].StartTime;
-                    _temporaryHazardContainers[i].IgnorePreviousDuration = _hazardContainers[i].IgnorePreviousDuration;
+                    _temporaryHazardContainers[i].IgnorePreviousDuration = _hazardContainers[
+                        i
+                    ].IgnorePreviousDuration;
                 }
             }
 
-        
             //resize _hazardContainers
             Array.Resize(ref _hazardContainers, _temporaryHazardContainers.Length);
-
 
             _hazardContainers[i] = _temporaryHazardContainers[i];
         }
