@@ -34,7 +34,7 @@ public class HazardOrganizer : MonoBehaviour
 
     private void Start()
     {
-        //PopulateListFromChildren();
+        PopulateListFromChildren();
     }
 
     private IEnumerator StartInitialContainer()
