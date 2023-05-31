@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public abstract class Hazard : MonoBehaviour
 {
     [Header("Values")]
@@ -17,6 +16,8 @@ public abstract class Hazard : MonoBehaviour
     private protected bool _shouldDespawn = true;
 
     private protected bool _running = false;
+
+    private protected bool _hasrun = false;
 
     private GlitchController _glitchController;
 
@@ -73,6 +74,7 @@ public abstract class Hazard : MonoBehaviour
 
     private virtual protected void StartRunning()
     {
+        _hasrun = true;
         PlayRunSound();
         _running = true;
     }
@@ -157,7 +159,16 @@ public abstract class Hazard : MonoBehaviour
     /// </summary>
     public virtual void ResetHazard()
     {
+        _hasrun = false;
         StopRunning();
         Disappear();
     }
+
+    internal bool IsFinished()
+    {
+        // only returns false if it has already been started
+        return _hasrun && !_running;
+    }
 }
+
+

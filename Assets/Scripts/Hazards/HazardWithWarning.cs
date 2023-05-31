@@ -75,7 +75,6 @@ public abstract class HazardWithWarning : Hazard
 
     private protected override void Disappear()
     {
-        Debug.Log("Disappear");
         _warningFinished = false;
         _warningZone.SetActive(false);
         base.Disappear();
