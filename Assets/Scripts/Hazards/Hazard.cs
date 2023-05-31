@@ -15,6 +15,7 @@ public abstract class Hazard : MonoBehaviour
 
     private protected bool _shouldDespawn = true;
 
+    [SerializeField]
     private protected bool _running = false;
 
     private GlitchController _glitchController;
@@ -158,6 +159,12 @@ public abstract class Hazard : MonoBehaviour
     {
         StopRunning();
         Disappear();
+    }
+
+    internal bool IsFinished()
+    {
+        Debug.Log("IsFinished() called on " + this.gameObject.name + " and returned " + !_running);
+        return !_running;
     }
 }
 
