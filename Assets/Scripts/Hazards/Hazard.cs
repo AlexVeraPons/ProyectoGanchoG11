@@ -62,7 +62,7 @@ public abstract class Hazard : MonoBehaviour
         throw new NotImplementedException();
     }
 
-    private void Update()
+    private protected void Update()
     {
         if (!_running)
         {

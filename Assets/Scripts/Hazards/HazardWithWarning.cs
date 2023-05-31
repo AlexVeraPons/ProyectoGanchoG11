@@ -37,8 +37,12 @@ public abstract class HazardWithWarning : Hazard
 
     private IEnumerator Warning()
     {
+        _running = true;
+        
         ShowWarning();
         GlitchWarnnig();
+
+        _hasrun = true;
 
         yield return new WaitForSeconds(seconds: _warningDuration);
         _warningFinished = true;
@@ -108,4 +112,16 @@ public abstract class HazardWithWarning : Hazard
 
         base.ResetHazard();
     }
+
+    private void Update() {
+        base.Update();
+
+        if(!_running&&_hasrun)
+        {
+            Debug.Log("Finished");
+            Debug.Log("running: " + _running);
+            Debug.Log("hasrun: " + _hasrun);
+        }
+    }
 }
+
