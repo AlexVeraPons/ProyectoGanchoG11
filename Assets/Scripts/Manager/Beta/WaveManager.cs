@@ -15,6 +15,7 @@ public class WaveManager : MonoBehaviour
     public static Action OnResetWorld;
     public static Action OnUnloadWave;
     public static Action OnLoadWave;
+    public static Action OnMovePlayerPosition;
 
     [Header("MANAGER VALUES")]
     [SerializeField]
@@ -87,7 +88,7 @@ public class WaveManager : MonoBehaviour
 
     public void NextWave()
     {
-        if (_inProgress == false)
+        if (_inProgress == false && NextWaveIsNotNull() == true)
         {
             _inProgress = true;
 
@@ -208,6 +209,8 @@ public class WaveManager : MonoBehaviour
 
     void ResetWavePlayerPosition(WaveData waveData)
     {
+        OnMovePlayerPosition?.Invoke();
+
         if (waveData.GetWorldID() > 0) //If there is a world ID
         {
             _playerTransform.position = GetWorldByID(waveData.GetWorldID()).WaveList[
@@ -252,6 +255,11 @@ public class WaveManager : MonoBehaviour
 
         Debug.LogError("The World ID exceeds the actual ammount!");
         return null;
+    }
+
+    public bool NextWaveIsNotNull()
+    {
+        return GetWaveByID(_currentWaveID + 1) != null;
     }
 
     bool WaveIsInAnotherWorld(World currentWorld, Wave newWave)

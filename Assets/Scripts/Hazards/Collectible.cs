@@ -27,7 +27,8 @@ public class Collectible : Hazard
         if (!_running)
             return;
 
-        if(collision.CompareTag("Player") == true)
+        if(collision.CompareTag("Player") == true
+        && WaveManager._instance.NextWaveIsNotNull())
         {
             OnCollected?.Invoke();
         }

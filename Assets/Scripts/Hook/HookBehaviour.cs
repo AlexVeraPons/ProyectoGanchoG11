@@ -15,6 +15,8 @@ public class HookBehaviour : MonoBehaviour
     [SerializeField] float _hookSpeed;
     [Tooltip("Time that takes from the STUCK state to the RETRIEVE (If held). Set to 0 to disable.")]
     [SerializeField] float _maxStickTime;
+    public Vector2 LaunchOffset => _launchOffset;
+    [SerializeField] Vector2 _launchOffset;
     float _stickTimer;
 
     [Space(10)]
@@ -28,6 +30,10 @@ public class HookBehaviour : MonoBehaviour
     [SerializeField] public HookState _state;
     [Tooltip("The transform associated to the Grapple Gun Owner")]
     [SerializeField] Transform _playerTransform;
+
+    [Space(10)]
+    [Header("PARTICLES")]
+    [SerializeField] private ParticleSystem _tongueStuckPartickle;
 
     //Private Grappling Gun related variables
     GrapplingGun _grapplingGun;
@@ -176,7 +182,6 @@ public class HookBehaviour : MonoBehaviour
         var result = Physics2D.OverlapCircle(_impactTransform.position, 0.3f, _returnableLayers);
         if (result != null)
         {
-            print("hehe");
             return true;
         }
 
@@ -260,6 +265,7 @@ public class HookBehaviour : MonoBehaviour
                 break;
 
             case HookState.Stuck:
+                _tongueStuckPartickle.Play(); //Play tongue particle on hit
                 AudioManager._instance.PlaySingleSound(SingleSound.HookStuck);
                 _rigidbody2D.velocity = Vector2.zero; //Reset velocity to 0
                 AlignPositionToImpact();
@@ -375,7 +381,7 @@ public class HookBehaviour : MonoBehaviour
     /// </summary>
     void AssignNewPosition()
     {
-        this.transform.position = _playerTransform.position;
+        this.transform.position = (Vector2)_playerTransform.position + _launchOffset;
     }
 
     /// <summary>
@@ -385,7 +391,7 @@ public class HookBehaviour : MonoBehaviour
     /// </summary>
     void SetImpactPosition()
     {
-        var result = Physics2D.Raycast(_grapplingGun.transform.position,
+        var result = Physics2D.Raycast(_launchPosition,
         _direction, _distance, _collidableLayers);
         if (result.collider != null)
         {

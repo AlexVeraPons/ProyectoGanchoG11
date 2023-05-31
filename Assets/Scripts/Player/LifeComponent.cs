@@ -26,24 +26,8 @@ public class LifeComponent : MonoBehaviour, IDamageable
 
     public void TakeDamage(int ammount)
     {
+        AudioManager._instance.PlaySingleSound(SingleSound.PlayerDeath);
         OnDeath?.Invoke();
-
-        /*
-        if(IsDead() == false)
-        {
-            _current = Math.Max(_current - ammount, 0);
-            if(_current > 0)
-            {
-                OnHit?.Invoke();
-            }
-            else
-            {
-                AudioManager._instance.PlaySingleSound(SingleSound.PlayerDeath);
-                OnDeath?.Invoke();
-            }
-        }*/
-
-        //We have to remove this later
     }
 
     bool IsDead()

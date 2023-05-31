@@ -20,6 +20,8 @@ public class Airborn : State
     private bool _delayDone = false;
     private float _input => ((PlayerStateMachine)_stateMachine).DirectionalInput();
 
+    private Vector2 _lastVelocity;
+
     public Airborn(StateMachine stateMachine)
         : base(stateMachine)
     {
@@ -61,9 +63,43 @@ public class Airborn : State
     public override void Update()
     {
         base.Update();
-        _animator.SetBool("isGrounded", false);
+
+        //Animation methods
+        BoolGrounded();
+        TriggerFall();
+
         ExitLogicUpdate();
         Delay();
+    }
+
+    /// <summary>
+    /// Plays the animation of falling if the player has reached the peak of it's air time
+    /// </summary>
+    private void TriggerFall()
+    {
+        if (_lastVelocity == null)
+        {
+            _lastVelocity = this._rigidbody2D.velocity;
+        }
+
+        if (_lastVelocity.y > 0 && this._rigidbody2D.velocity.y < 0)
+        {
+            _animator.SetTrigger("fell");
+        }
+        else
+        {
+            _animator.ResetTrigger("fell");
+        }
+
+        _lastVelocity = this._rigidbody2D.velocity;
+    }
+
+    /// <summary>
+    /// Makes sure the animation state of grounded in this script is always false 
+    /// </summary>
+    private void BoolGrounded()
+    {
+        _animator.SetBool("isGrounded", false);
     }
 
     public override void FixedUpdate()
@@ -117,6 +153,11 @@ public class Airborn : State
         }
     }
 
+    void PlayImpactAnimation()
+    {
+        _animator.Play("Impact");
+    }
+
     private void ResetTimer()
     {
         _timer = 0f;
@@ -129,6 +170,7 @@ public class Airborn : State
         if (_isGrounded)
         {
             AudioManager._instance.PlaySingleSound(SingleSound.PlayerGround);
+            PlayImpactAnimation();
             _stateMachine.ChangeState(new Grounded(_stateMachine));
         }
     }
