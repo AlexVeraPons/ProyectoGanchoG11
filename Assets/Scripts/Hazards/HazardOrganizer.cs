@@ -31,6 +31,11 @@ public class HazardOrganizer : MonoBehaviour
         StartCoroutine(StartInitialContainer());
     }
 
+    private void Start()
+    {
+        PopulateListFromChildren();
+    }
+
     private IEnumerator StartInitialContainer()
     {
         if (_hazardContainers.Length == 0)
@@ -163,7 +168,6 @@ public class HazardOrganizer : MonoBehaviour
 
             _hazardContainers[i] = _temporaryHazardContainers[i];
         }
-        //firstly if there is a container that already exists and is the same copy the start time etc..
     }
 
     private void PopulateHazardsFromContainer(
