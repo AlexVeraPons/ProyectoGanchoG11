@@ -29,7 +29,6 @@ public class HazardOrganizer : MonoBehaviour
     private void LevelStarted()
     {
         StartCoroutine(StartInitialContainer());
-        Debug.Log(this.transform.parent.name + " Started");
     }
 
     private void Start()

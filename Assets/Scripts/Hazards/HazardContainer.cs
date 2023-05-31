@@ -61,8 +61,6 @@ public class HazardContainer
 
     public bool IsFinished()
     {
-        Debug.Log("Checking if container is finished");
-        Debug.Log("Hazards: " + Hazards.TrueForAll(hazard => hazard.IsFinished()));
         return Hazards.TrueForAll(hazard => hazard.IsFinished());
     }
 }

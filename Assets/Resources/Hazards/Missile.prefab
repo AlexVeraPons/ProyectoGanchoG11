@@ -122,12 +122,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 750bb0701391205408e02f9c66d0b9c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startTime: 2
-  _wakeUpDuration: 2
+  _glitchDuration: 0
   _duration: 3
   _rotationalSpeed: 250
   _speed: 10
   _target: {fileID: 0}
+  _whatIsWall:
+    serializedVersion: 2
+    m_Bits: 64
+  _collisionArea: 0
 --- !u!96 &266641539083961635
 TrailRenderer:
   serializedVersion: 2
