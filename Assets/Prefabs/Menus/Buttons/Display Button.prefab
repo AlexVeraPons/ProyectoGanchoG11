@@ -671,7 +671,6 @@ GameObject:
   - component: {fileID: 6910713967706338805}
   - component: {fileID: 9062459035446535}
   - component: {fileID: 2873224712332152683}
-  - component: {fileID: 5643087338195573646}
   m_Layer: 5
   m_Name: Left Arrow
   m_TagString: Untagged
@@ -737,19 +736,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5643087338195573646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9112152897318087119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfcf54c949c825d4796729da6513d33d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _buttonLogic: {fileID: 0}
-  _leftArrow: {fileID: 0}
-  _rightArrow: {fileID: 0}
-  _clickedArrow: {fileID: 0}

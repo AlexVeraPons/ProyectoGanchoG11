@@ -9,22 +9,23 @@ public class HazardContainer
     public HazardContainer() { }
 
     [SerializeField]
-    [Tooltip("The time after which the hazard will start, after the last slot has finished its duration.")]
-    private float _startTime;
-    public float StartTime => _startTime;
+    [Tooltip(
+        "The time after which the hazard will start, after the last slot has finished its duration."
+    )]
+    public float StartTime;
 
     [SerializeField]
-    [Tooltip("Ignore the duration of the previous Container, and start this one immediately after the start time has elapsed.")]
-    private bool _ignorePreviousDuration;
-
-    public bool IgnorePreviousDuration => _ignorePreviousDuration;
+    [Tooltip(
+        "Ignore the duration of the previous Container, and start this one immediately after the start time has elapsed."
+    )]
+    public bool IgnorePreviousDuration;
 
     [SerializeField]
-    private List<Hazard> _hazards = new List<Hazard>();
+    public List<Hazard> Hazards = new List<Hazard>();
 
     public void StartContainer()
     {
-        foreach (Hazard hazard in _hazards)
+        foreach (Hazard hazard in Hazards)
         {
             hazard.HazardStart();
         }
@@ -32,25 +33,34 @@ public class HazardContainer
 
     public void ResetContainer()
     {
-        foreach (Hazard hazard in _hazards)
+        foreach (Hazard hazard in Hazards)
         {
             hazard.ResetHazard();
         }
     }
 
-    public float GetDuration()
+    // public float GetDuration()
+    // {
+    //     float duration = 0;
+
+    //     foreach (Hazard hazard in Hazards)
+    //     {
+    //         if (hazard.Duration > duration)
+    //         {
+    //             duration = hazard.Duration;
+    //         }
+    //     }
+
+    //     return duration;
+    // }
+
+    internal void CopyValuesFrom(HazardContainer hazardContainer)
     {
-        float duration = 0;
+        throw new NotImplementedException();
+    }
 
-        foreach (Hazard hazard in _hazards)
-        {
-            if (hazard.Duration > duration)
-            {
-                duration = hazard.Duration;
-            }
-        }
-
-        return duration;
+    public bool IsFinished()
+    {
+        return Hazards.TrueForAll(hazard => hazard.IsFinished());
     }
 }
-
