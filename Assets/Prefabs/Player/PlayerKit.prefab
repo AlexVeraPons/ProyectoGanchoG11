@@ -712,8 +712,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1.0767275}
-  m_Size: {x: 2.47, y: 2.9401147}
+  m_Offset: {x: 0, y: -1.1011189}
+  m_Size: {x: 2.47, y: 2.9888976}
   m_Direction: 0
 --- !u!95 &49527430661512937
 Animator:
@@ -1019,7 +1019,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8129398080105904221}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.61, z: 0}
+  m_LocalPosition: {x: 0, y: -2.542, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1095,6 +1095,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3727393383460715038}
     m_Modifications:
+    - target: {fileID: 6770643802954852390, guid: 7063bd309f39b2441aedcbd11bb32df2, type: 3}
+      propertyPath: stopAction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6770643802954852392, guid: 7063bd309f39b2441aedcbd11bb32df2, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1162,6 +1166,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3203049618110633433}
     m_Modifications:
+    - target: {fileID: 5162322040096986775, guid: bc0d460700220a14b83683741490be8c, type: 3}
+      propertyPath: stopAction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5162322040096986775, guid: bc0d460700220a14b83683741490be8c, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
       value: 0.5019608

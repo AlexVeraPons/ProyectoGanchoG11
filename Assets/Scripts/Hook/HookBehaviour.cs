@@ -274,6 +274,7 @@ public class HookBehaviour : MonoBehaviour
                 break;
 
             case HookState.Returning:
+
                 //SoundManager._instance.PlaySingleSound(SingleSound.HookRetrieving);
                 break;
 

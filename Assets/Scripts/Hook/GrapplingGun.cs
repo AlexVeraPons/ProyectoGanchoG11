@@ -118,8 +118,7 @@ public class GrapplingGun : MonoBehaviour
     {
         if (_input.currentControlScheme == "Keyboard&Mouse")
         {
-            _referenceDirection.Value = (Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - (Vector2)this.transform.position;
-            _referenceDirection.Value = _referenceDirection.Value.normalized;
+            _referenceDirection.Value = Vector2.zero;
         }
         else
         {
