@@ -112,9 +112,5 @@ public abstract class HazardWithWarning : Hazard
 
         base.ResetHazard();
     }
-
-    private void Update() {
-        base.Update();
-    }
 }
 
