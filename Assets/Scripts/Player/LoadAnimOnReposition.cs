@@ -9,12 +9,12 @@ public class LoadAnimOnReposition : MonoBehaviour
 
     private void OnEnable()
     {
-        WaveManager.OnMovePlayerPosition += PlayAnimation;
+        WaveManager.OnLoadWave += PlayAnimation;
     }
 
     private void OnDisable()
     {
-        WaveManager.OnMovePlayerPosition -= PlayAnimation;  
+        WaveManager.OnLoadWave -= PlayAnimation;  
     }
 
     private void Awake()

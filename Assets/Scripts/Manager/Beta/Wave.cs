@@ -9,7 +9,7 @@ public class Wave : MonoBehaviour
     public Vector2 SpawnPosition => _spawnPosition;
     private Vector2 _spawnPosition;
 
-    void Awake()
+    private void Start()
     {
         if (GetComponentInChildren<SpawnPosition>() != null)
         {
