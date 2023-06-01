@@ -102,6 +102,7 @@ public abstract class Hazard : MonoBehaviour
 
         if (collision.GetComponent<IDamageable>() != null)
         {
+            Debug.Log("Hazard hit " + collision.gameObject.name);
             DamageableAction(collision);
         }
     }

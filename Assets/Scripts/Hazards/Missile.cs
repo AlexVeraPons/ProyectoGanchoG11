@@ -55,7 +55,10 @@ public class Missile : Hazard
     {
         base.Disappear();
 
-        _trailRenderer.enabled = false;
+        if (_trailRenderer != null)
+        {
+            _trailRenderer.enabled = false;
+        }
     }
 
     private protected override void HazardUpdate()
@@ -99,5 +102,13 @@ public class Missile : Hazard
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _collisionArea);
+    }
+
+    private void OnTriggerEntered2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            DamageableAction(collision);
+        }
     }
 }

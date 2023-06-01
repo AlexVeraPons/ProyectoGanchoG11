@@ -115,13 +115,6 @@ public abstract class HazardWithWarning : Hazard
 
     private void Update() {
         base.Update();
-
-        if(!_running&&_hasrun)
-        {
-            Debug.Log("Finished");
-            Debug.Log("running: " + _running);
-            Debug.Log("hasrun: " + _hasrun);
-        }
     }
 }
 

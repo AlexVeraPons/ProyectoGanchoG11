@@ -69,8 +69,6 @@ public class HazardOrganizer : MonoBehaviour
 
             NextContainer();
 
-            Debug.Log("Ignored");
-
             yield break;
         }
         else
