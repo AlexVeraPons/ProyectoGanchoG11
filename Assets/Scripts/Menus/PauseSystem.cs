@@ -5,24 +5,57 @@ using UnityEngine.UI;
 
 public class PauseSystem : MonoBehaviour
 {
+    [Header("PAUSE PANELS")]
+    [Space(5)]
     [SerializeField] private GameObject _pauseMenu;
     [SerializeField] private GameObject _optionsMenu;
+
+    [Space(10)]
+    [Header("BUTTONS IN PAUSE PANEL")]
+    [Space(5)]
+    [Header("Resume button in Pause")]
     [SerializeField] private Button _ResumeButton;
+    [SerializeField] private Image _resumeButtonSelectedImage;
+    [SerializeField] private Image _resumeButtonDefaultImage;
+
+    [Space(5)]
+    [Header("Options button in Pause")]
     [SerializeField] private Button _optionButton;
+    [SerializeField] private Image _optionButtonSelectedImage;
+    [SerializeField] private Image _optionButtonDefaultImage;
+
+    [Space(5)]
+    [Header("Exit button in Pause")]
     [SerializeField] private Button _exitButton;
+    [SerializeField] private Image _exitButtonSelectedImage;
+    [SerializeField] private Image _exitButtonDefaultImage;
+
+    [Space(10)]
+    [Header("BUTTONS IN OPTIONS PAUSE PANEL")]
+    [Space(5)]
+    [Header("Display button")]
     [SerializeField] private Button _displayButton;
+    [SerializeField] private Image _displayButtonSelectedImage;
+    [SerializeField] private Image _displayButtonDefaultImage;
+
+    [Space(5)]
+    [Header("Resolution button")]
+    [SerializeField] private Button _resolutionButton;
+    [SerializeField] private Image _resolucionButtonSelectedImage;
+    [SerializeField] private Image _resolucionButtonDefaultImage;
+
+    [Space(5)]
+    [Header("Brillo button")]
     [SerializeField] private Button _BrilloButton;
     [SerializeField] private Image _brilloButtonSelectedImage;
     [SerializeField] private Image _brilloButtonDefaultImage;
+    
+    [Space(5)]
+    [Header("Volume button")]
     [SerializeField] private Button _volumeButton;
     [SerializeField] private Image _volumeButtonSelectedImage;
     [SerializeField] private Image _volumeButtonDefaultImage;
-    [SerializeField] private Image _resumeButtonSelectedImage;
-    [SerializeField] private Image _resumeButtonDefaultImage;
-    [SerializeField] private Image _optionButtonSelectedImage;
-    [SerializeField] private Image _optionButtonDefaultImage;
-    [SerializeField] private Image _exitButtonSelectedImage;
-    [SerializeField] private Image _exitButtonDefaultImage;
+
     private bool _isPaused;
     private ScenePicker _scenePicker;
     private string _mainMenuScene;
@@ -107,18 +140,29 @@ public class PauseSystem : MonoBehaviour
         ResetScale(_optionButton);
         ResetScale(_exitButton);
 
+        ResetScale(_displayButton);
+        ResetScale(_resolutionButton);
         ResetScale(_BrilloButton);
         ResetScale(_volumeButton);
+
 
         DeleteAlphas(_resumeButtonSelectedImage);
         DeleteAlphas(_optionButtonSelectedImage);
         DeleteAlphas(_exitButtonSelectedImage);
+
+
+        DeleteAlphas(_displayButtonSelectedImage);
+        DeleteAlphas(_resolucionButtonSelectedImage);
         DeleteAlphas(_brilloButtonSelectedImage);
         DeleteAlphas(_volumeButtonSelectedImage);
+
 
         ResetAlphas(_resumeButtonDefaultImage);
         ResetAlphas(_optionButtonDefaultImage);
         ResetAlphas(_exitButtonDefaultImage);
+
+        ResetAlphas(_displayButtonDefaultImage);
+        ResetAlphas(_resolucionButtonDefaultImage);
         ResetAlphas(_brilloButtonDefaultImage);
         ResetAlphas(_volumeButtonDefaultImage);
     }
