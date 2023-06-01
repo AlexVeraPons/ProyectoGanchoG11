@@ -139,6 +139,8 @@ public class WaveManager : MonoBehaviour
     )
     {
         OnUnloadWave?.Invoke();
+        
+        yield return new WaitForSeconds(_timeBetweenWaves);
 
         this._spawner.DespawnAllWaves(this._collector);
 
@@ -149,8 +151,6 @@ public class WaveManager : MonoBehaviour
         {
             this._spawner.DespawnWorld(_collector, previousWaveData.GetWorldID());
         }
-
-        yield return new WaitForSeconds(_timeBetweenWaves);
 
         this._spawner.SpawnWave(_collector, nextWaveData.GetWorldID(), nextWaveData.GetWaveID());
         this._spawner.SpawnWorld(_collector, nextWaveData.GetWorldID());
