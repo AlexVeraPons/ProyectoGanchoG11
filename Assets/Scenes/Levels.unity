@@ -466,7 +466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03299d82103ca0049b622b15f4dda289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 1
+  _glitchDuration: 0
   _duration: 6
   _warningDuration: 2
   _warningZone: {fileID: 1933011946}
@@ -1262,7 +1262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0a0a007b97f9f442a075e39c7f5a88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 1
+  _glitchDuration: 0
   _duration: 15
   _linearSpeed: 20
   _routeType: 0
@@ -1513,7 +1513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03299d82103ca0049b622b15f4dda289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 1
+  _glitchDuration: 0
   _duration: 5
   _warningDuration: 3
   _warningZone: {fileID: 324589827}
@@ -1964,14 +1964,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 750bb0701391205408e02f9c66d0b9c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 2
+  _glitchDuration: 0
   _duration: 25
   _rotationalSpeed: 350
   _speed: 13
   _target: {fileID: 0}
   _whatIsWall:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   _collisionArea: 0
 --- !u!50 &94593322
 Rigidbody2D:
@@ -2374,7 +2374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03299d82103ca0049b622b15f4dda289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 0.5
+  _glitchDuration: 0
   _duration: 5
   _warningDuration: 1.5
   _warningZone: {fileID: 1368781985}
@@ -2503,7 +2503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03299d82103ca0049b622b15f4dda289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 1
+  _glitchDuration: 0
   _duration: 6
   _warningDuration: 2
   _warningZone: {fileID: 1326951455}
@@ -2728,7 +2728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03299d82103ca0049b622b15f4dda289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 1
+  _glitchDuration: 0
   _duration: 5
   _warningDuration: 3
   _warningZone: {fileID: 1073071977}
@@ -3102,7 +3102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03299d82103ca0049b622b15f4dda289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 1
+  _glitchDuration: 0
   _duration: 5
   _warningDuration: 3
   _warningZone: {fileID: 62298741}
@@ -4092,7 +4092,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 266641539083961636, guid: a0bf2da04c3793d4eb5ec418dd181ed9, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 266641539083961636, guid: a0bf2da04c3793d4eb5ec418dd181ed9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4337,7 +4337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03299d82103ca0049b622b15f4dda289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 1
+  _glitchDuration: 0
   _duration: 5
   _warningDuration: 3
   _warningZone: {fileID: 1159325761}
@@ -5106,14 +5106,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 750bb0701391205408e02f9c66d0b9c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 2
+  _glitchDuration: 0
   _duration: 25
   _rotationalSpeed: 350
   _speed: 13
   _target: {fileID: 0}
   _whatIsWall:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   _collisionArea: 0
 --- !u!50 &335894077
 Rigidbody2D:
@@ -5386,14 +5386,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 750bb0701391205408e02f9c66d0b9c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 2
+  _glitchDuration: 0
   _duration: 25
   _rotationalSpeed: 350
   _speed: 13
   _target: {fileID: 0}
   _whatIsWall:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   _collisionArea: 0
 --- !u!50 &337803273
 Rigidbody2D:
@@ -5810,7 +5810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03299d82103ca0049b622b15f4dda289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 0.5
+  _glitchDuration: 0
   _duration: 2.5
   _warningDuration: 1.5
   _warningZone: {fileID: 1961124091}
@@ -6155,7 +6155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03299d82103ca0049b622b15f4dda289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 1
+  _glitchDuration: 0
   _duration: 5
   _warningDuration: 3
   _warningZone: {fileID: 1707403289}
@@ -7190,7 +7190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03299d82103ca0049b622b15f4dda289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 1
+  _glitchDuration: 0
   _duration: 5
   _warningDuration: 3
   _warningZone: {fileID: 1231985987}
@@ -7393,14 +7393,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 750bb0701391205408e02f9c66d0b9c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 2
+  _glitchDuration: 0
   _duration: 25
   _rotationalSpeed: 350
   _speed: 13
   _target: {fileID: 0}
   _whatIsWall:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   _collisionArea: 0
 --- !u!50 &531853893
 Rigidbody2D:
@@ -8114,7 +8114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03299d82103ca0049b622b15f4dda289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 0.5
+  _glitchDuration: 0
   _duration: 2.5
   _warningDuration: 1.5
   _warningZone: {fileID: 1384975235}
@@ -8551,14 +8551,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 750bb0701391205408e02f9c66d0b9c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 2
+  _glitchDuration: 0
   _duration: 25
   _rotationalSpeed: 350
   _speed: 13
   _target: {fileID: 0}
   _whatIsWall:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   _collisionArea: 0
 --- !u!50 &613323022
 Rigidbody2D:
@@ -8703,7 +8703,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 266641539083961636, guid: a0bf2da04c3793d4eb5ec418dd181ed9, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 266641539083961636, guid: a0bf2da04c3793d4eb5ec418dd181ed9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9431,14 +9431,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 750bb0701391205408e02f9c66d0b9c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 2
+  _glitchDuration: 0
   _duration: 25
   _rotationalSpeed: 350
   _speed: 13
   _target: {fileID: 0}
   _whatIsWall:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   _collisionArea: 0
 --- !u!50 &691216901
 Rigidbody2D:
@@ -9711,14 +9711,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 750bb0701391205408e02f9c66d0b9c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 2
+  _glitchDuration: 0
   _duration: 25
   _rotationalSpeed: 350
   _speed: 13
   _target: {fileID: 0}
   _whatIsWall:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   _collisionArea: 0
 --- !u!50 &693198659
 Rigidbody2D:
@@ -9991,14 +9991,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 750bb0701391205408e02f9c66d0b9c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 2
+  _glitchDuration: 0
   _duration: 25
   _rotationalSpeed: 350
   _speed: 13
   _target: {fileID: 0}
   _whatIsWall:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   _collisionArea: 0
 --- !u!50 &705281474
 Rigidbody2D:
@@ -10271,14 +10271,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 750bb0701391205408e02f9c66d0b9c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 2
+  _glitchDuration: 0
   _duration: 25
   _rotationalSpeed: 350
   _speed: 13
   _target: {fileID: 0}
   _whatIsWall:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   _collisionArea: 0
 --- !u!50 &727097797
 Rigidbody2D:
@@ -11296,7 +11296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03299d82103ca0049b622b15f4dda289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 1
+  _glitchDuration: 0
   _duration: 5
   _warningDuration: 3
   _warningZone: {fileID: 1005975119}
@@ -11425,7 +11425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03299d82103ca0049b622b15f4dda289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 0.5
+  _glitchDuration: 0
   _duration: 2.5
   _warningDuration: 1.5
   _warningZone: {fileID: 1863770808}
@@ -12215,14 +12215,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 750bb0701391205408e02f9c66d0b9c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 2
+  _glitchDuration: 0
   _duration: 25
   _rotationalSpeed: 350
   _speed: 13
   _target: {fileID: 0}
   _whatIsWall:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   _collisionArea: 0
 --- !u!50 &923688802
 Rigidbody2D:
@@ -12900,14 +12900,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 750bb0701391205408e02f9c66d0b9c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 2
+  _glitchDuration: 0
   _duration: 25
   _rotationalSpeed: 350
   _speed: 13
   _target: {fileID: 0}
   _whatIsWall:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   _collisionArea: 0
 --- !u!50 &968565153
 Rigidbody2D:
@@ -13826,7 +13826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0a0a007b97f9f442a075e39c7f5a88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 1.5
+  _glitchDuration: 0
   _duration: 10
   _linearSpeed: 20
   _routeType: 0
@@ -14227,14 +14227,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 750bb0701391205408e02f9c66d0b9c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 2
+  _glitchDuration: 0
   _duration: 25
   _rotationalSpeed: 350
   _speed: 13
   _target: {fileID: 0}
   _whatIsWall:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   _collisionArea: 0
 --- !u!50 &1092528621
 Rigidbody2D:
@@ -14746,7 +14746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03299d82103ca0049b622b15f4dda289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 1
+  _glitchDuration: 0
   _duration: 5
   _warningDuration: 3
   _warningZone: {fileID: 284674995}
@@ -15245,14 +15245,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 750bb0701391205408e02f9c66d0b9c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 2
+  _glitchDuration: 0
   _duration: 25
   _rotationalSpeed: 350
   _speed: 13
   _target: {fileID: 0}
   _whatIsWall:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   _collisionArea: 0
 --- !u!50 &1132600288
 Rigidbody2D:
@@ -15451,7 +15451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03299d82103ca0049b622b15f4dda289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 1
+  _glitchDuration: 0
   _duration: 5
   _warningDuration: 3
   _warningZone: {fileID: 28873743}
@@ -16802,7 +16802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03299d82103ca0049b622b15f4dda289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 1
+  _glitchDuration: 0
   _duration: 3
   _warningDuration: 2
   _warningZone: {fileID: 1786392631}
@@ -17980,7 +17980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03299d82103ca0049b622b15f4dda289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 1
+  _glitchDuration: 0
   _duration: 5
   _warningDuration: 3
   _warningZone: {fileID: 1852002395}
@@ -18914,7 +18914,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0a0a007b97f9f442a075e39c7f5a88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 1
+  _glitchDuration: 0
   _duration: 15
   _linearSpeed: 20
   _routeType: 0
@@ -20193,7 +20193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03299d82103ca0049b622b15f4dda289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 1
+  _glitchDuration: 0
   _duration: 5
   _warningDuration: 3
   _warningZone: {fileID: 1922421752}
@@ -20552,7 +20552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03299d82103ca0049b622b15f4dda289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 0.5
+  _glitchDuration: 0
   _duration: 5
   _warningDuration: 1.5
   _warningZone: {fileID: 2079698870}
@@ -20796,7 +20796,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0a0a007b97f9f442a075e39c7f5a88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 1
+  _glitchDuration: 0
   _duration: 15
   _linearSpeed: 20
   _routeType: 1
@@ -20947,7 +20947,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03299d82103ca0049b622b15f4dda289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 1
+  _glitchDuration: 0
   _duration: 3
   _warningDuration: 2
   _warningZone: {fileID: 1391976699}
@@ -21265,7 +21265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03299d82103ca0049b622b15f4dda289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 1
+  _glitchDuration: 0
   _duration: 5
   _warningDuration: 3
   _warningZone: {fileID: 1153246507}
@@ -22324,7 +22324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0a0a007b97f9f442a075e39c7f5a88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 2
+  _glitchDuration: 0
   _duration: 8
   _linearSpeed: 20
   _routeType: 0
@@ -23084,14 +23084,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 750bb0701391205408e02f9c66d0b9c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 2
+  _glitchDuration: 0
   _duration: 25
   _rotationalSpeed: 350
   _speed: 13
   _target: {fileID: 0}
   _whatIsWall:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   _collisionArea: 0
 --- !u!50 &2030450067
 Rigidbody2D:
@@ -23450,14 +23450,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 750bb0701391205408e02f9c66d0b9c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 2
+  _glitchDuration: 0
   _duration: 25
   _rotationalSpeed: 350
   _speed: 13
   _target: {fileID: 0}
   _whatIsWall:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   _collisionArea: 0
 --- !u!50 &2071458271
 Rigidbody2D:
@@ -23887,14 +23887,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 750bb0701391205408e02f9c66d0b9c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _glitchDuration: 2
+  _glitchDuration: 0
   _duration: 25
   _rotationalSpeed: 350
   _speed: 13
   _target: {fileID: 0}
   _whatIsWall:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   _collisionArea: 0
 --- !u!50 &2089450837
 Rigidbody2D:
