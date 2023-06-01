@@ -199,9 +199,6 @@ public class WaveManager : MonoBehaviour
 
     void ResetWave()
     {
-        Debug.Log("Resetting wave");
-        Debug.Log("Current wave ID: " + _currentWaveID);
-
         WaveData waveData = new WaveData(_currentWorldID, _currentWaveID);
         StartCoroutine(Next(waveData, waveData, isRespawning: true));
     }
