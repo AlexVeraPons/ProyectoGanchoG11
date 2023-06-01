@@ -2,6 +2,7 @@ using System.Collections;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class WaveManager : MonoBehaviour
 {
@@ -87,8 +88,11 @@ public class WaveManager : MonoBehaviour
 
     public void NextWave()
     {
-        if (_inProgress == false && NextWaveIsNotNull() == true)
+        if (_inProgress == false)
         {
+            if(NextWaveIsNotNull() == true)
+            {
+                
             _inProgress = true;
 
             Wave nextWave = GetWaveByID(_currentWaveID + 1);
@@ -119,14 +123,21 @@ public class WaveManager : MonoBehaviour
                     }
                 }
 
-                _currentWaveID += 1;
+                    _currentWaveID += 1;
 
-                WaveData nextWaveData = new WaveData(_currentWorldID, _currentWaveID);
-                StartCoroutine(Next(previousWaveData, nextWaveData));
+                    WaveData nextWaveData = new WaveData(_currentWorldID, _currentWaveID);
+                    StartCoroutine(Next(previousWaveData, nextWaveData));
+                }
+                else
+                {
+                    OnLoadWave?.Invoke();
+                }
+
             }
             else
             {
-                OnLoadWave?.Invoke();
+                print("pepo");
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
         }
     }
@@ -232,7 +243,7 @@ public class WaveManager : MonoBehaviour
             }
         }
 
-        Debug.LogError("The Wave ID exceeds the actual ammount!");
+        print("The Wave ID exceeds the actual ammount!");
         return null;
     }
 

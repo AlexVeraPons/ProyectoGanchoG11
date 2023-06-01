@@ -108,9 +108,9 @@ MonoBehaviour:
     value: {fileID: 8300000, guid: 14af7e9944d35b540933bce09ab6fdfe, type: 3}
   _musicList:
   - key: 0
-    value: {fileID: 8300000, guid: 0207e2a7c031f784c9c0339809b6de10, type: 3}
+    value: {fileID: 8300000, guid: 0a380462037b1ad409d5e0f1c3b8955d, type: 3}
   - key: 1
-    value: {fileID: 8300000, guid: d782cec03d36c5040ad560d4ab6b6cbf, type: 3}
+    value: {fileID: 8300000, guid: d19a46b2733cb834aa958b855a6c8b4e, type: 3}
 --- !u!1 &5901926687490999130
 GameObject:
   m_ObjectHideFlags: 0
