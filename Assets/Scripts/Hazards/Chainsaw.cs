@@ -20,13 +20,14 @@ public class Chainsaw : HazardWithPath
     private protected override void PlayRunSound()
     {
         base.PlayRunSound();
-        AudioManager._instance.CreateLoopSourceComponent(gameObject: this.gameObject, LoopingSound.Saw);
-        //AudioManager._instance.PlayLoopingSound(LoopingSound.Saw);
-
+        
         AudioSource thisSource = GetComponent<AudioSource>();
-        if(thisSource != null)
+        if(thisSource == null)
         {
-            thisSource.volume = 0.2f;
+            AudioManager._instance.CreateLoopSourceComponent(gameObject: this.gameObject, LoopingSound.Saw);
         }
+
+        thisSource = GetComponent<AudioSource>();
+        thisSource.volume = 0.1f;
     }
 }
