@@ -61,9 +61,12 @@ public class Transitioner : MonoBehaviour
 
     private void ActivateTransition()
     {
-        _timer = _transitionTime;
-        _active = true;
-        _state = TransitionState.In;
+        if(WaveManager._instance.RespawnType == RespawnType.Wave)
+        {
+            _timer = _transitionTime;
+            _active = true;
+            _state = TransitionState.In;
+        }
     }
 
     private IEnumerator Delay()
