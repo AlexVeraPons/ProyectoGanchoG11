@@ -6,10 +6,10 @@ using System;
 
 public class CPUBullet : MonoBehaviour
 {
+    private Cannons _cannons;
+
     public enum DirectionState{goingForward, goingSideways}
     private Rigidbody2D _rigidbody;
-    private Transform _originSquare;
-    private GetSpawnerComponent _spawnerComponent;
 
     private Vector2 _originalDirection;
     private Vector2 _direction;
@@ -21,20 +21,12 @@ public class CPUBullet : MonoBehaviour
 
     void Start()
     {
-
+        _cannons = GetComponentInParent<Cannons>();
         _rigidbody = GetComponent<Rigidbody2D>();
-        //_spawnerComponent = GetComponent<GetSpawnerComponent>();
-        //_originSquare = _spawnerComponent.GetTransform();
 
-        _originalDirection = this.transform.position - new Vector3(0, 0, 0);
-        _direction = _originalDirection;
-        _rigidbody.velocity = _originalDirection * _speed;
+        _direction = _cannons.GetDirection();
 
         timer = _baseTimer;
-        // Debug.Log(_originalDirection + "OGDir");
-        // Debug.Log(_direction+ "direction");
-        // Debug.Log(_originSquare.position + "motherPos");
-        // Debug.Log(this.transform.position + "bulletPos");
     }
 
     void Update()
@@ -50,7 +42,7 @@ public class CPUBullet : MonoBehaviour
         {
             Rotate();
             ResetTimer();
-            // Debug.Log("timer");
+            Debug.Log("timer");
         }
     }
     void ResetTimer()
@@ -59,7 +51,7 @@ public class CPUBullet : MonoBehaviour
     }
     void Rotate()
     {
-        // Debug.Log("rotate");
+        Debug.Log("rotate");
         _direction = Quaternion.Euler(GetRandomNumber(-60, 60), 0, 0) * _direction;
         //Debug.Log(_direction);
     }
@@ -67,11 +59,11 @@ public class CPUBullet : MonoBehaviour
         //int number = UnityEngine.Random.Range(-1, 1);
         if(UnityEngine.Random.value > 0.5){
             //Debug.Log("firstNumber");
-            Debug.Log(firstNumber);
+            //Debug.Log(firstNumber);
             return firstNumber;
         }else if(UnityEngine.Random.value < 0.5){
             //Debug.Log("secondNumber");
-            Debug.Log(secondNumber);
+            //Debug.Log(secondNumber);
             return secondNumber;
         }else{
             //Debug.Log("referfunction");
