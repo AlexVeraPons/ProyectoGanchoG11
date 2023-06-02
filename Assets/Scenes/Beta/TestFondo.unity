@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _backgroundSpawner: {fileID: 587376478}
-  _direction: {x: 1.09, y: 0, z: 0}
+  _direction: {x: 0, y: 1, z: 0}
   _spawnPositions:
   - {fileID: 1595093583}
   - {fileID: 499361549}
@@ -718,7 +718,7 @@ GameObject:
   - component: {fileID: 2127257363}
   - component: {fileID: 2127257364}
   m_Layer: 0
-  m_Name: RightCannons
+  m_Name: DownCannons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -757,7 +757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _backgroundSpawner: {fileID: 587376478}
-  _direction: {x: 1.09, y: 0, z: 0}
+  _direction: {x: 0, y: -1, z: 0}
   _spawnPositions:
   - {fileID: 1716720022}
   - {fileID: 786339273}
