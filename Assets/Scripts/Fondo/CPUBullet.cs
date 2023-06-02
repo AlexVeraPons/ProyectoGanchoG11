@@ -21,6 +21,7 @@ public class CPUBullet : MonoBehaviour
 
     void Start()
     {
+
         _rigidbody = GetComponent<Rigidbody2D>();
         //_spawnerComponent = GetComponent<GetSpawnerComponent>();
         //_originSquare = _spawnerComponent.GetTransform();
@@ -65,18 +66,18 @@ public class CPUBullet : MonoBehaviour
     int GetRandomNumber(int firstNumber, int secondNumber){
         //int number = UnityEngine.Random.Range(-1, 1);
         if(UnityEngine.Random.value > 0.5){
-            Debug.Log("firstNumber");
+            //Debug.Log("firstNumber");
             Debug.Log(firstNumber);
             return firstNumber;
         }else if(UnityEngine.Random.value < 0.5){
-            Debug.Log("secondNumber");
+            //Debug.Log("secondNumber");
             Debug.Log(secondNumber);
             return secondNumber;
         }else{
-            Debug.Log("referfunction");
+            //Debug.Log("referfunction");
             GetRandomNumber(firstNumber, secondNumber);
         }
-        Debug.Log("final else");
+        //Debug.Log("final else");
         return secondNumber;
     }
 }
