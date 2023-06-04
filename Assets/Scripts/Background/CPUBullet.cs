@@ -9,7 +9,8 @@ public class CPUBullet : MonoBehaviour
     private Cannons _cannons;
     private Dispersion _dispersion;
 
-    private enum DirectionState{goingForward, goingSideways}
+    private enum State{goingForward, goingSideways}
+    private State state;
     private Rigidbody2D _rigidbody;
 
     private Vector2 _originalDirection;
@@ -30,6 +31,7 @@ public class CPUBullet : MonoBehaviour
         _direction = _cannons.GetDirection();
 
         timer = _baseTimer;
+        state = State.goingForward;
         
     }
 
