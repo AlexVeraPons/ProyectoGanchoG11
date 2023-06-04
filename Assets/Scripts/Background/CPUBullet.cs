@@ -9,6 +9,7 @@ public class CPUBullet : MonoBehaviour
     private Cannons _cannons;
     private Dispersion _dispersion;
     private int _dispersionNumber;
+    private bool _inverted;
 
     private enum State { goingForward, goingSideways }
     private State state;
@@ -25,6 +26,7 @@ public class CPUBullet : MonoBehaviour
     void Start()
     {
         _cannons = GetComponentInParent<Cannons>();
+        _inverted = _cannons.GetInverted();
         _dispersion = GetComponentInParent<Dispersion>();
         _dispersionNumber = _dispersion.GetDispersion();
 
@@ -77,7 +79,16 @@ public class CPUBullet : MonoBehaviour
     }
     void Rotate()
     {
-        _direction = Quaternion.Euler(0, 0, GetRandomNumber(-45, 45)) * _originalDirection;
+        if (_inverted)
+        {
+            _direction = Quaternion.Euler(0, 0, GetRandomNumber(45, -45)) * _originalDirection;
+
+        }
+        else if (_inverted == false)
+        {
+            _direction = Quaternion.Euler(0, 0, GetRandomNumber(-45, 45)) * _originalDirection;
+
+        }
     }
     int GetRandomNumber(int firstNumber, int secondNumber)
     {

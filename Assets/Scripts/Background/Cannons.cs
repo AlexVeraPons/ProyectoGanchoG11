@@ -8,7 +8,13 @@ public class Cannons : MonoBehaviour
     private BackgroundSpawner _backgroundSpawner;
 
     [SerializeField]
+    [Tooltip("Direction for the bullets")]
     private Vector3 _direction;
+
+    [Space(5)]
+    [SerializeField]
+    [Tooltip("if the bulets tend to go to the middle this should be checked")]
+    private bool _shouldInvert;
 
     [SerializeField]
     private Transform[] _spawnPositions;
@@ -40,5 +46,8 @@ public class Cannons : MonoBehaviour
     public Vector3 GetDirection()
     {
         return _direction;
+    }
+    public bool GetInverted(){
+        return _shouldInvert;
     }
 }
