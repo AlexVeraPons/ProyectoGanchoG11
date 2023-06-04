@@ -32,6 +32,7 @@ public abstract class Hazard : MonoBehaviour
     private void Start()
     {
         ComponentDisabler();
+
     }
 
     public void HazardStart()
@@ -42,6 +43,7 @@ public abstract class Hazard : MonoBehaviour
     private IEnumerator StartAfterDelay()
     {
         Appear();
+        GenerateUniqueSound();
         ComponentEnabler();
 
         yield return new WaitForSeconds(seconds: _glitchDuration);

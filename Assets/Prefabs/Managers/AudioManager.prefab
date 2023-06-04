@@ -105,6 +105,14 @@ MonoBehaviour:
     value: {fileID: 8300000, guid: 9dcafd28bcbbe3945a8382201d7e1e0c, type: 3}
   - key: 16
     value: {fileID: 8300000, guid: 282473a55a4d0aa4bac22b8a710dbdcf, type: 3}
+  - key: 17
+    value: {fileID: 8300000, guid: b1433aa54a00aae4591c96e22109cf1d, type: 3}
+  - key: 18
+    value: {fileID: 8300000, guid: f31fbd7fd7710cd4aa0293b5076042b1, type: 3}
+  - key: 19
+    value: {fileID: 8300000, guid: 18afb0fafd99e9247958cc4b5a4f3a1d, type: 3}
+  - key: 20
+    value: {fileID: 8300000, guid: 8e7a661e3f4d99242a4ad929a0bb367b, type: 3}
   _loopSoundList:
   - key: 0
     value: {fileID: 8300000, guid: 14af7e9944d35b540933bce09ab6fdfe, type: 3}

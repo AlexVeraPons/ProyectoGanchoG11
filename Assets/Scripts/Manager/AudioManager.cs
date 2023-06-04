@@ -242,7 +242,11 @@ public enum SingleSound
     PlayerDeath,
     HazardAreaHorizontalScale,
     HazardAreaVerticalScale,
-    CollectibleCollected
+    CollectibleCollected,
+    PlayerAppear,
+    PlayerDisappear,
+    BeforeLaser,
+    AfterLaser
 }
 
 public enum LoopingSound

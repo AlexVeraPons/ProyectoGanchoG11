@@ -24,7 +24,9 @@ public class WaveManager : MonoBehaviour
     public RespawnType RespawnType => _respawnType;
     
     [SerializeField]
-    float _timeBetweenWaves = 0.3f;
+    float _timeBeforeSpawn = 0.3f;
+    [SerializeField]
+    float _timeAfterSpawn = 0.3f;
 
     [Space(10)]
     [Header("DO NOT TOUCH")]
@@ -56,15 +58,6 @@ public class WaveManager : MonoBehaviour
         Collectible.OnCollected += NextWave;
 
         LifeComponent.OnDeath += Reset;
-
-        /*
-        if (_respawnType == RespawnType.Wave)
-        {
-        }
-        else
-        {
-            LifeComponent.OnDeath += ResetWorld;
-        }*/
     }
 
     void OnDisable()
@@ -134,7 +127,7 @@ public class WaveManager : MonoBehaviour
     {
         OnUnloadWave?.Invoke();
         
-        yield return new WaitForSeconds(_timeBetweenWaves);
+        yield return new WaitForSeconds(_timeBeforeSpawn); // Time it takes to load the next wave
 
         this._spawner.DespawnAllWaves(this._collector);
 
@@ -151,6 +144,8 @@ public class WaveManager : MonoBehaviour
 
         ResetWavePlayerPosition(nextWaveData);
         
+        yield return new WaitForSeconds(_timeAfterSpawn); // Time it takes to appear
+
         if(isRespawning == true)
         {
             OnResetWave?.Invoke();
