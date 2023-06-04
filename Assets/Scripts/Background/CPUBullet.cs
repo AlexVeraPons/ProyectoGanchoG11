@@ -8,8 +8,9 @@ public class CPUBullet : MonoBehaviour
 {
     private Cannons _cannons;
     private Dispersion _dispersion;
+    private int _dispersionNumber;
 
-    private enum State{goingForward, goingSideways}
+    private enum State { goingForward, goingSideways }
     private State state;
     private Rigidbody2D _rigidbody;
 
@@ -25,19 +26,28 @@ public class CPUBullet : MonoBehaviour
     {
         _cannons = GetComponentInParent<Cannons>();
         _dispersion = GetComponentInParent<Dispersion>();
+        _dispersionNumber = _dispersion.GetDispersion();
 
         _rigidbody = GetComponent<Rigidbody2D>();
 
-        _direction = _cannons.GetDirection();
+        _originalDirection = _cannons.GetDirection();
 
         timer = _baseTimer;
         state = State.goingForward;
-        
+
     }
 
     void Update()
     {
-        _rigidbody.velocity = _direction.normalized * _speed;
+        switch (state)
+        {
+            case State.goingForward:
+                _rigidbody.velocity = _originalDirection.normalized * _speed;
+                break;
+            case State.goingSideways:
+                _rigidbody.velocity = _direction.normalized * _speed;
+                break;
+        }
         Timer();
     }
     void Timer()
@@ -45,9 +55,20 @@ public class CPUBullet : MonoBehaviour
         timer -= Time.deltaTime;
         if (timer <= 0)
         {
-            Rotate();
+            ChangeState();
             ResetTimer();
-            Debug.Log("timer");
+        }
+    }
+    void ChangeState()
+    {
+        if (state == State.goingForward)
+        {
+            state = State.goingSideways;
+            Rotate();
+        }
+        else
+        {
+            state = State.goingForward;
         }
     }
     void ResetTimer()
@@ -56,24 +77,25 @@ public class CPUBullet : MonoBehaviour
     }
     void Rotate()
     {
-        Debug.Log("rotate");
-        _direction = Quaternion.Euler(0,0, GetRandomNumber(-60, 60)) * _direction;
+        _direction = Quaternion.Euler(0, 0, GetRandomNumber(-45, 45)) * _originalDirection;
     }
-    int GetRandomNumber(int firstNumber, int secondNumber){
-        //int number = UnityEngine.Random.Range(-1, 1);
-        if(UnityEngine.Random.value > 0.5){
-            //Debug.Log("firstNumber");
-            //Debug.Log(firstNumber);
-            return firstNumber;
-        }else if(UnityEngine.Random.value < 0.5){
-            //Debug.Log("secondNumber");
-            //Debug.Log(secondNumber);
+    int GetRandomNumber(int firstNumber, int secondNumber)
+    {
+        int number = UnityEngine.Random.Range(1, 6); //ficate no de 1 a 6, sino de 1 a numero de cannions 6 = cannions + 1
+        if (number > _dispersionNumber)
+        {
+            //esquerra
             return secondNumber;
-        }else{
-            //Debug.Log("referfunction");
+        }
+        else if (number <= _dispersionNumber)
+        {
+            //dreta
+            return firstNumber;
+        }
+        else
+        {
             GetRandomNumber(firstNumber, secondNumber);
         }
-        //Debug.Log("final else");
         return secondNumber;
     }
 }
