@@ -26,7 +26,6 @@ public class BackgroundSpawner : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         Timer();
@@ -49,13 +48,4 @@ public class BackgroundSpawner : MonoBehaviour
     {
         _time = _spawnTime;
     }
-
-    // private void OnDrawGizmos()
-    // {
-    //     foreach (GameObject positions in _spawnPositions)
-    //     {
-    //         Gizmos.DrawSphere(positions.transform.position, 0.1f);
-
-    //     }
-    // }
 }

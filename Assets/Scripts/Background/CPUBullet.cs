@@ -7,8 +7,9 @@ using System;
 public class CPUBullet : MonoBehaviour
 {
     private Cannons _cannons;
+    private Dispersion _dispersion;
 
-    public enum DirectionState{goingForward, goingSideways}
+    private enum DirectionState{goingForward, goingSideways}
     private Rigidbody2D _rigidbody;
 
     private Vector2 _originalDirection;
@@ -22,18 +23,20 @@ public class CPUBullet : MonoBehaviour
     void Start()
     {
         _cannons = GetComponentInParent<Cannons>();
+        _dispersion = GetComponentInParent<Dispersion>();
+
         _rigidbody = GetComponent<Rigidbody2D>();
 
         _direction = _cannons.GetDirection();
 
         timer = _baseTimer;
+        
     }
 
     void Update()
     {
         _rigidbody.velocity = _direction.normalized * _speed;
         Timer();
-        //Debug.Log(dir);
     }
     void Timer()
     {
@@ -52,8 +55,7 @@ public class CPUBullet : MonoBehaviour
     void Rotate()
     {
         Debug.Log("rotate");
-        _direction = Quaternion.Euler(GetRandomNumber(-60, 60), 0, 0) * _direction;
-        //Debug.Log(_direction);
+        _direction = Quaternion.Euler(0,0, GetRandomNumber(-60, 60)) * _direction;
     }
     int GetRandomNumber(int firstNumber, int secondNumber){
         //int number = UnityEngine.Random.Range(-1, 1);
