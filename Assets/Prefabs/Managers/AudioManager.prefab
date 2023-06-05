@@ -113,9 +113,13 @@ MonoBehaviour:
     value: {fileID: 8300000, guid: 18afb0fafd99e9247958cc4b5a4f3a1d, type: 3}
   - key: 20
     value: {fileID: 8300000, guid: 8e7a661e3f4d99242a4ad929a0bb367b, type: 3}
+  - key: 21
+    value: {fileID: 8300000, guid: c0a08512015e4fa48b8c95b319894ed8, type: 3}
+  - key: 22
+    value: {fileID: 8300000, guid: cbfbad7aa9c09bf44b00b05c63b03489, type: 3}
   _loopSoundList:
   - key: 0
-    value: {fileID: 8300000, guid: 14af7e9944d35b540933bce09ab6fdfe, type: 3}
+    value: {fileID: 8300000, guid: 7ed8312d6211de54fbd1be42b6010524, type: 3}
   _musicList:
   - key: 0
     value: {fileID: 8300000, guid: 0a380462037b1ad409d5e0f1c3b8955d, type: 3}

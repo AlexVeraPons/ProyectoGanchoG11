@@ -246,7 +246,9 @@ public enum SingleSound
     PlayerAppear,
     PlayerDisappear,
     BeforeLaser,
-    AfterLaser
+    AfterLaser,
+    AnchorAppear,
+    AnchorDisappear
 }
 
 public enum LoopingSound

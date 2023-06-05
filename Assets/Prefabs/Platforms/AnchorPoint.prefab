@@ -11,6 +11,11 @@ GameObject:
   - component: {fileID: 6674347491946792115}
   - component: {fileID: 6674347491946792012}
   - component: {fileID: 6674347491946792114}
+  - component: {fileID: 4704206843948043490}
+  - component: {fileID: 7890318606307470705}
+  - component: {fileID: 1208049919504625127}
+  - component: {fileID: 3599019397642750778}
+  - component: {fileID: 2409727827188847381}
   m_Layer: 12
   m_Name: AnchorPoint
   m_TagString: Untagged
@@ -27,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 6674347491946792013}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.12, y: -1.97, z: 0}
-  m_LocalScale: {x: 0.61993, y: 0.61993, z: 0.61993}
+  m_LocalScale: {x: 0.62, y: 0.62, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -109,5 +114,78 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.4, y: 1.4}
-  m_EdgeRadius: 0.03
+  m_Size: {x: 1.6, y: 1.6}
+  m_EdgeRadius: 0
+--- !u!95 &4704206843948043490
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6674347491946792013}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e01f0aee1fe89d04a900b70b0290ec86, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7890318606307470705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6674347491946792013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c3653a803872784a8d9c57413e67896, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animationName: AnchorAppear
+  _minDelayTime: 0
+  _maxDelayTime: 1.8
+--- !u!114 &1208049919504625127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6674347491946792013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45f0eb5761f85d2488421c9591909966, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animationName: AnchorDisappear
+--- !u!114 &3599019397642750778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6674347491946792013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6197303b9be6a4348a9027ef8258be58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animationName: AnchorDisappear
+--- !u!114 &2409727827188847381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6674347491946792013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11ee61d7bf5b5bd45b761a4fd0de4b78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
