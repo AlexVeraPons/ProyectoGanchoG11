@@ -13,6 +13,14 @@ public class PlatformCooldown : MonoBehaviour, IInteractable
     private Collider2D _collider;
     private Animator _animator;
 
+    private void OnEnable() {
+        LifeComponent.OnDeath += Activate;
+    }
+
+    private void OnDisable() {
+        LifeComponent.OnDeath -= Activate;
+    }
+
     private void Start() {
         _collider = GetComponent<Collider2D>();
         _animator = GetComponent<Animator>();    
