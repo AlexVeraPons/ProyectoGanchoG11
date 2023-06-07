@@ -1,12 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
 
+using UnityEngine;
 
 public class CPUBullet : MonoBehaviour
 {
+    [SerializeField]
+    private float _distanceToDespawn = 15;
+
     private Cannons _cannons;
+    private TrailRenderer _trailRenderer;
     private Dispersion _dispersion;
     private int _dispersionNumber;
     private bool _inverted;
@@ -27,6 +28,9 @@ public class CPUBullet : MonoBehaviour
     {
         _cannons = GetComponentInParent<Cannons>();
         _inverted = _cannons.GetInverted();
+
+        _trailRenderer = GetComponent<TrailRenderer>();
+
         _dispersion = GetComponentInParent<Dispersion>();
         _dispersionNumber = _dispersion.GetDispersion();
 
@@ -75,7 +79,7 @@ public class CPUBullet : MonoBehaviour
             state = State.goingForward;
         }
     }
-    void ResetTimer()
+    public void ResetTimer()
     {
         _timer = _baseTimer;
     }
@@ -97,12 +101,10 @@ public class CPUBullet : MonoBehaviour
         int number = UnityEngine.Random.Range(1, 6); //ficate no de 1 a 6, sino de 1 a numero de cannions 6 = cannions + 1
         if (number > _dispersionNumber)
         {
-            //esquerra
             return secondNumber;
         }
         else if (number <= _dispersionNumber)
         {
-            //dreta
             return firstNumber;
         }
         else
@@ -113,19 +115,19 @@ public class CPUBullet : MonoBehaviour
     }
     private void CheckOutsideRange()
     {
-        if (this.transform.position.x < -15)
+        if (this.transform.position.x < -_distanceToDespawn)
         {
             DespawnBullet();
         }
-        else if (this.transform.position.x > 15)
+        else if (this.transform.position.x > _distanceToDespawn)
         {
             DespawnBullet();
         }
-        else if (this.transform.position.y > 10)
+        else if (this.transform.position.y > _distanceToDespawn)
         {
             DespawnBullet();
         }
-        else if (this.transform.position.y < -10)
+        else if (this.transform.position.y < -_distanceToDespawn)
         {
             DespawnBullet();
         }
@@ -135,10 +137,11 @@ public class CPUBullet : MonoBehaviour
     private void DespawnBullet()
     {
         state = State.goingForward;
+        _trailRenderer.enabled = false;
         this.gameObject.SetActive(false);
     }
-    public void SayHi()
+    public void ActivateTrail()
     {
-        _timer = _baseTimer;
+        _trailRenderer.enabled = true;
     }
 }

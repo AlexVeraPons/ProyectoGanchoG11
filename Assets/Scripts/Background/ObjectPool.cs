@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -40,7 +39,8 @@ public class ObjectPool : MonoBehaviour
             if (spawnedObject.GetComponent<CPUBullet>() != null)
             {
                 var cpuBullet = spawnedObject.GetComponent<CPUBullet>();
-                cpuBullet.SayHi();
+                cpuBullet.ResetTimer();
+                //cpuBullet.ActivateTrail();
             }
 
         }
@@ -53,7 +53,8 @@ public class ObjectPool : MonoBehaviour
             if (spawnedObject.GetComponent<CPUBullet>() != null)
             {
                 var cpuBullet = spawnedObject.GetComponent<CPUBullet>();
-                cpuBullet.SayHi();
+                cpuBullet.ResetTimer();
+                cpuBullet.ActivateTrail();
             }
         }
 
