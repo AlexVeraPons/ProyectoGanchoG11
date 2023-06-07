@@ -152,10 +152,17 @@ public class HookBehaviour : MonoBehaviour
                 }
                 else
                 {
-                    if (PlayerReachedEnd() == true && StickTimeIsEnabled() == true)
+                    if (PlayerReachedEnd() == true)
                     {
-                        if (StickPeriodOver() == true)
+                        if (StickTimeIsEnabled() == true && StickPeriodOver() == true)
                         {
+                            if (HitObjectIsInteractable() == true
+                            && _impactInteractable != null)
+                            {
+                                ExecuteUndoInteraction();
+                                _impactInteractable = null;
+                            }
+                            
                             SwitchState(HookState.Returning);
                         }
                     }
