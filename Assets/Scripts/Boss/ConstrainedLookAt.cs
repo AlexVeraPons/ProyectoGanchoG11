@@ -24,7 +24,7 @@ public class ConstrainedLookAt : MonoBehaviour
 
     private void Update()
     {
-        this.transform.position = GetPositionInRadius();
+        this.transform.position = new Vector3(GetPositionInRadius().x, GetPositionInRadius().y, this.transform.position.z);
     }
 
     private Vector2 GetPositionInRadius()

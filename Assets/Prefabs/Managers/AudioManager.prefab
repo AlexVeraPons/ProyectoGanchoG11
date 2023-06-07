@@ -84,11 +84,11 @@ MonoBehaviour:
   - key: 1
     value: {fileID: 0}
   - key: 6
-    value: {fileID: 8300000, guid: c8f82943937408b45ad78800b7c4638e, type: 3}
+    value: {fileID: 8300000, guid: 94879fe45489fec43ad29bf8536a1ba0, type: 3}
   - key: 7
-    value: {fileID: 8300000, guid: 475e604ff02ef46458664dad36ddc9d3, type: 3}
+    value: {fileID: 8300000, guid: 3645d566f5ae28a4fbd8858c363be27c, type: 3}
   - key: 8
-    value: {fileID: 0}
+    value: {fileID: 8300000, guid: b743c5e46fc171c4eb2b77fad4b5f781, type: 3}
   - key: 9
     value: {fileID: 0}
   - key: 10
@@ -96,21 +96,35 @@ MonoBehaviour:
   - key: 11
     value: {fileID: 8300000, guid: 2bdfa33743df776458b19ba0e872799c, type: 3}
   - key: 12
-    value: {fileID: 8300000, guid: a52e7f653a70c76479cc595e621dd797, type: 3}
+    value: {fileID: 8300000, guid: 7764d21cf8c98c144b9d3b3dc7190452, type: 3}
   - key: 13
     value: {fileID: 8300000, guid: 12f1d78d60d33764c95e4773fc8d7cab, type: 3}
   - key: 14
     value: {fileID: 8300000, guid: 9488c5363c1a50543ba8a28a44ac8317, type: 3}
   - key: 14
     value: {fileID: 8300000, guid: 9dcafd28bcbbe3945a8382201d7e1e0c, type: 3}
+  - key: 16
+    value: {fileID: 8300000, guid: 282473a55a4d0aa4bac22b8a710dbdcf, type: 3}
+  - key: 17
+    value: {fileID: 8300000, guid: b1433aa54a00aae4591c96e22109cf1d, type: 3}
+  - key: 18
+    value: {fileID: 8300000, guid: f31fbd7fd7710cd4aa0293b5076042b1, type: 3}
+  - key: 19
+    value: {fileID: 8300000, guid: 18afb0fafd99e9247958cc4b5a4f3a1d, type: 3}
+  - key: 20
+    value: {fileID: 8300000, guid: 8e7a661e3f4d99242a4ad929a0bb367b, type: 3}
+  - key: 21
+    value: {fileID: 8300000, guid: c0a08512015e4fa48b8c95b319894ed8, type: 3}
+  - key: 22
+    value: {fileID: 8300000, guid: cbfbad7aa9c09bf44b00b05c63b03489, type: 3}
   _loopSoundList:
   - key: 0
-    value: {fileID: 8300000, guid: 14af7e9944d35b540933bce09ab6fdfe, type: 3}
+    value: {fileID: 8300000, guid: 7ed8312d6211de54fbd1be42b6010524, type: 3}
   _musicList:
   - key: 0
-    value: {fileID: 8300000, guid: 0207e2a7c031f784c9c0339809b6de10, type: 3}
+    value: {fileID: 8300000, guid: 0a380462037b1ad409d5e0f1c3b8955d, type: 3}
   - key: 1
-    value: {fileID: 8300000, guid: d782cec03d36c5040ad560d4ab6b6cbf, type: 3}
+    value: {fileID: 8300000, guid: d19a46b2733cb834aa958b855a6c8b4e, type: 3}
 --- !u!1 &5901926687490999130
 GameObject:
   m_ObjectHideFlags: 0

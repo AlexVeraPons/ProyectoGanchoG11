@@ -338,7 +338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _videoPlayer: {fileID: 1921587399}
-  _sceneID: 2
+  _sceneID: 1
   _canSkip: 1
   _skipAction:
     m_Name: Skip

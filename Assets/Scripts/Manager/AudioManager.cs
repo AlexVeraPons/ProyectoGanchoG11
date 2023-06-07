@@ -95,13 +95,20 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMusic(Music music)
     {
-        AudioClip musicClip;
-        _musicDictionary.TryGetValue(music, out musicClip);
-        if (musicClip != null && IsMusicAlreadyPlaying(music) == false)
+        if(music != Music.None)
+        {
+            AudioClip musicClip;
+            _musicDictionary.TryGetValue(music, out musicClip);
+            if (musicClip != null && IsMusicAlreadyPlaying(music) == false)
+            {
+                _musicSource.Stop();
+                _musicSource.clip = musicClip;
+                _musicSource.Play();
+            }
+        }
+        else
         {
             _musicSource.Stop();
-            _musicSource.clip = musicClip;
-            _musicSource.Play();
         }
     }
 
@@ -234,7 +241,14 @@ public enum SingleSound
     PlayerGround,
     PlayerDeath,
     HazardAreaHorizontalScale,
-    HazardAreaVerticalScale
+    HazardAreaVerticalScale,
+    CollectibleCollected,
+    PlayerAppear,
+    PlayerDisappear,
+    BeforeLaser,
+    AfterLaser,
+    AnchorAppear,
+    AnchorDisappear
 }
 
 public enum LoopingSound
@@ -248,5 +262,6 @@ public enum LoopingSound
 public enum Music
 {
     MainMenu,
-    Level
+    Level,
+    None
 }

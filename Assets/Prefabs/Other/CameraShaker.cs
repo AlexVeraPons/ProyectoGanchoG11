@@ -4,32 +4,49 @@ using UnityEngine;
 
 public class CameraShaker : MonoBehaviour
 {
+    public static CameraShaker _instance;
+
     [Tooltip("The maximum strength of the shake")]
-    [SerializeField] private int _magnitude = 5;
+    [SerializeField] private float _magnitude = 5;
     [Tooltip("The time it takes to finish the screen shake")]
     [SerializeField] private float _timeToFinish = 1;
     
+    private float _originalMagnitude;
+    private float _originalTimeToFinish;
+
     ShakeState _state = ShakeState.Inactive;
 
     private float _timer = 0f;
 
     private Vector3 _referencePosition;
 
-    void OnEnable()
+    private void Awake()
     {
-        LifeComponent.OnDeath += StartShake;
-        WaveManager.OnUnloadWave += StartShake;
-    }
-
-    void OnDisable()
-    {
-        LifeComponent.OnDeath -= StartShake;
-        WaveManager.OnUnloadWave -= StartShake;
+        if(_instance == null)
+        {
+            _instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     void Start()
     {
         _referencePosition = this.transform.position;
+        _originalMagnitude = _magnitude;
+        _originalTimeToFinish = _timeToFinish;
+    }
+
+    void OnEnable()
+    {
+        LifeComponent.OnDeath += StartShake;
+    }
+
+    void OnDisable()
+    {
+        LifeComponent.OnDeath -= StartShake;
     }
 
     void Update()
@@ -57,8 +74,23 @@ public class CameraShaker : MonoBehaviour
         }   
     }
 
-    void StartShake()
+    public void StartShake()
     {
+        _magnitude = _originalMagnitude;
+        _timeToFinish = _originalTimeToFinish;
+        _referencePosition = this.transform.position;
+        _timer = 0f;
+
+        _state = ShakeState.InProgress;
+    }
+
+    public void StartShake(float magnitude, float timeToFinish)
+    {
+        if(magnitude <= 0) { magnitude = _magnitude; } else { _magnitude = magnitude; }
+        if(timeToFinish <= 0) { timeToFinish = _timeToFinish; } else { _timeToFinish = timeToFinish; }
+        _referencePosition = this.transform.position;
+        _timer = 0f;
+
         _state = ShakeState.InProgress;
     }
 }
