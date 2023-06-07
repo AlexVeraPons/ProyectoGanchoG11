@@ -12,6 +12,12 @@ public class Chainsaw : HazardWithPath
         Rotate();
     }
 
+    private protected override void StopRunSound()
+    {
+        AudioSource thisSource = GetComponent<AudioSource>();
+        thisSource.Stop();
+    }
+
     private void Rotate()
     {
         this.transform.Rotate(Vector3.forward * _angularRotationalSpeed * Time.deltaTime);
@@ -28,6 +34,7 @@ public class Chainsaw : HazardWithPath
         }
 
         thisSource = GetComponent<AudioSource>();
+        thisSource.Play();
         thisSource.volume = 0.1f;
     }
 }
