@@ -37,6 +37,13 @@ public class Collectible : Hazard
 
     }
 
+    public override void ResetHazard()
+    {
+        _collected = false;
+        this.transform.position = _originalPos;
+        base.ResetHazard();
+    }
+
     private void FixedUpdate()
     {
         if(_collected == true)

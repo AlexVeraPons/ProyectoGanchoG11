@@ -65,7 +65,7 @@ public class Airborn : State
         base.Update();
 
         //Animation methods
-        BoolGrounded();
+        //BoolGrounded();
         TriggerFall();
 
         ExitLogicUpdate();
@@ -171,6 +171,7 @@ public class Airborn : State
         {
             AudioManager._instance.PlaySingleSound(SingleSound.PlayerGround);
             PlayImpactAnimation();
+            _animator.SetBool("isGrounded", true);
             _stateMachine.ChangeState(new Grounded(_stateMachine));
         }
     }
