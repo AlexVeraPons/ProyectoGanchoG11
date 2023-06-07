@@ -20,8 +20,8 @@ public class CPUBullet : MonoBehaviour
 
     private int _speed = 2;
 
-    private float _baseTimer = 0.5f; 
-    private float timer;
+    private float _baseTimer; // = 0.5f
+    private float _timer;
 
     void Start()
     {
@@ -34,8 +34,8 @@ public class CPUBullet : MonoBehaviour
 
         _originalDirection = _cannons.GetDirection();
 
-        //_baseTimer = UnityEngine.Random.Range(0.3f, 0.7f);
-        timer = _baseTimer;
+        _baseTimer = UnityEngine.Random.Range(0.3f, 1.5f);
+        _timer = _baseTimer;
         state = State.goingForward;
 
     }
@@ -52,11 +52,12 @@ public class CPUBullet : MonoBehaviour
                 break;
         }
         Timer();
+        CheckOutsideRange();
     }
     void Timer()
     {
-        timer -= Time.deltaTime;
-        if (timer <= 0)
+        _timer -= Time.deltaTime;
+        if (_timer <= 0)
         {
             ChangeState();
             ResetTimer();
@@ -76,7 +77,7 @@ public class CPUBullet : MonoBehaviour
     }
     void ResetTimer()
     {
-        timer = _baseTimer;
+        _timer = _baseTimer;
     }
     void Rotate()
     {
@@ -109,5 +110,35 @@ public class CPUBullet : MonoBehaviour
             GetRandomNumber(firstNumber, secondNumber);
         }
         return secondNumber;
+    }
+    private void CheckOutsideRange()
+    {
+        if (this.transform.position.x < -15)
+        {
+            DespawnBullet();
+        }
+        else if (this.transform.position.x > 15)
+        {
+            DespawnBullet();
+        }
+        else if (this.transform.position.y > 10)
+        {
+            DespawnBullet();
+        }
+        else if (this.transform.position.y < -10)
+        {
+            DespawnBullet();
+        }
+
+    }
+
+    private void DespawnBullet()
+    {
+        state = State.goingForward;
+        this.gameObject.SetActive(false);
+    }
+    public void SayHi()
+    {
+        _timer = _baseTimer;
     }
 }

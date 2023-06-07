@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(ObjectPool))]
 public class Cannons : MonoBehaviour
 {
     [SerializeField]
@@ -18,6 +19,11 @@ public class Cannons : MonoBehaviour
 
     [SerializeField]
     private Transform[] _spawnPositions;
+
+    private ObjectPool _bulletPool;
+    [SerializeField]
+    private int _bulletPoolCount = 10;
+
     [SerializeField]
     private GameObject _bullet;
 
@@ -33,14 +39,18 @@ public class Cannons : MonoBehaviour
     void Start()
     {
         _backgroundSpawner = GetComponentInParent<BackgroundSpawner>();
+        _bulletPool = GetComponent<ObjectPool>();
+    
+        _bulletPool.Initialize(_bullet, _bulletPoolCount);
     }
 
     private void Shoot()
     {
         foreach (Transform objects in _spawnPositions)
         {
-            Instantiate(_bullet, objects.transform.position, Quaternion.identity, objects.transform);
-            Debug.Log("OnShootFet");
+            //Instantiate(_bullet, objects.transform.position, Quaternion.identity, objects.transform);
+            //Debug.Log("OnShootFet");
+            GameObject bullet = _bulletPool.CreateObject(objects);
         }
     }
     public Vector3 GetDirection()
