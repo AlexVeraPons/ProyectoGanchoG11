@@ -20,7 +20,7 @@ public class CPUBullet : MonoBehaviour
 
     private int _speed = 2;
 
-    private float _baseTimer = 0.5f;
+    private float _baseTimer = 0.5f; 
     private float timer;
 
     void Start()
@@ -34,6 +34,7 @@ public class CPUBullet : MonoBehaviour
 
         _originalDirection = _cannons.GetDirection();
 
+        //_baseTimer = UnityEngine.Random.Range(0.3f, 0.7f);
         timer = _baseTimer;
         state = State.goingForward;
 
