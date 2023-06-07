@@ -18,11 +18,19 @@ public class Laser : HazardWithWarning
 
     private protected override void WarningFinished()
     {
+        AudioManager._instance.PlaySingleSound(SingleSound.AfterLaser);
     }
 
-    private protected override void AfterWarningUpdate() { 
+    private protected override void AfterWarningUpdate()
+    { 
         GrowX();
     }
+
+    private protected override void GenerateUniqueSound()
+    { 
+        AudioManager._instance.PlaySingleSound(SingleSound.BeforeLaser);
+    }
+
 
     private void GrowX()
     {

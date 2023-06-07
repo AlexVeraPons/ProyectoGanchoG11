@@ -25,5 +25,6 @@ public class LoadAnimOnCollection : MonoBehaviour
     void PlayAnimation()
     {
         _animator.Play(_animationName);
+        AudioManager._instance.PlaySingleSound(SingleSound.PlayerDisappear);
     }
 }

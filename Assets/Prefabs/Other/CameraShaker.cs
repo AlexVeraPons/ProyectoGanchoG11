@@ -79,6 +79,7 @@ public class CameraShaker : MonoBehaviour
         _magnitude = _originalMagnitude;
         _timeToFinish = _originalTimeToFinish;
         _referencePosition = this.transform.position;
+        _timer = 0f;
 
         _state = ShakeState.InProgress;
     }
@@ -88,6 +89,7 @@ public class CameraShaker : MonoBehaviour
         if(magnitude <= 0) { magnitude = _magnitude; } else { _magnitude = magnitude; }
         if(timeToFinish <= 0) { timeToFinish = _timeToFinish; } else { _timeToFinish = timeToFinish; }
         _referencePosition = this.transform.position;
+        _timer = 0f;
 
         _state = ShakeState.InProgress;
     }

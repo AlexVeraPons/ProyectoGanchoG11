@@ -28,6 +28,8 @@ public class Missile : Hazard
     private Vector2 _intialPosition;
     private Quaternion _initialRotation;
 
+    [SerializeField] ParticleSystem _explosionParticle;
+
     private protected override void Awake()
     {
         base.Awake();
@@ -75,6 +77,9 @@ public class Missile : Hazard
         if (IsTouchingWall())
         {
             Disappear();
+            Instantiate(_explosionParticle, this.transform.position, this.transform.rotation);
+            AudioManager._instance.PlaySingleSound(SingleSound.MissileCrash);
+            CameraShaker._instance.StartShake(0.2f, 0.5f);
             StopRunning();
         }
     }
@@ -108,6 +113,7 @@ public class Missile : Hazard
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            Instantiate(_explosionParticle, this.transform.position, this.transform.rotation);
             DamageableAction(collision);
         }
     }

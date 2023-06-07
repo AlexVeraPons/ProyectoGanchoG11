@@ -25,5 +25,6 @@ public class LoadAnimOnReposition : MonoBehaviour
     void PlayAnimation()
     {
         _animator.Play(_animationName);
+        AudioManager._instance.PlaySingleSound(SingleSound.PlayerAppear);
     }
 }
