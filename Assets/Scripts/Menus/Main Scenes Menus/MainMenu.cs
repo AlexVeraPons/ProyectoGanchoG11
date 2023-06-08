@@ -17,10 +17,7 @@ public class MainMenu : MonoBehaviour
 
     [SerializeField]
     private DataManager _dataManager;
-    private void Awake()
-    {
 
-    }
     private void Start()
     {
         _scenePicker = GetComponent<ScenePicker>();

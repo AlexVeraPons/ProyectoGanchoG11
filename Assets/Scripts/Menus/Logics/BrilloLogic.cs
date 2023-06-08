@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,7 +26,7 @@ public class BrilloLogic : MonoBehaviour
     }
     private void ChangeBrightnessSlider(float value)
     {
-        SliderValue -= value; //se que no es lo ideal, pero soluciona un problema que em dona el slider al ficarlo de left to right a right to left que de normal no passa
+        SliderValue -= value; 
         _slider.value = SliderValue;
         ChechBrightness();
         PlayerPrefs.SetFloat("brillo", SliderValue);
@@ -36,9 +34,8 @@ public class BrilloLogic : MonoBehaviour
     }
     public void ChangeSlider(float value)
     {
-        SliderValue = value; //se que no es lo ideal, pero soluciona un problema que em dona el slider al ficarlo de left to right a right to left que de normal no passa
+        SliderValue = value;
         _slider.value = SliderValue;
-        //ChechBrightness();
         PlayerPrefs.SetFloat("brillo", SliderValue);
         _brightnessPanel.color = new Color(_brightnessPanel.color.r, _brightnessPanel.color.g, _brightnessPanel.color.g, _slider.value);
     }

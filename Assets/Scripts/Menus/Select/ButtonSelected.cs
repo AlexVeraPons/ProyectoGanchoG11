@@ -5,16 +5,13 @@ using TMPro;
 public class ButtonSelected : MonoBehaviour
 {
     private TMP_Text _TextComponent;
-    // Start is called before the first frame update
     void Start()
     {
         _TextComponent = GetComponentInChildren<TMP_Text>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // Compare selected gameObject with referenced Button gameObject
          if(EventSystem.current.currentSelectedGameObject == this.gameObject)
          {
              _TextComponent.color = Color.black;

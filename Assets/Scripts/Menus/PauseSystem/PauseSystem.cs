@@ -61,7 +61,6 @@ public class PauseSystem : MonoBehaviour
     private string _mainMenuScene;
     private MenusMap _myInput;
 
-    //private CustomInput _input = null;
 
     void Start()
     {

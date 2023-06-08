@@ -17,14 +17,10 @@ public class OptionButtonSelected : MonoBehaviour
     private Sprite _selectedArrow;
     [SerializeField]
     private Sprite _defaultArrow;
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
+  
 
     void Update()
     {
-        // Compare selected gameObject with referenced Button gameObject
         if (EventSystem.current.currentSelectedGameObject == this.gameObject)
         {
             _TextName.color = Color.black;

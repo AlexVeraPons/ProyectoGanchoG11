@@ -20,15 +20,7 @@ public class ResolutionLogic : MonoBehaviour
         _buttonLogic.OnChangeLeft -= ChangeResolution;
         _buttonLogic.OnChangeRight -= ChangeResolution;
     }
-    void Start()
-    {
 
-    }
-
-    void Update()
-    {
-        //Debug.Log(_widthResolutions[_resolutionLogic.Index] + " " + _heightResolutions[_resolutionLogic.Index]);
-    }
     public void ChangeResolution(int Index)
     {
         Screen.SetResolution(_widthResolutions[Index], _heightResolutions[Index], Screen.fullScreen);

@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine;
-using System;
-using TMPro;
+
 public class VolumeLogic : MonoBehaviour
 {
     [SerializeField]
@@ -30,15 +26,12 @@ public class VolumeLogic : MonoBehaviour
         ChechVolumes();
         PlayerPrefs.SetFloat("volumeAudio", _slider.value);
         AudioListener.volume = _slider.value;
-        //am i mute
     }
     public void ChangeSlider(float value)
     {
         _slider.value = value;
-        //ChechVolumes();
         PlayerPrefs.SetFloat("volumeAudio", _slider.value);
         AudioListener.volume = _slider.value;
-        //am i mute
     }
     private void ChechVolumes()
     {

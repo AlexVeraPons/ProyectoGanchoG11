@@ -21,11 +21,7 @@ public class OptionSliderSelected : MonoBehaviour
     private Sprite _selectedArrow;
     [SerializeField]
     private Sprite _defaultArrow;
-    void Start()
-    {
-
-    }
-
+  
     void Update()
     {
         if (EventSystem.current.currentSelectedGameObject == this.gameObject)
