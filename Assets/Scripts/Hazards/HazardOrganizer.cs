@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class HazardOrganizer : MonoBehaviour
 {
+    public int CurrentContainerIndex => _currentContainerIndex;
+    public int ContainerCount => _hazardContainers.Length;
+
     [SerializeField]
     private HazardContainer[] _hazardContainers;
     private HazardContainer[] _temporaryHazardContainers;
     private int _currentContainerIndex = 0;
     private HazardContainer _currentContainer => _hazardContainers[_currentContainerIndex];
+
 
     private void OnEnable()
     {
