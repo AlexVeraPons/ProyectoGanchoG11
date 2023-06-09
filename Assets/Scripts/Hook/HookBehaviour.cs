@@ -281,7 +281,7 @@ public class HookBehaviour : MonoBehaviour
                 break;
 
             case HookState.Returning:
-
+                this.transform.position = _impactTransform.position;
                 //SoundManager._instance.PlaySingleSound(SingleSound.HookRetrieving);
                 break;
 
