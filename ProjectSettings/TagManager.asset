@@ -22,8 +22,8 @@ TagManager:
   - Hook
   - LevelBound
   - Interactable
-  - 
-  - 
+  - Computer
+  - PostProcessing
   - 
   - 
   - 
