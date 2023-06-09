@@ -20,7 +20,6 @@ public class PlatformCooldown : MonoBehaviour, IInteractable
 
      public void UndoInteraction()
     {
-        Debug.Log("UndoInteraction");
         if (_isActive) {
             Deactivate();
             ActivateAfterCooldown();
@@ -29,14 +28,12 @@ public class PlatformCooldown : MonoBehaviour, IInteractable
 
     private void Deactivate()
     {
-        Debug.Log("Deactivate");
         _animator.SetBool("IsActive", false);
         _collider.enabled = false;
     }
 
     private void Activate()
     {
-        Debug.Log("Activate");
         _animator.SetBool("IsActive", true);
         _collider.enabled = true;
     }

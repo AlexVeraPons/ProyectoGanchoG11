@@ -33,6 +33,8 @@ public class WaveManager : MonoBehaviour
     [SerializeField]
     private Transform _playerTransform;
     bool _inProgress = false;
+
+    public int CurrentWaveID => _currentWaveID;
     int _currentWaveID = 0;
     int _currentWorldID = 0;
 
@@ -216,7 +218,7 @@ public class WaveManager : MonoBehaviour
         _playerTransform.position = GetWaveByID(waveData.GetWaveID()).SpawnPosition;
     }
 
-    Wave GetWaveByID(int ID)
+    public Wave GetWaveByID(int ID)
     {
         foreach (World world in _collector.Worlds)
         {

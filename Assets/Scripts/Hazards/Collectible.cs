@@ -6,7 +6,7 @@ using UnityEngine;
 public class Collectible : Hazard
 {
     public static Action OnCollected;
-    private bool _collected;
+    [SerializeField] private bool _collected;
     private Animator _animator;
     private Rigidbody2D _rigidbody2D;
     private Vector2 _originalPos;
@@ -19,6 +19,16 @@ public class Collectible : Hazard
         _animator = GetComponent<Animator>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
+    void OnEnable()
+    {
+        WaveManager.OnUnloadWave += ResetCollectible;
+    }
+
+    void OnDisable()
+    {
+        WaveManager.OnUnloadWave -= ResetCollectible;
     }
 
     private protected override void Appear()
@@ -39,8 +49,6 @@ public class Collectible : Hazard
 
     public override void ResetHazard()
     {
-        _collected = false;
-        this.transform.position = _originalPos;
         base.ResetHazard();
     }
 
@@ -64,5 +72,11 @@ public class Collectible : Hazard
             _animator.Play("Collected");
             OnCollected?.Invoke();
         }
+    }
+
+    void ResetCollectible()
+    {
+        _collected = false;
+        this.transform.position = _originalPos;
     }
 }

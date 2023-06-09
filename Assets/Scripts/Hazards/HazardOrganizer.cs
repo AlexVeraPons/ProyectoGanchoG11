@@ -96,6 +96,8 @@ public class HazardOrganizer : MonoBehaviour
     {
         _currentContainerIndex++;
         _currentContainer.StartContainer();
+        ProgressBarManager._instance.Increase();
+
 
         if (_currentContainerIndex == _hazardContainers.Length - 1)
         {
@@ -107,8 +109,6 @@ public class HazardOrganizer : MonoBehaviour
             StartCoroutine(NextContainerAfterDelay());
             return;
         }
-
-        StartCoroutine(NextContainerAfterDelay());
     }
 
     private void ResetContainers()
