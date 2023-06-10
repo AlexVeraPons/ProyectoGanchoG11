@@ -11,7 +11,7 @@ public class Collectible : Hazard
     private Rigidbody2D _rigidbody2D;
     private Vector2 _originalPos;
     private const float _speed = 100f;
-    [SerializeField] private Transform _playerTransform;
+    private Transform _playerTransform;
 
     private protected override void Awake()
     {
