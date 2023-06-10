@@ -74,7 +74,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlaySingleSound(SingleSound singleSound)
+    public void PlaySingleSound(SingleSound singleSound, float pitch = 1f, float volume = 1f)
     {
         AudioClip clip;
         _singleSoundDictionary.TryGetValue(singleSound, out clip);
@@ -83,6 +83,8 @@ public class AudioManager : MonoBehaviour
             AudioSource source;
             if (SoundSourceAvailable(_singleSoundSources, out source) == true)
             {
+                source.pitch = pitch;
+                source.volume = volume;
                 source.PlayOneShot(clip);
             }
             else
@@ -248,7 +250,9 @@ public enum SingleSound
     BeforeLaser,
     AfterLaser,
     AnchorAppear,
-    AnchorDisappear
+    AnchorDisappear,
+    LightBeam,
+    LightBeam2
 }
 
 public enum LoopingSound
