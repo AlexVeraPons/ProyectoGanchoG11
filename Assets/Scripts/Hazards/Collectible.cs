@@ -6,7 +6,7 @@ using UnityEngine;
 public class Collectible : Hazard
 {
     public static Action OnCollected;
-    private bool _collected;
+    private bool _hasBeenCollected;
     private Animator _animator;
     private Rigidbody2D _rigidbody2D;
     private Vector2 _originalPos;
@@ -39,14 +39,14 @@ public class Collectible : Hazard
 
     public override void ResetHazard()
     {
-        _collected = false;
+        //_hasBeenCollected = false;
         this.transform.position = _originalPos;
         base.ResetHazard();
     }
 
     private void FixedUpdate()
     {
-        if(_collected == true)
+        if(_hasBeenCollected == true)
         {
             _rigidbody2D.velocity = (_playerTransform.position - this.transform.position).normalized * _speed * Time.deltaTime;
         }
@@ -60,7 +60,7 @@ public class Collectible : Hazard
         if(collision.CompareTag("Player") == true
         && WaveManager._instance.NextWaveIsNotNull())
         {
-            _collected = true;
+            _hasBeenCollected = true;
             _animator.Play("Collected");
             OnCollected?.Invoke();
         }
