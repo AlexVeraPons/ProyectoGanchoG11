@@ -4,7 +4,9 @@ using System;
 public class BackgroundSpawner : MonoBehaviour
 {
     public Action OnShoot;
-    [Space(10)]
+    public Action OnEnterBossStage;
+
+    [Space(5)]
 
     [Header("TIME related")]
     [Space(5)]
@@ -16,10 +18,7 @@ public class BackgroundSpawner : MonoBehaviour
 
     void Start()
     {
-        //_spawnTime = 2f;
         _time = _spawnTime;
-
-
     }
 
     void Update()
