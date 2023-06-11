@@ -4,8 +4,6 @@ using System;
 public class BackgroundSpawner : MonoBehaviour
 {
     public Action OnShoot;
-    // [SerializeField]
-    // private GameObject _bullet;
     [Space(10)]
 
     [Header("TIME related")]
@@ -18,7 +16,7 @@ public class BackgroundSpawner : MonoBehaviour
 
     void Start()
     {
-        _spawnTime = 2f;
+        //_spawnTime = 2f;
         _time = _spawnTime;
 
 
@@ -40,7 +38,6 @@ public class BackgroundSpawner : MonoBehaviour
     void Shoot()
     {
         OnShoot?.Invoke();
-        Debug.Log("OnShoot");
     }
     void ResetTimer()
     {

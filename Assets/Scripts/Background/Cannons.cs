@@ -46,8 +46,6 @@ public class Cannons : MonoBehaviour
     {
         foreach (Transform objects in _spawnPositions)
         {
-            //Instantiate(_bullet, objects.transform.position, Quaternion.identity, objects.transform);
-            //Debug.Log("OnShootFet");
             GameObject bullet = _bulletPool.CreateObject(objects);
         }
     }
