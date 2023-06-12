@@ -56,6 +56,7 @@ public class WaveManager : MonoBehaviour
     void OnEnable()
     {
         Collectible.OnCollected += NextWave;
+        BossState.OnCollected += NextWave;
 
         LifeComponent.OnDeath += Reset;
     }
@@ -63,6 +64,7 @@ public class WaveManager : MonoBehaviour
     void OnDisable()
     {
         Collectible.OnCollected -= NextWave;
+        BossState.OnCollected -= NextWave;
 
         LifeComponent.OnDeath -= Reset;
     }
@@ -127,7 +129,15 @@ public class WaveManager : MonoBehaviour
     {
         OnUnloadWave?.Invoke();
         
-        yield return new WaitForSeconds(_timeBeforeSpawn); // Time it takes to load the next wave
+        if(_respawnType != RespawnType.World)
+        {
+            yield return new WaitForSeconds(_timeBeforeSpawn); // Time it takes to load the next wave
+        }
+        else
+        {
+            yield return new WaitForSeconds(0); // Time it takes to load the next wave
+        }
+
 
         this._spawner.DespawnAllWaves(this._collector);
 
@@ -144,7 +154,14 @@ public class WaveManager : MonoBehaviour
 
         ResetWavePlayerPosition(nextWaveData);
         
-        yield return new WaitForSeconds(_timeAfterSpawn); // Time it takes to appear
+        if(_respawnType != RespawnType.World)
+        {
+            yield return new WaitForSeconds(_timeAfterSpawn); // Time it takes to load the next wave
+        }
+        else
+        {
+            yield return new WaitForSeconds(0); // Time it takes to load the next wave
+        }
 
         if(isRespawning == true)
         {

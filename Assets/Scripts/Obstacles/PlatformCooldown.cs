@@ -14,11 +14,11 @@ public class PlatformCooldown : MonoBehaviour, IInteractable
     private Animator _animator;
 
     private void OnEnable() {
-        LifeComponent.OnDeath += Activate;
+        WaveManager.OnResetWave += Activate;
     }
 
     private void OnDisable() {
-        LifeComponent.OnDeath -= Activate;
+        WaveManager.OnResetWave -= Activate;
     }
 
     private void Start() {
@@ -28,7 +28,6 @@ public class PlatformCooldown : MonoBehaviour, IInteractable
 
      public void UndoInteraction()
     {
-        Debug.Log("UndoInteraction");
         if (_isActive) {
             Deactivate();
             ActivateAfterCooldown();
@@ -37,14 +36,12 @@ public class PlatformCooldown : MonoBehaviour, IInteractable
 
     private void Deactivate()
     {
-        Debug.Log("Deactivate");
         _animator.SetBool("IsActive", false);
         _collider.enabled = false;
     }
 
     private void Activate()
     {
-        Debug.Log("Activate");
         _animator.SetBool("IsActive", true);
         _collider.enabled = true;
     }
@@ -59,13 +56,14 @@ public class PlatformCooldown : MonoBehaviour, IInteractable
         Activate();
     }
    
-    public void DoInteraction()
-    {
-        //throw new NotImplementedException();
-    }
 
     public GameObject GetGameObject()
     {
         return gameObject;
+    }
+
+    public void DoInteraction()
+    {
+        // throw new NotImplementedException();
     }
 }
