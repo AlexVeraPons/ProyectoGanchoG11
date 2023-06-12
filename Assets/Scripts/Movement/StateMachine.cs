@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class StateMachine : MonoBehaviour
 {
-    public virtual State CurrentState { get; private set; }
+    public virtual State CurrentState { get;  set; }
 
     public virtual  void Initialize(State startingState)
     {

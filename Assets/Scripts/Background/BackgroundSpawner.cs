@@ -40,7 +40,6 @@ public class BackgroundSpawner : MonoBehaviour
     void Shoot()
     {
         OnShoot?.Invoke();
-        Debug.Log("OnShoot");
     }
     void ResetTimer()
     {

@@ -56,6 +56,7 @@ public class WaveManager : MonoBehaviour
     void OnEnable()
     {
         Collectible.OnCollected += NextWave;
+        BossState.OnCollected += NextWave;
 
         LifeComponent.OnDeath += Reset;
     }
@@ -63,6 +64,7 @@ public class WaveManager : MonoBehaviour
     void OnDisable()
     {
         Collectible.OnCollected -= NextWave;
+        BossState.OnCollected -= NextWave;
 
         LifeComponent.OnDeath -= Reset;
     }
