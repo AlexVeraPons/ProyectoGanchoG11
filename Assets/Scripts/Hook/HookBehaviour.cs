@@ -30,6 +30,7 @@ public class HookBehaviour : MonoBehaviour
     [SerializeField] public HookState _state;
     [Tooltip("The transform associated to the Grapple Gun Owner")]
     [SerializeField] Transform _playerTransform;
+    [SerializeField] bool _reachedPeak = false;
 
     //Private Grappling Gun related variables
     GrapplingGun _grapplingGun;
@@ -97,6 +98,8 @@ public class HookBehaviour : MonoBehaviour
                 {
                     if (ReachedEnd() == true)
                     {
+                        _reachedPeak = true;
+
                         if (_hasHitObject == true)
                         {
                             if (HitObjectIsReturnable() == false)
@@ -271,6 +274,7 @@ public class HookBehaviour : MonoBehaviour
                 }
                 this.transform.SetParent(_grapplingGun.transform.parent);
                 this.gameObject.SetActive(false);
+                _reachedPeak = false;
                 break;
 
             case HookState.Stuck:
@@ -281,7 +285,14 @@ public class HookBehaviour : MonoBehaviour
                 break;
 
             case HookState.Returning:
+<<<<<<< Updated upstream
                 this.transform.position = _impactTransform.position;
+=======
+                if(_reachedPeak == true)
+                {
+                    this.transform.position = _impactTransform.position;
+                }
+>>>>>>> Stashed changes
                 //SoundManager._instance.PlaySingleSound(SingleSound.HookRetrieving);
                 break;
 
