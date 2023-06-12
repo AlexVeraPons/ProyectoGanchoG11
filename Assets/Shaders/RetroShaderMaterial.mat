@@ -51,10 +51,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _NoiseAmount: 0.09
+    - _NoiseScale: 100
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _ScaningLines: 8.69
-    - _ScanningLineSpeed: 1
-    - _ScanningLinesAmount: 0.005
-    m_Colors: []
+    - _ScaningLines: 7
+    - _ScanningLineSpeed: 1.04
+    - _ScanningLinesAmount: 0.041
+    m_Colors:
+    - _NoiseSpeed: {r: 0, g: 0.01, b: 0, a: 0}
   m_BuildTextureStacks: []

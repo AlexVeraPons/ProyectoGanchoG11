@@ -17887,7 +17887,7 @@ PrefabInstance:
     - target: {fileID: 7281046738374265725, guid: e9e48e3269aa11e489bdf34185df0d83, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: -986104088465342736, guid: d62d47bb62f90b94c80ba8b13de5df86, type: 2}
+      objectReference: {fileID: 2100000, guid: 4a3525ad89964814aa6ddedbd531d6a5, type: 2}
     - target: {fileID: 7281046738374265725, guid: e9e48e3269aa11e489bdf34185df0d83, type: 3}
       propertyPath: m_RaycastTarget
       value: 1
@@ -17922,7 +17922,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7281046738558698073, guid: e9e48e3269aa11e489bdf34185df0d83, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7281046738558698085, guid: e9e48e3269aa11e489bdf34185df0d83, type: 3}
       propertyPath: m_Pivot.x
