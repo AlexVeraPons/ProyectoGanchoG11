@@ -285,14 +285,10 @@ public class HookBehaviour : MonoBehaviour
                 break;
 
             case HookState.Returning:
-<<<<<<< Updated upstream
-                this.transform.position = _impactTransform.position;
-=======
                 if(_reachedPeak == true)
                 {
                     this.transform.position = _impactTransform.position;
                 }
->>>>>>> Stashed changes
                 //SoundManager._instance.PlaySingleSound(SingleSound.HookRetrieving);
                 break;
 
