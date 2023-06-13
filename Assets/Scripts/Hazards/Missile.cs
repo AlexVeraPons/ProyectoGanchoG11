@@ -27,8 +27,7 @@ public class Missile : Hazard
     private TrailRenderer _trailRenderer;
     private Vector2 _intialPosition;
     private Quaternion _initialRotation;
-
-    [SerializeField] ParticleSystem _explosionParticle;
+     ParticleSystem _explosionParticle;
 
     private protected override void Awake()
     {
@@ -37,6 +36,7 @@ public class Missile : Hazard
 
         _target = GameObject.FindObjectOfType<PlayerEntity>().gameObject;
         this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+
     }
 
     private void Start()

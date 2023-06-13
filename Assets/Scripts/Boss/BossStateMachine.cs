@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class BossStateMachine : StateMachine
 {
+    [SerializeField] private Sprite[] _textures = new Sprite[5];
+    private Sprite _currentTexture;
+    private Animator _animator;
+    private SpriteRenderer _spriteRenderer;
+
     private void OnEnable()
     {
         NextWaveOnHit.BossTired += EnterIdleState;
@@ -16,11 +21,27 @@ public class BossStateMachine : StateMachine
         NextWaveOnHit.BossTired -= EnterIdleState;
         NextWaveOnHit.BossHit -= ExitIdleState;
     }
+    private void Awake() {
+        _animator = GetComponent<Animator>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        
+    }
+
 
     private void Start()
     {
+        _currentTexture = _textures[0];
+        _spriteRenderer.sprite = _currentTexture;
+        _animator.SetBool("isTired", false);
+
         Initialize(new BossInitialState(this));
     }
+
+    public void SetCurrentTexture(int index)
+    {
+        _currentTexture = _textures[index];
+        _spriteRenderer.sprite = _currentTexture;
+    } 
 
     private void EnterIdleState()
     {
@@ -35,16 +56,19 @@ public class BossStateMachine : StateMachine
         // then createthe idle state with the next state as the state to change into
         BossIdleState idleState = new BossIdleState(this, nextState);
         CurrentState  = idleState;
+
+        _animator.SetBool("isTired", true);
     }
 
     private void ExitIdleState()
     {
-        Debug.Log("ExitIdleState" + CurrentState is BossIdleState);
         if (CurrentState is BossIdleState)
         {
             BossIdleState idleState = (BossIdleState)CurrentState;
             idleState.Change();
         }
+
+        _animator.SetBool("isTired", false);
     }
 }
 
@@ -88,6 +112,12 @@ public class BossInitialState : BossState
     {
         NextState = new BossSecondState(_stateMachine);
     }
+
+    public override void Enter()
+    {
+        base.Enter();
+        _stateMachine.GetComponent<BossStateMachine>().SetCurrentTexture(0);
+    }
 }
 
 public class BossSecondState : BossState
@@ -96,6 +126,12 @@ public class BossSecondState : BossState
         : base(stateMachine)
     {
         NextState = new BossThirdState(_stateMachine);
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+        _stateMachine.GetComponent<BossStateMachine>().SetCurrentTexture(1);
     }
 }
 
@@ -106,6 +142,12 @@ public class BossThirdState : BossState
     {
         NextState = new BossFourthState(_stateMachine);
     }
+
+    public override void Enter()
+    {
+        base.Enter();
+        _stateMachine.GetComponent<BossStateMachine>().SetCurrentTexture(2);
+    }
 }
 
 public class BossFourthState : BossState
@@ -115,6 +157,12 @@ public class BossFourthState : BossState
     {
         NextState = new BossFifthState(_stateMachine);
     }
+
+    public override void Enter()
+    {
+        base.Enter();
+        _stateMachine.GetComponent<BossStateMachine>().SetCurrentTexture(3);
+    }
 }
 
 public class BossFifthState : BossState
@@ -123,6 +171,12 @@ public class BossFifthState : BossState
         : base(stateMachine)
     {
         NextState = new BossDoneState(_stateMachine);
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+        _stateMachine.GetComponent<BossStateMachine>().SetCurrentTexture(4);
     }
 }
 
