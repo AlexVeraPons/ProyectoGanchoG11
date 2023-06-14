@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9d718c36e97d8c349920f411c504f720
+guid: e0adc450cc34de24f85028a3f5450312
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -119,8 +119,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 605a2f63256800f4ba566b6607089497
-      internalID: 752455403
+      spriteID: 49f1a7744722325428f32cc73dd552f3
+      internalID: 431793369
       vertices: []
       indices: 
       edges: []
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3004fd20fc40a4745831bd1d0ae75fa8
-      internalID: -1985349303
+      spriteID: b49a1bfa9fd751947bcbe622e0a3b927
+      internalID: -1641835397
       vertices: []
       indices: 
       edges: []
@@ -161,8 +161,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 172ca45890b9bb147845e18e7b47322a
-      internalID: -2127316752
+      spriteID: c18f09824f615e74c947b8d2b8694849
+      internalID: 1258178911
       vertices: []
       indices: 
       edges: []
@@ -182,8 +182,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 94bb13bcc7616264fb935b2ee97274a8
-      internalID: -1710791780
+      spriteID: d7cf892de4d57ba48af52803133c8ffc
+      internalID: -793252074
       vertices: []
       indices: 
       edges: []
@@ -203,8 +203,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1320b1816443284facdbb2a6a6f4787
-      internalID: 1974398498
+      spriteID: 208dbeb202d1c6e49807d3bba330211c
+      internalID: 771639941
       vertices: []
       indices: 
       edges: []
@@ -224,8 +224,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82c123cc211390e449da96e2626b4aa6
-      internalID: 930603816
+      spriteID: 245577cd29c7d304ab51c75c8401d65f
+      internalID: -831905246
       vertices: []
       indices: 
       edges: []
@@ -241,12 +241,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      cuerpo boss en diferentes fases_3: -1710791780
-      cuerpo boss en diferentes fases_5: 930603816
-      cuerpo boss en diferentes fases_1: -1985349303
-      cuerpo boss en diferentes fases_0: 752455403
-      cuerpo boss en diferentes fases_4: 1974398498
-      cuerpo boss en diferentes fases_2: -2127316752
+      cuerpo boss en diferentes fases_3: -793252074
+      cuerpo boss en diferentes fases_5: -831905246
+      cuerpo boss en diferentes fases_1: -1641835397
+      cuerpo boss en diferentes fases_0: 431793369
+      cuerpo boss en diferentes fases_4: 771639941
+      cuerpo boss en diferentes fases_2: 1258178911
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

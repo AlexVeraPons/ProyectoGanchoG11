@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c413f7f4df61c594bae82e3552328587
+guid: dde45da4b1da11749b6230d3679f5cf0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -119,8 +119,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2da2d91fb2c8bc0458555d82b13a9cb8
-      internalID: -905351181
+      spriteID: cdb83a57da2bb6340a52da5ed4863fde
+      internalID: 835967748
       vertices: []
       indices: 
       edges: []
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d737c753491480947a89311735296c3c
-      internalID: -50970331
+      spriteID: 226cc442425bcc948bb2067522e71d96
+      internalID: 1045408644
       vertices: []
       indices: 
       edges: []
@@ -161,8 +161,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f37430af2b2b1bc4587179e9cfdec6d1
-      internalID: 1000604052
+      spriteID: 310d318f315cfc84c88a6487a3427fc8
+      internalID: -49471870
       vertices: []
       indices: 
       edges: []
@@ -182,8 +182,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8e234332396b1b54cbdc4230abf45d64
-      internalID: 1242550909
+      spriteID: 7837a1b83fac35b4483ea247b43dbffa
+      internalID: 803559639
       vertices: []
       indices: 
       edges: []
@@ -203,8 +203,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7565a0ba4c7c0dc4299804cb15d1818a
-      internalID: 1022287980
+      spriteID: e250954197db283499ce4c4485f768e2
+      internalID: 2041721194
       vertices: []
       indices: 
       edges: []
@@ -224,8 +224,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e59974482e395a340acb6f9f5d5720ec
-      internalID: 908399153
+      spriteID: 1440e8d34a3d8094c8b5337530cf8cc4
+      internalID: -1988112378
       vertices: []
       indices: 
       edges: []
@@ -245,8 +245,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6e04bab83ae28f24ab155336ce9cf0cd
-      internalID: -812566757
+      spriteID: 7a975b9435d39cf4ab94f2992bcb5509
+      internalID: -1457038280
       vertices: []
       indices: 
       edges: []
@@ -262,13 +262,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      caras boss_2: 1000604052
-      caras boss_1: -50970331
-      caras boss_0: -905351181
-      caras boss_6: -812566757
-      caras boss_4: 1022287980
-      caras boss_5: 908399153
-      caras boss_3: 1242550909
+      caras boss_2: -49471870
+      caras boss_1: 1045408644
+      caras boss_0: 835967748
+      caras boss_6: -1457038280
+      caras boss_4: 2041721194
+      caras boss_5: -1988112378
+      caras boss_3: 803559639
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
