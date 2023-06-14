@@ -3583,7 +3583,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _glitchDuration: 2
-  _duration: 25
+  _duration: 18
   _rotationalSpeed: 200
   _speed: 1
   _target: {fileID: 0}
@@ -8429,7 +8429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _glitchDuration: 2
-  _duration: 25
+  _duration: 18
   _rotationalSpeed: 200
   _speed: 1
   _target: {fileID: 0}
@@ -11379,7 +11379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _glitchDuration: 2
-  _duration: 20
+  _duration: 16
   _linearSpeed: 15
   _routeType: 0
   _nodesParent: {fileID: 1270484576}
@@ -12050,7 +12050,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _glitchDuration: 2
-  _duration: 25
+  _duration: 18
   _rotationalSpeed: 200
   _speed: 1
   _target: {fileID: 0}
@@ -13288,7 +13288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _glitchDuration: 2
-  _duration: 20
+  _duration: 16
   _linearSpeed: 15
   _routeType: 0
   _nodesParent: {fileID: 890576998}
@@ -15500,7 +15500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _glitchDuration: 2
-  _duration: 20
+  _duration: 14
   _linearSpeed: 15
   _routeType: 1
   _nodesParent: {fileID: 1241506676}
@@ -22127,7 +22127,7 @@ GameObject:
   - component: {fileID: 1266090663}
   - component: {fileID: 1266090664}
   m_Layer: 0
-  m_Name: Wave_2
+  m_Name: Wave_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22619,7 +22619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _glitchDuration: 2
-  _duration: 25
+  _duration: 18
   _rotationalSpeed: 200
   _speed: 1
   _target: {fileID: 0}
@@ -22972,7 +22972,7 @@ GameObject:
   - component: {fileID: 1316850142}
   - component: {fileID: 1316850143}
   m_Layer: 0
-  m_Name: Wave_3
+  m_Name: Wave_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23797,7 +23797,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _glitchDuration: 2
-  _duration: 20
+  _duration: 16
   _linearSpeed: 15
   _routeType: 0
   _nodesParent: {fileID: 1300903841}
@@ -27248,7 +27248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _glitchDuration: 3
-  _duration: 15
+  _duration: 18
   _warningDuration: 5
   _warningZone: {fileID: 1176538007}
   _growthSpeed: 20
@@ -29619,7 +29619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _glitchDuration: 2
-  _duration: 20
+  _duration: 14
   _linearSpeed: 15
   _routeType: 1
   _nodesParent: {fileID: 1318964662}
@@ -31224,7 +31224,7 @@ GameObject:
   - component: {fileID: 1927575862}
   - component: {fileID: 1927575863}
   m_Layer: 0
-  m_Name: Wave_5
+  m_Name: Wave_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
