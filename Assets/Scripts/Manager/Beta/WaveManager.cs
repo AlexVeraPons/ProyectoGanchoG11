@@ -151,16 +151,22 @@ public class WaveManager : MonoBehaviour
 
         this._spawner.SpawnWave(_collector, nextWaveData.GetWorldID(), nextWaveData.GetWaveID());
         this._spawner.SpawnWorld(_collector, nextWaveData.GetWorldID());
-
-        yield return new WaitForSeconds(_timeAfterSpawn); // Time it takes to load the next wave
-        // if(_respawnType != RespawnType.World)
-        // {
-            
-        // }
-        // else
-        // {
-        //     yield return new WaitForSeconds(0); // Time it takes to load the next wave
-        // }
+        
+        if(_respawnType == RespawnType.World)
+        {
+            if(isRespawning == false) 
+            {
+                yield return new WaitForSeconds(0); // Time it takes to load the next wave
+            }
+            else
+            {
+                yield return new WaitForSeconds(_timeAfterSpawn); // Time it takes to load the next wave
+            }
+        }
+        else
+        {
+            yield return new WaitForSeconds(_timeAfterSpawn); // Time it takes to load the next wave
+        }
 
         ResetWavePlayerPosition(nextWaveData, isRespawning);
 
