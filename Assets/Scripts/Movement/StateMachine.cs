@@ -30,7 +30,7 @@ public abstract class StateMachine : MonoBehaviour
     {
         CurrentState.LateUpdate();
     }
-
+ 
 }
 
 
