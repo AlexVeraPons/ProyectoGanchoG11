@@ -14,16 +14,20 @@ public class HazardOrganizer : MonoBehaviour
     {
         WaveManager.OnLoadWave += LevelStarted;
         WaveManager.OnUnloadWave += ResetContainers;
-        WaveManager.OnResetWave += ResetContainers;
-        WaveManager.OnResetWave += ResetContainerIndex;
+        LifeComponent.OnDeath += ResetContainers;
+        LifeComponent.OnDeath += ResetContainerIndex;
+        NextWaveOnHit.BossHit += ResetContainers;
+        NextWaveOnHit.BossHit += ResetContainerIndex;
     }
 
     private void OnDisable()
     {
         WaveManager.OnLoadWave -= LevelStarted;
         WaveManager.OnUnloadWave -= ResetContainers;
-        WaveManager.OnResetWave -= ResetContainers;
-        WaveManager.OnResetWave -= ResetContainerIndex;
+        LifeComponent.OnDeath -= ResetContainers;
+        LifeComponent.OnDeath -= ResetContainerIndex;
+        NextWaveOnHit.BossHit -= ResetContainers;
+        NextWaveOnHit.BossHit -= ResetContainerIndex;
     }
 
     private void LevelStarted()

@@ -9,6 +9,8 @@ public class PlatformCooldown : MonoBehaviour, IInteractable
 {
     [SerializeField]
     private float _cooldown = 1f;
+    [SerializeField]
+    private float _offset = 0.3f;
     private bool _isActive => _animator.GetBool("IsActive");
     private Collider2D _collider;
     private Animator _animator;
@@ -37,13 +39,11 @@ public class PlatformCooldown : MonoBehaviour, IInteractable
     private void Deactivate()
     {
         _animator.SetBool("IsActive", false);
-        _collider.enabled = false;
     }
 
     private void Activate()
     {
         _animator.SetBool("IsActive", true);
-        _collider.enabled = true;
     }
 
     private void ActivateAfterCooldown() {

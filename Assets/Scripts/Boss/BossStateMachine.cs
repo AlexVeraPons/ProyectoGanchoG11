@@ -54,7 +54,6 @@ public class BossStateMachine : StateMachine
      public override void ChangeState(State newState)
     {
         base.ChangeState(newState);
-        Debug.Log("Changed state to " + newState);
     }
 
     private void ResetBoss()
@@ -171,13 +170,28 @@ public class BossThirdState : BossState
     public BossThirdState(StateMachine stateMachine)
         : base(stateMachine)
     {
-        NextState = new BossDoneState(_stateMachine);
+        NextState = new BossFourthState(_stateMachine);
     }
 
     public override void Enter()
     {
         base.Enter();
         _stateMachine.GetComponent<BossStateMachine>().SetCurrentTexture(2);
+    }
+}
+
+public class BossFourthState : BossState
+{
+    public BossFourthState(StateMachine stateMachine)
+        : base(stateMachine)
+    {
+        NextState = new BossDoneState(_stateMachine);
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+        _stateMachine.GetComponent<BossStateMachine>().SetCurrentTexture(3);
     }
 }
 

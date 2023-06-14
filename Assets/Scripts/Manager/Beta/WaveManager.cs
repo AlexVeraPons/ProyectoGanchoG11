@@ -102,7 +102,7 @@ public class WaveManager : MonoBehaviour
                     }
 
                     _currentWaveID += 1;
-
+                    
                     WaveData nextWaveData = new WaveData(_currentWorldID, _currentWaveID);
                     StartCoroutine(Next(previousWaveData, nextWaveData));
 
@@ -127,7 +127,7 @@ public class WaveManager : MonoBehaviour
         bool isRespawning = false
     )
     {
-        OnUnloadWave?.Invoke();
+        Debug.Log("Unloading wave");
         
         if(_respawnType != RespawnType.World)
         {
