@@ -16013,6 +16013,22 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5833159588756737713, guid: f49dd3fd330b07944a20f06c463b9cdb, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833159588756737713, guid: f49dd3fd330b07944a20f06c463b9cdb, type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 0.23520255
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833159588756737713, guid: f49dd3fd330b07944a20f06c463b9cdb, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5833159588756737713, guid: f49dd3fd330b07944a20f06c463b9cdb, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f49dd3fd330b07944a20f06c463b9cdb, type: 3}
 --- !u!114 &1219494416
@@ -26138,7 +26154,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1035557849883281816
 Transform:
   m_ObjectHideFlags: 0
@@ -26267,7 +26283,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1035557850954030207
 MonoBehaviour:
   m_ObjectHideFlags: 0
