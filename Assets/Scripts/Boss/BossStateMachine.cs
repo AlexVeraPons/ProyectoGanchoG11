@@ -9,22 +9,31 @@ public class BossStateMachine : StateMachine
     private Sprite _currentTexture;
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
+    public Animator AnimatorComponent => _animator;
 
     private void OnEnable()
     {
         NextWaveOnHit.BossTired += EnterIdleState;
-        NextWaveOnHit.BossHit += ExitIdleState;
+        NextWaveOnHit.BossHit += BossHit;
+        WaveManager.OnResetWorld += ResetBoss;
+    }
+
+    private void ResetBoss()
+    {
+        CurrentState = new BossInitialState(this);
     }
 
     private void OnDisable()
     {
         NextWaveOnHit.BossTired -= EnterIdleState;
-        NextWaveOnHit.BossHit -= ExitIdleState;
+        NextWaveOnHit.BossHit -= BossHit;
+        WaveManager.OnResetWorld -= ResetBoss;
     }
     private void Awake() {
         _animator = GetComponent<Animator>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-        
+       
+        var spriterenderTarget = GetComponentInChildren<AnimationBody>();
+        _spriteRenderer =  spriterenderTarget.GetComponent<SpriteRenderer>();
     }
 
 
@@ -48,7 +57,6 @@ public class BossStateMachine : StateMachine
         // first we create a new state as boss state that is a copy of the current state
         BossState bossState = (BossState)CurrentState;
 
-        Debug.Log("EnterIdleState" + " From: " + bossState);
 
         // then get the next state
         BossState nextState = bossState.NextState;
@@ -70,6 +78,12 @@ public class BossStateMachine : StateMachine
 
         _animator.SetBool("isTired", false);
     }
+
+    private void BossHit()
+    {
+        _animator.SetTrigger("isHit");
+        ExitIdleState();
+    }
 }
 
 public class BossState : State
@@ -89,19 +103,17 @@ public class BossState : State
 
 public class BossIdleState : BossState
 {
-    BossState _stateToChangeInto;
 
     public BossIdleState(StateMachine stateMachine, BossState stateToChangeInto)
         : base(stateMachine)
     {
-        _stateToChangeInto = stateToChangeInto;
+        NextState = stateToChangeInto;
     }
 
     internal void Change()
     {
-        Debug.Log("Exit Idle State");
         OnCollected?.Invoke();
-        _stateMachine.ChangeState(_stateToChangeInto);
+        _stateMachine.ChangeState(NextState);
     }
 }
 
@@ -182,6 +194,15 @@ public class BossFifthState : BossState
 
 public class BossDoneState : BossState
 {
+    private BossStateMachine _bossStateMachine;
     public BossDoneState(StateMachine stateMachine)
-        : base(stateMachine) { }
+        : base(stateMachine) { 
+        _bossStateMachine = (BossStateMachine)stateMachine;
+        }
+
+    public override void Enter()
+    {
+        base.Enter();
+            _bossStateMachine.GetComponent<BossStateMachine>().AnimatorComponent.SetTrigger("isDead");
+    }
 }
