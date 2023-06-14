@@ -11,6 +11,8 @@ public class BossStateMachine : StateMachine
     private SpriteRenderer _spriteRenderer;
     public Animator AnimatorComponent => _animator;
 
+    [SerializeField] GameObject _particle;
+
     private void OnEnable()
     {
         NextWaveOnHit.BossTired += EnterIdleState;
@@ -82,6 +84,8 @@ public class BossStateMachine : StateMachine
     private void BossHit()
     {
         _animator.SetTrigger("isHit");
+        AudioManager._instance.PlaySingleSound(SingleSound.MissileCrash);
+        Instantiate(_particle, this.transform.position, this.transform.rotation);
         ExitIdleState();
     }
 }
