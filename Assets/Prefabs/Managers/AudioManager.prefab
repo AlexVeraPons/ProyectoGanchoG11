@@ -117,6 +117,8 @@ MonoBehaviour:
     value: {fileID: 8300000, guid: c0a08512015e4fa48b8c95b319894ed8, type: 3}
   - key: 22
     value: {fileID: 8300000, guid: cbfbad7aa9c09bf44b00b05c63b03489, type: 3}
+  - key: 23
+    value: {fileID: 8300000, guid: dc92b112b2888574dad25b598fa4e8f7, type: 3}
   _loopSoundList:
   - key: 0
     value: {fileID: 8300000, guid: 7ed8312d6211de54fbd1be42b6010524, type: 3}
