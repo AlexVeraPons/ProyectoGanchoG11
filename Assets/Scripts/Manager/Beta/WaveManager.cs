@@ -152,16 +152,17 @@ public class WaveManager : MonoBehaviour
         this._spawner.SpawnWave(_collector, nextWaveData.GetWorldID(), nextWaveData.GetWaveID());
         this._spawner.SpawnWorld(_collector, nextWaveData.GetWorldID());
 
-        ResetWavePlayerPosition(nextWaveData);
-        
-        if(_respawnType != RespawnType.World)
-        {
-            yield return new WaitForSeconds(_timeAfterSpawn); // Time it takes to load the next wave
-        }
-        else
-        {
-            yield return new WaitForSeconds(0); // Time it takes to load the next wave
-        }
+        yield return new WaitForSeconds(_timeAfterSpawn); // Time it takes to load the next wave
+        // if(_respawnType != RespawnType.World)
+        // {
+            
+        // }
+        // else
+        // {
+        //     yield return new WaitForSeconds(0); // Time it takes to load the next wave
+        // }
+
+        ResetWavePlayerPosition(nextWaveData, isRespawning);
 
         if(isRespawning == true)
         {
@@ -213,9 +214,19 @@ public class WaveManager : MonoBehaviour
     //     StartCoroutine(Next(waveData, waveData, isRespawning: true));
     // }
 
-    void ResetWavePlayerPosition(WaveData waveData)
+    void ResetWavePlayerPosition(WaveData waveData, bool respawning)
     {
-        _playerTransform.position = GetWaveByID(waveData.GetWaveID()).SpawnPosition;
+        if(_respawnType == RespawnType.World)
+        {
+            if(respawning == true)
+            {
+                _playerTransform.position = GetWaveByID(waveData.GetWaveID()).SpawnPosition;
+            }
+        }
+        else
+        {
+            _playerTransform.position = GetWaveByID(waveData.GetWaveID()).SpawnPosition;
+        }
     }
 
     Wave GetWaveByID(int ID)
