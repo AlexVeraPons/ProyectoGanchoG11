@@ -22,7 +22,7 @@ TagManager:
   - Hook
   - LevelBound
   - Interactable
-  - 
+  - Screen
   - 
   - 
   - 
@@ -42,6 +42,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: New Layer 4
+    uniqueID: 3994768759
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
