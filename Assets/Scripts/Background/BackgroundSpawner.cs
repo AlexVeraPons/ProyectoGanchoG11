@@ -42,4 +42,26 @@ public class BackgroundSpawner : MonoBehaviour
     {
         _time = _spawnTime;
     }
+
+    public void EnterBossStage()
+    {
+        DisableSpriteRenderer();
+        ChangeCannonsToBossState();
+    }
+
+    private void DisableSpriteRenderer()
+    {
+        this.gameObject.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+    }
+
+    private void ChangeCannonsToBossState()
+    {
+        foreach (Transform child in transform)
+        {
+            if (child.gameObject.GetComponent<Cannons>() != null)
+            {
+                child.gameObject.GetComponent<Cannons>().ChangeToBossBullet();
+            }
+        }
+    }
 }

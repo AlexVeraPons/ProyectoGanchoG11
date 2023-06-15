@@ -119,6 +119,8 @@ MonoBehaviour:
     value: {fileID: 8300000, guid: cbfbad7aa9c09bf44b00b05c63b03489, type: 3}
   - key: 23
     value: {fileID: 8300000, guid: dc92b112b2888574dad25b598fa4e8f7, type: 3}
+  - key: 25
+    value: {fileID: 8300000, guid: 53195c483c2a46d48b150c7fd7cbdb02, type: 3}
   _loopSoundList:
   - key: 0
     value: {fileID: 8300000, guid: 7ed8312d6211de54fbd1be42b6010524, type: 3}
@@ -127,6 +129,8 @@ MonoBehaviour:
     value: {fileID: 8300000, guid: 0a380462037b1ad409d5e0f1c3b8955d, type: 3}
   - key: 1
     value: {fileID: 8300000, guid: d19a46b2733cb834aa958b855a6c8b4e, type: 3}
+  - key: 3
+    value: {fileID: 8300000, guid: d36006fb0a6d3f84abe1db2e14eaa521, type: 3}
 --- !u!1 &5901926687490999130
 GameObject:
   m_ObjectHideFlags: 0

@@ -680,6 +680,7 @@ MonoBehaviour:
   - {fileID: 1939059286797052107}
   _bulletPoolCount: 50
   _bullet: {fileID: 6698173446345079931, guid: e1db56f47b56fbf4b8101a0ceb63b311, type: 3}
+  _bossBullet: {fileID: 0}
 --- !u!114 &1939059286184832229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -802,6 +803,7 @@ MonoBehaviour:
   - {fileID: 1939059285769538929}
   _bulletPoolCount: 50
   _bullet: {fileID: 6698173446345079931, guid: e1db56f47b56fbf4b8101a0ceb63b311, type: 3}
+  _bossBullet: {fileID: 0}
 --- !u!114 &1939059286320940156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -924,6 +926,7 @@ MonoBehaviour:
   - {fileID: 1939059287032707893}
   _bulletPoolCount: 50
   _bullet: {fileID: 6698173446345079931, guid: e1db56f47b56fbf4b8101a0ceb63b311, type: 3}
+  _bossBullet: {fileID: 0}
 --- !u!114 &1939059286418249056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1001,6 +1004,7 @@ MonoBehaviour:
   - {fileID: 1939059285514285989}
   _bulletPoolCount: 50
   _bullet: {fileID: 6698173446345079931, guid: e1db56f47b56fbf4b8101a0ceb63b311, type: 3}
+  _bossBullet: {fileID: 0}
 --- !u!114 &1939059286467514609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6265,7 +6269,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -3
   m_Sprite: {fileID: 21300000, guid: 0d7274955f2587a4fbdb1d4e019325b4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

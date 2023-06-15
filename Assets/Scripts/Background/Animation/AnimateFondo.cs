@@ -10,7 +10,7 @@ public class AnimateFondo : MonoBehaviour
         _animation = GetComponent<Animator>();
     }
 
-    public void ChangeBackground(){
+    public void ChangeToBossBackground(){
         _animation.SetTrigger("Start");
     }
 }
