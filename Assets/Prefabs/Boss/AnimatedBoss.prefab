@@ -146,6 +146,8 @@ MonoBehaviour:
   - {fileID: -793252074, guid: e0adc450cc34de24f85028a3f5450312, type: 3}
   - {fileID: 771639941, guid: e0adc450cc34de24f85028a3f5450312, type: 3}
   _particle: {fileID: 774660090993828271, guid: c5e674c9180bb8f47af31ff35ef3f445, type: 3}
+  _cannons: {fileID: 0}
+  _background: {fileID: 0}
 --- !u!1 &3513438078162212240
 GameObject:
   m_ObjectHideFlags: 0
@@ -609,15 +611,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7234177484014669499, guid: 7b93f4695ec5bbe45821face1f3c4c35, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 1.3624
       objectReference: {fileID: 0}
     - target: {fileID: 7234177484014669499, guid: 7b93f4695ec5bbe45821face1f3c4c35, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 1.3624
       objectReference: {fileID: 0}
     - target: {fileID: 7234177484014669499, guid: 7b93f4695ec5bbe45821face1f3c4c35, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 1.3624
       objectReference: {fileID: 0}
     - target: {fileID: 7234177484014669499, guid: 7b93f4695ec5bbe45821face1f3c4c35, type: 3}
       propertyPath: m_LocalPosition.x

@@ -6,13 +6,20 @@ using UnityEngine;
 public class BossStateMachine : StateMachine
 {
     [SerializeField]
-    private Sprite[] _textures = new Sprite[5];
+    private Sprite[] _textures = new Sprite[4];
     private Sprite _currentTexture;
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
     public Animator AnimatorComponent => _animator;
 
-    [SerializeField] GameObject _particle;
+    [SerializeField]
+    GameObject _particle;
+
+    [SerializeField]
+    private BackgroundSpawner _cannons;
+
+    [SerializeField]
+    private AnimateFondo _background;
 
     private void OnEnable()
     {
@@ -51,7 +58,12 @@ public class BossStateMachine : StateMachine
         _spriteRenderer.sprite = _currentTexture;
     }
 
-     public override void ChangeState(State newState)
+    public void SetRoomToBossState() {
+        _background.ChangeToBossBackground();
+        _cannons.EnterBossStage();
+    }
+
+    public override void ChangeState(State newState)
     {
         base.ChangeState(newState);
     }
