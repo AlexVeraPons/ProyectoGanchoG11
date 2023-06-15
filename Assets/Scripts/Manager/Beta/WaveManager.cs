@@ -127,7 +127,7 @@ public class WaveManager : MonoBehaviour
         bool isRespawning = false
     )
     {
-        Debug.Log("Unloading wave");
+        OnUnloadWave?.Invoke();
         
         if(_respawnType != RespawnType.World)
         {

@@ -29235,8 +29235,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _respawnType: 0
-  _timeBeforeSpawn: 0.3
-  _timeAfterSpawn: 0.3
+  _timeBeforeSpawn: 1.4
+  _timeAfterSpawn: 1.4
   _playerTransform: {fileID: 220002411}
 --- !u!4 &1482730667
 Transform:
