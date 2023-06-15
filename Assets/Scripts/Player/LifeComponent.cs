@@ -13,7 +13,7 @@ public class LifeComponent : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        _current = _max;    
+        _current = _max;
     }
 
     public static Action OnDeath;
