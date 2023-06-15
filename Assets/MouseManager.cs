@@ -6,7 +6,7 @@ public class MouseManager : MonoBehaviour
     public static MouseManager _instance;
 
     [SerializeField] Texture2D _mouseNotClickedTexture, _mouseClickedTexture;
-    Vector2 _hotspot = new Vector2(113, 45);
+    [SerializeField] Vector2 _hotspot;
 
     private void Awake()
     {
@@ -25,11 +25,11 @@ public class MouseManager : MonoBehaviour
     {
         if(MouseIsClicked())
         {
-            Cursor.SetCursor(_mouseClickedTexture, _hotspot, CursorMode.Auto);
+            Cursor.SetCursor(_mouseClickedTexture, _hotspot, CursorMode.ForceSoftware);
         }
         else
         {
-            Cursor.SetCursor(_mouseNotClickedTexture, _hotspot, CursorMode.Auto);
+            Cursor.SetCursor(_mouseNotClickedTexture, _hotspot, CursorMode.ForceSoftware);
         }
     }
 
