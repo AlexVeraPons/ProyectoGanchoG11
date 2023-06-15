@@ -6,14 +6,19 @@ using UnityEngine.InputSystem;
 
 public class LifeComponent : MonoBehaviour, IDamageable
 {
-    [SerializeField] private InputAction _debugTakeDamageAction;
-    [SerializeField] int _current = 1;
+    [SerializeField]
+    private InputAction _debugTakeDamageAction;
+
+    [SerializeField]
+    int _current = 1;
     public int Current => _current;
-    [SerializeField] int _max = 1;
+
+    [SerializeField]
+    int _max = 1;
 
     private void Start()
     {
-        _current = _max;    
+        _current = _max;
     }
 
     public static Action OnDeath;

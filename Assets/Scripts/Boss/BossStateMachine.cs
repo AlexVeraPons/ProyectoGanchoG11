@@ -25,7 +25,7 @@ public class BossStateMachine : StateMachine
     {
         NextWaveOnHit.BossTired -= EnterIdleState;
         NextWaveOnHit.BossHit -= BossHit;
-        WaveManager.OnResetWorld -= ResetBoss;
+        LifeComponent.OnDeath -= ResetBoss;
     }
 
     private void Awake()
