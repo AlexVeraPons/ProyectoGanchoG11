@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
+    private bool _isInBoss;
     private Cannons _cannons;
     private CPUBullet _cpuBullet;
 
@@ -19,6 +20,14 @@ public class ObjectPool : MonoBehaviour
         _cannons = GetComponent<Cannons>();
 
         objectPool = new Queue<GameObject>();
+    }
+    private void OnEnable()
+    {
+        _cannons.OnEnterBoss += SetEnterBoss;
+    }
+    private void OnDisable()
+    {
+        _cannons.OnEnterBoss += SetEnterBoss;
     }
 
     public void Initialize(GameObject objectToPool, int poolSize = 10)
@@ -40,7 +49,6 @@ public class ObjectPool : MonoBehaviour
             {
                 var cpuBullet = spawnedObject.GetComponent<CPUBullet>();
                 cpuBullet.ResetTimer();
-                //cpuBullet.ActivateTrail();
             }
 
         }
@@ -55,10 +63,18 @@ public class ObjectPool : MonoBehaviour
                 var cpuBullet = spawnedObject.GetComponent<CPUBullet>();
                 cpuBullet.ResetTimer();
                 cpuBullet.ActivateTrail();
+                if (_isInBoss)
+                {
+                    cpuBullet.ChangeBulletToBossMode();
+                }
             }
         }
 
         objectPool.Enqueue(spawnedObject);
         return spawnedObject;
+    }
+    private void SetEnterBoss()
+    {
+        _isInBoss = true;
     }
 }
