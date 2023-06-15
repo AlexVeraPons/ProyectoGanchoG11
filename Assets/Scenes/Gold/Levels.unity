@@ -3875,8 +3875,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _glitchDuration: 1
-  _duration: 5
-  _warningDuration: 1
+  _duration: 3
+  _warningDuration: 2
   _warningZone: {fileID: 552286421}
   _horizontalSpeedGrowth: 20
 --- !u!1001 &147280930
@@ -21594,7 +21594,7 @@ MonoBehaviour:
     IgnorePreviousDuration: 1
     Hazards:
     - {fileID: 347572750}
-  - StartTime: 5
+  - StartTime: 3
     IgnorePreviousDuration: 1
     Hazards:
     - {fileID: 141949197}
@@ -29431,7 +29431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _glitchDuration: 1
-  _duration: 10
+  _duration: 11
   _warningDuration: 3
   _warningZone: {fileID: 998628508}
   _growthSpeed: 20
