@@ -252,7 +252,8 @@ public enum SingleSound
     AnchorAppear,
     AnchorDisappear,
     LightBeam,
-    LightBeam2
+    LightBeam2,
+    BossScream
 }
 
 public enum LoopingSound
@@ -267,5 +268,6 @@ public enum Music
 {
     MainMenu,
     Level,
-    None
+    None,
+    Boss
 }
