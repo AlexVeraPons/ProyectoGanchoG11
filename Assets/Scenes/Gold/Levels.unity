@@ -293,8 +293,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _glitchDuration: 1
-  _duration: 5
-  _warningDuration: 1
+  _duration: 4
+  _warningDuration: 2
   _warningZone: {fileID: 1248982377}
   _horizontalSpeedGrowth: 20
 --- !u!1001 &3013107
@@ -4791,7 +4791,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _glitchDuration: 1
   _duration: 3
-  _warningDuration: 1
+  _warningDuration: 2
   _warningZone: {fileID: 586939592}
   _horizontalSpeedGrowth: 20
 --- !u!1 &181807939
@@ -8458,8 +8458,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _glitchDuration: 1
-  _duration: 5
-  _warningDuration: 1
+  _duration: 3
+  _warningDuration: 2
   _warningZone: {fileID: 1013263135}
   _horizontalSpeedGrowth: 20
 --- !u!1 &349968751
@@ -23652,7 +23652,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1147515342
 Transform:
   m_ObjectHideFlags: 0
@@ -26845,7 +26845,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1316850142
 Transform:
   m_ObjectHideFlags: 0
@@ -29431,7 +29431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _glitchDuration: 1
-  _duration: 15
+  _duration: 10
   _warningDuration: 3
   _warningZone: {fileID: 998628508}
   _growthSpeed: 20
@@ -36723,7 +36723,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1927575862
 Transform:
   m_ObjectHideFlags: 0
@@ -36992,7 +36992,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _glitchDuration: 1
   _duration: 3
-  _warningDuration: 1
+  _warningDuration: 2
   _warningZone: {fileID: 1487319489}
   _horizontalSpeedGrowth: 20
 --- !u!1001 &1949741106
