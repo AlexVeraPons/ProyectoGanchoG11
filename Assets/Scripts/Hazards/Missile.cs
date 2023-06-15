@@ -27,7 +27,7 @@ public class Missile : Hazard
     private TrailRenderer _trailRenderer;
     private Vector2 _intialPosition;
     private Quaternion _initialRotation;
-     ParticleSystem _explosionParticle;
+    ParticleSystem _explosionParticle;
 
     private protected override void Awake()
     {
@@ -36,7 +36,6 @@ public class Missile : Hazard
 
         _target = GameObject.FindObjectOfType<PlayerEntity>().gameObject;
         this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
-
     }
 
     private void Start()
@@ -77,7 +76,10 @@ public class Missile : Hazard
         if (IsTouchingWall())
         {
             Disappear();
-            Instantiate(_explosionParticle, this.transform.position, this.transform.rotation);
+            if (_explosionParticle != null)
+            {
+                Instantiate(_explosionParticle, this.transform.position, this.transform.rotation);
+            }
             AudioManager._instance.PlaySingleSound(SingleSound.MissileCrash);
             CameraShaker._instance.StartShake(0.2f, 0.5f);
             StopRunning();

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public abstract class Hazard : MonoBehaviour
 {
     [Header("Values")]
@@ -32,7 +33,6 @@ public abstract class Hazard : MonoBehaviour
     private void Start()
     {
         ComponentDisabler();
-
     }
 
     public void HazardStart()
@@ -48,7 +48,7 @@ public abstract class Hazard : MonoBehaviour
 
         yield return new WaitForSeconds(seconds: _glitchDuration);
         StartRunning();
-        
+
         if (!_shouldDespawn)
         {
             yield break;
@@ -89,12 +89,18 @@ public abstract class Hazard : MonoBehaviour
 
     private protected void ComponentDisabler()
     {
-        this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        if (this.gameObject.GetComponent<SpriteRenderer>() != null)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        }
     }
 
     private protected void ComponentEnabler()
     {
-        this.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        if (this.gameObject.GetComponent<SpriteRenderer>() != null)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        }
     }
 
     private protected virtual void OnTriggerEnter2D(Collider2D collision)
@@ -173,5 +179,3 @@ public abstract class Hazard : MonoBehaviour
         return _hasrun && !_running;
     }
 }
-
-

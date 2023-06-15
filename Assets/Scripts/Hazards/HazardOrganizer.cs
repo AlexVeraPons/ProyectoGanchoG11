@@ -16,6 +16,7 @@ public class HazardOrganizer : MonoBehaviour
         WaveManager.OnUnloadWave += ResetContainers;
         LifeComponent.OnDeath += ResetContainers;
         LifeComponent.OnDeath += ResetContainerIndex;
+        WaveManager.OnResetWave += ResetContainers;
         NextWaveOnHit.BossHit += ResetContainers;
         NextWaveOnHit.BossHit += ResetContainerIndex;
     }
@@ -24,6 +25,7 @@ public class HazardOrganizer : MonoBehaviour
     {
         WaveManager.OnLoadWave -= LevelStarted;
         WaveManager.OnUnloadWave -= ResetContainers;
+        WaveManager.OnResetWave -= ResetContainers;
         LifeComponent.OnDeath -= ResetContainers;
         LifeComponent.OnDeath -= ResetContainerIndex;
         NextWaveOnHit.BossHit -= ResetContainers;
