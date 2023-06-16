@@ -8,6 +8,8 @@ public class CPUBullet : MonoBehaviour
 
     private Cannons _cannons;
     private TrailRenderer _trailRenderer;
+    private SpriteRenderer _spriteRenderer;
+
     private Dispersion _dispersion;
     private int _dispersionNumber;
     private bool _inverted;
@@ -24,11 +26,13 @@ public class CPUBullet : MonoBehaviour
     private float _baseTimer; // = 0.5f
     private float _timer;
 
+
     void Start()
     {
         _cannons = GetComponentInParent<Cannons>();
         _inverted = _cannons.GetInverted();
 
+        _spriteRenderer = GetComponent<SpriteRenderer>();
         _trailRenderer = GetComponent<TrailRenderer>();
 
         _dispersion = GetComponentInParent<Dispersion>();
@@ -143,5 +147,12 @@ public class CPUBullet : MonoBehaviour
     public void ActivateTrail()
     {
         _trailRenderer.enabled = true;
+    }
+    public void ChangeBulletToBossMode()
+    {
+        _spriteRenderer.material.color = _cannons.GetBulletColor(); //new Color(255, 0, 18, 138);
+
+        _trailRenderer.startColor = _cannons.GetStartBulletTrailColor();
+        _trailRenderer.endColor = _cannons.GetEndBulletTrailColor();
     }
 }
