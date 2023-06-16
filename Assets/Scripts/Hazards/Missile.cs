@@ -36,6 +36,8 @@ public class Missile : Hazard
 
         _target = GameObject.FindObjectOfType<PlayerEntity>().gameObject;
         this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+
+        _explosionParticle = Resources.Load<ParticleSystem>("ExplosionParticle/MissileExplosion");
     }
 
     private void Start()

@@ -976,10 +976,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      animaciones playerBienHechas_34: 1065979463
+      animaciones playerBienHechas_41: -312524926
       animaciones playerBienHechas_43: 1064296049
       animaciones playerBienHechas_18: 1244687305
-      animaciones playerBienHechas_22: 2108819175
+      Die7: -1209478211
       animaciones playerBienHechas_37: 1922995029
       Eat3: 950141133
       animaciones playerBienHechas_38: -815105350
@@ -1052,8 +1052,8 @@ TextureImporter:
       Fall0: 238436697
       Impact3: 422532589
       animaciones playerBienHechas_30: 351717681
-      Die7: -1209478211
-      animaciones playerBienHechas_41: -312524926
+      animaciones playerBienHechas_22: 2108819175
+      animaciones playerBienHechas_34: 1065979463
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
