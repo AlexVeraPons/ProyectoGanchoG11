@@ -15,6 +15,10 @@ public class Chainsaw : HazardWithPath
     private protected override void StopRunSound()
     {
         AudioSource thisSource = GetComponent<AudioSource>();
+        if(thisSource == null)
+        {
+            return;
+        }
         thisSource.Stop();
     }
 
@@ -30,6 +34,10 @@ public class Chainsaw : HazardWithPath
         AudioSource thisSource = GetComponent<AudioSource>();
         if(thisSource == null)
         {
+            if (AudioManager._instance == null)
+            {
+                return;
+            }
             AudioManager._instance.CreateLoopSourceComponent(gameObject: this.gameObject, LoopingSound.Saw);
         }
 
