@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3513438078027892675}
   - component: {fileID: 3513438078027892676}
   - component: {fileID: 3429785999578441880}
+  - component: {fileID: 1594638307977937890}
   m_Layer: 0
   m_Name: AnimatedBoss
   m_TagString: Untagged
@@ -149,6 +150,19 @@ MonoBehaviour:
   _particle: {fileID: 774660090993828271, guid: c5e674c9180bb8f47af31ff35ef3f445, type: 3}
   _cannons: {fileID: 0}
   _background: {fileID: 0}
+--- !u!114 &1594638307977937890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3513438078027892686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bd620ef7d6d66b4db53e265d5c682fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sceneName: Final
 --- !u!1 &3513438078162212240
 GameObject:
   m_ObjectHideFlags: 0

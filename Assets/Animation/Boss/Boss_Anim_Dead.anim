@@ -12242,6 +12242,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 23
     messageOptions: 0
+  - time: 8.183333
+    functionName: LoadSceneFinal
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 8.216666
     functionName: Play
     data: 
