@@ -1646,7 +1646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _glitchDuration: 1
-  _duration: 10
+  _duration: 8
   _linearSpeed: 5
   _routeType: 1
   _nodesParent: {fileID: 2026088741}
@@ -2344,9 +2344,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _glitchDuration: 2
-  _duration: 15
+  _duration: 10
   _rotationalSpeed: 200
-  _speed: 12
+  _speed: 8
   _target: {fileID: 0}
   _whatIsWall:
     serializedVersion: 2
@@ -5236,7 +5236,7 @@ Transform:
   m_GameObject: {fileID: 236328240}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 6}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 107778376}
@@ -5317,7 +5317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _glitchDuration: 1
-  _duration: 10
+  _duration: 6.2
   _linearSpeed: 5
   _routeType: 1
   _nodesParent: {fileID: 21698901}
@@ -7682,9 +7682,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _glitchDuration: 2
-  _duration: 15
+  _duration: 10
   _rotationalSpeed: 200
-  _speed: 13
+  _speed: 10
   _target: {fileID: 0}
   _whatIsWall:
     serializedVersion: 2
@@ -8710,7 +8710,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 435416646494221380, guid: 1f276c94ba37e5d40aaa81f5aa014762, type: 3}
       propertyPath: _hazardContainers.Array.data[3].StartTime
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 435416646494221380, guid: 1f276c94ba37e5d40aaa81f5aa014762, type: 3}
       propertyPath: _hazardContainers.Array.data[0].Hazards.Array.size
@@ -8770,7 +8770,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 435416646494221380, guid: 1f276c94ba37e5d40aaa81f5aa014762, type: 3}
       propertyPath: _hazardContainers.Array.data[3].IgnorePreviousDuration
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 435416646494221382, guid: 1f276c94ba37e5d40aaa81f5aa014762, type: 3}
       propertyPath: m_Name
@@ -10755,7 +10755,7 @@ Transform:
   m_GameObject: {fileID: 526904524}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 6}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1229532462}
@@ -10836,7 +10836,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _glitchDuration: 1
-  _duration: 12
+  _duration: 8
   _linearSpeed: 5
   _routeType: 1
   _nodesParent: {fileID: 1346312272}
@@ -11092,9 +11092,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _glitchDuration: 2
-  _duration: 15
+  _duration: 10
   _rotationalSpeed: 200
-  _speed: 11
+  _speed: 7
   _target: {fileID: 0}
   _whatIsWall:
     serializedVersion: 2
@@ -11441,7 +11441,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6674347491946792115, guid: 469e894adf092784f8602af08c9a2a46, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.389
       objectReference: {fileID: 0}
     - target: {fileID: 6674347491946792115, guid: 469e894adf092784f8602af08c9a2a46, type: 3}
       propertyPath: m_LocalRotation.w
@@ -15252,9 +15252,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _glitchDuration: 2
-  _duration: 15
+  _duration: 10
   _rotationalSpeed: 200
-  _speed: 11
+  _speed: 7
   _target: {fileID: 0}
   _whatIsWall:
     serializedVersion: 2
@@ -18395,7 +18395,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &935506556
 Transform:
   m_ObjectHideFlags: 0
@@ -21091,7 +21091,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1091764412
 Transform:
   m_ObjectHideFlags: 0
@@ -21321,9 +21321,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _glitchDuration: 2
-  _duration: 15
+  _duration: 10
   _rotationalSpeed: 200
-  _speed: 12
+  _speed: 8
   _target: {fileID: 0}
   _whatIsWall:
     serializedVersion: 2
@@ -31094,7 +31094,7 @@ Transform:
   m_GameObject: {fileID: 1736958498}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 6}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1355438210}
@@ -31175,7 +31175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _glitchDuration: 1
-  _duration: 12
+  _duration: 6.2
   _linearSpeed: 5
   _routeType: 1
   _nodesParent: {fileID: 92519805}
@@ -34453,7 +34453,7 @@ Transform:
   m_GameObject: {fileID: 1987574186}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 6}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 186159614}
@@ -34534,7 +34534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _glitchDuration: 1
-  _duration: 10
+  _duration: 8
   _linearSpeed: 5
   _routeType: 1
   _nodesParent: {fileID: 1515925425}
@@ -35746,9 +35746,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _glitchDuration: 2
-  _duration: 15
+  _duration: 10
   _rotationalSpeed: 200
-  _speed: 13
+  _speed: 10
   _target: {fileID: 0}
   _whatIsWall:
     serializedVersion: 2
@@ -37477,7 +37477,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1035557850081957605
 Transform:
   m_ObjectHideFlags: 0
