@@ -88,7 +88,7 @@ public class ActivablePlatform : MonoBehaviour, IInteractable
 
     void Move(Vector2 direction)
     {
-        _rigidbody2D.velocity = direction * _linearSpeed * Time.deltaTime;
+        _rigidbody2D.linearVelocity = direction * _linearSpeed * Time.deltaTime;
     }
 
     bool ReachedNode(Vector2 nodePosition, Vector2 direction)
@@ -139,13 +139,13 @@ public class ActivablePlatform : MonoBehaviour, IInteractable
 
             case ActivablePlatformState.ReachedEnd:
                 _spriteRenderer.color = _pendingColor;
-                _rigidbody2D.velocity = Vector2.zero;
+                _rigidbody2D.linearVelocity = Vector2.zero;
                 this.transform.position = _nodes[1];
             break;
 
             case ActivablePlatformState.ReachedBegining:
                 _spriteRenderer.color = _pendingColor;
-                _rigidbody2D.velocity = Vector2.zero;
+                _rigidbody2D.linearVelocity = Vector2.zero;
                 this.transform.position = _nodes[0];
             break;
 

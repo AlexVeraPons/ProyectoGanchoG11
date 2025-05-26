@@ -56,7 +56,7 @@ public class Grounded : State
             _currentVelocity = Mathf.Lerp(_currentVelocity, 0, _deceleration * Time.deltaTime);
         }
 
-        _rigidbody2D.velocity = new Vector2(_currentVelocity, _rigidbody2D.velocity.y);
+        _rigidbody2D.linearVelocity = new Vector2(_currentVelocity, _rigidbody2D.linearVelocity.y);
     }
 
     public override void Update()

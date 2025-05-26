@@ -269,7 +269,7 @@ public class HookBehaviour : MonoBehaviour
             case HookState.Stuck:
                 _tongueStuckParticle.Play(); //Play tongue particle on hit
                 AudioManager._instance.PlaySingleSound(SingleSound.HookStuck);
-                _rigidbody2D.velocity = Vector2.zero; //Reset velocity to 0
+                _rigidbody2D.linearVelocity = Vector2.zero; //Reset velocity to 0
                 AlignPositionToImpact();
                 break;
 
@@ -359,7 +359,7 @@ public class HookBehaviour : MonoBehaviour
     {
         float value = with;
         Vector2 direction = (to - from).normalized;
-        targetRigidbody2D.velocity = direction * value * Time.deltaTime;
+        targetRigidbody2D.linearVelocity = direction * value * Time.deltaTime;
     }
 
     /// <summary>
@@ -367,7 +367,7 @@ public class HookBehaviour : MonoBehaviour
     /// </summary>
     void MoveSelf()
     {
-        _rigidbody2D.velocity = _direction * _hookSpeed * Time.deltaTime;
+        _rigidbody2D.linearVelocity = _direction * _hookSpeed * Time.deltaTime;
     }
 
     /// <summary>

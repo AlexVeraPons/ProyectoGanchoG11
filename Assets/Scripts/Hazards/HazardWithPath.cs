@@ -128,7 +128,7 @@ public class HazardWithPath : Hazard
     private void GoToNode()
     {
         Vector2 direction = (Vector3)_currentNode - transform.position;
-        _rigidbody2D.velocity = direction.normalized * _linearSpeed;
+        _rigidbody2D.linearVelocity = direction.normalized * _linearSpeed;
     }
 
     public override void ResetHazard()

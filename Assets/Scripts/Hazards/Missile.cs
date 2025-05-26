@@ -70,7 +70,7 @@ public class Missile : Hazard
 
         _rigidbody2D.angularVelocity = -_rotationalSpeed * rotationAmount.z;
 
-        _rigidbody2D.velocity = transform.up * _speed;
+        _rigidbody2D.linearVelocity = transform.up * _speed;
 
         if (IsTouchingWall())
         {

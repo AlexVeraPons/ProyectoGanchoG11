@@ -32,7 +32,7 @@ public class Airborn : State
         _deceleration = ((PlayerStateMachine)stateMachine).Deceleration;
         _airResistance = ((PlayerStateMachine)stateMachine).AirResistance;
         _speed = ((PlayerStateMachine)stateMachine).Speed - _airResistance;
-        _currentVelocity = _rigidbody2D.velocity.x;
+        _currentVelocity = _rigidbody2D.linearVelocity.x;
         _animator = ((PlayerStateMachine)stateMachine).Animator;
     }
 
@@ -79,10 +79,10 @@ public class Airborn : State
     {
         if (_lastVelocity == null)
         {
-            _lastVelocity = this._rigidbody2D.velocity;
+            _lastVelocity = this._rigidbody2D.linearVelocity;
         }
 
-        if (_lastVelocity.y > 0 && this._rigidbody2D.velocity.y < 0)
+        if (_lastVelocity.y > 0 && this._rigidbody2D.linearVelocity.y < 0)
         {
             _animator.SetTrigger("fell");
         }
@@ -91,7 +91,7 @@ public class Airborn : State
             _animator.ResetTrigger("fell");
         }
 
-        _lastVelocity = this._rigidbody2D.velocity;
+        _lastVelocity = this._rigidbody2D.linearVelocity;
     }
 
     /// <summary>
@@ -112,9 +112,9 @@ public class Airborn : State
 
     private void CheckIfDifferentVelocity()
     {
-        if (_currentVelocity != _rigidbody2D.velocity.x)
+        if (_currentVelocity != _rigidbody2D.linearVelocity.x)
         {
-            _currentVelocity = _rigidbody2D.velocity.x;
+            _currentVelocity = _rigidbody2D.linearVelocity.x;
         }
     }
 
@@ -128,7 +128,7 @@ public class Airborn : State
 
     private void ResetVelocity()
     {
-        _rigidbody2D.velocity = new Vector2(0, _rigidbody2D.velocity.y);
+        _rigidbody2D.linearVelocity = new Vector2(0, _rigidbody2D.linearVelocity.y);
     }
 
     private void MovementUpdate()
@@ -149,7 +149,7 @@ public class Airborn : State
 
         if (_rigidbody2D.bodyType != RigidbodyType2D.Static)
         {
-            _rigidbody2D.velocity = new Vector2(_currentVelocity, _rigidbody2D.velocity.y);
+            _rigidbody2D.linearVelocity = new Vector2(_currentVelocity, _rigidbody2D.linearVelocity.y);
         }
     }
 

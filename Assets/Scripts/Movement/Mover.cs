@@ -77,7 +77,7 @@ public class Mover : MonoBehaviour
             _currentVelocity = Mathf.Lerp(_currentVelocity, 0, _deceleration * Time.deltaTime);
         }
 
-        _rigidbody2D.velocity = new Vector2(_currentVelocity, _rigidbody2D.velocity.y);
+        _rigidbody2D.linearVelocity = new Vector2(_currentVelocity, _rigidbody2D.linearVelocity.y);
     }
 
     private void ShouldFlip()
@@ -131,7 +131,7 @@ public class Mover : MonoBehaviour
     {
         _isHooked = false;
         _rigidbody2D.gravityScale = _originalGravityScale;
-        _rigidbody2D.velocity = Vector2.zero;
+        _rigidbody2D.linearVelocity = Vector2.zero;
     }
 
     public void Stun()
